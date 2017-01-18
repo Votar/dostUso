@@ -1,0 +1,10 @@
+<resources>
+    <string name="facebook_app_id">1777348322521293</string>
+    <string name="app_name">EntregoUser</string>
+    <string name="login_with_fb">Log in with Facebook</string>
+    <string name="log_in">Log in</string>
+    <string name="register">Register</string>
+    <string name="er_default_network_error">Cannot connection to server</string>
+    <string name="ui_progress_dialog_title">Loading…</string>
+    <string name="ui_loading">Please, wait a second</string>
+</resources>
