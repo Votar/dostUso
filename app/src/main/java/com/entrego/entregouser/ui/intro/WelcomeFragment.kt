@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.entrego.entregouser.R
+import com.entrego.entregouser.ui.auth.AuthActivity
 import com.entrego.entregouser.util.showSnack
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
@@ -28,11 +29,13 @@ class WelcomeFragment : Fragment() {
         login_button.fragment = this;
         welcome_log_fb_btn.setOnClickListener { login_button.performClick() }
         login_button.registerCallback(mCallbackManager, mLoginFbListener)
-        val fbToken = FacebookSdk.getClientToken()
-        if (!fbToken.isNullOrEmpty())
-            view?.showSnack(fbToken)
+        welcome_login_btn.setOnClickListener { startEntregoAuth() }
 
+    }
 
+    private fun startEntregoAuth() {
+        val intent = Intent(context, AuthActivity::class.java)
+        startActivity(intent)
     }
 
 

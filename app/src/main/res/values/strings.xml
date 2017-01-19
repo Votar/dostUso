@@ -5,6 +5,21 @@
     <string name="log_in">Log in</string>
     <string name="register">Register</string>
     <string name="er_default_network_error">Cannot connection to server</string>
+    <string name="error_empty_fields">Missed required fields</string>
+
+
     <string name="ui_progress_dialog_title">Loading…</string>
     <string name="ui_loading">Please, wait a second</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="ui_error_email">Invalid email</string>
+    <string name="ui_error_password">Invalid password</string>
+    <string name="ui_forgot_password">Forgot password</string>
+    <string name="ui_login">login</string>
+    <string name="ui_registration">registration</string>
+    <string name="ui_descr_to_restore">Enter your email\n to restore your password</string>
+    <string name="ui_restore">restore</string>
+    <string name="ui_back_to_auth">back to login</string>
+    <string name="ui_success_restore">We sent you an email \n to restore your password</string>
+
 </resources>

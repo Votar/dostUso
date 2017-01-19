@@ -27,3 +27,4 @@ fun ProgressDialog.loading() {
     this.setMessage(this.context.getString(R.string.ui_loading))
     this.show()
 }
+
