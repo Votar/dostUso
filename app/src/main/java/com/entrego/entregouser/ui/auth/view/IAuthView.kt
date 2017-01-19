@@ -10,7 +10,6 @@ interface IAuthView {
     fun showMessage(message:String?)
     fun showProgress()
     fun hideProgress()
-    fun goToRegistration()
     fun goToMainScreen()
     fun successRestorePassword()
 }

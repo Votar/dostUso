@@ -34,11 +34,6 @@ class AuthActivity : AppCompatActivity(), IAuthView {
         setupListeners()
     }
 
-    override fun goToRegistration() {
-
-//        startActivity(Intent(applicationContext, RegistrationActivity::class.java))
-    }
-
     var progress: ProgressDialog? = null
     override fun showProgress() {
         progress = ProgressDialog(this)
@@ -90,8 +85,6 @@ class AuthActivity : AppCompatActivity(), IAuthView {
 
         })
 
-
-        auth_btn_registration.setOnClickListener { goToRegistration() }
         auth_btn_forgot_pass.setOnClickListener { startRestoreActivity() }
     }
 

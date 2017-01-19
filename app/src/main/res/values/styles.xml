@@ -22,6 +22,7 @@
     </style>
 
     <style name="WhiteButton" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:padding">@dimen/padding_small</item>
         <item name="android:colorButtonNormal">@color/colorWhite</item>
         <item name="android:textColor">@color/colorDarkBlue</item>
     </style>

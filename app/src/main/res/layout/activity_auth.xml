@@ -72,12 +72,6 @@
                         android:paddingTop="@dimen/default_screen_padding">
 
                         <Button
-                            android:id="@+id/auth_btn_registration"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/ui_registration" />
-
-                        <Button
                             android:id="@+id/auth_btn_login"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

@@ -21,5 +21,14 @@
     <string name="ui_restore">restore</string>
     <string name="ui_back_to_auth">back to login</string>
     <string name="ui_success_restore">We sent you an email \n to restore your password</string>
-
+    <string name="hint_name">Name</string>
+    <string name="hint_password_conf">Repeat password</string>
+    <string name="hint_phone">Phone number</string>
+    <string name="ui_i_have_account">i already have an account</string>
+    <string name="hint_phone_code">code</string>
+    <string name="ui_success_regist">Almost done! \n To finish you register click the link we send to your email.</string>
+    <string name="back_to_auth">back to login</string>
+    <string name="error_email_registered">Email already registered</string>
+    <string name="error_passwords_not_equals">Password mismatch</string>
+    <string name="logo">logo</string>
 </resources>

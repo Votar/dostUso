@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.entrego.entregouser.R
 import com.entrego.entregouser.ui.auth.AuthActivity
+import com.entrego.entregouser.ui.registration.RegistrationActivity
 import com.entrego.entregouser.util.showSnack
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
@@ -19,7 +20,6 @@ class WelcomeFragment : Fragment() {
     val mCallbackManager = com.facebook.CallbackManager.Factory.create();
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
         val view = inflater?.inflate(R.layout.fragment_welcome, container, false)
         return view
     }
@@ -30,14 +30,18 @@ class WelcomeFragment : Fragment() {
         welcome_log_fb_btn.setOnClickListener { login_button.performClick() }
         login_button.registerCallback(mCallbackManager, mLoginFbListener)
         welcome_login_btn.setOnClickListener { startEntregoAuth() }
+        welcome_registr_btn.setOnClickListener { startRegistration() }
+    }
 
+    private fun startRegistration() {
+        val intent = Intent(context, RegistrationActivity::class.java)
+        startActivity(intent)
     }
 
     private fun startEntregoAuth() {
         val intent = Intent(context, AuthActivity::class.java)
         startActivity(intent)
     }
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
