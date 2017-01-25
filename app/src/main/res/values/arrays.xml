@@ -27,4 +27,15 @@
         <item>Score your messenger</item>
         <item>Get your bill</item>
     </string-array>
+
+    <string-array name="tab_titles">
+        <item>Shipment</item>
+        <item>Buy / Deliver</item>
+        <item>Transactions</item>
+    </string-array>
+    <integer-array name="tab_icons">
+        <item>@drawable/ic_box</item>
+        <item>@drawable/ic_deliver</item>
+        <item>@drawable/ic_transaction</item>
+    </integer-array>
 </resources>

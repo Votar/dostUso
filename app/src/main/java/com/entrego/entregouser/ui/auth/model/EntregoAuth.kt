@@ -1,7 +1,5 @@
-package entrego.com.android.ui.auth.model
+package com.entrego.entregouser.ui.auth.model
 
-import com.entrego.entregouser.storage.EntregoStorage
-import com.entrego.entregouser.storage.preferences.EntregoStorageContract
 import com.entrego.entregouser.storage.preferences.PreferencesManager
 import entrego.com.android.web.api.ApiCreator
 import entrego.com.android.web.api.EntregoApi
@@ -29,26 +27,24 @@ class EntregoAuth(val email: String, val password: String) {
 
     fun requestAsync(listener: CommonResponseListener) {
 
+
         val body = AuthBody(email, password)
         ApiCreator.get()
                 .create(Request::class.java)
                 .parameters(body)
                 .enqueue(object : Callback<EntregoResult> {
                     override fun onResponse(call: Call<EntregoResult>?, response: Response<EntregoResult>?) {
-                        if (response?.body() != null) {
-                            when (response?.body()?.code) {
-                                0 -> {
-                                    val token = response?.headers()?.get(EntregoApi.TOKEN)
-                                    token?.let {
-                                        listener.onSuccessResponse()
-                                        PreferencesManager.setToken(token)
-                                    }
+                        when (response?.body()?.code) {
+                            0 -> {
+                                val token = response?.headers()?.get(EntregoApi.TOKEN)
+                                token?.let {
+                                    listener.onSuccessResponse()
+                                    PreferencesManager.setToken(token)
                                 }
-                                else -> listener.onFailureResponse(response?.body()?.code, response?.body()?.message)
                             }
+                            else -> listener.onFailureResponse(response?.body()?.code, response?.body()?.message)
                         }
                     }
-
                     override fun onFailure(call: Call<EntregoResult>?, t: Throwable?) {
                         listener.onFailureResponse(null, null)
                     }

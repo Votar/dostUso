@@ -2,9 +2,8 @@ package com.entrego.entregouser.ui.auth.presenter
 
 import android.os.Handler
 import android.os.Looper
-import com.entrego.entregouser.storage.EntregoStorage
+import com.entrego.entregouser.ui.auth.model.EntregoAuth
 import com.entrego.entregouser.ui.auth.view.IAuthView
-import entrego.com.android.ui.auth.model.EntregoAuth
 import entrego.com.android.ui.auth.presenter.IAuthPresenter
 import entrego.com.android.web.model.response.CommonResponseListener
 

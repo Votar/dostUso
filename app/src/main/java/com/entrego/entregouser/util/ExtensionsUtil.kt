@@ -1,6 +1,8 @@
 package com.entrego.entregouser.util
 
+import android.app.Dialog
 import android.app.ProgressDialog
+import android.content.DialogInterface
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.view.View
@@ -22,9 +24,19 @@ fun View.showSnack(message: String?) {
     snackBar.show()
 }
 
+
 fun ProgressDialog.loading() {
     this.setTitle(this.context.getString(R.string.ui_progress_dialog_title))
     this.setMessage(this.context.getString(R.string.ui_loading))
+    this.show()
+}
+
+fun ProgressDialog.loadingWithCancel(cancelAction: (dialog: DialogInterface, which: Int) -> Unit) {
+    this.setTitle(this.context.getString(R.string.ui_progress_dialog_title))
+    this.setMessage(this.context.getString(R.string.ui_loading))
+    this.setButton(Dialog.BUTTON_NEGATIVE,
+            this.context.getString(android.R.string.cancel)
+            , cancelAction)
     this.show()
 }
 

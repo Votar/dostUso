@@ -6,8 +6,10 @@
     <string name="register">Register</string>
     <string name="er_default_network_error">Cannot connection to server</string>
     <string name="error_empty_fields">Missed required fields</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
-
+    <string name="font_fontFamily_medium">sans-serif-medium</string>
     <string name="ui_progress_dialog_title">Loading…</string>
     <string name="ui_loading">Please, wait a second</string>
     <string name="hint_email">Email</string>
@@ -31,4 +33,6 @@
     <string name="error_email_registered">Email already registered</string>
     <string name="error_passwords_not_equals">Password mismatch</string>
     <string name="logo">logo</string>
+    <string name="title_activity_root">Map</string>
+    <string name="action_faq">FAQ</string>
 </resources>
