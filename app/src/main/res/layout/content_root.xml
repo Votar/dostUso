@@ -16,14 +16,113 @@
         android:layout_height="match_parent"
         tools:context="com.entrego.entregouser.ui.main.RootActivity" />
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/main_tabs"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/custom_tab_layout_height"
-        android:layout_alignParentBottom="true"
-        android:background="@color/colorWhite"
-        app:tabGravity="fill"
-        app:tabMode="fixed" />
 
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/custom_tab_layout_height"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:id="@+id/tab_fl_shipment"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackgroundBorderless">
+
+                <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/tab_icon_shipment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        app:srcCompat="@drawable/ic_box" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tab_icon_shipment"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@string/font_fontFamily_medium"
+                        android:text="@string/shipment"
+                        android:textColor="@color/colorDarkGrey"
+                        android:textSize="@dimen/tsize_small" />
+                </RelativeLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/tab_fl_deliver"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackgroundBorderless">
+
+                <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/tab_icon_deliver"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        app:srcCompat="@drawable/ic_deliver" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tab_icon_deliver"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@string/font_fontFamily_medium"
+                        android:text="@string/deliver"
+                        android:textColor="@color/colorDarkGrey"
+                        android:textSize="@dimen/tsize_small" />
+                </RelativeLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/tab_fl_transaction"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackgroundBorderless">
+
+                <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/tab_icon_transaction"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        app:srcCompat="@drawable/ic_transaction" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tab_icon_transaction"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@string/font_fontFamily_medium"
+                        android:text="@string/transactions"
+                        android:textColor="@color/colorDarkGrey"
+                        android:textSize="@dimen/tsize_small" />
+                </RelativeLayout>
+            </FrameLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
 
 </RelativeLayout>

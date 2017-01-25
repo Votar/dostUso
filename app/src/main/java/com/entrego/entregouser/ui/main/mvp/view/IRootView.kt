@@ -8,5 +8,9 @@ interface IRootView {
     fun onBuildMap()
     fun requestPermissions(listener: PermissionListener)
     fun moveCamera(position: LatLng, smooth: Boolean = false)
-
+    fun showTypeShipmentFragment()
+    fun showTypeTransactionFragment()
+    fun showTypeDeliverFragment()
+    fun showMessage(stringId: Int)
+    fun showWelcomeBuilder()
 }

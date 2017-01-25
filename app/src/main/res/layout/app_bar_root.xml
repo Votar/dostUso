@@ -42,6 +42,7 @@
             android:layout_below="@id/common_app_bar"
             app:srcCompat="@drawable/toolbar_dropshadow" />
 
+
         <include
             layout="@layout/content_root"
             android:layout_width="match_parent"
@@ -52,5 +53,11 @@
             android:id="@+id/root_accept_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+        <FrameLayout
+            android:id="@+id/root_builder_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

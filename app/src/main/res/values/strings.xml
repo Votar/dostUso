@@ -35,4 +35,22 @@
     <string name="logo">logo</string>
     <string name="title_activity_root">Map</string>
     <string name="action_faq">FAQ</string>
+    <string name="shipment">Shipment</string>
+    <string name="deliver">Buy / Deliver</string>
+    <string name="transactions">Transactions</string>
+    <string name="contact_support">Something goes wrong. Contact support</string>
+    <string name="select_service">Select your service</string>
+    <string name="type_shipment">Type of shipment</string>
+    <string name="express">Express</string>
+    <string name="all_day">All day</string>
+    <string name="booking">Booking</string>
+    <string name="size">Size</string>
+    <string name="size_moto"> - 45 x 55 x 55 cm</string>
+    <string name="size_auto">+ 55 x 45 x 55 cm</string>
+    <string name="type_transaction">Type of transaction</string>
+    <string name="documents">Documents</string>
+    <string name="text_package">Package</string>
+    <string name="type_deliver">Type of delivery</string>
+    <string name="restaurant">Restaurant</string>
+    <string name="other_shipents">Other shipments</string>
 </resources>
