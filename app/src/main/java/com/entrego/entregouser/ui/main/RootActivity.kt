@@ -1,5 +1,6 @@
 package com.entrego.entregouser.ui.main
 
+import android.Manifest
 import android.os.Bundle
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
@@ -11,17 +12,24 @@ import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import com.entrego.entregouser.R
+import com.entrego.entregouser.ui.main.mvp.presenter.IRootPresenter
+import com.entrego.entregouser.ui.main.mvp.presenter.RootPresenter
+import com.entrego.entregouser.ui.main.mvp.view.IRootView
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.gun0912.tedpermission.PermissionListener
+import com.gun0912.tedpermission.TedPermission
 import kotlinx.android.synthetic.main.app_bar_root.*
 import kotlinx.android.synthetic.main.container_drawer.*
 import kotlinx.android.synthetic.main.content_root.*
 
-class RootActivity : AppCompatActivity(), OnMapReadyCallback {
+class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView {
 
     private var mMap: GoogleMap? = null
-
+    protected val mPresenter: IRootPresenter = RootPresenter()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_root)
@@ -38,12 +46,17 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback {
         setupTabIcons()
         root_drawer_container.setOnClickListener { }
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-
-        val mapFragment = supportFragmentManager
-                .findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment.getMapAsync(this)
     }
 
+    override fun onStart() {
+        super.onStart()
+        mPresenter.onStart(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mPresenter.onStop()
+    }
 
     fun setupTabIcons() {
         val tabTitles = resources.getStringArray(R.array.tab_titles)
@@ -62,25 +75,41 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
+        googleMap.uiSettings
+                .isMyLocationButtonEnabled = true
+        googleMap.isMyLocationEnabled = true
         mMap = googleMap
+        mPresenter.onMapReady()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.root, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         val id = item.itemId
-
-        if (id == R.id.action_faq) {
+        if (id == R.id.action_faq)
             return true
-        }
-
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBuildMap() {
+        val mapFragment = supportFragmentManager
+                .findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync(this)
+    }
+
+    override fun requestPermissions(listener: PermissionListener) {
+        TedPermission(this)
+                .setPermissionListener(listener)
+                .setPermissions(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)
+                .check()
+    }
+
+    override fun moveCamera(position: LatLng, smooth: Boolean) {
+        val nextCamera = CameraUpdateFactory
+                .newLatLngZoom(position, 16f)
+        mMap?.moveCamera(nextCamera)
     }
 }
