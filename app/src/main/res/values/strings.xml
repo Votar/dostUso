@@ -53,4 +53,6 @@
     <string name="type_deliver">Type of delivery</string>
     <string name="restaurant">Restaurant</string>
     <string name="other_shipents">Other shipments</string>
+    <string name="after_12md">After 12 MD</string>
+    <string name="before_12md">Before 12 MD</string>
 </resources>

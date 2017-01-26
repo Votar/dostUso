@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.entrego.entregouser.R
+import com.entrego.entregouser.ui.main.steps.types.shipment.all_day.ShipmentAllDayFragment
+import com.entrego.entregouser.ui.main.steps.types.shipment.booking.ShipmentBookingFragment
 import com.entrego.entregouser.ui.main.steps.types.shipment.size.ShipmentSizeFragment
 import kotlinx.android.synthetic.main.fragment_type_shipment.*
 
@@ -26,8 +28,16 @@ class ShipmentTypesFragment : Fragment() {
                     .commit()
         }
         type_shipment_booking.setOnClickListener {
-
+            activity.fragmentManager
+                    .beginTransaction()
+                    .replace(R.id.root_builder_container, ShipmentBookingFragment())
+                    .commit()
         }
-        type_shipment_all_day.setOnClickListener { }
+        type_shipment_all_day.setOnClickListener {
+            activity.fragmentManager
+                    .beginTransaction()
+                    .replace(R.id.root_builder_container, ShipmentAllDayFragment())
+                    .commit()
+        }
     }
 }
