@@ -11,59 +11,58 @@
         android:layout_height="wrap_content">
 
 
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/common_app_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay"
-            app:elevation="0dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/root_toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:background="@color/colorWhite" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    app:srcCompat="@drawable/ic_small_logo" />
-            </RelativeLayout>
-        </android.support.design.widget.AppBarLayout>
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_below="@id/common_app_bar"
-            app:srcCompat="@drawable/toolbar_dropshadow" />
-
-
         <include
             layout="@layout/content_root"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/common_app_bar" />
-
-        <FrameLayout
-            android:id="@+id/root_accept_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_below="@+id/common_app_bar" />
 
         <FrameLayout
             android:id="@+id/root_address_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/default_screen_padding" />
+            android:layout_below="@+id/common_app_bar"
+            android:layout_marginTop="-4dp"
+            android:paddingLeft="@dimen/padding_large"
+            android:paddingRight="@dimen/padding_large" />
 
         <FrameLayout
             android:id="@+id/root_builder_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true" />
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/common_app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:elevation="2dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/root_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/colorWhite"
+                    android:elevation="2dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    app:srcCompat="@drawable/ic_small_logo" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/root_toolbar"
+                    android:background="@color/colorGrey" />
+            </RelativeLayout>
+        </android.support.design.widget.AppBarLayout>
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.entrego.entregouser.R
+import com.entrego.entregouser.ui.main.mvp.view.RootSelectAddressStep
 import kotlinx.android.synthetic.main.fragment_type_transaction.*
 
 class TransactionTypesFragment : Fragment() {
@@ -17,7 +18,11 @@ class TransactionTypesFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        type_transaction_document.setOnClickListener { }
-        type_transaction_package.setOnClickListener { }
+        type_transaction_document.setOnClickListener {
+            (activity as RootSelectAddressStep).showSelectAddress()
+        }
+        type_transaction_package.setOnClickListener {
+            (activity as RootSelectAddressStep).showSelectAddress()
+        }
     }
 }

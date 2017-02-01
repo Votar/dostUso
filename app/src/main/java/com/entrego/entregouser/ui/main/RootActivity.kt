@@ -12,11 +12,14 @@ import com.entrego.entregouser.R
 import com.entrego.entregouser.ui.main.mvp.presenter.IRootPresenter
 import com.entrego.entregouser.ui.main.mvp.presenter.RootPresenter
 import com.entrego.entregouser.ui.main.mvp.view.IRootView
+import com.entrego.entregouser.ui.main.mvp.view.RootSelectAddressStep
+import com.entrego.entregouser.ui.main.steps.address.SelectAddressFragment
 import com.entrego.entregouser.ui.main.steps.service.SelectServiceFragment
 import com.entrego.entregouser.ui.main.steps.types.deliver.DeliverTypesFragment
 import com.entrego.entregouser.ui.main.steps.types.shipment.ShipmentTypesFragment
 import com.entrego.entregouser.ui.main.steps.types.transaction.TransactionTypesFragment
 import com.entrego.entregouser.util.showSnack
+import com.facebook.internal.Utility.logd
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -29,8 +32,11 @@ import kotlinx.android.synthetic.main.app_bar_root.*
 import kotlinx.android.synthetic.main.container_drawer.*
 import kotlinx.android.synthetic.main.content_root.*
 
-class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView {
+class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootSelectAddressStep {
 
+    companion object {
+        val TAG = "RootActivity"
+    }
 
     private var mMap: GoogleMap? = null
     protected val mPresenter: IRootPresenter = RootPresenter()
@@ -49,19 +55,33 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView {
         toggle.syncState()
         setupTabIcons()
         root_drawer_container.setOnClickListener { }
+        mPresenter.onCreate(this)
     }
 
     override fun onStart() {
         super.onStart()
-        mPresenter.onStart(this)
-        tab_fl_shipment.setOnClickListener(mPresenter.getTabClickListener())
-        tab_fl_deliver.setOnClickListener(mPresenter.getTabClickListener())
-        tab_fl_transaction.setOnClickListener(mPresenter.getTabClickListener())
+        mPresenter.onStart()
+        tab_fl_shipment.setOnClickListener { showTypeShipmentFragment() }
+        tab_fl_deliver.setOnClickListener { showTypeDeliverFragment() }
+        tab_fl_transaction.setOnClickListener { showTypeTransactionFragment() }
+        logd(TAG, "onStart")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        logd(TAG, "onRestart")
+
+    }
+
+    override fun onPause() {
+        super.onPause()
+        logd(TAG, "onPause")
     }
 
     override fun onStop() {
         super.onStop()
         mPresenter.onStop()
+        logd(TAG, "onStop")
     }
 
 
@@ -134,8 +154,19 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView {
     }
 
     fun showFragment(fragment: Fragment) {
+
         fragmentManager.beginTransaction()
+                .replace(R.id.root_address_container, Fragment())
                 .replace(R.id.root_builder_container, fragment)
                 .commit()
     }
+
+    override fun showSelectAddress() {
+        val fragment = SelectAddressFragment()
+        fragmentManager.beginTransaction()
+                .replace(R.id.root_builder_container, Fragment())
+                .replace(R.id.root_address_container, fragment)
+                .commit()
+    }
+
 }

@@ -1,7 +1,5 @@
 package com.entrego.entregouser.ui.main.mvp.presenter
 
-import android.view.View
-import com.entrego.entregouser.R
 import com.entrego.entregouser.ui.main.mvp.view.IRootView
 import com.google.android.gms.maps.model.LatLng
 import com.gun0912.tedpermission.PermissionListener
@@ -22,9 +20,12 @@ class RootPresenter : IRootPresenter {
         }
     }
 
-    override fun onStart(view: IRootView) {
+    override fun onCreate(view: IRootView) {
         mView = view
         mView?.requestPermissions(mPermissionListener)
+    }
+
+    override fun onStart() {
     }
 
     override fun onMapReady() {
@@ -36,23 +37,5 @@ class RootPresenter : IRootPresenter {
         mView = null
     }
 
-    override fun getTabClickListener(): ((View) -> Unit) {
-        return {
-            mView?.showTypeShipmentFragment()
-            when (it.id) {
-                R.id.tab_fl_shipment -> {
-                    mView?.showTypeShipmentFragment()
-                }
-                R.id.tab_fl_deliver -> {
-                    mView?.showTypeDeliverFragment()
-                }
-                R.id.tab_fl_transaction -> {
-                    mView?.showTypeTransactionFragment()
-                }
-                else -> mView?.showMessage(R.string.contact_support)
-            }
-
-        }
-    }
 
 }
