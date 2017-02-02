@@ -2,6 +2,7 @@ package com.entrego.entregouser.ui.main
 
 import android.Manifest
 import android.app.Fragment
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
@@ -18,6 +19,7 @@ import com.entrego.entregouser.ui.main.steps.service.SelectServiceFragment
 import com.entrego.entregouser.ui.main.steps.types.deliver.DeliverTypesFragment
 import com.entrego.entregouser.ui.main.steps.types.shipment.ShipmentTypesFragment
 import com.entrego.entregouser.ui.main.steps.types.transaction.TransactionTypesFragment
+import com.entrego.entregouser.ui.profile.edit.EditProfileActivity
 import com.entrego.entregouser.util.showSnack
 import com.facebook.internal.Utility.logd
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -54,8 +56,16 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
         drawer.addDrawerListener(toggle)
         toggle.syncState()
         setupTabIcons()
-        root_drawer_container.setOnClickListener { }
+        setupListeners()
         mPresenter.onCreate(this)
+    }
+
+    fun setupListeners() {
+        root_drawer_container.setOnClickListener { }
+        drawer_edit_profile_btn.setOnClickListener {
+            val intent = Intent(this, EditProfileActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onStart() {

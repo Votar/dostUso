@@ -16,4 +16,6 @@
     <dimen name="custom_tab_layout_height">66dp</dimen>
     <dimen name="select_service_fragment_height">30dp</dimen>
     <dimen name="clickable_icon_defailt_size">24dp</dimen>
+    <dimen name="user_photo_holder_size">94dp</dimen>
+    <dimen name="drawer_content_padding">20dp</dimen>
 </resources>

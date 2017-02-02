@@ -63,4 +63,19 @@
     <string name="multishipment">Multi-shipment</string>
     <string name="share_route">Sahre route</string>
     <string name="add_code">Add code</string>
+    <string name="text_share">Share</string>
+    <string name="text_edit">Edit</string>
+    <string name="hire_delivery">Hire a delivery</string>
+    <string name="payments_methods">Payment methods</string>
+    <string name="favorites">Favorites</string>
+    <string name="my_deliveries">My deliveries</string>
+    <string name="users_manual">User\'s manual</string>
+    <string name="frequent_question">Frecuent Asked Questions</string>
+    <string name="about_entrego">Abount entreGo</string>
+    <string name="text_contact">Contact</string>
+    <string name="work_for_us">Work for us</string>
+    <string name="term_conditions"><![CDATA[Terms & Conditions]]></string>
+    <string name="btn_change_password">change password</string>
+    <string name="text_save">save</string>
+    <string name="save_password">save password</string>
 </resources>

@@ -9,6 +9,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:colorButtonNormal">@color/colorAccent</item>
+        <item name="android:elevation">0dp</item>
     </style>
 
     <style name="AppThemeTransparent" parent="AppTheme">
