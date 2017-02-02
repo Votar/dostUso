@@ -16,17 +16,18 @@
         android:layout_height="match_parent"
         tools:context="com.entrego.entregouser.ui.main.RootActivity" />
 
-
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_above="@+id/content_root_tabbar_rl"
+        app:srcCompat="@drawable/toolbar_dropshadow_inverse" />
     <RelativeLayout
+        android:id="@+id/content_root_tabbar_rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/colorWhite">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorGrey" />
 
         <LinearLayout
             android:layout_width="match_parent"

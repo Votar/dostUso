@@ -6,66 +6,20 @@
     android:orientation="horizontal"
     android:padding="@dimen/padding_medium">
 
-    <LinearLayout
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        app:srcCompat="@drawable/ic_destination_pin" />
+
+    <TextView
+        android:id="@+id/places_autocomplete_next"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/padding_large"
         android:layout_weight="1"
-        android:orientation="vertical">
+        android:hint="@string/hint_address_to"
+        android:padding="@dimen/padding_medium"
+        android:textSize="@dimen/tsize_medium" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                app:srcCompat="@drawable/ic_current_loc" />
-
-            <TextView
-                android:id="@+id/places_autocomplete_from"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/padding_large"
-                android:layout_weight="1"
-                android:hint="@string/hint_address_from"
-                android:padding="@dimen/padding_medium"
-                android:textSize="@dimen/tsize_medium" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                app:srcCompat="@drawable/ic_destination_pin" />
-
-            <TextView
-                android:id="@+id/places_autocomplete_to"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/padding_large"
-                android:layout_weight="1"
-                android:hint="@string/hint_address_to"
-                android:padding="@dimen/padding_medium"
-                android:textSize="@dimen/tsize_medium" />
-
-        </LinearLayout>
-    </LinearLayout>
-
-    <ImageButton
-        android:id="@+id/places_swipe_btn"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/padding_small"
-        android:background="?android:attr/selectableItemBackground"
-        app:srcCompat="@drawable/ic_reverse_address" />
 </LinearLayout>

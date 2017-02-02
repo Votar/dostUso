@@ -12,7 +12,7 @@ import com.entrego.entregouser.R
 import com.entrego.entregouser.ui.main.mvp.presenter.IRootPresenter
 import com.entrego.entregouser.ui.main.mvp.presenter.RootPresenter
 import com.entrego.entregouser.ui.main.mvp.view.IRootView
-import com.entrego.entregouser.ui.main.mvp.view.RootSelectAddressStep
+import com.entrego.entregouser.ui.main.mvp.view.RootActivityController
 import com.entrego.entregouser.ui.main.steps.address.SelectAddressFragment
 import com.entrego.entregouser.ui.main.steps.service.SelectServiceFragment
 import com.entrego.entregouser.ui.main.steps.types.deliver.DeliverTypesFragment
@@ -32,7 +32,7 @@ import kotlinx.android.synthetic.main.app_bar_root.*
 import kotlinx.android.synthetic.main.container_drawer.*
 import kotlinx.android.synthetic.main.content_root.*
 
-class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootSelectAddressStep {
+class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootActivityController {
 
     companion object {
         val TAG = "RootActivity"
@@ -138,7 +138,8 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootSel
     }
 
     override fun showTypeShipmentFragment() {
-        showFragment(ShipmentTypesFragment())
+        val fragment = ShipmentTypesFragment()
+        showFragment(fragment)
     }
 
     override fun showMessage(stringId: Int) {
@@ -153,8 +154,7 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootSel
         showFragment(TransactionTypesFragment())
     }
 
-    fun showFragment(fragment: Fragment) {
-
+    override fun showFragment(fragment: Fragment) {
         fragmentManager.beginTransaction()
                 .replace(R.id.root_address_container, Fragment())
                 .replace(R.id.root_builder_container, fragment)

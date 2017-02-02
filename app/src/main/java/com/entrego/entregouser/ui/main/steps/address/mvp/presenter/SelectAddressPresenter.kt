@@ -7,7 +7,6 @@ class SelectAddressPresenter : ISelectAddressPresenter {
     private var mView: ISelectAddressView? = null
     override fun onStart(view: ISelectAddressView) {
         mView = view
-        mView?.onCreateAddressList()
     }
 
     override fun onStop() {

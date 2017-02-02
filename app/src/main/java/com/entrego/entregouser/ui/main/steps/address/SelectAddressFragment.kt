@@ -28,20 +28,26 @@ class SelectAddressFragment : Fragment(), ISelectAddressView, FieldClickListener
         val REQUEST_CODE_AUTOCOMPLETE = 0x122017
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        retainInstance = true
+    }
+
     val mPresenter = SelectAddressPresenter()
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater!!.inflate(R.layout.fragment_select_address, container, false)
+        logd("ONCREATEVIEW")
         return view
     }
 
-
-    override fun onStart() {
-        super.onStart()
-        retainInstance = true
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         mPresenter.onStart(this)
-        logd("OnSTARTA")
+        logd("onViewCREATED")
         setupListeners()
         select_address_recycler.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        select_address_recycler.adapter = WayPointsAdapter(this)
+        select_address_recycler.recycledViewPool.setMaxRecycledViews(0, 0)
     }
 
     override fun onStop() {
@@ -57,6 +63,19 @@ class SelectAddressFragment : Fragment(), ISelectAddressView, FieldClickListener
         select_address_btn_more.setOnClickListener {
             it.visibility = View.GONE
             select_address_additional_ll.visibility = View.VISIBLE
+        }
+
+        select_address_from.setOnClickListener { openAutocompleteActivity(it as TextView) }
+        select_address_to.setOnClickListener { openAutocompleteActivity(it as TextView) }
+
+        select_address_swipe_btn.setOnClickListener {
+            val tmpText = select_address_from.text
+            select_address_from.text = select_address_to.text
+            select_address_to.text = tmpText
+        }
+
+        select_address_accept_btn.setOnClickListener {
+            logd((select_address_recycler.adapter as WayPointsAdapter).getAddressList().toString())
         }
 
     }
@@ -81,7 +100,6 @@ class SelectAddressFragment : Fragment(), ISelectAddressView, FieldClickListener
             val message = "Google Play Services is not available: " + GoogleApiAvailability.getInstance().getErrorString(e.errorCode)
             logd(message)
         }
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -95,9 +113,6 @@ class SelectAddressFragment : Fragment(), ISelectAddressView, FieldClickListener
         }
     }
 
-    override fun onCreateAddressList() {
-        select_address_recycler.adapter = WayPointsAdapter(this)
-    }
 
     override fun onShowMessage(idString: Int) {
 
