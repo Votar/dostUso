@@ -80,4 +80,6 @@
     <string name="save_password">save password</string>
     <string name="itbms_not_included">ITBMS not included</string>
     <string name="title_activity_escort">Map</string>
+    <string name="text_cancel">Cancel</string>
+    <string name="text_status">Status</string>
 </resources>
