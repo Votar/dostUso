@@ -39,7 +39,7 @@ object EntregoApi {
 //    interface Authorization {
 //        @Headers(CONTENT_JSON)
 //        @POST(REQUESTS.AUTH)
-//        fun auth(@Body body: AuthBody): Call<EntregoResult>
+//        fun auth(@Body body: AuthBody): Call<EntregoResponse>
 //    }
 //
 //    interface Registration {
@@ -90,7 +90,7 @@ object EntregoApi {
 //    interface PostLocation {
 //        @Headers(CONTENT_JSON)
 //        @POST(REQUESTS.POST_LOCATION)
-//        fun postLocation(@Header(TOKEN) token: String, @Body location: LatLng): Call<EntregoResult>
+//        fun postLocation(@Header(TOKEN) token: String, @Body location: LatLng): Call<EntregoResponse>
 //    }
 //
 //    interface CancelDelivery {
@@ -102,13 +102,13 @@ object EntregoApi {
 //    interface AcceptDelivery {
 //        @Headers(CONTENT_JSON)
 //        @POST(REQUESTS.POST_ACCEPT_DELIVERY)
-//        fun acceptDelivery(@Header(TOKEN) token: String, @Path("id") deliveryId: Int): Call<EntregoResult>
+//        fun acceptDelivery(@Header(TOKEN) token: String, @Path("id") deliveryId: Int): Call<EntregoResponse>
 //    }
 //
 //    interface DeclineDelivery {
 //        @Headers(CONTENT_JSON)
 //        @POST(REQUESTS.POST_DECLINE_DELIVERY)
-//        fun declineDelivery(@Header(TOKEN) token: String, @Path("id") deliveryId: Int): Call<EntregoResult>
+//        fun declineDelivery(@Header(TOKEN) token: String, @Path("id") deliveryId: Int): Call<EntregoResponse>
 //    }
 //
 //    interface ChangeStatus {
@@ -120,26 +120,26 @@ object EntregoApi {
 //    interface UploadDriverLicence{
 //        @Headers(CONTENT_JSON)
 //        @POST(REQUESTS.POST_DRIVER_LICENCE)
-//        fun postDriverLicence(@Header(TOKEN) token: String, @Body body: UploadPhotoBody): Call<EntregoResult>
+//        fun postDriverLicence(@Header(TOKEN) token: String, @Body body: UploadPhotoBody): Call<EntregoResponse>
 //    }
 //    interface UploadPersonLicence{
 //        @Headers(CONTENT_JSON)
 //        @POST(REQUESTS.POST_PERSON_LICENCE)
-//        fun postPersonLicence(@Header(TOKEN) token: String, @Body body: UploadPhotoBody): Call<EntregoResult>
+//        fun postPersonLicence(@Header(TOKEN) token: String, @Body body: UploadPhotoBody): Call<EntregoResponse>
 //    }
 //    interface UploadUserPhoto{
 //        @Headers(CONTENT_JSON)
 //        @POST(REQUESTS.POST_USER_PHOTO)
-//        fun postUserPhoto(@Header(TOKEN) token: String, @Body body: UploadPhotoBody): Call<EntregoResult>
+//        fun postUserPhoto(@Header(TOKEN) token: String, @Body body: UploadPhotoBody): Call<EntregoResponse>
 //    }
 //    interface FinishDelivery{
 //        @Headers(CONTENT_JSON)
 //        @POST(REQUESTS.POST_FINISH_DELIVERY)
-//        fun finishDelivery(@Header(TOKEN) token: String,@Path("id")deliveryId:Int, @Body body: FinishDeliveryBody): Call<EntregoResult>
+//        fun finishDelivery(@Header(TOKEN) token: String,@Path("id")deliveryId:Int, @Body body: FinishDeliveryBody): Call<EntregoResponse>
 //    }
 //    interface RestorePassword{
 //        @Headers(CONTENT_JSON)
 //        @POST(REQUESTS.POST_POST_RESTORE_PASSWORD)
-//        fun restorePassword(@Body body: RestorePasswordBody): Call<EntregoResult>
+//        fun restorePassword(@Body body: RestorePasswordBody): Call<EntregoResponse>
 //    }
 }

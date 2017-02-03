@@ -26,11 +26,19 @@
             android:paddingLeft="@dimen/padding_large"
             android:paddingRight="@dimen/padding_large" />
 
+
+
         <FrameLayout
             android:id="@+id/root_builder_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true" />
+
+        <FrameLayout
+            android:layout_below="@+id/common_app_bar"
+            android:id="@+id/root_front_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/common_app_bar"
@@ -58,6 +66,8 @@
 
             </RelativeLayout>
         </android.support.design.widget.AppBarLayout>
+
+
 
         <ImageView
             android:layout_width="match_parent"

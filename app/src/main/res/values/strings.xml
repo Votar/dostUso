@@ -78,4 +78,6 @@
     <string name="btn_change_password">change password</string>
     <string name="text_save">save</string>
     <string name="save_password">save password</string>
+    <string name="itbms_not_included">ITBMS not included</string>
+    <string name="title_activity_escort">Map</string>
 </resources>

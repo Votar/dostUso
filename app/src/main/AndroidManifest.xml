@@ -46,9 +46,7 @@
         <activity
             android:name=".ui.splash.SplashActivity"
             android:noHistory="true"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -62,24 +60,27 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".ui.main.RootActivity"
+            android:name=".ui.create.RootActivity"
             android:launchMode="singleInstance"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.profile.edit.EditProfileActivity"
-            android:parentActivityName=".ui.main.RootActivity"
+            android:parentActivityName=".ui.create.RootActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.main.RootActivity" />
+                android:value=".ui.create.RootActivity" />
         </activity>
+        <activity
+            android:name=".ui.escort.EscortActivity"
+            android:label="@string/title_activity_escort"></activity>
     </application>
 
 </manifest>
