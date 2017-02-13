@@ -82,4 +82,6 @@
     <string name="title_activity_escort">Map</string>
     <string name="text_cancel">Cancel</string>
     <string name="text_status">Status</string>
+    <string name="support_email">operaciones@entregoya.com</string>
+    <string name="send_email">Send by...</string>
 </resources>

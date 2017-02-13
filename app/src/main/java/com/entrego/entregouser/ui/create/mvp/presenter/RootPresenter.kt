@@ -1,11 +1,22 @@
 package com.entrego.entregouser.ui.create.mvp.presenter
 
+import android.app.Activity
+import android.content.Intent
 import com.entrego.entregouser.ui.create.mvp.view.IRootView
 import com.google.android.gms.maps.model.LatLng
 import com.gun0912.tedpermission.PermissionListener
 import java.util.*
 
+
 class RootPresenter : IRootPresenter {
+    override fun shareLinkOnSite(activity: Activity) {
+        val sendIntent = Intent()
+        sendIntent.action = Intent.ACTION_SEND
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "https://www.whatsapp.com/?l=ru")
+        sendIntent.type = "text/plain"
+        sendIntent.putExtra(Intent.EXTRA_SUBJECT, "Check out this site!");
+        activity.startActivity(sendIntent)
+    }
 
     var mView: IRootView? = null
     //Panama city

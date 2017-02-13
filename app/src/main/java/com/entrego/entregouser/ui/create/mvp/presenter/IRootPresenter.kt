@@ -1,5 +1,6 @@
 package com.entrego.entregouser.ui.create.mvp.presenter
 
+import android.app.Activity
 import com.entrego.entregouser.ui.create.mvp.view.IRootView
 
 interface IRootPresenter {
@@ -7,6 +8,6 @@ interface IRootPresenter {
     fun onStart()
     fun onMapReady()
     fun onStop()
-
+    fun shareLinkOnSite(activity:Activity)
 
 }

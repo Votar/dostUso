@@ -50,7 +50,6 @@ class AcceptDeliveryCreationFragment : Fragment() {
         accept_delivery_price.text = mDeliveryModel?.sum?.toView()
         accept_delivery_type.text = mDeliveryModel?.deliveryType.toString()
         accept_delivery_accept_btn.setOnClickListener { acceptDelivery(mDeliveryModel?.deliveryId) }
-
     }
 
     fun acceptDelivery(deliveryId: Long?) {
@@ -61,7 +60,6 @@ class AcceptDeliveryCreationFragment : Fragment() {
 
         showProgress()
         Handler().postDelayed({
-
             (activity as? RootActivityController)?.showCreatedDelivery()
             hideProgress()
         }, 1500)

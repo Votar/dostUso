@@ -21,6 +21,7 @@ import com.entrego.entregouser.ui.create.steps.service.SelectServiceFragment
 import com.entrego.entregouser.ui.create.steps.types.deliver.DeliverTypesFragment
 import com.entrego.entregouser.ui.create.steps.types.shipment.ShipmentTypesFragment
 import com.entrego.entregouser.ui.create.steps.types.transaction.TransactionTypesFragment
+import com.entrego.entregouser.ui.faq.FaqListActivity
 import com.entrego.entregouser.ui.profile.edit.EditProfileActivity
 import com.entrego.entregouser.util.showSnack
 import com.entrego.entregouser.web.model.response.delivery.create.DeliveryCreationResponse
@@ -58,8 +59,8 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
         drawer.addDrawerListener(toggle)
         toggle.syncState()
         setupTabIcons()
-        setupListeners()
         mPresenter.onCreate(this)
+        setupListeners()
     }
 
     fun setupListeners() {
@@ -68,6 +69,8 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
             val intent = Intent(this, EditProfileActivity::class.java)
             startActivity(intent)
         }
+
+        drawer_share_btn.setOnClickListener { mPresenter.shareLinkOnSite(RootActivity@ this) }
     }
 
     override fun onStart() {
@@ -120,7 +123,7 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
         if (id == R.id.action_faq)
-            return true
+            startActivity(Intent(this, FaqListActivity::class.java))
         return super.onOptionsItemSelected(item)
     }
 
@@ -129,7 +132,6 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
                 .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
     }
-
 
     override fun requestPermissions(listener: PermissionListener) {
         TedPermission(this)
@@ -190,7 +192,6 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
     }
 
     override fun showCreatedDelivery() {
-
         startActivity(Intent(this, AuthActivity::class.java))
     }
 

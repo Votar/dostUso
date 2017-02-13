@@ -29,7 +29,6 @@ import kotlinx.android.synthetic.main.fragment_select_address.*
 
 class SelectAddressFragment : BaseBuilderFragment(), ISelectAddressView, FieldClickListener {
 
-
     companion object {
         val REQUEST_CODE_AUTOCOMPLETE = 0x122017
     }
@@ -43,13 +42,11 @@ class SelectAddressFragment : BaseBuilderFragment(), ISelectAddressView, FieldCl
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater!!.inflate(R.layout.fragment_select_address, container, false)
-        logd("ONCREATEVIEW")
         return view
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        logd("onViewCREATED")
         setupListeners()
         select_address_recycler.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         select_address_recycler.adapter = WayPointsAdapter(this)
@@ -86,7 +83,6 @@ class SelectAddressFragment : BaseBuilderFragment(), ISelectAddressView, FieldCl
         }
 
         select_address_accept_btn.setOnClickListener {
-//            logd((select_address_recycler.adapter as WayPointsAdapter).getAddressList().toString())
             logd(mDeliveryBuilder.toString())
             if (mDeliveryBuilder != null)
                 mPresenter.requestDeliveryCreation(mDeliveryBuilder!!)

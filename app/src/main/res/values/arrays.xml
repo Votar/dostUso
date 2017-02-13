@@ -33,4 +33,14 @@
         <item>Buy / Deliver</item>
         <item>Transactions</item>
     </string-array>
+
+    <array name="faq_titles">
+        <item>I can’t accept the service</item>
+    </array>
+
+    <array name="faq_body">
+        <item>Por favor prenda y apague su celular o hágale reset.\n\n
+            En caso de que el problema persista comuniquese con operaciones.
+        </item>
+    </array>
 </resources>
