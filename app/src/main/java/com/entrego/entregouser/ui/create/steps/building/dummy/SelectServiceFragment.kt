@@ -1,4 +1,4 @@
-package com.entrego.entregouser.ui.create.steps.types.shipment.size
+package com.entrego.entregouser.ui.create.steps.building.dummy
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,18 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.entrego.entregouser.R
 import com.entrego.entregouser.ui.create.steps.BaseBuilderFragment
-import com.entrego.entregouser.util.logd
 
-class SelectSizeFragment : BaseBuilderFragment() {
+class SelectServiceFragment : BaseBuilderFragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val view = inflater!!.inflate(R.layout.fragment_shipment_size, container, false)
+        val view = inflater!!.inflate(R.layout.fragment_select_service, container, false)
         return view
-    }
-
-    override fun onStart() {
-        super.onStart()
-
-        logd(mDeliveryBuilder.toString())
     }
 }

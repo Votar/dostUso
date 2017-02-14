@@ -28,7 +28,7 @@
             app:srcCompat="@drawable/ic_grey_line" />
 
         <TextView
-            android:id="@+id/type_shipment_express"
+            android:id="@+id/size_builder_small"
             style="@style/ClickableLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
             app:srcCompat="@drawable/ic_grey_line" />
 
         <TextView
-            android:id="@+id/type_shipment_all_day"
+            android:id="@+id/size_builder_large"
             style="@style/ClickableLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

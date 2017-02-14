@@ -58,7 +58,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="@dimen/padding_large"
             android:layout_marginRight="@dimen/padding_large"
-            android:text="@string/accept"
+            android:text="@string/text_accept"
             android:theme="@style/BlueButton" />
     </RelativeLayout>
 </RelativeLayout>

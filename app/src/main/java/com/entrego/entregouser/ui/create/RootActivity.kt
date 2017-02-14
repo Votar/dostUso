@@ -10,17 +10,21 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.entrego.entregouser.R
+import com.entrego.entregouser.entity.delivery.DeliveryEntityBuilder
+import com.entrego.entregouser.entity.delivery.EntregoServiceCategory
 import com.entrego.entregouser.ui.auth.AuthActivity
 import com.entrego.entregouser.ui.create.mvp.model.FragmentType
 import com.entrego.entregouser.ui.create.mvp.presenter.IRootPresenter
 import com.entrego.entregouser.ui.create.mvp.presenter.RootPresenter
 import com.entrego.entregouser.ui.create.mvp.view.IRootView
 import com.entrego.entregouser.ui.create.mvp.view.RootActivityController
+import com.entrego.entregouser.ui.create.steps.BaseBuilderFragment
 import com.entrego.entregouser.ui.create.steps.accept.AcceptDeliveryCreationFragment
-import com.entrego.entregouser.ui.create.steps.service.SelectServiceFragment
-import com.entrego.entregouser.ui.create.steps.types.deliver.DeliverTypesFragment
-import com.entrego.entregouser.ui.create.steps.types.shipment.ShipmentTypesFragment
-import com.entrego.entregouser.ui.create.steps.types.transaction.TransactionTypesFragment
+import com.entrego.entregouser.ui.create.steps.building.dummy.SelectServiceFragment
+import com.entrego.entregouser.ui.create.steps.building.category.deliver.DeliverBuyFragment
+import com.entrego.entregouser.ui.create.steps.building.types.DeliveryTypesFragment
+import com.entrego.entregouser.ui.create.steps.building.category.transaction.TransactionTypesFragment
+import com.entrego.entregouser.ui.create.steps.building.size.SelectSizeFragment
 import com.entrego.entregouser.ui.faq.FaqListActivity
 import com.entrego.entregouser.ui.profile.edit.EditProfileActivity
 import com.entrego.entregouser.util.showSnack
@@ -31,6 +35,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.gson.Gson
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import kotlinx.android.synthetic.main.activity_root.*
@@ -150,17 +155,24 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
         showBuilderFragment(SelectServiceFragment(), FragmentType.PARAMETERS)
     }
 
-    override fun showTypeShipmentFragment() {
-        val fragment = ShipmentTypesFragment()
-        showBuilderFragment(fragment, FragmentType.PARAMETERS)
-    }
 
     override fun showMessage(stringId: Int) {
         activity_root_drawer_layout?.showSnack(getString(stringId))
     }
 
+    override fun showTypeShipmentFragment() {
+        val deliveryBuilder = DeliveryEntityBuilder()
+        val firstFragment = SelectSizeFragment()
+        deliveryBuilder.serviceType = EntregoServiceCategory.SHIPMENT
+        val args = Bundle()
+        val gson = Gson()
+        args.putString(BaseBuilderFragment.KEY_BUILDER, gson.toJson(deliveryBuilder, DeliveryEntityBuilder::class.java))
+        firstFragment.arguments = args
+        showBuilderFragment(firstFragment, FragmentType.PARAMETERS)
+    }
+
     override fun showTypeDeliverFragment() {
-        showBuilderFragment(DeliverTypesFragment(), FragmentType.PARAMETERS)
+        showBuilderFragment(DeliverBuyFragment(), FragmentType.PARAMETERS)
     }
 
     override fun showTypeTransactionFragment() {

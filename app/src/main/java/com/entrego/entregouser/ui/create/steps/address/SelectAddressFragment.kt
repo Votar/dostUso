@@ -1,7 +1,6 @@
 package com.entrego.entregouser.ui.create.steps.address
 
 import android.app.Activity
-import android.app.Fragment
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
@@ -48,6 +47,7 @@ class SelectAddressFragment : BaseBuilderFragment(), ISelectAddressView, FieldCl
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupListeners()
+        logd(mDeliveryBuilder.toString())
         select_address_recycler.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         select_address_recycler.adapter = WayPointsAdapter(this)
         select_address_recycler.recycledViewPool.setMaxRecycledViews(0, 0)

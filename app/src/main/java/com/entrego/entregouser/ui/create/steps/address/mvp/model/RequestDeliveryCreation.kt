@@ -4,7 +4,7 @@ import android.os.Handler
 import com.entrego.entregouser.web.model.request.delivery.create.DeliveryCreationModel
 import com.entrego.entregouser.web.model.response.delivery.create.DeliveryCreationResponse
 import com.entrego.entregouser.entity.common.EntregoPriceEntity
-import com.entrego.entregouser.entity.delivery.EntregoTimingType
+import com.entrego.entregouser.entity.delivery.EntregoTimingCategory
 import entrego.com.android.web.api.EntregoApi
 import entrego.com.android.web.model.response.EntregoResponse
 import retrofit2.Call
@@ -31,7 +31,7 @@ object RequestDeliveryCreation {
 
     fun requestAsync(listener: DeliveryCreationResponseListener) {
         Handler().postDelayed({
-            val mockResponse = DeliveryCreationResponse(0, null, EntregoPriceEntity(12.5f), EntregoTimingType.EXPRESS, -1)
+            val mockResponse = DeliveryCreationResponse(0, null, EntregoPriceEntity(12.5f), EntregoTimingCategory.EXPRESS, -1)
             listener.onSuccessCreationResponse(mockResponse)
         }, 1500)
     }
