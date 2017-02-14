@@ -26,7 +26,7 @@ class EntregoRegistration(val email: String,
     }
 
     companion object {
-        private const val END_POINT = ""
+        private const val END_POINT = "customer/user/register"
     }
 
     interface Request {

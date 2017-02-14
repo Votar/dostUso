@@ -6,22 +6,22 @@ import android.os.Bundle
 import android.support.v4.app.NavUtils
 import android.support.v7.app.AppCompatActivity
 import com.entrego.entregouser.R
-import com.entrego.entregouser.ui.registration.SuccessRegistrationActivity
-import com.entrego.entregouser.util.loading
-import com.entrego.entregouser.util.showSnack
 import com.entrego.entregouser.ui.registration.presenter.IRegistrationPresenter
 import com.entrego.entregouser.ui.registration.presenter.RegistrationPresenter
 import com.entrego.entregouser.ui.registration.view.IRegistrationView
+import com.entrego.entregouser.util.loading
+import com.entrego.entregouser.util.showSnack
 import kotlinx.android.synthetic.main.activity_registration.*
 
 class RegistrationActivity : AppCompatActivity(), IRegistrationView {
 
 
+    var presenter: IRegistrationPresenter? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
         presenter = RegistrationPresenter(this)
-
         setupDefaultListeners()
     }
 
@@ -46,15 +46,16 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationView {
         registration_il_phone.error = message
     }
 
-    var presenter: IRegistrationPresenter? = null
     override fun setErrorConfPassword() {
         registration_edit_password_conf.requestFocus()
         registration_il_password_conf.error = getString(R.string.error_passwords_not_equals)
     }
 
     override fun successRegistration() {
-
-        startActivity(Intent(applicationContext, SuccessRegistrationActivity::class.java))
+        val intent = Intent(applicationContext, SuccessRegistrationActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        startActivity(intent)
     }
 
     override fun setErrorEmail(message: String) {
@@ -65,6 +66,11 @@ class RegistrationActivity : AppCompatActivity(), IRegistrationView {
     override fun setErrorPassword(message: String) {
         registration_edit_password.requestFocus()
         registration_il_password.error = message
+    }
+
+    override fun setErrorPassword(message: Int) {
+        registration_edit_password.requestFocus()
+        registration_il_password.error = getString(message)
     }
 
     override fun showMessage(message: String?) {

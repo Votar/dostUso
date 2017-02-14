@@ -9,24 +9,18 @@ import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import com.entrego.entregouser.R
-import com.entrego.entregouser.ui.auth.view.IAuthView
-import com.entrego.entregouser.util.loading
-import com.entrego.entregouser.util.showSnack
 import com.entrego.entregouser.ui.auth.presenter.AuthPresenter
-import entrego.com.android.ui.auth.presenter.IAuthPresenter
 import com.entrego.entregouser.ui.auth.restore.RestorePasswordActivity
 import com.entrego.entregouser.ui.auth.restore.SuccessRestoreActivity
+import com.entrego.entregouser.ui.auth.view.IAuthView
+import com.entrego.entregouser.ui.create.RootActivity
+import com.entrego.entregouser.util.loading
+import com.entrego.entregouser.util.showSnack
+import entrego.com.android.ui.auth.presenter.IAuthPresenter
 import kotlinx.android.synthetic.main.activity_auth.*
 
 class AuthActivity : AppCompatActivity(), IAuthView {
 
-
-    override fun goToMainScreen() {
-//        val intent = Intent(applicationContext, RootActivity::class.java)
-//        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-//        startActivity(intent)
-//        finish()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +33,7 @@ class AuthActivity : AppCompatActivity(), IAuthView {
         progress = ProgressDialog(this)
         progress?.loading()
     }
+
     override fun hideProgress() {
         progress?.dismiss()
     }
@@ -51,6 +46,15 @@ class AuthActivity : AppCompatActivity(), IAuthView {
 
     override fun getContext(): Context {
         return applicationContext
+    }
+
+
+    override fun goToMainScreen() {
+        val intent = Intent(applicationContext, RootActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        startActivity(intent)
+        finish()
     }
 
     override fun setErrorEmail(message: String) {

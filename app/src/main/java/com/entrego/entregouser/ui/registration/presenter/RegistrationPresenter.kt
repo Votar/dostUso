@@ -1,5 +1,6 @@
 package com.entrego.entregouser.ui.registration.presenter
 
+import com.entrego.entregouser.R
 import com.entrego.entregouser.ui.registration.presenter.IRegistrationPresenter
 import com.entrego.entregouser.ui.registration.model.EntregoRegistration
 import com.entrego.entregouser.ui.registration.view.IRegistrationView
@@ -17,10 +18,15 @@ class RegistrationPresenter(val view: IRegistrationView) : IRegistrationPresente
 
     override fun requestRegistration(email: String, name: String, password: String, confPassword: String, phoneCode: String, phoneNumber: String) {
 
+        if (password.isEmpty()) {
+            view.setErrorPassword(R.string.error_empty_fields)
+            return
+        }
         if (password != confPassword) {
             view.setErrorConfPassword()
             return
         }
+
 
         view.showProgress()
         EntregoRegistration(email, name, password, phoneCode, phoneNumber)

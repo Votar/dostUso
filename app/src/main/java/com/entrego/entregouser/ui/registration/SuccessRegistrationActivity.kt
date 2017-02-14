@@ -15,11 +15,10 @@ class SuccessRegistrationActivity : AppCompatActivity() {
         setContentView(R.layout.activity_success_registration)
 
         succ_reg_btn_login.setOnClickListener {
-            startActivity(Intent(applicationContext, AuthActivity::class.java))
+            val intent = Intent(applicationContext, AuthActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            startActivity(intent)
         }
-    }
-
-    override fun onBackPressed() {
-        NavUtils.navigateUpFromSameTask(this)
     }
 }

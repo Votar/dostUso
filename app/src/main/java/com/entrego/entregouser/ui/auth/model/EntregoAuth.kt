@@ -16,7 +16,7 @@ import retrofit2.http.POST
 class EntregoAuth(val email: String, val password: String) {
 
     companion object {
-        private const val END_POINT = ""
+        private const val END_POINT = "login"
     }
 
     interface Request {
@@ -45,6 +45,7 @@ class EntregoAuth(val email: String, val password: String) {
                             else -> listener.onFailureResponse(response?.body()?.code, response?.body()?.message)
                         }
                     }
+
                     override fun onFailure(call: Call<EntregoResponse>?, t: Throwable?) {
                         listener.onFailureResponse(null, null)
                     }

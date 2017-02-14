@@ -10,7 +10,6 @@ import entrego.com.android.web.model.response.CommonResponseListener
 
 class AuthPresenter(val view: IAuthView) : IAuthPresenter {
 
-
     val listener = object : CommonResponseListener {
         override fun onSuccessResponse() {
             view.hideProgress()
