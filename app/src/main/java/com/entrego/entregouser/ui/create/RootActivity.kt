@@ -25,6 +25,7 @@ import com.entrego.entregouser.ui.create.steps.building.category.deliver.Deliver
 import com.entrego.entregouser.ui.create.steps.building.types.DeliveryTypesFragment
 import com.entrego.entregouser.ui.create.steps.building.category.transaction.TransactionTypesFragment
 import com.entrego.entregouser.ui.create.steps.building.size.SelectSizeFragment
+import com.entrego.entregouser.ui.escort.EscortActivity
 import com.entrego.entregouser.ui.faq.FaqListActivity
 import com.entrego.entregouser.ui.profile.edit.EditProfileActivity
 import com.entrego.entregouser.util.showSnack
@@ -198,13 +199,22 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
     override fun showAcceptDeliveryCreationFragment(model: DeliveryCreationResponse) {
         val fragment = AcceptDeliveryCreationFragment.getInstance(model)
         fragmentManager.beginTransaction()
-                .replace(R.id.root_front_container, fragment)
+                .replace(R.id.root_front_container, fragment, AcceptDeliveryCreationFragment.TAG)
                 .addToBackStack(null)
                 .commit()
     }
 
     override fun showCreatedDelivery() {
-        startActivity(Intent(this, AuthActivity::class.java))
+        val intent = Intent(this, EscortActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        startActivity(intent)
+        showWelcomeBuilder()
+        fragmentManager.findFragmentByTag(AcceptDeliveryCreationFragment.TAG)?.let {
+            fragmentManager.beginTransaction()
+                    .remove(it)
+                    .commit()
+        }
+
     }
 
 

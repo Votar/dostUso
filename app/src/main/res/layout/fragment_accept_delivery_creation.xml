@@ -6,6 +6,7 @@
     android:background="@color/colorTransparentBlack"
     android:orientation="vertical"
     android:paddingBottom="100dp"
+    android:id="@+id/accept_delivery_root_rl"
     android:paddingTop="70dp">
 
     <RelativeLayout

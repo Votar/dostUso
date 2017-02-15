@@ -87,8 +87,11 @@
         </activity>
         <activity
             android:name=".ui.escort.EscortActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme">
+            android:parentActivityName=".ui.create.RootActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.create.RootActivity" />
 
         </activity>
 

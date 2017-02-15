@@ -19,7 +19,7 @@ object RequestDeliveryConfirmation {
 
 
     interface DeliveryConfirmationResponseListener {
-        fun onSuccessCreationResponse(response: DeliveryCreationResponse)
+        fun onSuccessCreationResponse()
         fun onFailureCreationResponse(code: Int?, message: String?)
     }
 
@@ -31,8 +31,7 @@ object RequestDeliveryConfirmation {
 
     fun requestAsync(listener: DeliveryConfirmationResponseListener) {
         Handler().postDelayed({
-            val mockResponse = DeliveryCreationResponse(0, null, EntregoPriceEntity(12.5f), EntregoTimingCategory.EXPRESS, -1)
-            listener.onSuccessCreationResponse(mockResponse)
+            listener.onSuccessCreationResponse()
         }, 1500)
     }
 }
