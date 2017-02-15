@@ -43,4 +43,8 @@
             En caso de que el problema persista comuniquese con operaciones.
         </item>
     </array>
+
+    <array name="cancel_reasons">
+        <item>Cancel reason example</item>
+    </array>
 </resources>

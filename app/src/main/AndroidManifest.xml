@@ -21,12 +21,8 @@
             android:name=".ui.intro.IntroActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeTransparent">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
 
+        </activity>
         <activity
             android:name=".ui.registration.SuccessRegistrationActivity"
             android:screenOrientation="portrait" />
@@ -57,7 +53,7 @@
         <activity
             android:name=".ui.splash.SplashActivity"
             android:noHistory="true"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -75,26 +71,28 @@
             android:clearTaskOnLaunch="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ui.profile.edit.EditProfileActivity"
             android:parentActivityName=".ui.create.RootActivity"
             android:screenOrientation="portrait">
-
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.create.RootActivity" />
         </activity>
         <activity
             android:name=".ui.escort.EscortActivity"
+            android:launchMode="singleTask"
             android:parentActivityName=".ui.create.RootActivity"
             android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.create.RootActivity" />
-
         </activity>
-
         <activity
             android:name=".ui.faq.FaqListActivity"
             android:parentActivityName=".ui.create.RootActivity"
@@ -111,7 +109,24 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.faq.FaqListActivity" />
         </activity>
+        <activity
+            android:name=".ui.escort.cancel.CancelDeliveryActivity"
+            android:parentActivityName=".ui.escort.EscortActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.escort.EscortActivity" />
+        </activity>
 
+        <activity
+            android:name=".ui.escort.cancel.SuccessCancelActivity"
+            android:parentActivityName=".ui.create.RootActivity"
+            android:noHistory="true"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.create.RootActivity" />
+        </activity>
     </application>
 
 </manifest>

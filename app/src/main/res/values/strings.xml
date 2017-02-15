@@ -8,6 +8,8 @@
     <string name="error_empty_fields">Missed required fields</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="cancel_delivery_message">Do you really want to cancel?</string>
+    <string name="ui_success_cancellation">Successful cancellation!</string>
 
     <string name="font_fontFamily_medium">sans-serif-medium</string>
     <string name="ui_progress_dialog_title">Loading…</string>

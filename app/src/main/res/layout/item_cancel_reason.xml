@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="reason"
+            type="java.lang.String" />
+
+        <variable
+            name="onReasonListener"
+            type="com.entrego.entregouser.ui.escort.cancel.ReasonsAdapter.OnReasonClicked" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        style="@style/ClickableLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> onReasonListener.onClickedReason(reason) }"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_medium">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            app:srcCompat="@drawable/ic_not_interested_32dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:paddingLeft="@dimen/padding_medium"
+            android:text="@{reason}"
+            android:textColor="@color/colorBlack" />
+    </LinearLayout>
+
+</layout>
