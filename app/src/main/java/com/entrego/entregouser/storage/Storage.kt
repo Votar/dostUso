@@ -7,7 +7,5 @@ import com.entrego.entregouser.storage.preferences.PreferencesManager
 object Storage {
     fun init(context: Context) {
         PreferencesManager.init(context)
-        EntregoToken.init(context)
-
     }
 }

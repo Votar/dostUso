@@ -14,6 +14,10 @@ abstract class BaseAccess<T : Any> {
     abstract fun init(context: Context)
 
     /**
+     * Common getter
+     */
+    open fun getValue(): T = content
+    /**
      * To save an content from modification by property syntaxis
      */
     fun update(newContent: T) {

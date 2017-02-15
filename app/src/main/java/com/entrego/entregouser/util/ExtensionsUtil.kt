@@ -24,6 +24,20 @@ fun View.showSnack(message: String?) {
     snackBar.show()
 }
 
+fun View.showSnackError(message: String?) {
+    val text: String
+    if (message.isNullOrEmpty()) {
+        text = this.context.getString(R.string.er_default_network_error)
+    } else
+        text = message!!
+
+    val snackBar = Snackbar.make(this, text, Snackbar.LENGTH_SHORT)
+    val sbMessageTextView = snackBar.view.findViewById(android.support.design.R.id.snackbar_text) as TextView
+    val primaryColor = ContextCompat.getColor(this.context, R.color.colorTomato)
+    sbMessageTextView.setTextColor(primaryColor)
+    snackBar.show()
+}
+
 
 fun ProgressDialog.loading() {
     this.setTitle(this.context.getString(R.string.ui_progress_dialog_title))

@@ -25,7 +25,7 @@ import com.entrego.entregouser.ui.create.steps.building.category.deliver.Deliver
 import com.entrego.entregouser.ui.create.steps.building.types.DeliveryTypesFragment
 import com.entrego.entregouser.ui.create.steps.building.category.transaction.TransactionTypesFragment
 import com.entrego.entregouser.ui.create.steps.building.size.SelectSizeFragment
-import com.entrego.entregouser.ui.escort.EscortActivity
+import com.entrego.entregouser.ui.escort.root.EscortActivity
 import com.entrego.entregouser.ui.faq.FaqListActivity
 import com.entrego.entregouser.ui.profile.edit.EditProfileActivity
 import com.entrego.entregouser.util.showSnack

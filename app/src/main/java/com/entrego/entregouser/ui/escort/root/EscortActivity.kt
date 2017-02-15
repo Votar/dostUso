@@ -1,29 +1,33 @@
-package com.entrego.entregouser.ui.escort
+package com.entrego.entregouser.ui.escort.root
 
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.NavUtils
-import android.support.v7.app.AppCompatActivity
+import android.view.View
 import com.entrego.entregouser.R
+import com.entrego.entregouser.mvp.view.BaseMvpActivity
 import com.entrego.entregouser.ui.escort.cancel.CancelDeliveryActivity
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
+import kotlinx.android.synthetic.main.activity_escort.*
 import kotlinx.android.synthetic.main.escort_description_layout.*
 import kotlinx.android.synthetic.main.navigation_toolbar.*
 
-class EscortActivity : AppCompatActivity(), OnMapReadyCallback {
+class EscortActivity : BaseMvpActivity<EscortContract.View, EscortContract.Presenter>(),
+        EscortContract.View {
+    override var mPresenter: EscortContract.Presenter = EscortPresenter()
 
-    private var mMap: GoogleMap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_escort)
-        val mapFragment = supportFragmentManager
-                .findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment.getMapAsync(this)
         setupLayouts()
         nav_toolbar_back.setOnClickListener { NavUtils.navigateUpFromSameTask(this) }
+    }
+
+    override fun getRootView(): View = escort_sliding_layout
+
+    override fun onStart() {
+        super.onStart()
+        mPresenter.loadMapAsync()
     }
 
     fun setupLayouts() {
@@ -32,7 +36,5 @@ class EscortActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
-    override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
-    }
+
 }

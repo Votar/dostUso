@@ -5,6 +5,7 @@ import android.content.DialogInterface
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.RecyclerView
 import com.entrego.entregouser.R
+import com.entrego.entregouser.access.EntregoToken
 import com.entrego.entregouser.storage.preferences.PreferencesManager
 import com.entrego.entregouser.ui.escort.cancel.ReasonsAdapter
 import com.entrego.entregouser.ui.escort.cancel.model.CancelDelivery

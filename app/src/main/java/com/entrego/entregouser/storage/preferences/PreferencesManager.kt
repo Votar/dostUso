@@ -13,9 +13,10 @@ object PreferencesManager {
         mSharedPref = context.getSharedPreferences(STORAGE_NAME, Context.MODE_PRIVATE)
     }
 
-    fun getTokenOrEmpty(): String = mSharedPref.getString(KEY_TOKEN, "")
     fun setToken(value: String) {
-        EntregoToken.update(value)
         mSharedPref.edit().putString(KEY_TOKEN, value).apply()
     }
+
+    fun getTokenOrEmpty(): String = mSharedPref.getString(KEY_TOKEN, "")
+
 }

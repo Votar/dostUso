@@ -17,6 +17,9 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
         <activity
             android:name=".ui.intro.IntroActivity"
             android:screenOrientation="portrait"
@@ -54,17 +57,7 @@
             android:name=".ui.splash.SplashActivity"
             android:noHistory="true"
             android:screenOrientation="portrait" />
-        <!--
-             The API key for Google Maps-based APIs is defined as a string resource.
-             (See the file "res/values/google_maps_api.xml").
-             Note that the API key is linked to the encryption key used to sign the APK.
-             You need a different API key for each encryption key, including the release key that is used to
-             sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
-        -->
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
+
 
         <activity
             android:name=".ui.create.RootActivity"
@@ -81,7 +74,7 @@
                 android:value=".ui.create.RootActivity" />
         </activity>
         <activity
-            android:name=".ui.escort.EscortActivity"
+            android:name=".ui.escort.root.EscortActivity"
             android:launchMode="singleTask"
             android:parentActivityName=".ui.create.RootActivity"
             android:screenOrientation="portrait">
@@ -111,11 +104,11 @@
         </activity>
         <activity
             android:name=".ui.escort.cancel.CancelDeliveryActivity"
-            android:parentActivityName=".ui.escort.EscortActivity"
+            android:parentActivityName=".ui.escort.root.EscortActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.escort.EscortActivity" />
+                android:value=".ui.escort.root.EscortActivity" />
         </activity>
 
         <activity
