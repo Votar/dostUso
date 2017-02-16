@@ -76,6 +76,7 @@
             android:orientation="horizontal">
 
             <FrameLayout
+                android:id="@+id/escort_call_messenger_fl"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
@@ -94,9 +95,11 @@
                 android:background="@color/colorDivider" />
 
             <FrameLayout
+                android:id="@+id/escort_chat_messenger_fl"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackground">
 
                 <ImageView
                     android:layout_width="wrap_content"

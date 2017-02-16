@@ -16,16 +16,14 @@
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+
         <activity
             android:name=".ui.intro.IntroActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppThemeTransparent">
-
-        </activity>
+            android:theme="@style/AppThemeTransparent" />
         <activity
             android:name=".ui.registration.SuccessRegistrationActivity"
             android:screenOrientation="portrait" />
@@ -57,26 +55,24 @@
             android:name=".ui.splash.SplashActivity"
             android:noHistory="true"
             android:screenOrientation="portrait" />
-
-
         <activity
-            android:name=".ui.create.RootActivity"
+            android:name=".ui.delivery.create.RootActivity"
             android:clearTaskOnLaunch="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ui.profile.edit.EditProfileActivity"
-            android:parentActivityName=".ui.create.RootActivity"
+            android:parentActivityName=".ui.delivery.create.RootActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.create.RootActivity" />
+                android:value=".ui.delivery.create.RootActivity" />
         </activity>
         <activity
-            android:name=".ui.escort.root.EscortActivity"
+            android:name=".ui.delivery.escort.root.EscortActivity"
             android:launchMode="singleTask"
-            android:parentActivityName=".ui.create.RootActivity"
+            android:parentActivityName=".ui.delivery.create.RootActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -84,15 +80,15 @@
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.create.RootActivity" />
+                android:value=".ui.delivery.create.RootActivity" />
         </activity>
         <activity
             android:name=".ui.faq.FaqListActivity"
-            android:parentActivityName=".ui.create.RootActivity"
+            android:parentActivityName=".ui.delivery.create.RootActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.create.RootActivity" />
+                android:value=".ui.delivery.create.RootActivity" />
         </activity>
         <activity
             android:name=".ui.faq.FaqDetailActivity"
@@ -103,22 +99,38 @@
                 android:value=".ui.faq.FaqListActivity" />
         </activity>
         <activity
-            android:name=".ui.escort.cancel.CancelDeliveryActivity"
-            android:parentActivityName=".ui.escort.root.EscortActivity"
+            android:name=".ui.delivery.escort.cancel.CancelDeliveryActivity"
+            android:parentActivityName=".ui.delivery.escort.root.EscortActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.escort.root.EscortActivity" />
+                android:value="com.entrego.entregouser.ui.delivery.escort.root.EscortActivity" />
         </activity>
-
         <activity
-            android:name=".ui.escort.cancel.SuccessCancelActivity"
-            android:parentActivityName=".ui.create.RootActivity"
+            android:name=".ui.delivery.escort.cancel.SuccessCancelActivity"
             android:noHistory="true"
+            android:parentActivityName=".ui.delivery.create.RootActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.create.RootActivity" />
+                android:value=".ui.delivery.create.RootActivity" />
+        </activity>
+        <activity
+            android:name=".ui.delivery.escort.chat.ChatMessengerActivity"
+            android:parentActivityName=".ui.delivery.escort.root.EscortActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.delivery.escort.root.EscortActivity" />
+        </activity>
+        <activity
+            android:name=".ui.delivery.finish.FinishDeliveryActivity"
+            android:parentActivityName=".ui.delivery.create.RootActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.delivery.create.RootActivity" />
+
         </activity>
     </application>
 

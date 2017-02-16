@@ -7,7 +7,7 @@
 
         <variable
             name="onReasonListener"
-            type="com.entrego.entregouser.ui.escort.cancel.ReasonsAdapter.OnReasonClicked" />
+            type="com.entrego.entregouser.ui.delivery.escort.cancel.ReasonsAdapter.OnReasonClicked" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

@@ -94,4 +94,8 @@
     <string name="express_60_min">60 minutes</string>
     <string name="text_accept">Accept</string>
     <string name="text_ok">Ok</string>
+    <string name="text_total">Total</string>
+    <string name="text_score_service">Score the service</string>
+    <string name="hint_leave_comment">(140 characters max)</string>
+    <string name="text_send">send</string>
 </resources>

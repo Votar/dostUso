@@ -18,4 +18,6 @@
     <dimen name="clickable_icon_defailt_size">24dp</dimen>
     <dimen name="user_photo_holder_size">94dp</dimen>
     <dimen name="drawer_content_padding">20dp</dimen>
+    <dimen name="action_bar_height">48dp</dimen>
+    <dimen name="margin_under_action_bar">56dp</dimen>
 </resources>

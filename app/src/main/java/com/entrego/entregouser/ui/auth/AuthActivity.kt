@@ -13,7 +13,7 @@ import com.entrego.entregouser.ui.auth.presenter.AuthPresenter
 import com.entrego.entregouser.ui.auth.restore.RestorePasswordActivity
 import com.entrego.entregouser.ui.auth.restore.SuccessRestoreActivity
 import com.entrego.entregouser.ui.auth.view.IAuthView
-import com.entrego.entregouser.ui.create.RootActivity
+import com.entrego.entregouser.ui.delivery.create.RootActivity
 import com.entrego.entregouser.util.loading
 import com.entrego.entregouser.util.showSnack
 import entrego.com.android.ui.auth.presenter.IAuthPresenter

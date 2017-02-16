@@ -19,5 +19,9 @@ interface IBaseMvpView {
 
     fun showMessage(message: String)
 
+    fun showProgress()
+
+    fun hideProgress()
+
 }
 

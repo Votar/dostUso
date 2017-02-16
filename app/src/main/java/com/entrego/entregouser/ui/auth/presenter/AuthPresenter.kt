@@ -24,6 +24,7 @@ class AuthPresenter(val view: IAuthView) : IAuthPresenter {
     override fun requestAuth(email: String, password: String) {
         val request = EntregoAuth(email, password)
         request.requestAsync(listener)
+
         view.showProgress()
     }
 
