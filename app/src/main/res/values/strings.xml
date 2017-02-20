@@ -104,4 +104,8 @@
     <string name="hint_card_number">Card number</string>
     <string name="text_scan_card">Scan your card</string>
     <string name="text_save_card">Save credit card</string>
+    <string name="tab_on_the_way">On the way</string>
+    <string name="tab_history">History</string>
+    <string name="error_invalid_addresses_count">Should be at least two addresses</string>
+    <string name="error_invalid_address_with_index">Address #%1$2d is invalid</string>
 </resources>

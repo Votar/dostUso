@@ -18,7 +18,7 @@ class WayPointsAdapter(val mFieldClickListener: FieldClickListener) : RecyclerVi
 
     private
 
-    val dataset = LinkedList<String>()
+    protected val dataset = LinkedList<String>()
 
     fun addPoint() {
         dataset.add("")

@@ -19,7 +19,7 @@ class DeliveryTypesFragment : BaseBuilderFragment() {
 
     init {
         mDeliveryBuilder = DeliveryEntityBuilder()
-        mDeliveryBuilder?.serviceType = EntregoServiceCategory.SHIPMENT
+        mDeliveryBuilder?.category = EntregoServiceCategory.SHIPMENT
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -31,15 +31,15 @@ class DeliveryTypesFragment : BaseBuilderFragment() {
         super.onStart()
         fragment_type_shipment.setOnClickListener { }
         type_shipment_express.setOnClickListener {
-            mDeliveryBuilder?.timingType = EntregoTimingCategory.EXPRESS
+            mDeliveryBuilder?.type = EntregoTimingCategory.EXPRESS
             prepareNextFragment(ExpressSelectionFragment(), FragmentType.PARAMETERS)
         }
         type_shipment_booking.setOnClickListener {
-            mDeliveryBuilder?.timingType = EntregoTimingCategory.BOOKING
+            mDeliveryBuilder?.type = EntregoTimingCategory.BOOKING
             prepareNextFragment(SelectBookingFragment(), FragmentType.PARAMETERS)
         }
         type_shipment_all_day.setOnClickListener {
-            mDeliveryBuilder?.timingType = EntregoTimingCategory.ALL_DAY
+            mDeliveryBuilder?.type = EntregoTimingCategory.ALL_DAY
             prepareNextFragment(SelectAllDayFragment(), FragmentType.PARAMETERS)
         }
     }

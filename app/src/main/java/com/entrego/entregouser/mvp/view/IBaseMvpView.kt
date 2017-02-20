@@ -19,6 +19,7 @@ interface IBaseMvpView {
 
     fun showMessage(message: String)
 
+    fun onLogout()
 
 
 }

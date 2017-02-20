@@ -2,6 +2,7 @@ package com.entrego.entregouser.ui.delivery.create
 
 import android.Manifest
 import android.app.Fragment
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.widget.DrawerLayout
@@ -11,7 +12,10 @@ import android.view.Menu
 import android.view.MenuItem
 import com.entrego.entregouser.R
 import com.entrego.entregouser.entity.delivery.DeliveryEntityBuilder
+import com.entrego.entregouser.entity.delivery.EntregoDelivery
 import com.entrego.entregouser.entity.delivery.EntregoServiceCategory
+import com.entrego.entregouser.event.LogoutEvent
+import com.entrego.entregouser.storage.preferences.PreferencesManager
 import com.entrego.entregouser.ui.auth.AuthActivity
 import com.entrego.entregouser.ui.delivery.create.mvp.model.FragmentType
 import com.entrego.entregouser.ui.delivery.create.mvp.presenter.IRootPresenter
@@ -28,15 +32,18 @@ import com.entrego.entregouser.ui.delivery.create.steps.building.size.SelectSize
 import com.entrego.entregouser.ui.delivery.escort.root.EscortActivity
 import com.entrego.entregouser.ui.faq.FaqListActivity
 import com.entrego.entregouser.ui.profile.edit.EditProfileActivity
+import com.entrego.entregouser.ui.profile.history.HistoryDeliverysActivity
 import com.entrego.entregouser.ui.profile.payment.PaymentMethodActivity
 import com.entrego.entregouser.util.showSnack
-import com.entrego.entregouser.web.model.response.delivery.create.DeliveryCreationResponse
+import com.entrego.entregouser.web.model.response.delivery.create.EntregoDeliveryCreationResponse
 import com.facebook.internal.Utility.logd
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.common.eventbus.EventBus
+import com.google.common.eventbus.Subscribe
 import com.google.gson.Gson
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
@@ -50,6 +57,7 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
 
     companion object {
         val TAG = "RootActivity"
+        fun getIntent(ctx:Context) : Intent = Intent(ctx, RootActivity::class.java)
     }
 
     private var mMap: GoogleMap? = null
@@ -76,22 +84,29 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
     }
 
     fun setupListeners() {
-        root_payment_method_bth.setOnClickListener { showPaymentMethods() }
-
+        drawer_payment_method_bth.setOnClickListener { showPaymentMethods() }
+        drawer_my_deliveries_btn.setOnClickListener { showMyDeliveries() }
         drawer_edit_profile_btn.setOnClickListener {
             val intent = Intent(this, EditProfileActivity::class.java)
             startActivity(intent)
         }
 
+        tab_fl_shipment.setOnClickListener { showTypeShipmentFragment() }
+        tab_fl_deliver.setOnClickListener { showTypeDeliverFragment() }
+        tab_fl_transaction.setOnClickListener { showTypeTransactionFragment() }
+
         drawer_share_btn.setOnClickListener { mPresenter.shareLinkOnSite(RootActivity@ this) }
+    }
+
+    private fun showMyDeliveries() {
+        startActivity(HistoryDeliverysActivity.getIntent(this))
     }
 
     override fun onStart() {
         super.onStart()
         mPresenter.onStart()
-        tab_fl_shipment.setOnClickListener { showTypeShipmentFragment() }
-        tab_fl_deliver.setOnClickListener { showTypeDeliverFragment() }
-        tab_fl_transaction.setOnClickListener { showTypeTransactionFragment() }
+
+
         logd(TAG, "onStart")
     }
 
@@ -164,7 +179,7 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
     override fun showTypeShipmentFragment() {
         val deliveryBuilder = DeliveryEntityBuilder()
         val firstFragment = SelectSizeFragment()
-        deliveryBuilder.serviceType = EntregoServiceCategory.SHIPMENT
+        deliveryBuilder.category = EntregoServiceCategory.SHIPMENT
         val args = Bundle()
         val gson = Gson()
         args.putString(BaseBuilderFragment.KEY_BUILDER, gson.toJson(deliveryBuilder, DeliveryEntityBuilder::class.java))
@@ -196,7 +211,7 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
         }
     }
 
-    override fun showAcceptDeliveryCreationFragment(model: DeliveryCreationResponse) {
+    override fun showAcceptDeliveryCreationFragment(model: EntregoDelivery) {
         val fragment = AcceptDeliveryCreationFragment.getInstance(model)
         fragmentManager.beginTransaction()
                 .replace(R.id.root_front_container, fragment, AcceptDeliveryCreationFragment.TAG)

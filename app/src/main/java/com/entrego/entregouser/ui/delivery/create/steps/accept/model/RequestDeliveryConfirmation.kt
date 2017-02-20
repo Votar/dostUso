@@ -2,7 +2,7 @@ package com.entrego.entregouser.ui.delivery.create.steps.accept.model
 
 import android.os.Handler
 import com.entrego.entregouser.web.model.request.delivery.create.DeliveryCreationModel
-import com.entrego.entregouser.web.model.response.delivery.create.DeliveryCreationResponse
+import com.entrego.entregouser.web.model.response.delivery.create.EntregoDeliveryCreationResponse
 import com.entrego.entregouser.entity.common.EntregoPriceEntity
 import com.entrego.entregouser.entity.delivery.EntregoTimingCategory
 import entrego.com.android.web.api.EntregoApi

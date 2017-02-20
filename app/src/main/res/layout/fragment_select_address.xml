@@ -108,7 +108,8 @@
                     android:layout_below="@+id/select_address_recycler"
                     android:orientation="vertical"
                     android:paddingLeft="@dimen/double_screen_padding"
-                    android:paddingRight="@dimen/double_screen_padding">
+                    android:paddingRight="@dimen/double_screen_padding"
+                    android:visibility="gone">
 
                     <RelativeLayout
                         android:layout_width="match_parent"

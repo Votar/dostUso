@@ -10,23 +10,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.entrego.entregouser.R
+import com.entrego.entregouser.entity.delivery.EntregoDelivery
 import com.entrego.entregouser.ui.delivery.create.mvp.view.RootActivityController
 import com.entrego.entregouser.ui.delivery.create.steps.BaseBuilderFragment
 import com.entrego.entregouser.ui.delivery.create.steps.address.mvp.model.WayPointsAdapter
 import com.entrego.entregouser.ui.delivery.create.steps.address.mvp.presenter.SelectAddressPresenter
 import com.entrego.entregouser.ui.delivery.create.steps.address.mvp.view.FieldClickListener
 import com.entrego.entregouser.ui.delivery.create.steps.address.mvp.view.ISelectAddressView
-import com.entrego.entregouser.util.loading
-import com.entrego.entregouser.util.logd
-import com.entrego.entregouser.web.model.response.delivery.create.DeliveryCreationResponse
+import com.entrego.entregouser.util.*
+import com.entrego.entregouser.web.model.response.delivery.create.EntregoDeliveryCreationResponse
 import com.google.android.gms.common.GoogleApiAvailability
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException
 import com.google.android.gms.common.GooglePlayServicesRepairableException
 import com.google.android.gms.location.places.ui.PlaceAutocomplete
 import kotlinx.android.synthetic.main.fragment_select_address.*
+import java.util.*
 
 
 class SelectAddressFragment : BaseBuilderFragment(), ISelectAddressView, FieldClickListener {
+
 
     companion object {
         val REQUEST_CODE_AUTOCOMPLETE = 0x122017
@@ -88,9 +90,17 @@ class SelectAddressFragment : BaseBuilderFragment(), ISelectAddressView, FieldCl
         }
 
         select_address_accept_btn.setOnClickListener {
+
+            val addressesList = ArrayList<String>()
+            addressesList.add(select_address_from.text.toString())
+            addressesList.add(select_address_to.text.toString())
+            addressesList.addAll((select_address_recycler.adapter as WayPointsAdapter).getAddressList())
+            mDeliveryBuilder?.addresses = addressesList
+
             logd(mDeliveryBuilder.toString())
             if (mDeliveryBuilder != null)
                 mPresenter.requestDeliveryCreation(mDeliveryBuilder!!)
+
         }
     }
 
@@ -136,11 +146,19 @@ class SelectAddressFragment : BaseBuilderFragment(), ISelectAddressView, FieldCl
         mProgessView?.dismiss()
     }
 
-    override fun showAcceptView(response: DeliveryCreationResponse) {
+    override fun showAcceptView(response: EntregoDelivery) {
         (activity as? RootActivityController)?.showAcceptDeliveryCreationFragment(response)
     }
 
-    override fun onShowMessage(idString: Int) {
+    override fun onShowMessage(strResId: Int) {
+        view.showSnack(getString(strResId))
+    }
 
+    override fun showErrorAddress(strResId: Int, index: Int) {
+        view.showSnackError(getString(strResId, index + 1))
+    }
+
+    override fun onLogout() {
+        activity?.logout()
     }
 }

@@ -2,7 +2,7 @@ package com.entrego.entregouser.ui.delivery.create.mvp.view
 
 import android.app.Fragment
 import com.entrego.entregouser.ui.delivery.create.mvp.model.FragmentType
-import com.entrego.entregouser.web.model.response.delivery.create.DeliveryCreationResponse
+import com.entrego.entregouser.web.model.response.delivery.create.EntregoDeliveryCreationResponse
 import com.google.android.gms.maps.model.LatLng
 import com.gun0912.tedpermission.PermissionListener
 

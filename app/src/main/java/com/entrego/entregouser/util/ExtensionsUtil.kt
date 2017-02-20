@@ -2,12 +2,15 @@ package com.entrego.entregouser.util
 
 import android.app.Dialog
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.TextView
 import com.entrego.entregouser.R
+import com.entrego.entregouser.storage.preferences.PreferencesManager
+import com.entrego.entregouser.ui.auth.AuthActivity
 
 
 fun View.showSnack(message: String?) {
@@ -52,6 +55,13 @@ fun ProgressDialog.loadingWithCancel(cancelAction: (dialog: DialogInterface, whi
             this.context.getString(android.R.string.cancel)
             , cancelAction)
     this.show()
+}
+
+fun Context.logout() {
+    PreferencesManager.setToken("")
+    val intent = android.content.Intent(this, AuthActivity::class.java)
+    intent.addFlags(android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK)
+    startActivity(intent)
 }
 
 

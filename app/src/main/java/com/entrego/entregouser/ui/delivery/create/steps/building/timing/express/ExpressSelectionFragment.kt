@@ -28,7 +28,7 @@ class ExpressSelectionFragment : BaseBuilderFragment() {
     }
 
     fun showNextFragment(offsetMin: Int) {
-        mDeliveryBuilder?.executeTime = Date().time
+        mDeliveryBuilder?.pickup = offsetMin.toLong()
         prepareNextFragment(SelectAddressFragment(), FragmentType.ADDRESS)
     }
 

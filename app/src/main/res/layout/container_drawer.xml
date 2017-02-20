@@ -79,7 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?android:attr/selectableItemBackground"
-            android:id="@+id/root_payment_method_bth">
+            android:id="@+id/drawer_payment_method_bth">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -123,7 +123,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?android:attr/selectableItemBackground">
+            android:background="?android:attr/selectableItemBackground"
+            android:id="@+id/drawer_my_deliveries_btn">
 
             <TextView
                 android:layout_width="wrap_content"

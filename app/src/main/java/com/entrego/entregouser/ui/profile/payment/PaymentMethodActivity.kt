@@ -8,6 +8,7 @@ import android.view.View
 import com.entrego.entregouser.R
 import com.entrego.entregouser.mvp.view.BaseMvpActivity
 import com.entrego.entregouser.ui.profile.payment.card.AddCardActivity
+import com.entrego.entregouser.ui.profile.payment.wallet.AddMoneyToWalletActivity
 import kotlinx.android.synthetic.main.activity_payment_method.*
 import kotlinx.android.synthetic.main.navigation_toolbar.*
 
@@ -30,6 +31,7 @@ class PaymentMethodActivity : BaseMvpActivity<PaymentMethodContract.View, Paymen
     fun setupLayouts() {
         nav_toolbar_back.setOnClickListener { NavUtils.navigateUpFromSameTask(this) }
         payment_method_add_card.setOnClickListener { showAddCardActivity() }
+        payment_method_add_money_to_wallet.setOnClickListener { showAddMoneyToWallet() }
     }
 
     override fun showAddCardActivity() {
@@ -37,6 +39,6 @@ class PaymentMethodActivity : BaseMvpActivity<PaymentMethodContract.View, Paymen
     }
 
     override fun showAddMoneyToWallet() {
-
+        startActivity(AddMoneyToWalletActivity.getIntent(this))
     }
 }

@@ -2,12 +2,13 @@ package com.entrego.entregouser.entity.delivery
 
 
 class DeliveryEntityBuilder {
-    var serviceType: EntregoServiceCategory? = null
-    var sizeType: EntregoSizeType? = null
-    var timingType: EntregoTimingCategory? = null
-    var executeTime: Long? = null
+    var category: EntregoServiceCategory? = null
+    var parcel: EntregoParcelType? = null
+    var type: EntregoTimingCategory? = null
+    var pickup: Long? = null
+    var addresses: List<String>? = null
     override fun toString(): String {
-        return "DeliveryEntityBuilder(serviceType=$serviceType, sizeType=$sizeType, timingType=$timingType)"
+        return "DeliveryEntityBuilder(category=$category, parcel=$parcel, type=$type, pickup=$pickup, addresses=$addresses)"
     }
 
 

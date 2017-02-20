@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_history_deliverys"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.entrego.entregouser.ui.profile.history.HistoryDeliverysActivity">
+
+    <include
+        android:id="@+id/history_delivery_toolbar"
+        layout="@layout/navigation_toolbar" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/history_delivery_toolbar"
+        android:orientation="vertical">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/history_delivery_tablayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabIndicatorColor="@color/colorDarkBlue"
+            app:tabSelectedTextColor="@color/colorDarkBlue"
+            app:tabTextColor="@color/colorDarkGrey" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/history_delivery_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    </LinearLayout>
+</RelativeLayout>

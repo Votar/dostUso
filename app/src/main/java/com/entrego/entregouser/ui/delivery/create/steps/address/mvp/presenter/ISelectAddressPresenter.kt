@@ -9,5 +9,4 @@ interface ISelectAddressPresenter {
     fun onStart(view: ISelectAddressView)
     fun onStop()
     fun requestDeliveryCreation(builder: DeliveryEntityBuilder)
-
 }

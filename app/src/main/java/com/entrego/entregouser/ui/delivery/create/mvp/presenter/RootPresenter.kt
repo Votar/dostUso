@@ -7,7 +7,6 @@ import com.google.android.gms.maps.model.LatLng
 import com.gun0912.tedpermission.PermissionListener
 import java.util.*
 
-
 class RootPresenter : IRootPresenter {
     override fun shareLinkOnSite(activity: Activity) {
         val sendIntent = Intent()
@@ -47,6 +46,4 @@ class RootPresenter : IRootPresenter {
     override fun onStop() {
         mView = null
     }
-
-
 }

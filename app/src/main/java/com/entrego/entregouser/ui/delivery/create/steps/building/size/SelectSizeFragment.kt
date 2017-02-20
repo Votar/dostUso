@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.entrego.entregouser.R
-import com.entrego.entregouser.entity.delivery.EntregoSizeType
+import com.entrego.entregouser.entity.delivery.EntregoParcelType
 import com.entrego.entregouser.ui.delivery.create.mvp.model.FragmentType
 import com.entrego.entregouser.ui.delivery.create.steps.BaseBuilderFragment
 import com.entrego.entregouser.ui.delivery.create.steps.address.SelectAddressFragment
@@ -28,8 +28,8 @@ class SelectSizeFragment : BaseBuilderFragment() {
 
     val mClickListener = View.OnClickListener { view ->
         when (view?.id) {
-            R.id.size_builder_small -> mDeliveryBuilder?.sizeType = EntregoSizeType.SMALL
-            R.id.size_builder_large -> mDeliveryBuilder?.sizeType = EntregoSizeType.LARGE
+            R.id.size_builder_small -> mDeliveryBuilder?.parcel = EntregoParcelType.SMALL
+            R.id.size_builder_large -> mDeliveryBuilder?.parcel = EntregoParcelType.LARGE
         }
         prepareNextFragment(DeliveryTypesFragment(), FragmentType.PARAMETERS)
     }
