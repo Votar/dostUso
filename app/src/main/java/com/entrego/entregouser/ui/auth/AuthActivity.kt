@@ -78,7 +78,7 @@ class AuthActivity : AppCompatActivity(), IAuthView {
 
         auth_edit_password.setOnEditorActionListener(object : TextView.OnEditorActionListener {
             override fun onEditorAction(p0: TextView?, actionId: Int, event: KeyEvent?): Boolean {
-                if ((actionId == EditorInfo.IME_ACTION_DONE) || ((event?.getKeyCode() == KeyEvent.KEYCODE_ENTER)
+                if ((actionId == EditorInfo.IME_ACTION_DONE) || ((event?.keyCode == KeyEvent.KEYCODE_ENTER)
                         && (event?.action == KeyEvent.ACTION_DOWN))) {
                     startAuth()
                     return true

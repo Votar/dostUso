@@ -12,13 +12,11 @@ class FinishDeliveryPresenter : FinishDeliveryContract.Presenter,
     var mLastRequest: Call<EntregoResponse>? = null
 
     override fun sendDeliveryComment(message: String, rating: Float) {
-        mView?.showProgress()
         mLastRequest = FinishDelivery.executeAsync("", "", 0f, mFinishDeliveryListener)
     }
 
     override fun detachView() {
         super.detachView()
-        mView?.hideProgress()
     }
 
     override fun cancelLastRequest() {
@@ -27,12 +25,11 @@ class FinishDeliveryPresenter : FinishDeliveryContract.Presenter,
 
     val mFinishDeliveryListener = object : FinishDelivery.ResponseListener {
         override fun onSuccess() {
-            mView?.hideProgress()
             mView?.onSuccessFinished()
         }
 
         override fun onFailure(message: String?, code: Int?) {
-            mView?.hideProgress()
+
         }
     }
 }

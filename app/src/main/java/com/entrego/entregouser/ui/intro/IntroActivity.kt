@@ -42,7 +42,7 @@ class IntroActivity : AppIntro() {
         unselectedIndicatorColor = ContextCompat.getColor(this, R.color.colorDarkGrey)
 
         showSkipButton(false)
-        setProgressButtonEnabled(false)
+        isProgressButtonEnabled = false
 
         showSkipButton(false)
 
@@ -58,13 +58,13 @@ class IntroActivity : AppIntro() {
 
         when (pager.currentItem) {
             0 -> {
-                setProgressButtonEnabled(false)
+                isProgressButtonEnabled = false
                 setNextArrowColor(ContextCompat.getColor(this, R.color.colorTransparent))
                 setSeparatorColor(ContextCompat.getColor(this, R.color.colorTransparent))
             }
             else -> {
                 setSeparatorColor(ContextCompat.getColor(this, R.color.colorDarkBlue))
-                setProgressButtonEnabled(true)
+                isProgressButtonEnabled = true
                 setNextArrowColor(ContextCompat.getColor(this, R.color.colorDarkBlue))
             }
         }

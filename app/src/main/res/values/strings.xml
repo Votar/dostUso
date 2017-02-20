@@ -86,16 +86,22 @@
     <string name="text_cancel">Cancel</string>
     <string name="text_status">Status</string>
     <string name="support_email">operaciones@entregoya.com</string>
-    <string name="send_email">Send by...</string>
+    <string name="send_email">Send by…</string>
     <string name="express_label">Deliver in:</string>
     <string name="express_now">Now!</string>
     <string name="express_30_min">30 minutes</string>
     <string name="express_45_min">45 minutes</string>
     <string name="express_60_min">60 minutes</string>
     <string name="text_accept">Accept</string>
-    <string name="text_ok">Ok</string>
+    <string name="text_ok">OK</string>
     <string name="text_total">Total</string>
     <string name="text_score_service">Score the service</string>
     <string name="hint_leave_comment">(140 characters max)</string>
     <string name="text_send">send</string>
+    <string name="text_add_credit_card">+ Add credit card</string>
+    <string name="text_add_money_to_wallet">+ Add money to wallet</string>
+    <string name="text_ukrainian_code">380</string>
+    <string name="hint_card_number">Card number</string>
+    <string name="text_scan_card">Scan your card</string>
+    <string name="text_save_card">Save credit card</string>
 </resources>

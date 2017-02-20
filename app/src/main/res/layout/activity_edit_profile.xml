@@ -74,7 +74,7 @@
                         android:inputType="phone"
                         android:minWidth="60dp"
                         android:nextFocusDown="@+id/edit_profile_edit_phone"
-                        android:text="380" />
+                        android:text="@string/text_ukrainian_code" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout

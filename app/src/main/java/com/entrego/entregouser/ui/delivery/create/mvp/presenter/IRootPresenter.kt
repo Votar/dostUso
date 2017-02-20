@@ -9,5 +9,4 @@ interface IRootPresenter {
     fun onMapReady()
     fun onStop()
     fun shareLinkOnSite(activity:Activity)
-
 }

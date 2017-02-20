@@ -11,6 +11,8 @@ object FinishDeliveryContract {
         fun setCommentError(message: String)
         fun onSuccessFinished()
         fun CleanErrorFields()
+        fun showProgress()
+        fun hideProgress()
     }
 
 

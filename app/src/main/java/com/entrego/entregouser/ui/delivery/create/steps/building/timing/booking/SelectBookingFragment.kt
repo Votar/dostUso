@@ -46,15 +46,17 @@ class SelectBookingFragment : BaseBuilderFragment() {
 
         }
 
-        val datePickerDialog = DatePickerDialog(activity,
-                R.style.DialogTheme,
-                mDatePickerListener,
-                nowDateTime.get(Calendar.YEAR),
-                nowDateTime.get(Calendar.MONTH),
-                nowDateTime.get(Calendar.DAY_OF_MONTH)
-        )
+        activity?.let {
+            val datePickerDialog = DatePickerDialog(activity,
+                    R.style.DialogTheme,
+                    mDatePickerListener,
+                    nowDateTime.get(Calendar.YEAR),
+                    nowDateTime.get(Calendar.MONTH),
+                    nowDateTime.get(Calendar.DAY_OF_MONTH)
+            )
 
-        datePickerDialog.show()
+            datePickerDialog.show()
+        }
     }
 
     fun showTimePickerDialog(selectedDate: Calendar) {
@@ -74,15 +76,16 @@ class SelectBookingFragment : BaseBuilderFragment() {
                 prepareNextFragment(SelectAddressFragment(), FragmentType.ADDRESS)
             }
         }
+        activity?.let {
+            val pickerDialog = TimePickerDialog(activity,
+                    R.style.DialogTheme,
+                    mTimePickerListener,
+                    nowDateTime.get(Calendar.HOUR_OF_DAY),
+                    nowDateTime.get(Calendar.MINUTE),
+                    true)
 
-        val pickerDialog = TimePickerDialog(activity,
-                R.style.DialogTheme,
-                mTimePickerListener,
-                nowDateTime.get(Calendar.HOUR_OF_DAY),
-                nowDateTime.get(Calendar.MINUTE),
-                true)
-
-        pickerDialog.show()
+            pickerDialog.show()
+        }
     }
 
     fun showErrorSnackToDate() {

@@ -25,6 +25,14 @@ class WayPointsAdapter(val mFieldClickListener: FieldClickListener) : RecyclerVi
         notifyItemChanged(dataset.lastIndex)
     }
 
+    fun removePoint() {
+        if (dataset.size > 0) {
+            val removedIndex = dataset.lastIndex
+            dataset.removeAt(dataset.lastIndex)
+            notifyItemRemoved(removedIndex)
+        }
+    }
+
     fun getAddressList(): List<String> = dataset
 
     class ViewHolder(rootView: View) : RecyclerView.ViewHolder(rootView) {
@@ -39,7 +47,7 @@ class WayPointsAdapter(val mFieldClickListener: FieldClickListener) : RecyclerVi
         val vh = ViewHolder(v)
         val view = v.findViewById(R.id.places_autocomplete_next) as TextView
         vh.addressNext = view
-        dataset.set(dataset.lastIndex, vh.addressNext?.text.toString())
+        dataset[dataset.lastIndex] = vh.addressNext?.text.toString()
         vh.addressNext?.setOnClickListener { mFieldClickListener.openAutocompleteActivity(it as TextView) }
 
         return vh

@@ -38,8 +38,8 @@ class ChatMessengerActivity : BaseMvpActivity<ChatContract.View, ChatContract.Pr
         nav_toolbar_back.setOnClickListener { NavUtils.navigateUpFromSameTask(this) }
 
         val layoutManager = LinearLayoutManager(this)
-        chat_recycler.setLayoutManager(layoutManager)
-        chat_recycler.setItemAnimator(DefaultItemAnimator())
+        chat_recycler.layoutManager = layoutManager
+        chat_recycler.itemAnimator = DefaultItemAnimator()
 //        val adapter = ChatThreadAdapter()
 //        chat_recycler.setAdapter(adapter)
         chat_send.setOnClickListener {
@@ -58,13 +58,7 @@ class ChatMessengerActivity : BaseMvpActivity<ChatContract.View, ChatContract.Pr
 
     var mProgress: EntregoCancelableProgressDialog? = null
 
-    override fun showProgress() {
 
-    }
-
-    override fun hideProgress() {
-
-    }
 
     override fun getRootView(): View = activity_chat_messenger
 

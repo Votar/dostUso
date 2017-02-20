@@ -16,4 +16,6 @@ interface IRootView {
     fun showTypeDeliverFragment()
     fun showMessage(stringId: Int)
     fun showWelcomeBuilder()
+    fun showPaymentMethods()
+
 }

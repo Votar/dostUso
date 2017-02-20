@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_payment_method"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    tools:context="com.entrego.entregouser.ui.profile.payment.PaymentMethodActivity">
+
+    <include
+        android:id="@+id/payment_method_toolbar"
+        layout="@layout/navigation_toolbar" />
+
+    <ScrollView
+        style="@style/EntregoContentScroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/payment_method_toolbar">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/default_screen_padding"
+                android:paddingLeft="@dimen/double_screen_padding"
+                android:paddingRight="@dimen/double_screen_padding"
+                android:paddingTop="@dimen/default_screen_padding">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorDivider" />
+
+                <TextView
+                    android:id="@+id/payment_method_add_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:paddingBottom="@dimen/padding_medium"
+                    android:paddingTop="@dimen/padding_medium"
+                    android:text="@string/text_add_credit_card" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorDivider" />
+
+                <TextView
+                    android:id="@+id/payment_method_add_money_to_wallet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:paddingBottom="@dimen/padding_medium"
+                    android:paddingTop="@dimen/padding_medium"
+                    android:text="@string/text_add_money_to_wallet" />
+
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+    </ScrollView>
+</RelativeLayout>

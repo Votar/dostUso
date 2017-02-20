@@ -64,10 +64,15 @@ class SelectAddressFragment : BaseBuilderFragment(), ISelectAddressView, FieldCl
     }
 
     private fun setupListeners() {
-        select_address_multishipment_rl.setOnClickListener {
+        select_address_add_address.setOnClickListener {
             (select_address_recycler.adapter as WayPointsAdapter)
                     .addPoint()
         }
+        select_address_remove_address.setOnClickListener {
+            (select_address_recycler.adapter as WayPointsAdapter)
+                    .removePoint()
+        }
+        select_address_remove_address
         select_address_btn_more.setOnClickListener {
             it.visibility = View.GONE
             select_address_additional_ll.visibility = View.VISIBLE

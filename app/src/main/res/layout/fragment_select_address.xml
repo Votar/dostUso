@@ -108,8 +108,7 @@
                     android:layout_below="@+id/select_address_recycler"
                     android:orientation="vertical"
                     android:paddingLeft="@dimen/double_screen_padding"
-                    android:paddingRight="@dimen/double_screen_padding"
-                    android:visibility="gone">
+                    android:paddingRight="@dimen/double_screen_padding">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -148,15 +147,32 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
+                            android:drawablePadding="@dimen/padding_medium"
+                            android:drawableRight="@drawable/ic_multi_shipment"
                             android:text="@string/multishipment"
                             android:textSize="@dimen/tsize_medium" />
 
-                        <ImageView
+                        <ImageButton
+                            android:id="@+id/select_address_add_address"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            app:srcCompat="@drawable/ic_multi_shipment" />
+                            android:background="?android:attr/selectableItemBackground"
+                            android:padding="@dimen/padding_small"
+                            android:src="@drawable/ic_add_20dp" />
+
+                        <ImageButton
+                            android:id="@+id/select_address_remove_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_toStartOf="@+id/select_address_add_address"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:padding="@dimen/padding_small"
+                            android:src="@drawable/ic_remove_20dp" />
+
+
                     </RelativeLayout>
 
                     <View
@@ -207,6 +223,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
+                            android:inputType="textPostalAddress"
                             android:maxLines="1"
                             android:minWidth="50dp" />
                     </RelativeLayout>

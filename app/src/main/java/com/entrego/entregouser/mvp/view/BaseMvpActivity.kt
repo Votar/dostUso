@@ -1,16 +1,14 @@
 package com.entrego.entregouser.mvp.view
 
-import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.entrego.entregouser.mvp.presenter.IBaseMvpPresenter
-import com.entrego.entregouser.util.loading
 import com.entrego.entregouser.util.showSnack
 import com.entrego.entregouser.util.showSnackError
 
 
-abstract class BaseMvpActivity<in V : IBaseMvpView, T : IBaseMvpPresenter<V>>
+    abstract class BaseMvpActivity<in V : IBaseMvpView, T : IBaseMvpPresenter<V>>
     : AppCompatActivity(), IBaseMvpView {
     protected abstract var mPresenter: T
     override fun onCreate(savedInstanceState: Bundle?) {

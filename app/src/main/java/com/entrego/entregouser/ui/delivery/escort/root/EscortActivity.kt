@@ -39,13 +39,7 @@ class EscortActivity : BaseMvpActivity<EscortContract.View, EscortContract.Prese
         escort_chat_messenger_fl.setOnClickListener { mPresenter.chatMessenger() }
     }
 
-    override fun showProgress() {
 
-    }
-
-    override fun hideProgress() {
-
-    }
 
 
 }

@@ -8,7 +8,7 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/colorWhite"
         android:orientation="vertical"
         android:padding="@dimen/drawer_content_padding">
@@ -78,7 +78,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?android:attr/selectableItemBackground">
+            android:background="?android:attr/selectableItemBackground"
+            android:id="@+id/root_payment_method_bth">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -271,11 +272,6 @@
                 app:srcCompat="@drawable/ic_small_next" />
         </RelativeLayout>
 
-        <include layout="@layout/horizontal_divider" />
 
-        <FrameLayout
-            android:id="@+id/root_drawer_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
     </LinearLayout>
 </ScrollView>

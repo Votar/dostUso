@@ -28,6 +28,7 @@ import com.entrego.entregouser.ui.delivery.create.steps.building.size.SelectSize
 import com.entrego.entregouser.ui.delivery.escort.root.EscortActivity
 import com.entrego.entregouser.ui.faq.FaqListActivity
 import com.entrego.entregouser.ui.profile.edit.EditProfileActivity
+import com.entrego.entregouser.ui.profile.payment.PaymentMethodActivity
 import com.entrego.entregouser.util.showSnack
 import com.entrego.entregouser.web.model.response.delivery.create.DeliveryCreationResponse
 import com.facebook.internal.Utility.logd
@@ -45,6 +46,8 @@ import kotlinx.android.synthetic.main.container_drawer.*
 import kotlinx.android.synthetic.main.content_root.*
 
 class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootActivityController {
+
+
     companion object {
         val TAG = "RootActivity"
     }
@@ -55,6 +58,12 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_root)
         setSupportActionBar(root_toolbar)
+        mPresenter.onCreate(this)
+        setupLayouts()
+        setupListeners()
+    }
+
+    fun setupLayouts() {
         supportActionBar?.title = ""
         val drawer = findViewById(R.id.activity_root_drawer_layout) as DrawerLayout
         val toggle = ActionBarDrawerToggle(this,
@@ -64,13 +73,11 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
                 R.string.navigation_drawer_close)
         drawer.addDrawerListener(toggle)
         toggle.syncState()
-        setupTabIcons()
-        mPresenter.onCreate(this)
-        setupListeners()
     }
 
     fun setupListeners() {
-        root_drawer_container.setOnClickListener { }
+        root_payment_method_bth.setOnClickListener { showPaymentMethods() }
+
         drawer_edit_profile_btn.setOnClickListener {
             val intent = Intent(this, EditProfileActivity::class.java)
             startActivity(intent)
@@ -105,13 +112,6 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
         logd(TAG, "onStop")
     }
 
-
-    fun setupTabIcons() {
-        val tabTitles = resources.getStringArray(R.array.tab_titles)
-        val tabIcons = arrayOf<Int>(R.drawable.ic_box,
-                R.drawable.ic_deliver,
-                R.drawable.ic_transaction)
-    }
 
     override fun onMapReady(googleMap: GoogleMap) {
         googleMap.uiSettings
@@ -206,7 +206,6 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
 
     override fun showCreatedDelivery() {
         val intent = Intent(this, EscortActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
         startActivity(intent)
         showWelcomeBuilder()
         fragmentManager.findFragmentByTag(AcceptDeliveryCreationFragment.TAG)?.let {
@@ -215,6 +214,10 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
                     .commit()
         }
 
+    }
+
+    override fun showPaymentMethods() {
+        startActivity(PaymentMethodActivity.getIntent(this))
     }
 
 

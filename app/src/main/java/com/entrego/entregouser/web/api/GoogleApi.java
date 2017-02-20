@@ -6,12 +6,9 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
-/**
- * Created by bertalt on 03.08.16.
- */
 public interface GoogleApi {
 
-    public static String BASE_URL = "https://maps.googleapis.com";
+    String BASE_URL = "https://maps.googleapis.com";
 
     @GET("/maps/api/directions/json")
     Call<JsonElement> getTrackFromGoogle(@Query("origin") String from, @Query("destination") String to,
