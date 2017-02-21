@@ -9,6 +9,7 @@ import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.TextView
 import com.entrego.entregouser.R
+import com.entrego.entregouser.entity.route.EntregoPointBinding
 import com.entrego.entregouser.storage.preferences.PreferencesManager
 import com.entrego.entregouser.ui.auth.AuthActivity
 
@@ -62,6 +63,25 @@ fun Context.logout() {
     val intent = android.content.Intent(this, AuthActivity::class.java)
     intent.addFlags(android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK)
     startActivity(intent)
+}
+
+fun Array<EntregoPointBinding>.getStaticMapUrl(path: String?): String {
+    val staticPartUrl = "https://maps.googleapis.com/maps/api/staticmap?autoscale=1" +
+            "&size=600x300" +
+            "&maptype=roadmap" +
+            "&format=png" +
+            "&path=weight:3%7Ccolor:blue%7Cenc:$path" +
+            "&visual_refresh=true"
+    val urlBuilder = StringBuilder()
+    urlBuilder.append(staticPartUrl)
+
+    this.forEachIndexed { i, point ->
+        val coordinates = "" + this[i].point.latitude +
+                "," + this[i].point.longitude
+        val label = i + 1
+        urlBuilder.append("&markers=size:mid%7Clabel:$label%7C$coordinates")
+    }
+    return urlBuilder.toString()
 }
 
 

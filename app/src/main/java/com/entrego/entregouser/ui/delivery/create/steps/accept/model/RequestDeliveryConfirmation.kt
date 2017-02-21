@@ -6,7 +6,7 @@ import com.entrego.entregouser.web.model.response.delivery.create.EntregoDeliver
 import com.entrego.entregouser.entity.common.EntregoPriceEntity
 import com.entrego.entregouser.entity.delivery.EntregoTimingCategory
 import entrego.com.android.web.api.EntregoApi
-import entrego.com.android.web.model.response.EntregoResponse
+import com.entrego.entregouser.web.model.response.BaseEntregoResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.Headers
@@ -26,7 +26,7 @@ object RequestDeliveryConfirmation {
     interface Request {
         @Headers(EntregoApi.CONTENT_JSON)
         @POST(END_POINT)
-        fun parameters(@Body body: DeliveryCreationModel): Call<EntregoResponse>
+        fun parameters(@Body body: DeliveryCreationModel): Call<BaseEntregoResponse>
     }
 
     fun requestAsync(listener: DeliveryConfirmationResponseListener) {

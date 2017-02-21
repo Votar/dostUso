@@ -5,7 +5,7 @@ import android.os.Looper
 import com.entrego.entregouser.ui.auth.model.EntregoAuth
 import com.entrego.entregouser.ui.auth.view.IAuthView
 import entrego.com.android.ui.auth.presenter.IAuthPresenter
-import entrego.com.android.web.model.response.CommonResponseListener
+import com.entrego.entregouser.web.model.response.CommonResponseListener
 
 
 class AuthPresenter(val view: IAuthView) : IAuthPresenter {

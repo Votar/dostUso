@@ -1,26 +1,31 @@
 package com.entrego.entregouser.mvp.view
 
 import android.content.Context
-import android.content.Intent
-import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import android.support.v4.app.Fragment
+import android.view.View
 import com.entrego.entregouser.mvp.presenter.IBaseMvpPresenter
-import com.entrego.entregouser.storage.preferences.PreferencesManager
-import com.entrego.entregouser.ui.auth.AuthActivity
 import com.entrego.entregouser.util.logout
 import com.entrego.entregouser.util.showSnack
 import com.entrego.entregouser.util.showSnackError
 
-
-abstract class BaseMvpActivity<in V : IBaseMvpView, T : IBaseMvpPresenter<V>>
-    : AppCompatActivity(), IBaseMvpView {
+abstract class BaseMvpFragment<in V : IBaseMvpView, T : IBaseMvpPresenter<V>> : Fragment(),
+        IBaseMvpView {
     protected abstract var mPresenter: T
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+
+
+    override fun onStart() {
+        super.onStart()
         mPresenter.attachView(this as V)
     }
 
-    override fun getAppContext(): Context = this
+    override fun onStop() {
+        super.onStop()
+        mPresenter.detachView()
+    }
+
+    override fun getRootView(): View? = view
+
+    override fun getAppContext(): Context = activity
 
     override fun showError(error: String?) {
         getRootView()?.showSnackError(error)
@@ -44,6 +49,7 @@ abstract class BaseMvpActivity<in V : IBaseMvpView, T : IBaseMvpPresenter<V>>
     }
 
     override fun onLogout() {
-        this.logout()
+        activity?.logout()
     }
+
 }

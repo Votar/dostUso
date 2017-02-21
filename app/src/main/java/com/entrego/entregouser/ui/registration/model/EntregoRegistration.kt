@@ -4,9 +4,9 @@ import com.entrego.entregouser.web.model.request.registration.RegistrationBody
 import com.entrego.entregouser.web.model.response.common.FieldErrorResponse
 import com.entrego.entregouser.web.model.response.registration.EntregoResultRegistration
 import com.entrego.entregouser.entity.EntregoPhoneModel
-import entrego.com.android.web.api.ApiCreator
+import com.entrego.entregouser.web.api.ApiCreator
 import entrego.com.android.web.api.EntregoApi
-import entrego.com.android.web.model.response.CommonResponseListener
+import com.entrego.entregouser.web.model.response.CommonResponseListener
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

@@ -1,13 +1,12 @@
-package entrego.com.android.web.api
+package com.entrego.entregouser.web.api
 
+import entrego.com.android.web.api.EntregoApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-/**
- * Created by bertalt on 29.11.16.
- */
+
 object ApiCreator {
     private val server: Retrofit
 

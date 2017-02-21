@@ -3,12 +3,15 @@ package com.entrego.entregouser.ui.profile.history
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.view.ViewPager
+import android.support.v4.app.Fragment
+import android.support.v4.app.NavUtils
 import android.view.View
 import com.entrego.entregouser.R
 import com.entrego.entregouser.mvp.view.BaseMvpActivity
+import com.entrego.entregouser.ui.profile.history.list.DeliveryListFragment
 import com.entrego.entregouser.ui.profile.history.model.ViewPagerAdapter
 import kotlinx.android.synthetic.main.activity_history_deliverys.*
+import kotlinx.android.synthetic.main.navigation_toolbar.*
 
 class HistoryDeliverysActivity : BaseMvpActivity<HistoryDeliveryContract.View, HistoryDeliveryContract.Presenter>(),
         HistoryDeliveryContract.View {
@@ -23,13 +26,25 @@ class HistoryDeliverysActivity : BaseMvpActivity<HistoryDeliveryContract.View, H
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history_deliverys)
+        setupLayouts()
     }
 
-    fun setupViewPager(viewPager: ViewPager) {
+    fun setupLayouts() {
+        setupListeners()
+        setupViewPager()
+    }
+
+    fun setupListeners() {
+        nav_toolbar_back.setOnClickListener { NavUtils.navigateUpFromSameTask(this) }
+    }
+
+
+    fun setupViewPager() {
         val adapter = ViewPagerAdapter(supportFragmentManager)
-//        adapter.addFragment(ProfileFragment(), getString(R.string.tab_on_the_way)
-//        adapter.addFragment(VehicleFragment(), getString(R.string.tab_history)
-//        viewPager.adapter = adapter
+        adapter.addFragment(DeliveryListFragment.getCurrentDeliveryList(), getString(R.string.tab_on_the_way))
+        adapter.addFragment(DeliveryListFragment.getHistoryDeliveryList(), getString(R.string.tab_history))
+        history_delivery_viewpager.adapter = adapter
+        history_delivery_tablayout.setupWithViewPager(history_delivery_viewpager)
     }
 
 }

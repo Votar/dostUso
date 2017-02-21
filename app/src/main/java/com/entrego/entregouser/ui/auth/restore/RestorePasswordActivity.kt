@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import com.entrego.entregouser.R
 import com.entrego.entregouser.ui.auth.restore.model.RestoreModel
 import com.entrego.entregouser.util.showSnack
-import entrego.com.android.web.model.response.CommonResponseListener
+import com.entrego.entregouser.web.model.response.CommonResponseListener
 import kotlinx.android.synthetic.main.activity_restore_password.*
 
 class RestorePasswordActivity : AppCompatActivity() {

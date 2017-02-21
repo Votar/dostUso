@@ -1,11 +1,11 @@
 package com.entrego.entregouser.ui.auth.model
 
 import com.entrego.entregouser.storage.preferences.PreferencesManager
-import entrego.com.android.web.api.ApiCreator
+import com.entrego.entregouser.web.api.ApiCreator
 import entrego.com.android.web.api.EntregoApi
 import entrego.com.android.web.model.request.auth.AuthBody
-import entrego.com.android.web.model.response.CommonResponseListener
-import entrego.com.android.web.model.response.EntregoResponse
+import com.entrego.entregouser.web.model.response.CommonResponseListener
+import com.entrego.entregouser.web.model.response.BaseEntregoResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,18 +22,18 @@ class EntregoAuth(val email: String, val password: String) {
     interface Request {
         @Headers(EntregoApi.CONTENT_JSON)
         @POST(END_POINT)
-        fun parameters(@Body body: AuthBody): Call<EntregoResponse>
+        fun parameters(@Body body: AuthBody): Call<BaseEntregoResponse>
     }
 
-    fun requestAsync(listener: CommonResponseListener): Call<EntregoResponse> {
+    fun requestAsync(listener: CommonResponseListener): Call<BaseEntregoResponse> {
 
         val body = AuthBody(email, password)
         val request = ApiCreator.get()
                 .create(Request::class.java)
                 .parameters(body)
 
-        request.enqueue(object : Callback<EntregoResponse> {
-            override fun onResponse(call: Call<EntregoResponse>?, response: Response<EntregoResponse>?) {
+        request.enqueue(object : Callback<BaseEntregoResponse> {
+            override fun onResponse(call: Call<BaseEntregoResponse>?, response: Response<BaseEntregoResponse>?) {
                 when (response?.body()?.code) {
                     0 -> {
                         val token = response?.headers()?.get(EntregoApi.TOKEN)
@@ -46,7 +46,7 @@ class EntregoAuth(val email: String, val password: String) {
                 }
             }
 
-            override fun onFailure(call: Call<EntregoResponse>?, t: Throwable?) {
+            override fun onFailure(call: Call<BaseEntregoResponse>?, t: Throwable?) {
                 listener.onFailureResponse(null, null)
             }
         })

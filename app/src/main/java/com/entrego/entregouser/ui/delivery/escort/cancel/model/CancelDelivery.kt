@@ -3,7 +3,7 @@ package com.entrego.entregouser.ui.delivery.escort.cancel.model
 import android.os.Handler
 import android.support.annotation.Nullable
 import entrego.com.android.web.api.EntregoApi
-import entrego.com.android.web.model.response.EntregoResponse
+import com.entrego.entregouser.web.model.response.BaseEntregoResponse
 import retrofit2.Call
 import retrofit2.http.Headers
 import retrofit2.http.POST
@@ -16,7 +16,7 @@ object CancelDelivery {
     interface Request {
         @Headers(EntregoApi.CONTENT_JSON)
         @POST(END_POINT)
-        fun parameters(): Call<EntregoResponse>
+        fun parameters(): Call<BaseEntregoResponse>
     }
 
     interface CancelDeliveryListener {

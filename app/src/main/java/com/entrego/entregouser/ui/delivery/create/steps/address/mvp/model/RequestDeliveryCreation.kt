@@ -8,9 +8,9 @@ import com.entrego.entregouser.util.logd
 import com.entrego.entregouser.web.model.request.delivery.create.DeliveryCreationModel
 import com.entrego.entregouser.web.model.response.delivery.create.EntregoDeliveryCreationResponse
 import com.google.common.eventbus.EventBus
-import entrego.com.android.web.api.ApiCreator
+import com.entrego.entregouser.web.api.ApiCreator
 import entrego.com.android.web.api.EntregoApi
-import entrego.com.android.web.model.response.EntregoResponse
+import com.entrego.entregouser.web.model.response.BaseEntregoResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

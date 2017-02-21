@@ -7,7 +7,7 @@ import android.view.View
 
 interface IBaseMvpView {
 
-    fun getRootView(): View
+    fun getRootView(): View?
 
     fun getAppContext(): Context
 
