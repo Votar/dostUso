@@ -20,4 +20,5 @@
     <dimen name="drawer_content_padding">20dp</dimen>
     <dimen name="action_bar_height">48dp</dimen>
     <dimen name="margin_under_action_bar">56dp</dimen>
+    <dimen name="payment_method_cell_height">35dp</dimen>
 </resources>

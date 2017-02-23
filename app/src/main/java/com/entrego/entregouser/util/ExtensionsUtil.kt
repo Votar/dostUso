@@ -6,13 +6,13 @@ import android.content.Context
 import android.content.DialogInterface
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
+import android.support.v4.widget.SwipeRefreshLayout
 import android.view.View
 import android.widget.TextView
 import com.entrego.entregouser.R
 import com.entrego.entregouser.entity.route.EntregoPointBinding
 import com.entrego.entregouser.storage.preferences.PreferencesManager
 import com.entrego.entregouser.ui.auth.AuthActivity
-
 
 fun View.showSnack(message: String?) {
     val text: String
@@ -82,6 +82,12 @@ fun Array<EntregoPointBinding>.getStaticMapUrl(path: String?): String {
         urlBuilder.append("&markers=size:mid%7Clabel:$label%7C$coordinates")
     }
     return urlBuilder.toString()
+}
+
+fun SwipeRefreshLayout.setDefaultColorSchema() {
+    val colorAccent = ContextCompat.getColor(this.context, R.color.colorAccent)
+    val colorDarkBlue = ContextCompat.getColor(this.context, R.color.colorDarkBlue)
+    this.setColorSchemeColors(colorAccent, colorDarkBlue)
 }
 
 

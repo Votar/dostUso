@@ -42,6 +42,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
 import com.google.common.eventbus.EventBus
 import com.google.common.eventbus.Subscribe
 import com.google.gson.Gson
@@ -57,7 +58,7 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
 
     companion object {
         val TAG = "RootActivity"
-        fun getIntent(ctx:Context) : Intent = Intent(ctx, RootActivity::class.java)
+        fun getIntent(ctx: Context): Intent = Intent(ctx, RootActivity::class.java)
     }
 
     private var mMap: GoogleMap? = null
@@ -135,6 +136,7 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
         mMap = googleMap
         mPresenter.onMapReady()
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.root, menu)
@@ -219,9 +221,12 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
                 .commit()
     }
 
-    override fun showCreatedDelivery() {
-        val intent = Intent(this, EscortActivity::class.java)
-        startActivity(intent)
+
+    override fun showCreatedDelivery(delivery: EntregoDelivery?) {
+        delivery?.let {
+            val intent = EscortActivity.getIntent(this, delivery)
+            startActivity(intent)
+        }
         showWelcomeBuilder()
         fragmentManager.findFragmentByTag(AcceptDeliveryCreationFragment.TAG)?.let {
             fragmentManager.beginTransaction()
@@ -234,6 +239,7 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
     override fun showPaymentMethods() {
         startActivity(PaymentMethodActivity.getIntent(this))
     }
+    override fun getCurrentFocusOnMap(): LatLngBounds? = mMap?.projection?.visibleRegion?.latLngBounds
 
 
 }

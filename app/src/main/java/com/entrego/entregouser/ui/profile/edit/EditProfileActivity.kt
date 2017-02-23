@@ -1,64 +1,149 @@
 package com.entrego.entregouser.ui.profile.edit
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import android.support.design.widget.TextInputLayout
+import android.support.v4.app.NavUtils
+import android.support.v4.content.ContextCompat
+import android.view.View
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.entrego.entregouser.R
+import com.entrego.entregouser.entity.profile.UserProfileModel
+import com.entrego.entregouser.mvp.view.BaseMvpActivity
+import com.entrego.entregouser.util.setDefaultColorSchema
+import kotlinx.android.synthetic.main.activity_edit_profile.*
 import kotlinx.android.synthetic.main.navigation_toolbar.*
 
-class EditProfileActivity : AppCompatActivity() {
+class EditProfileActivity : BaseMvpActivity<EditProfileContract.View, EditProfileContract.Presenter>(),
+        EditProfileContract.View {
+
 
     companion object {
-        val RQT_CODE = 0x691
+        fun getIntent(ctx: Context): Intent = Intent(ctx, EditProfileActivity::class.java)
     }
 
-    object FIELDS {
-        val NAME = "name"
-        val EMAIL = "email"
-        val PHONE_CODE = "phone.code"
-        val PHONE_NUMBER = "phone.number"
+    override var mPresenter: EditProfileContract.Presenter = EditProfilePresenter()
+
+    override fun getRootView(): View? = activity_edit_profile
+
+    enum class FIELDS(val serializeName: String) {
+        NAME("name"),
+        EMAIL("email"),
+        PHONE_CODE("phone.code"),
+        PHONE_NUMBER("phone.number"),
+        PASSWORD("password"),
+        CONF_PASSWORD("password.conf")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
-
-        nav_toolbar_back.setOnClickListener { onBackPressed() }
+        setupListeners()
+        mPresenter.getUserProfile()
     }
-//
-//    override fun onStart() {
-//        super.onStart()
-//        val userProfile = UserProfile.getProfile(this)
-//        if (userProfile != null) {
-//            logd(userProfile.toString())
-//            setupView(userProfile)
-//        } else requestUserProfile()
-//    }
-//
-//
-//    fun setupView(profile: UserProfileModel) {
-//
-//        Glide.with(this)
-//                .load("https://s-media-cache-ak0.pinimg.com/736x/a6/92/ae/a692aeb7da83d36f5d8e30dfa0801f9a.jpg")
-//                .skipMemoryCache(true)
-//                .diskCacheStrategy( DiskCacheStrategy.NONE )
-//                .error(R.drawable.ic_user_pic_holder)
-//                .into(edit_profile_user_pic_holder)
-//
-//        edit_profile_edit_email.setText(profile.email)
-//        edit_profile_edit_name.setText(profile.name)
-//        edit_profile_edit_phone_code.setText(profile.phone.code)
-//        edit_profile_edit_phone.setText(profile.phone.number)
-//
-//
-//        edit_profile_btn_save.setOnClickListener { saveData() }
-//        edit_profile_change_password.setOnClickListener {
-//            edit_profile_change_password.visibility = View.GONE
-//            edit_profile_ll_passwords.visibility = View.VISIBLE
-//            edit_profile_btn_save_pass.visibility = View.VISIBLE
-//            edit_profile_edit_password.requestFocus()
-//
-//        }
-//
+
+    override fun onStart() {
+        super.onStart()
+        val colorAccent = ContextCompat.getColor(this, R.color.colorAccent)
+        val colorDarkBlue = ContextCompat.getColor(this, R.color.colorDarkBlue)
+        edit_profile_swipe.setColorSchemeColors(colorAccent, colorDarkBlue)
+    }
+
+    fun setupLayouts() {
+
+    }
+
+    fun setupListeners() {
+        edit_profile_btn_save.setOnClickListener { postProfile() }
+        edit_profile_btn_save_pass.setOnClickListener { postNewPassword() }
+        nav_toolbar_back.setOnClickListener { NavUtils.navigateUpFromSameTask(this) }
+        edit_profile_change_password.setOnClickListener {
+            edit_profile_change_password.visibility = View.GONE
+            edit_profile_ll_passwords.visibility = View.VISIBLE
+            edit_profile_btn_save_pass.visibility = View.VISIBLE
+            edit_profile_edit_password.requestFocus()
+        }
+    }
+
+    private fun postNewPassword() {
+        val password = edit_profile_edit_password.text.toString()
+        val confPassword = edit_profile_edit_password_conf.text.toString()
+        mPresenter.postEditPassword(password, confPassword)
+    }
+
+    fun postProfile() {
+        val name = edit_profile_edit_name.text.toString()
+        val email = edit_profile_edit_email.text.toString()
+        val code = edit_profile_edit_phone_code.text.toString()
+        val phone = edit_profile_edit_phone.text.toString()
+        mPresenter.postEditProfile(name, email, code, phone)
+    }
+
+    override fun onBackPressed() {
+        NavUtils.navigateUpFromSameTask(this)
+    }
+
+    override fun showProgress() {
+        edit_profile_swipe.isEnabled = true
+        edit_profile_swipe.isRefreshing = true
+    }
+
+    override fun hideProgress() {
+        edit_profile_swipe.isEnabled = false
+        edit_profile_swipe.isRefreshing = false
+    }
+
+    override fun showUserProfile(profile: UserProfileModel) {
+        Glide.with(this)
+                .load("https://s-media-cache-ak0.pinimg.com/736x/a6/92/ae/a692aeb7da83d36f5d8e30dfa0801f9a.jpg")
+                .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .error(R.drawable.ic_user_pic_holder)
+                .into(edit_profile_user_pic_holder)
+
+        profile.email?.let {
+            edit_profile_edit_email.setText(it)
+        }
+        profile.name?.let {
+            edit_profile_edit_name.setText(it)
+        }
+        profile.phone?.code?.let {
+            edit_profile_edit_phone_code.setText(it)
+        }
+        profile.phone?.number?.let {
+            edit_profile_edit_phone.setText(it)
+        }
+    }
+
+
+    override fun setFieldError(field: FIELDS, message: String?) {
+        when (field) {
+            FIELDS.EMAIL -> edit_profile_il_email.error = message
+
+            FIELDS.NAME -> edit_profile_il_name.error = message
+
+            FIELDS.PHONE_NUMBER -> edit_profile_il_phone.error = message
+
+            FIELDS.PHONE_CODE -> edit_profile_il_phone_code.error = message
+
+            FIELDS.PASSWORD -> edit_profile_il_password.error = message
+
+            FIELDS.CONF_PASSWORD -> edit_profile_edit_password_conf.error = message
+
+            else -> showMessage(field.toString() + " " + message)
+        }
+    }
+
+    override fun clearFieldsError() {
+        edit_profile_il_email.error = null
+        edit_profile_il_name.error = null
+        edit_profile_il_phone.error = null
+        edit_profile_il_phone_code.error = null
+        edit_profile_il_password.error = null
+        edit_profile_edit_password_conf.error = null
+    }
 //        edit_profile_btn_save_pass.setOnClickListener {
 //
 //            edit_profile_il_password.error = null
@@ -75,8 +160,6 @@ class EditProfileActivity : AppCompatActivity() {
 //
 //            } else {
 //                showProgress()
-//
-//
 //            }
 //        }
 //    }
@@ -129,52 +212,5 @@ class EditProfileActivity : AppCompatActivity() {
 //
 //                }
 //        )
-//
-//
-//    }
-//
-//    var progress: ProgressDialog? = null
-//    fun showProgress() {
-//        progress = ProgressDialog(this)
-//        progress?.loading()
-//
-//    }
-//
-//    fun hideProgress() {
-//        progress?.dismiss()
-//    }
-//
-//    fun requestUserProfile() {
-//
-//        showProgress()
-//        UserProfile.refresh(this, object : UserProfile.ResultRefreshListener {
-//            override fun onSuccessRefresh(userProfile: UserProfileModel) {
-//                hideProgress()
-//                setupView(userProfile)
-//            }
-//
-//            override fun onFailureRefresh(message: String?) {
-//                hideProgress()
-//                showMessage(message)
-//                finish()
-//            }
-//
-//        })
-//    }
-//
-//
-//    fun showMessage(message: String?) {
-//
-//        UserMessageUtil.showSnackMessage(activity_edit_profile, message)
-//    }
-//
-//    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-//
-//        when (item?.itemId) {
-//            android.R.id.home -> NavUtils.navigateUpFromSameTask(this)
-//
-//        }
-//        return super.onOptionsItemSelected(item)
-//
 //    }
 }

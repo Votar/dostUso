@@ -23,9 +23,7 @@
         <activity
             android:name=".ui.intro.IntroActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppThemeTransparent">
-
-        </activity>
+            android:theme="@style/AppThemeTransparent"></activity>
         <activity
             android:name=".ui.registration.SuccessRegistrationActivity"
             android:screenOrientation="portrait" />
@@ -56,18 +54,15 @@
         <activity
             android:name=".ui.splash.SplashActivity"
             android:noHistory="true"
-            android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:screenOrientation="portrait">
+
         </activity>
         <activity
             android:name=".ui.delivery.create.RootActivity"
             android:clearTaskOnLaunch="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ui.profile.edit.EditProfileActivity"
             android:parentActivityName=".ui.delivery.create.RootActivity"
@@ -159,7 +154,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.profile.payment.PaymentMethodActivity" />
         </activity>
-
         <activity
             android:name=".ui.profile.history.HistoryDeliverysActivity"
             android:parentActivityName=".ui.delivery.create.RootActivity"
@@ -167,6 +161,19 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.delivery.create.RootActivity" />
+        </activity>
+        <activity
+            android:name=".ui.profile.history.details.DetailsDeliveryActivity"
+            android:parentActivityName=".ui.profile.history.HistoryDeliverysActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.profile.history.HistoryDeliverysActivity" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

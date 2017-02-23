@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_payment_method"
     android:layout_width="match_parent"
@@ -30,6 +31,52 @@
                 android:paddingRight="@dimen/double_screen_padding"
                 android:paddingTop="@dimen/default_screen_padding">
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:paddingBottom="@dimen/padding_small"
+                    android:paddingTop="@dimen/padding_small">
+
+                    <FrameLayout
+                        android:id="@+id/payment_method_bank_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/payment_method_cell_height"
+                        android:background="?attr/selectableItemBackground">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="@dimen/payment_method_cell_height"
+                            android:layout_centerVertical="true"
+                            app:srcCompat="@drawable/ic_payment_escort" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@id/payment_method_bank_icon"
+                        android:paddingLeft="@dimen/padding_medium"
+                        android:text="**** 2518" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorDivider" />
+
+                <FrameLayout
+                    android:id="@+id/payment_method_paypal"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/payment_method_cell_height"
+                    android:background="?attr/selectableItemBackground">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_paypal_logo" />
+                </FrameLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -38,7 +85,7 @@
                 <TextView
                     android:id="@+id/payment_method_add_card"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/payment_method_cell_height"
                     android:background="?android:attr/selectableItemBackground"
                     android:paddingBottom="@dimen/padding_medium"
                     android:paddingTop="@dimen/padding_medium"
@@ -52,7 +99,7 @@
                 <TextView
                     android:id="@+id/payment_method_add_money_to_wallet"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/payment_method_cell_height"
                     android:background="?android:attr/selectableItemBackground"
                     android:paddingBottom="@dimen/padding_medium"
                     android:paddingTop="@dimen/padding_medium"

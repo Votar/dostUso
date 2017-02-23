@@ -29,9 +29,15 @@ class PaymentMethodActivity : BaseMvpActivity<PaymentMethodContract.View, Paymen
     }
 
     fun setupLayouts() {
+        setupListeners()
+    }
+
+    fun setupListeners() {
         nav_toolbar_back.setOnClickListener { NavUtils.navigateUpFromSameTask(this) }
         payment_method_add_card.setOnClickListener { showAddCardActivity() }
         payment_method_add_money_to_wallet.setOnClickListener { showAddMoneyToWallet() }
+        payment_method_bank_icon.setOnClickListener { }
+        payment_method_paypal.setOnClickListener { }
     }
 
     override fun showAddCardActivity() {

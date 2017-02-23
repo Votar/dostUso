@@ -8,5 +8,5 @@ import com.entrego.entregouser.web.model.response.delivery.create.EntregoDeliver
 interface RootActivityController {
     fun showBuilderFragment(fragment: Fragment, type: FragmentType)
     fun showAcceptDeliveryCreationFragment(model: EntregoDelivery)
-    fun showCreatedDelivery()
+    fun showCreatedDelivery(delivery:EntregoDelivery?)
 }

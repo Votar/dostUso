@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.sothree.slidinguppanel.SlidingUpPanelLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:id="@+id/activity_details_delivery"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    app:umanoOverlay="true"
+    app:umanoPanelHeight="176dp"
+    app:umanoShadowHeight="0dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+
+        <include
+            android:id="@+id/escort_navbar"
+            layout="@layout/navigation_toolbar" />
+
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/escort_navbar" />
+
+    </RelativeLayout>
+
+    <include
+        layout="@layout/history_details_description_layout" />
+
+</com.sothree.slidinguppanel.SlidingUpPanelLayout>

@@ -5,7 +5,6 @@ import com.entrego.entregouser.entity.delivery.DeliveryEntityBuilder
 import com.entrego.entregouser.entity.delivery.EntregoDelivery
 import com.entrego.entregouser.ui.delivery.create.steps.address.mvp.model.RequestDeliveryCreation
 import com.entrego.entregouser.ui.delivery.create.steps.address.mvp.view.ISelectAddressView
-import com.entrego.entregouser.web.model.response.delivery.create.EntregoDeliveryCreationResponse
 
 class SelectAddressPresenter : ISelectAddressPresenter {
 

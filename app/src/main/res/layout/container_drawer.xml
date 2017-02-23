@@ -10,53 +10,68 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorWhite"
-        android:orientation="vertical"
-        android:padding="@dimen/drawer_content_padding">
+        android:orientation="vertical">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/account_user_pic_holder"
-            android:layout_width="@dimen/user_photo_holder_size"
-            android:layout_height="@dimen/user_photo_holder_size"
-            android:layout_gravity="center"
-            android:src="@drawable/logo_medium"
-            app:civ_border_width="0dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/padding_medium"
-            tool:text="asd" />
-
-        <LinearLayout
+        <android.support.v7.widget.CardView
+            app:cardCornerRadius="0dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="@dimen/padding_medium">
+            android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/drawer_share_btn"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/text_share"
-                android:theme="@style/BlueButton" />
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/drawer_edit_profile_btn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/text_edit" />
-        </LinearLayout>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/account_user_pic_holder"
+                    android:layout_width="@dimen/user_photo_holder_size"
+                    android:layout_height="@dimen/user_photo_holder_size"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:src="@drawable/logo_medium"
+                    app:civ_border_width="0dp" />
 
-        <include layout="@layout/horizontal_divider" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/padding_medium"
+                    tool:text="asd" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/padding_medium"
+                    android:paddingLeft="@dimen/drawer_content_padding"
+                    android:paddingRight="@dimen/drawer_content_padding">
+
+                    <Button
+                        android:id="@+id/drawer_share_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/text_share"
+                        android:theme="@style/BlueButton" />
+
+                    <Button
+                        android:id="@+id/drawer_edit_profile_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/text_edit" />
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
 
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?android:attr/selectableItemBackground">
+            android:background="?android:attr/selectableItemBackground"
+            android:paddingLeft="@dimen/drawer_content_padding"
+            android:paddingRight="@dimen/drawer_content_padding">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -76,10 +91,12 @@
         <include layout="@layout/horizontal_divider" />
 
         <RelativeLayout
+            android:id="@+id/drawer_payment_method_bth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?android:attr/selectableItemBackground"
-            android:id="@+id/drawer_payment_method_bth">
+            android:paddingLeft="@dimen/drawer_content_padding"
+            android:paddingRight="@dimen/drawer_content_padding">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -101,7 +118,9 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?android:attr/selectableItemBackground">
+            android:background="?android:attr/selectableItemBackground"
+            android:paddingLeft="@dimen/drawer_content_padding"
+            android:paddingRight="@dimen/drawer_content_padding">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -121,10 +140,12 @@
         <include layout="@layout/horizontal_divider" />
 
         <RelativeLayout
+            android:id="@+id/drawer_my_deliveries_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?android:attr/selectableItemBackground"
-            android:id="@+id/drawer_my_deliveries_btn">
+            android:paddingLeft="@dimen/drawer_content_padding"
+            android:paddingRight="@dimen/drawer_content_padding">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -146,7 +167,9 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?android:attr/selectableItemBackground">
+            android:background="?android:attr/selectableItemBackground"
+            android:paddingLeft="@dimen/drawer_content_padding"
+            android:paddingRight="@dimen/drawer_content_padding">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -168,7 +191,9 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?android:attr/selectableItemBackground">
+            android:background="?android:attr/selectableItemBackground"
+            android:paddingLeft="@dimen/drawer_content_padding"
+            android:paddingRight="@dimen/drawer_content_padding">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -190,7 +215,9 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?android:attr/selectableItemBackground">
+            android:background="?android:attr/selectableItemBackground"
+            android:paddingLeft="@dimen/drawer_content_padding"
+            android:paddingRight="@dimen/drawer_content_padding">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -212,7 +239,9 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?android:attr/selectableItemBackground">
+            android:background="?android:attr/selectableItemBackground"
+            android:paddingLeft="@dimen/drawer_content_padding"
+            android:paddingRight="@dimen/drawer_content_padding">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -234,7 +263,9 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?android:attr/selectableItemBackground">
+            android:background="?android:attr/selectableItemBackground"
+            android:paddingLeft="@dimen/drawer_content_padding"
+            android:paddingRight="@dimen/drawer_content_padding">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -256,7 +287,9 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?android:attr/selectableItemBackground">
+            android:background="?android:attr/selectableItemBackground"
+            android:paddingLeft="@dimen/drawer_content_padding"
+            android:paddingRight="@dimen/drawer_content_padding">
 
             <TextView
                 android:layout_width="wrap_content"

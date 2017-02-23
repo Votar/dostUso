@@ -108,4 +108,9 @@
     <string name="tab_history">History</string>
     <string name="error_invalid_addresses_count">Should be at least two addresses</string>
     <string name="error_invalid_address_with_index">Address #%1$2d is invalid</string>
+    <string name="error_required_field">This field is requered</string>
+    <string name="text_score">Score</string>
+    <string name="text_incidents">Incidents</string>
+    <string name="text_bill">Bill</string>
+    <string name="text_price">Price</string>
 </resources>

@@ -79,6 +79,6 @@ class AcceptDeliveryCreationFragment : Fragment(), IAcceptDeliveryView {
     }
 
     override fun successAccept() {
-        (activity as? RootActivityController)?.showCreatedDelivery()
+        (activity as? RootActivityController)?.showCreatedDelivery(mDeliveryModel)
     }
 }
