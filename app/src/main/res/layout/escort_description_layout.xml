@@ -10,7 +10,6 @@
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tool="http://schemas.android.com/tools"
         android:id="@+id/dragView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,14 +36,28 @@
                     android:background="@color/colorWhite"
                     android:padding="@dimen/padding_large">
 
-                    <TextView
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@{delivery.route.path.durationInMinutesString}"
-                        android:textAlignment="center" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text="@{delivery.route.path.durationInMinutesString}"
+                            android:textAlignment="center" />
+
+                        <TextView
+                            android:paddingLeft="@dimen/padding_small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@id/textView2"
+                            android:text="@string/text_min" />
+                    </RelativeLayout>
 
                     <View
                         android:layout_width="1dp"
@@ -72,12 +85,54 @@
                         android:textAlignment="center" />
                 </LinearLayout>
 
-                <de.hdodenhof.circleimageview.CircleImageView
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_margin="@dimen/padding_small"
-                    android:src="@drawable/ic_user_pic_holder" />
+                    android:layout_margin="@dimen/padding_small">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="@dimen/padding_large"
+                        android:src="@drawable/ic_user_pic_holder" />
+
+                    <LinearLayout
+                        android:id="@+id/escort_messenger_form"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/messenger_name_background"
+                        android:orientation="horizontal"
+                        android:padding="1dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@color/colorDarkGrey"
+                            android:drawableLeft="@drawable/ic_rating_star_small"
+                            android:drawablePadding="@dimen/padding_medium"
+                            android:gravity="center"
+                            android:padding="@dimen/padding_small"
+                            android:text="4.5"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/tsize_small" />
+
+                        <TextView
+                            android:id="@+id/escort_messenger_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="@dimen/padding_small"
+                            android:paddingLeft="@dimen/padding_medium"
+                            android:paddingRight="@dimen/padding_medium"
+                            android:paddingTop="@dimen/padding_small"
+                            android:text="Leo Asld" />
+                    </LinearLayout>
+                </RelativeLayout>
             </RelativeLayout>
 
             <LinearLayout
@@ -90,7 +145,8 @@
                     android:id="@+id/escort_call_messenger_fl"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackground">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -149,6 +205,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="?attr/selectableItemBackground"
                     android:padding="@dimen/padding_medium">
 
                     <TextView
@@ -182,25 +239,25 @@
                         android:textAlignment="center" />
                 </FrameLayout>
 
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorDivider" />
+                <!--<View-->
+                <!--android:layout_width="1dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:background="@color/colorDivider" />-->
 
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:padding="@dimen/padding_medium">
+                <!--<FrameLayout-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:padding="@dimen/padding_medium">-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:drawableLeft="@drawable/ic_payment_escort"
-                        android:drawablePadding="@dimen/padding_medium"
-                        tool:text="**** 1242" />
-                </FrameLayout>
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:drawableLeft="@drawable/ic_payment_escort"-->
+                <!--android:drawablePadding="@dimen/padding_medium"-->
+                <!--tool:text="**** 1242" />-->
+                <!--</FrameLayout>-->
 
             </LinearLayout>
         </LinearLayout>

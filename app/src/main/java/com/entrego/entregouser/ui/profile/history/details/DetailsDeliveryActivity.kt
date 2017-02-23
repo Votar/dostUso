@@ -34,7 +34,6 @@ class DetailsDeliveryActivity : BaseMvpActivity<DetailsDeliveryContract.View, De
 
     private fun toggleSwipePanel() {
 
-        logd(history_details_top_container.height.toString())
         when (activity_details_delivery.panelState) {
             SlidingUpPanelLayout.PanelState.COLLAPSED -> activity_details_delivery.panelState = SlidingUpPanelLayout.PanelState.EXPANDED
 

@@ -55,6 +55,7 @@
                         android:src="@drawable/ic_next_point_pin" />
 
                     <TextView
+                        android:id="@+id/escort_next_point_address"
                         android:text="@{delivery.route.currentPoint.address}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

@@ -8,16 +8,21 @@ import android.support.v4.app.NavUtils
 import android.view.View
 import com.entrego.entregouser.R
 import com.entrego.entregouser.databinding.ActivityEscortBinding
+import com.entrego.entregouser.entity.common.EntregoMessengerView
 import com.entrego.entregouser.entity.delivery.EntregoDelivery
+import com.entrego.entregouser.entity.route.EntregoPointBinding
 import com.entrego.entregouser.mvp.view.BaseMvpActivity
 import com.entrego.entregouser.ui.delivery.escort.cancel.CancelDeliveryActivity
+import com.entrego.entregouser.util.getCurrentPoint
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_escort.*
 import kotlinx.android.synthetic.main.escort_description_layout.*
 import kotlinx.android.synthetic.main.navigation_toolbar.*
+import java.util.*
 
 class EscortActivity : BaseMvpActivity<EscortContract.View, EscortContract.Presenter>(),
         EscortContract.View {
+
 
     companion object {
         val KEY_DELIVERY = "ext_k_delivery"
@@ -30,14 +35,14 @@ class EscortActivity : BaseMvpActivity<EscortContract.View, EscortContract.Prese
     }
 
     override var mPresenter: EscortContract.Presenter = EscortPresenter()
-
-
+    var mTimer: Timer? = null
+    var binder: ActivityEscortBinding? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val jsonDelivery = intent.getStringExtra(KEY_DELIVERY)
         val delivery = Gson().fromJson(jsonDelivery, EntregoDelivery::class.java)
-        val binder: ActivityEscortBinding = DataBindingUtil.setContentView(this, R.layout.activity_escort)
-        binder.delivery = delivery
+        binder = DataBindingUtil.setContentView(this, R.layout.activity_escort)
+        binder?.delivery = delivery
         setupLayouts()
     }
 
@@ -46,6 +51,15 @@ class EscortActivity : BaseMvpActivity<EscortContract.View, EscortContract.Prese
     override fun onStart() {
         super.onStart()
         mPresenter.loadMapAsync()
+        binder?.delivery?.id?.let {
+            mPresenter.requestDeliveryStatus(it)
+        }
+        startStatusTimer()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        stopStatusTimer()
     }
 
     fun setupLayouts() {
@@ -59,5 +73,34 @@ class EscortActivity : BaseMvpActivity<EscortContract.View, EscortContract.Prese
 
     }
 
+    override fun setupMessengerView(messenger: EntregoMessengerView) {
+        escort_messenger_form.visibility = View.VISIBLE
+        escort_messenger_name.text = messenger.name
+    }
 
+    override fun setupWayoints(pointsArray: Array<EntregoPointBinding>) {
+        setupNextPoint(pointsArray.getCurrentPoint())
+
+
+    }
+
+    fun setupNextPoint(point: EntregoPointBinding) {
+        escort_next_point_address.text = point.address
+    }
+
+    fun startStatusTimer() {
+        stopStatusTimer()
+        mTimer = Timer()
+        mTimer?.schedule(object : TimerTask() {
+            override fun run() {
+                binder?.delivery?.apply { mPresenter.requestDeliveryStatus(id) }
+            }
+        },1000, 3000)
+    }
+
+    fun stopStatusTimer() {
+        mTimer?.purge()
+        mTimer?.cancel()
+        mTimer = null
+    }
 }

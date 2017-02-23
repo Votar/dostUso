@@ -113,4 +113,7 @@
     <string name="text_incidents">Incidents</string>
     <string name="text_bill">Bill</string>
     <string name="text_price">Price</string>
+    <string name="error_no_messenger_yet">No messenger yet</string>
+    <string name="error_no_call_permissions">Need your permission on phone calls</string>
+    <string name="text_min">min</string>
 </resources>
