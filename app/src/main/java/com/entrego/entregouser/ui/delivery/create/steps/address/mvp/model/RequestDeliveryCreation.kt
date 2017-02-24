@@ -2,15 +2,11 @@ package com.entrego.entregouser.ui.delivery.create.steps.address.mvp.model
 
 import com.entrego.entregouser.entity.delivery.DeliveryEntityBuilder
 import com.entrego.entregouser.entity.delivery.EntregoDelivery
-import com.entrego.entregouser.event.LogoutEvent
 import com.entrego.entregouser.storage.preferences.PreferencesManager
 import com.entrego.entregouser.util.logd
-import com.entrego.entregouser.web.model.request.delivery.create.DeliveryCreationModel
-import com.entrego.entregouser.web.model.response.delivery.create.EntregoDeliveryCreationResponse
-import com.google.common.eventbus.EventBus
 import com.entrego.entregouser.web.api.ApiCreator
+import com.entrego.entregouser.web.model.response.delivery.create.EntregoDeliveryCreationResponse
 import entrego.com.android.web.api.EntregoApi
-import com.entrego.entregouser.web.model.response.BaseEntregoResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

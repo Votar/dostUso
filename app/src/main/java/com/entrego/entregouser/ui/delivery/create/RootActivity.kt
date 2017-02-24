@@ -14,9 +14,6 @@ import com.entrego.entregouser.R
 import com.entrego.entregouser.entity.delivery.DeliveryEntityBuilder
 import com.entrego.entregouser.entity.delivery.EntregoDelivery
 import com.entrego.entregouser.entity.delivery.EntregoServiceCategory
-import com.entrego.entregouser.event.LogoutEvent
-import com.entrego.entregouser.storage.preferences.PreferencesManager
-import com.entrego.entregouser.ui.auth.AuthActivity
 import com.entrego.entregouser.ui.delivery.create.mvp.model.FragmentType
 import com.entrego.entregouser.ui.delivery.create.mvp.presenter.IRootPresenter
 import com.entrego.entregouser.ui.delivery.create.mvp.presenter.RootPresenter
@@ -24,10 +21,9 @@ import com.entrego.entregouser.ui.delivery.create.mvp.view.IRootView
 import com.entrego.entregouser.ui.delivery.create.mvp.view.RootActivityController
 import com.entrego.entregouser.ui.delivery.create.steps.BaseBuilderFragment
 import com.entrego.entregouser.ui.delivery.create.steps.accept.AcceptDeliveryCreationFragment
-import com.entrego.entregouser.ui.delivery.create.steps.building.dummy.SelectServiceFragment
 import com.entrego.entregouser.ui.delivery.create.steps.building.category.deliver.DeliverBuyFragment
-import com.entrego.entregouser.ui.delivery.create.steps.building.types.DeliveryTypesFragment
 import com.entrego.entregouser.ui.delivery.create.steps.building.category.transaction.TransactionTypesFragment
+import com.entrego.entregouser.ui.delivery.create.steps.building.dummy.SelectServiceFragment
 import com.entrego.entregouser.ui.delivery.create.steps.building.size.SelectSizeFragment
 import com.entrego.entregouser.ui.delivery.escort.root.EscortActivity
 import com.entrego.entregouser.ui.faq.FaqListActivity
@@ -35,7 +31,6 @@ import com.entrego.entregouser.ui.profile.edit.EditProfileActivity
 import com.entrego.entregouser.ui.profile.history.HistoryDeliverysActivity
 import com.entrego.entregouser.ui.profile.payment.PaymentMethodActivity
 import com.entrego.entregouser.util.showSnack
-import com.entrego.entregouser.web.model.response.delivery.create.EntregoDeliveryCreationResponse
 import com.facebook.internal.Utility.logd
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -43,8 +38,6 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
-import com.google.common.eventbus.EventBus
-import com.google.common.eventbus.Subscribe
 import com.google.gson.Gson
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission

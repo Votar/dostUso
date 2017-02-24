@@ -27,7 +27,7 @@ object FinishDelivery {
 
     var isRequested: Boolean = false
 
-    fun executeAsync(token: String, comment: String, rating: Float, @Nullable listener: ResponseListener?): Call<BaseEntregoResponse> {
+    fun executeAsync(token: String, deliveryId: Long, comment: String, rating: Float, @Nullable listener: ResponseListener?): Call<BaseEntregoResponse> {
 
 
         val request = ApiCreator.get()

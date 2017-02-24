@@ -8,4 +8,7 @@ object Storage {
     fun init(context: Context) {
         PreferencesManager.init(context)
     }
+
+    fun getTokenOrEmpty(): String = PreferencesManager.getTokenOrEmpty()
+
 }

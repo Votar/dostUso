@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+        <import type="com.entrego.entregouser.entity.route.PointStatus" />
+        <variable
+            name="delivery"
+            type="com.entrego.entregouser.entity.delivery.EntregoDelivery" />
+        <variable
+            name="messenger"
+            type="com.entrego.entregouser.entity.common.EntregoMessengerView"/>
+    </data>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/activity_track_status_delivery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite">
+
+        <LinearLayout
+            android:id="@+id/drawer_delivery_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include
+                bind:messenter="@{messenger}"
+                layout="@layout/include_delivery_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <include
+            layout="@layout/include_delivery_route"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            bind:destination="@{delivery.route.destinationPoint}"
+            bind:start="@{delivery.route.currentPoint}" />
+
+            <include
+            layout="@layout/include_delivery_states"
+            bind:delivery="@{delivery}" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorGrey"
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:visibility="@{delivery.route.nextPoint == null? View.GONE : View.VISIBLE}">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/next_point_dot" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/padding_small"
+                    android:text="@{delivery.route.nextPoint.address}" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</layout>
+

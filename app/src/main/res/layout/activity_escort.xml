@@ -3,6 +3,9 @@
     <data>
 
         <variable
+            name="messenger"
+            type="com.entrego.entregouser.entity.common.EntregoMessengerView" />
+        <variable
             name="delivery"
             type="com.entrego.entregouser.entity.delivery.EntregoDelivery" />
     </data>
@@ -72,6 +75,7 @@
 
         <include
             app:delivery="@{delivery}"
+            app:messenger="@{messenger}"
             layout="@layout/escort_description_layout" />
 
     </com.sothree.slidinguppanel.SlidingUpPanelLayout>

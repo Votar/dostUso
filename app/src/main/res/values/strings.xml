@@ -116,4 +116,10 @@
     <string name="error_no_messenger_yet">No messenger yet</string>
     <string name="error_no_call_permissions">Need your permission on phone calls</string>
     <string name="text_min">min</string>
+
+    <string name="status_on_the_way">On the way</string>
+    <string name="status_waiting_for_ship">Waiting for the shipment</string>
+    <string name="status_ship_on_way">Shipment on the way</string>
+    <string name="status_waiting_for_delivery">Waiting for delivery</string>
+    <string name="status_delivered">Delivered</string>
 </resources>

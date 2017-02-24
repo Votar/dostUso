@@ -21,4 +21,6 @@
     <dimen name="action_bar_height">48dp</dimen>
     <dimen name="margin_under_action_bar">56dp</dimen>
     <dimen name="payment_method_cell_height">35dp</dimen>
+    <dimen name="dot_size">12dp</dimen>
+    <dimen name="track_status_cell_height">44dp</dimen>
 </resources>

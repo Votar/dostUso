@@ -11,20 +11,21 @@ import com.google.android.gms.maps.model.LatLng
 object EscortContract {
     interface View : IBaseMvpView {
         fun getSupportFragmentManager(): android.support.v4.app.FragmentManager
-        fun setupMessengerView(messenger : EntregoMessengerView)
+        fun setupMessengerView(messenger: EntregoMessengerView)
         fun setupWayoints(pointsArray: Array<EntregoPointBinding>)
+        fun showFinishDelivery(deliveryId: Long, messenger: EntregoMessengerView)
+        fun showStatusDelivery()
 
     }
 
     interface Presenter : IBaseMvpPresenter<View> {
         fun cancelDelivery()
-        fun showStatusDelivery()
         fun callMessenger()
         fun chatMessenger()
         fun shareDelivery()
         fun loadMapAsync()
         fun moveCamera(position: LatLng)
-        fun requestDeliveryStatus(deliveryId:Long)
+        fun requestDeliveryStatus(deliveryId: Long)
         fun replaceMessengerMarker()
 
     }

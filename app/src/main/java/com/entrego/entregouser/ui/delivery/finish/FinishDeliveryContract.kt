@@ -18,6 +18,8 @@ object FinishDeliveryContract {
 
     interface Presenter : IBaseMvpPresenter<View> {
         fun sendDeliveryComment(message: String, rating: Float)
+        fun setupDeliveryId(deliveryId:Long)
         fun cancelLastRequest()
+
     }
 }

@@ -10,6 +10,7 @@ import com.entrego.entregouser.mvp.presenter.BaseMvpPresenter
 import com.entrego.entregouser.storage.preferences.PreferencesManager
 import com.entrego.entregouser.ui.delivery.escort.chat.ChatMessengerActivity
 import com.entrego.entregouser.ui.delivery.escort.root.model.GetDeliveryStatusRequest
+import com.entrego.entregouser.ui.delivery.escort.status.StatusDeliveryActivity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -105,9 +106,7 @@ class EscortPresenter : BaseMvpPresenter<EscortContract.View>(),
 
     }
 
-    override fun showStatusDelivery() {
 
-    }
 
     override fun shareDelivery() {
 

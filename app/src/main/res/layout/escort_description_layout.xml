@@ -4,6 +4,9 @@
     <data>
 
         <variable
+            name="messenger"
+            type="com.entrego.entregouser.entity.common.EntregoMessengerView"/>
+        <variable
             name="delivery"
             type="com.entrego.entregouser.entity.delivery.EntregoDelivery" />
     </data>
@@ -223,6 +226,7 @@
                     android:background="@color/colorDivider" />
 
                 <FrameLayout
+                    android:id="@+id/escort_status_fl"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
