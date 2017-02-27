@@ -122,4 +122,7 @@
     <string name="status_ship_on_way">Shipment on the way</string>
     <string name="status_waiting_for_delivery">Waiting for delivery</string>
     <string name="status_delivered">Delivered</string>
+    <string name="search_title">Input address...</string>
+    <string name="autocomplete_title">Select address</string>
+    <string name="error_no_connection_with_google">No connection with google services</string>
 </resources>

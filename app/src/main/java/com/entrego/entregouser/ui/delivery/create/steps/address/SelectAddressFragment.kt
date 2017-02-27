@@ -18,6 +18,7 @@ import com.entrego.entregouser.ui.delivery.create.steps.address.mvp.model.WayPoi
 import com.entrego.entregouser.ui.delivery.create.steps.address.mvp.presenter.SelectAddressPresenter
 import com.entrego.entregouser.ui.delivery.create.steps.address.mvp.view.FieldClickListener
 import com.entrego.entregouser.ui.delivery.create.steps.address.mvp.view.ISelectAddressView
+import com.entrego.entregouser.ui.profile.autocomplete.EntregoAutocompleteActivity
 import com.entrego.entregouser.util.*
 import com.entrego.entregouser.web.model.response.delivery.create.EntregoDeliveryCreationResponse
 import com.google.android.gms.common.GoogleApiAvailability
@@ -28,8 +29,6 @@ import com.google.android.gms.location.places.ui.PlaceAutocomplete
 import com.google.android.gms.maps.model.LatLngBounds
 import kotlinx.android.synthetic.main.fragment_select_address.*
 import java.util.*
-
-
 class SelectAddressFragment : BaseBuilderFragment(), ISelectAddressView, FieldClickListener {
 
 
@@ -108,40 +107,28 @@ class SelectAddressFragment : BaseBuilderFragment(), ISelectAddressView, FieldCl
 
     var calledEditText: TextView? = null
     override fun openAutocompleteActivity(view: TextView) {
-        try {
+
             // The autocomplete activity requires Google Play Services to be available. The intent
             // builder checks this and throws an exception if it is not the case.
             val cameraBounds = (activity as? IRootView)?.getCurrentFocusOnMap()
-            val filter = AutocompleteFilter.Builder()
-                    .setTypeFilter(AutocompleteFilter.TYPE_FILTER_ADDRESS)
-                    .build()
-            val intent = PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN)
-                    .setBoundsBias(cameraBounds)
-                    .setFilter(filter)
+            val intent = EntregoAutocompleteActivity.getBuilder()
+                    .setBounds(cameraBounds)
                     .build(activity)
 
             calledEditText = view
-            startActivityForResult(intent, REQUEST_CODE_AUTOCOMPLETE)
-        } catch (e: GooglePlayServicesRepairableException) {
-            // Indicates that Google Play Services is either not installed or not up to date. Prompt
-            // the user to correct the issue.
-            GoogleApiAvailability.getInstance().getErrorDialog(activity, e.connectionStatusCode,
-                    0 /* requestCode */).show()
-        } catch (e: GooglePlayServicesNotAvailableException) {
-            // Indicates that Google Play Services is not available and the problem is not easily
-            // resolvable.
-            val message = "Google Play Services is not available: " + GoogleApiAvailability.getInstance().getErrorString(e.errorCode)
-            logd(message)
-        }
+            startActivityForResult(intent, EntregoAutocompleteActivity.RQT_CODE)
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         // Check that the result was from the autocomplete widget.
-        if (requestCode == REQUEST_CODE_AUTOCOMPLETE) {
+        if (requestCode == EntregoAutocompleteActivity.RQT_CODE) {
             if (resultCode == Activity.RESULT_OK) {
-                val place = PlaceAutocomplete.getPlace(activity, data)
-                calledEditText?.text = place.address
+                data?.let {
+                    val place = EntregoAutocompleteActivity.deserializeResult(data)
+                    calledEditText?.text = place
+                }
             }
         }
     }

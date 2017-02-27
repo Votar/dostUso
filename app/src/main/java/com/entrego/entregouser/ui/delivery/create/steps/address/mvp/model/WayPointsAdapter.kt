@@ -13,11 +13,6 @@ import java.util.*
 
 class WayPointsAdapter(val mFieldClickListener: FieldClickListener) : RecyclerView.Adapter<WayPointsAdapter.ViewHolder>() {
 
-
-    companion object
-
-    private
-
     protected val dataset = LinkedList<String>()
 
     fun addPoint() {
