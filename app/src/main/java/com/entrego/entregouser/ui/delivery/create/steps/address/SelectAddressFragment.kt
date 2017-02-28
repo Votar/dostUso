@@ -18,7 +18,7 @@ import com.entrego.entregouser.ui.delivery.create.steps.address.mvp.model.WayPoi
 import com.entrego.entregouser.ui.delivery.create.steps.address.mvp.presenter.SelectAddressPresenter
 import com.entrego.entregouser.ui.delivery.create.steps.address.mvp.view.FieldClickListener
 import com.entrego.entregouser.ui.delivery.create.steps.address.mvp.view.ISelectAddressView
-import com.entrego.entregouser.ui.profile.autocomplete.EntregoAutocompleteActivity
+import com.entrego.entregouser.ui.autocomplete.EntregoAutocompleteActivity
 import com.entrego.entregouser.util.*
 import com.entrego.entregouser.web.model.response.delivery.create.EntregoDeliveryCreationResponse
 import com.google.android.gms.common.GoogleApiAvailability
@@ -31,10 +31,6 @@ import kotlinx.android.synthetic.main.fragment_select_address.*
 import java.util.*
 class SelectAddressFragment : BaseBuilderFragment(), ISelectAddressView, FieldClickListener {
 
-
-    companion object {
-        val REQUEST_CODE_AUTOCOMPLETE = 0x122017
-    }
 
     var mProgessView: ProgressDialog? = null
     val mPresenter = SelectAddressPresenter()
@@ -119,6 +115,7 @@ class SelectAddressFragment : BaseBuilderFragment(), ISelectAddressView, FieldCl
             startActivityForResult(intent, EntregoAutocompleteActivity.RQT_CODE)
 
     }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

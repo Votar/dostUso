@@ -56,7 +56,11 @@
             android:name=".ui.splash.SplashActivity"
             android:noHistory="true"
             android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".ui.delivery.create.RootActivity"
@@ -64,11 +68,7 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.profile.edit.EditProfileActivity"
@@ -178,7 +178,7 @@
                 android:value=".ui.profile.history.HistoryDeliverysActivity" />
         </activity>
         <activity
-            android:name=".ui.profile.autocomplete.EntregoAutocompleteActivity">
+            android:name="com.entrego.entregouser.ui.autocomplete.EntregoAutocompleteActivity">
 
         </activity>
     </application>

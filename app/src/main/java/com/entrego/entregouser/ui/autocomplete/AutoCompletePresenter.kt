@@ -1,4 +1,4 @@
-package com.entrego.entregouser.ui.profile.autocomplete
+package com.entrego.entregouser.ui.autocomplete
 
 import android.os.Bundle
 import com.entrego.entregouser.R
@@ -26,9 +26,15 @@ class AutoCompletePresenter : BaseMvpPresenter<AutocompleteContract.View>(),
 
     val mResultCallback = object : ResultCallback<AutocompletePredictionBuffer> {
         override fun onResult(resultBuffer: AutocompletePredictionBuffer) {
-            mView?.swapAutocompleteDataset(resultBuffer.toList())
-        }
+            val resultList = resultBuffer.toList()
+            if (resultList.isEmpty())
+                mView?.showFavoritesFragment()
+            else
+                mView?.hideFavoritesFragment()
 
+            mView?.swapAutocompleteDataset(resultList)
+
+        }
     }
 
     override fun buildGoogleApi() {
@@ -54,16 +60,14 @@ class AutoCompletePresenter : BaseMvpPresenter<AutocompleteContract.View>(),
     }
 
     override fun onConnectionFailed(p0: ConnectionResult) {
-        mView?.hideProgress()
         mView?.showError(R.string.error_no_connection_with_google)
     }
 
     override fun onConnected(p0: Bundle?) {
-        mView?.hideProgress()
     }
 
     override fun onConnectionSuspended(p0: Int) {
-        mView?.showProgress()
+
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
@@ -71,6 +75,8 @@ class AutoCompletePresenter : BaseMvpPresenter<AutocompleteContract.View>(),
         query?.let {
             if (it.isNotEmpty())
                 requestAddress(query)
+            else
+                mView?.showFavoritesFragment()
         }
         return false
     }
@@ -79,6 +85,8 @@ class AutoCompletePresenter : BaseMvpPresenter<AutocompleteContract.View>(),
         newText?.let {
             if (it.isNotEmpty())
                 requestAddress(newText)
+            else
+                mView?.showFavoritesFragment()
         }
         return false
     }

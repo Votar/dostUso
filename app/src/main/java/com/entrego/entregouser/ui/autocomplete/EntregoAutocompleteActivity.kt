@@ -1,4 +1,4 @@
-package com.entrego.entregouser.ui.profile.autocomplete
+package com.entrego.entregouser.ui.autocomplete
 
 import android.app.Activity
 import android.app.ProgressDialog
@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.annotation.Nullable
+import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
@@ -14,8 +15,8 @@ import android.view.MenuItem
 import android.view.View
 import com.entrego.entregouser.R
 import com.entrego.entregouser.mvp.view.BaseMvpActivity
-import com.entrego.entregouser.ui.profile.autocomplete.model.AutocompleteAddressAdapter
-import com.entrego.entregouser.util.loading
+import com.entrego.entregouser.ui.autocomplete.model.AutocompleteAddressAdapter
+import com.entrego.entregouser.ui.profile.favorites.FavoritesFragment
 import com.google.android.gms.location.places.AutocompletePrediction
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.gson.Gson
@@ -26,6 +27,7 @@ class EntregoAutocompleteActivity : BaseMvpActivity<AutocompleteContract.View,
         AutocompleteContract.Presenter>(),
         AutocompleteContract.View,
         AutocompleteAddressAdapter.OnItemClicked {
+
 
     companion object {
         const val RQT_CODE = 0x565
@@ -49,6 +51,7 @@ class EntregoAutocompleteActivity : BaseMvpActivity<AutocompleteContract.View,
                 this.bounds = bounds
                 return this
             }
+
             fun build(ctx: Context): Intent {
                 val intent = Intent(ctx, EntregoAutocompleteActivity::class.java)
                 val gson = Gson()
@@ -75,10 +78,10 @@ class EntregoAutocompleteActivity : BaseMvpActivity<AutocompleteContract.View,
         supportActionBar?.setTitle(R.string.autocomplete_title)
 
         setupLayouts()
-        deserilizeExtras()
+        deserializeExtras()
     }
 
-    fun deserilizeExtras() {
+    fun deserializeExtras() {
         val gson = Gson()
         if (intent.hasExtra(KEY_BOUNDS)) {
             val json = intent.getStringExtra(KEY_BOUNDS)
@@ -118,34 +121,45 @@ class EntregoAutocompleteActivity : BaseMvpActivity<AutocompleteContract.View,
         entrego_autocomplete_results_recycler.itemAnimator = DefaultItemAnimator()
 
         entego_autocomplete_search_view.setOnQueryTextListener(mPresenter)
+
         val dividerItemDecoration = DividerItemDecoration(this, LinearLayoutManager.VERTICAL)
         entrego_autocomplete_results_recycler.addItemDecoration(dividerItemDecoration)
         entrego_autocomplete_results_recycler.adapter = AutocompleteAddressAdapter(this)
+        showFavoritesFragment()
     }
 
     var mProgress: ProgressDialog? = null
-    override fun showProgress() {
-        mProgress = ProgressDialog(this)
-        mProgress?.loading()
-    }
-
-    override fun hideProgress() {
-        mProgress?.dismiss()
-    }
 
     override fun onClick(address: CharSequence) {
+        selectedAddress(address.toString())
+    }
+
+    override fun swapAutocompleteDataset(list: List<AutocompletePrediction>) {
+
+        (entrego_autocomplete_results_recycler.adapter as AutocompleteAddressAdapter)
+                .swapDataset(list)
+    }
+
+    override fun selectedAddress(address: String) {
         setResult(Activity.RESULT_OK, Intent().putExtra(KEY_ADDRESS, address))
         finish()
     }
 
-    override fun swapAutocompleteDataset(list: List<AutocompletePrediction>) {
-        if (list.isEmpty())
-            entrego_autocomplete_powered_by_google.visibility = View.GONE
-        else
-            entrego_autocomplete_powered_by_google.visibility = View.VISIBLE
+    override fun showFavoritesFragment() {
 
-        (entrego_autocomplete_results_recycler.adapter as AutocompleteAddressAdapter)
-                .swapDataset(list)
+        entrego_autocomplete_results_recycler.visibility =View.GONE
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.entrego_autocomplete_favorites_container, FavoritesFragment())
+                .commit()
+
+    }
+
+    override fun hideFavoritesFragment() {
+        entrego_autocomplete_results_recycler.visibility =View.VISIBLE
+
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.entrego_autocomplete_favorites_container, Fragment())
+                .commit()
     }
 
 }

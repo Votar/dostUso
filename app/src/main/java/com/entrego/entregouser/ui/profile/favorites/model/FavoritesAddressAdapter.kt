@@ -1,4 +1,4 @@
-package com.entrego.entregouser.ui.profile.autocomplete.model
+package com.entrego.entregouser.ui.profile.favorites.model
 
 import android.support.v7.widget.RecyclerView
 import android.text.Editable
@@ -9,15 +9,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.entrego.entregouser.R
+import com.entrego.entregouser.storage.realm.models.RealmAddressModel
 import com.entrego.entregouser.ui.delivery.create.steps.address.mvp.model.WayPointsAdapter
 import com.entrego.entregouser.ui.delivery.create.steps.address.mvp.view.FieldClickListener
+import com.entrego.entregouser.ui.autocomplete.model.AutocompleteAddressAdapter
 import com.google.android.gms.location.places.AutocompletePrediction
 import com.google.android.gms.location.places.AutocompletePredictionBuffer
 import java.util.*
 
-class AutocompleteAddressAdapter(val mFieldClickListener: OnItemClicked) : RecyclerView.Adapter<AutocompleteAddressAdapter.ViewHolder>() {
+class FavoritesAddressAdapter(val mFieldClickListener: OnItemClicked) : RecyclerView.Adapter<FavoritesAddressAdapter.ViewHolder>() {
 
-    private val dataset = LinkedList<AutocompletePrediction>()
+    private val dataset = LinkedList<RealmAddressModel>()
 
     interface OnItemClicked {
         fun onClick(address: CharSequence)
@@ -26,10 +28,9 @@ class AutocompleteAddressAdapter(val mFieldClickListener: OnItemClicked) : Recyc
     class ViewHolder(val rootView: View) : RecyclerView.ViewHolder(rootView) {
         var placeView: TextView? = null
         var addressView: TextView? = null
-        var index: Int? = null
     }
 
-    fun swapDataset(newList: List<AutocompletePrediction>) {
+    fun swapDataset(newList: List<RealmAddressModel>) {
         dataset.clear()
         dataset.addAll(newList)
         notifyDataSetChanged()
@@ -51,8 +52,8 @@ class AutocompleteAddressAdapter(val mFieldClickListener: OnItemClicked) : Recyc
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val nextValue = dataset[position]
-        holder.placeView?.text = nextValue.getPrimaryText(null)
-        holder.addressView?.text = nextValue.getSecondaryText(null)
-        holder.rootView.setOnClickListener { mFieldClickListener.onClick(nextValue.getFullText(null)) }
+        holder.placeView?.text = nextValue.name
+        holder.addressView?.text = nextValue.address
+        holder.rootView.setOnClickListener { mFieldClickListener.onClick(nextValue.address) }
     }
 }
