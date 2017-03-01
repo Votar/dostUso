@@ -19,4 +19,5 @@ interface IRootView {
     fun showWelcomeBuilder()
     fun showPaymentMethods()
     fun getCurrentFocusOnMap() : LatLngBounds?
+    fun showFavotiresActivity()
 }

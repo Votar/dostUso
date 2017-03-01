@@ -5,6 +5,9 @@ import android.content.SharedPreferences
 import com.entrego.entregouser.access.EntregoToken
 
 object PreferencesManager : PreferencesContract {
+    override fun clearForNewUser() {
+        mSharedPref.edit().clear().apply()
+    }
 
     override fun getWorkAddressOrEmpty(): String = mSharedPref.getString(KEY_WORK_ADDRESS, "")
     override fun getHomeAddressOrEmpty(): String = mSharedPref.getString(KEY_HOME_ADDRESS, "")

@@ -9,6 +9,7 @@ import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import com.entrego.entregouser.R
+import com.entrego.entregouser.storage.EntregoStorage
 import com.entrego.entregouser.ui.auth.presenter.AuthPresenter
 import com.entrego.entregouser.ui.auth.restore.RestorePasswordActivity
 import com.entrego.entregouser.ui.auth.restore.SuccessRestoreActivity
@@ -50,6 +51,7 @@ class AuthActivity : AppCompatActivity(), IAuthView {
 
 
     override fun goToMainScreen() {
+        EntregoStorage.clear()
         val intent = Intent(applicationContext, RootActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)

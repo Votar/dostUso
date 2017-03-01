@@ -28,6 +28,7 @@ import com.entrego.entregouser.ui.delivery.create.steps.building.size.SelectSize
 import com.entrego.entregouser.ui.delivery.escort.root.EscortActivity
 import com.entrego.entregouser.ui.faq.FaqListActivity
 import com.entrego.entregouser.ui.profile.edit.EditProfileActivity
+import com.entrego.entregouser.ui.profile.favorites.FavoritesActivity
 import com.entrego.entregouser.ui.profile.history.HistoryDeliverysActivity
 import com.entrego.entregouser.ui.profile.payment.PaymentMethodActivity
 import com.entrego.entregouser.util.showSnack
@@ -45,6 +46,8 @@ import kotlinx.android.synthetic.main.activity_root.*
 import kotlinx.android.synthetic.main.app_bar_root.*
 import kotlinx.android.synthetic.main.container_drawer.*
 import kotlinx.android.synthetic.main.content_root.*
+import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.singleTop
 
 class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootActivityController {
 
@@ -89,6 +92,7 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
         tab_fl_deliver.setOnClickListener { showTypeDeliverFragment() }
         tab_fl_transaction.setOnClickListener { showTypeTransactionFragment() }
 
+        root_favorites_rl.setOnClickListener { showFavotiresActivity() }
         drawer_share_btn.setOnClickListener { mPresenter.shareLinkOnSite(RootActivity@ this) }
     }
 
@@ -232,7 +236,12 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
     override fun showPaymentMethods() {
         startActivity(PaymentMethodActivity.getIntent(this))
     }
+
     override fun getCurrentFocusOnMap(): LatLngBounds? = mMap?.projection?.visibleRegion?.latLngBounds
+
+    override fun showFavotiresActivity() {
+        startActivity(Intent(this, FavoritesActivity::class.java))
+    }
 
 
 }

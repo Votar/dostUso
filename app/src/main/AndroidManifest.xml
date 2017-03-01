@@ -67,9 +67,7 @@
             android:clearTaskOnLaunch="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan">
-
-        </activity>
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity
             android:name=".ui.profile.edit.EditProfileActivity"
             android:parentActivityName=".ui.delivery.create.RootActivity"
@@ -178,8 +176,17 @@
                 android:value=".ui.profile.history.HistoryDeliverysActivity" />
         </activity>
         <activity
-            android:name="com.entrego.entregouser.ui.autocomplete.EntregoAutocompleteActivity">
+            android:name=".ui.autocomplete.EntregoAutocompleteActivity"
+            android:screenOrientation="portrait">
 
+        </activity>
+        <activity
+            android:name=".ui.profile.favorites.FavoritesActivity"
+            android:parentActivityName=".ui.delivery.create.RootActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.delivery.create.RootActivity" />
         </activity>
     </application>
 

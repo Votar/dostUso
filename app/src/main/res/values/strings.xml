@@ -122,8 +122,8 @@
     <string name="status_ship_on_way">Shipment on the way</string>
     <string name="status_waiting_for_delivery">Waiting for delivery</string>
     <string name="status_delivered">Delivered</string>
-    <string name="search_title">Input name...</string>
-    <string name="autocomplete_title">Select name</string>
+    <string name="search_title">Input name…</string>
+    <string name="autocomplete_title">Select address</string>
     <string name="error_no_connection_with_google">No connection with google services</string>
     <string name="text_add_favorites">+ Add to Favorites</string>
     <string name="text_add_favorites_title">Enter title for favorite place</string>

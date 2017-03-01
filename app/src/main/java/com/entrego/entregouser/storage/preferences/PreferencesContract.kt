@@ -6,4 +6,5 @@ interface PreferencesContract {
     fun getHomeAddressOrEmpty(): String
     fun saveWorkAddress(address: String)
     fun getWorkAddressOrEmpty(): String
+    fun clearForNewUser()
 }

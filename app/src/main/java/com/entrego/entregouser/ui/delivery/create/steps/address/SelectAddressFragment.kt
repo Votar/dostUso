@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.entrego.entregouser.R
 import com.entrego.entregouser.entity.delivery.EntregoDelivery
+import com.entrego.entregouser.storage.EntregoStorage
 import com.entrego.entregouser.ui.delivery.create.mvp.view.IRootView
 import com.entrego.entregouser.ui.delivery.create.mvp.view.RootActivityController
 import com.entrego.entregouser.ui.delivery.create.steps.BaseBuilderFragment
@@ -28,7 +29,9 @@ import com.google.android.gms.location.places.AutocompleteFilter
 import com.google.android.gms.location.places.ui.PlaceAutocomplete
 import com.google.android.gms.maps.model.LatLngBounds
 import kotlinx.android.synthetic.main.fragment_select_address.*
+import org.jetbrains.anko.doAsync
 import java.util.*
+
 class SelectAddressFragment : BaseBuilderFragment(), ISelectAddressView, FieldClickListener {
 
 
@@ -104,15 +107,15 @@ class SelectAddressFragment : BaseBuilderFragment(), ISelectAddressView, FieldCl
     var calledEditText: TextView? = null
     override fun openAutocompleteActivity(view: TextView) {
 
-            // The autocomplete activity requires Google Play Services to be available. The intent
-            // builder checks this and throws an exception if it is not the case.
-            val cameraBounds = (activity as? IRootView)?.getCurrentFocusOnMap()
-            val intent = EntregoAutocompleteActivity.getBuilder()
-                    .setBounds(cameraBounds)
-                    .build(activity)
+        // The autocomplete activity requires Google Play Services to be available. The intent
+        // builder checks this and throws an exception if it is not the case.
+        val cameraBounds = (activity as? IRootView)?.getCurrentFocusOnMap()
+        val intent = EntregoAutocompleteActivity.getBuilder()
+                .setBounds(cameraBounds)
+                .build(activity)
 
-            calledEditText = view
-            startActivityForResult(intent, EntregoAutocompleteActivity.RQT_CODE)
+        calledEditText = view
+        startActivityForResult(intent, EntregoAutocompleteActivity.RQT_CODE)
 
     }
 

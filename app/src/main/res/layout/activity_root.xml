@@ -12,19 +12,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <FrameLayout
-        android:id="@+id/nav_view"
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/colorTransparent"
-        android:fitsSystemWindows="true">
+        android:background="@color/colorWhite">
 
-        <include
-            layout="@layout/container_drawer"
+        <FrameLayout
+            android:id="@+id/nav_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true">
 
-    </FrameLayout>
+
+            <include
+                layout="@layout/container_drawer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </FrameLayout>
+    </ScrollView>
 
 </android.support.v4.widget.DrawerLayout>

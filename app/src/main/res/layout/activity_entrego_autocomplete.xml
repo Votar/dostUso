@@ -23,12 +23,11 @@
         android:id="@+id/entrego_autocomplete_powered_by_google"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginRight="@dimen/default_screen_padding"
-        android:layout_marginTop="@dimen/default_screen_padding"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="@dimen/default_screen_padding"
         android:src="@drawable/powered_by_google_light"
-        />
+        android:visibility="gone" />
 
 
     <FrameLayout

@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.entrego.entregouser.R
+import com.entrego.entregouser.storage.EntregoStorage
 import com.entrego.entregouser.ui.delivery.create.steps.address.mvp.model.WayPointsAdapter
 import com.entrego.entregouser.ui.delivery.create.steps.address.mvp.view.FieldClickListener
 import com.google.android.gms.location.places.AutocompletePrediction
@@ -53,6 +54,10 @@ class AutocompleteAddressAdapter(val mFieldClickListener: OnItemClicked) : Recyc
         val nextValue = dataset[position]
         holder.placeView?.text = nextValue.getPrimaryText(null)
         holder.addressView?.text = nextValue.getSecondaryText(null)
-        holder.rootView.setOnClickListener { mFieldClickListener.onClick(nextValue.getFullText(null)) }
+        holder.rootView.setOnClickListener {
+            mFieldClickListener.onClick(nextValue.getFullText(null))
+            EntregoStorage.addRecentSearch(nextValue.getFullText(null).toString())
+
+        }
     }
 }

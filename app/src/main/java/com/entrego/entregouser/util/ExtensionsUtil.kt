@@ -61,7 +61,7 @@ fun ProgressDialog.loadingWithCancel(cancelAction: (dialog: DialogInterface, whi
 fun Context.logout() {
     PreferencesManager.setToken("")
     val intent = android.content.Intent(this, AuthActivity::class.java)
-    intent.addFlags(android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK)
+    intent.addFlags(android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP)
     startActivity(intent)
 }
 
