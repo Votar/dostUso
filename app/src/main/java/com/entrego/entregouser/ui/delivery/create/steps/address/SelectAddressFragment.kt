@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.entrego.entregouser.R
 import com.entrego.entregouser.entity.delivery.EntregoDelivery
-import com.entrego.entregouser.storage.EntregoStorage
+import com.entrego.entregouser.ui.autocomplete.EntregoAutocompleteActivity
 import com.entrego.entregouser.ui.delivery.create.mvp.view.IRootView
 import com.entrego.entregouser.ui.delivery.create.mvp.view.RootActivityController
 import com.entrego.entregouser.ui.delivery.create.steps.BaseBuilderFragment
@@ -19,17 +19,8 @@ import com.entrego.entregouser.ui.delivery.create.steps.address.mvp.model.WayPoi
 import com.entrego.entregouser.ui.delivery.create.steps.address.mvp.presenter.SelectAddressPresenter
 import com.entrego.entregouser.ui.delivery.create.steps.address.mvp.view.FieldClickListener
 import com.entrego.entregouser.ui.delivery.create.steps.address.mvp.view.ISelectAddressView
-import com.entrego.entregouser.ui.autocomplete.EntregoAutocompleteActivity
 import com.entrego.entregouser.util.*
-import com.entrego.entregouser.web.model.response.delivery.create.EntregoDeliveryCreationResponse
-import com.google.android.gms.common.GoogleApiAvailability
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException
-import com.google.android.gms.common.GooglePlayServicesRepairableException
-import com.google.android.gms.location.places.AutocompleteFilter
-import com.google.android.gms.location.places.ui.PlaceAutocomplete
-import com.google.android.gms.maps.model.LatLngBounds
 import kotlinx.android.synthetic.main.fragment_select_address.*
-import org.jetbrains.anko.doAsync
 import java.util.*
 
 class SelectAddressFragment : BaseBuilderFragment(), ISelectAddressView, FieldClickListener {

@@ -38,6 +38,7 @@ android {
 }
 repositories {
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url "http://dl.bintray.com/kotlin/kotlin-eap-1.1" }
 }
 
 dependencies {
@@ -49,8 +50,8 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'org.jetbrains.anko:anko-sdk21:0.9.1'
 
+    compile 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.11-rc'
     compile 'com.android.support:multidex:1.0.1'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
@@ -79,6 +80,11 @@ dependencies {
 }
 dependencies {
     compile 'com.android.support.constraint:constraint-layout:+'
+}
+kotlin {
+    experimental {
+        coroutines "enable"
+    }
 }
 dependencies {
     compile 'com.android.support.constraint:constraint-layout:+'

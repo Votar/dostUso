@@ -29,7 +29,7 @@ import com.entrego.entregouser.ui.delivery.escort.root.EscortActivity
 import com.entrego.entregouser.ui.faq.FaqListActivity
 import com.entrego.entregouser.ui.profile.edit.EditProfileActivity
 import com.entrego.entregouser.ui.profile.favorites.FavoritesActivity
-import com.entrego.entregouser.ui.profile.history.HistoryDeliverysActivity
+import com.entrego.entregouser.ui.profile.history.HistoryDeliveriesActivity
 import com.entrego.entregouser.ui.profile.payment.PaymentMethodActivity
 import com.entrego.entregouser.util.showSnack
 import com.facebook.internal.Utility.logd
@@ -46,8 +46,6 @@ import kotlinx.android.synthetic.main.activity_root.*
 import kotlinx.android.synthetic.main.app_bar_root.*
 import kotlinx.android.synthetic.main.container_drawer.*
 import kotlinx.android.synthetic.main.content_root.*
-import org.jetbrains.anko.intentFor
-import org.jetbrains.anko.singleTop
 
 class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootActivityController {
 
@@ -97,7 +95,7 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
     }
 
     private fun showMyDeliveries() {
-        startActivity(HistoryDeliverysActivity.getIntent(this))
+        startActivity(HistoryDeliveriesActivity.getIntent(this))
     }
 
     override fun onStart() {

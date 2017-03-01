@@ -13,11 +13,11 @@ import com.entrego.entregouser.ui.profile.history.model.ViewPagerAdapter
 import kotlinx.android.synthetic.main.activity_history_deliverys.*
 import kotlinx.android.synthetic.main.navigation_toolbar.*
 
-class HistoryDeliverysActivity : BaseMvpActivity<HistoryDeliveryContract.View, HistoryDeliveryContract.Presenter>(),
+class HistoryDeliveriesActivity : BaseMvpActivity<HistoryDeliveryContract.View, HistoryDeliveryContract.Presenter>(),
         HistoryDeliveryContract.View {
 
     companion object {
-        fun getIntent(ctx: Context): Intent = Intent(ctx, HistoryDeliverysActivity::class.java)
+        fun getIntent(ctx: Context): Intent = Intent(ctx, HistoryDeliveriesActivity::class.java)
     }
 
     override var mPresenter: HistoryDeliveryContract.Presenter = HistoryDeliveryPresenter()

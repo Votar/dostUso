@@ -5,8 +5,6 @@ import com.entrego.entregouser.mvp.presenter.BaseMvpPresenter
 import com.entrego.entregouser.storage.EntregoStorage
 import com.entrego.entregouser.storage.preferences.PreferencesManager
 import com.entrego.entregouser.storage.realm.models.RealmAddressModel
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
 import java.util.*
 
 class FavoritesPresenter : BaseMvpPresenter<FavoritesContract.View>(),
@@ -40,7 +38,9 @@ class FavoritesPresenter : BaseMvpPresenter<FavoritesContract.View>(),
         requestFavorites()
     }
 
+
     override fun requestFavorites() {
+
         val listFavorites = EntregoStorage.getFavoritesList()
         val listRecentSearch = EntregoStorage.getRecentSearch()
                 .sortedBy { it.createdTime }

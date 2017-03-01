@@ -5,7 +5,7 @@ import com.entrego.entregouser.mvp.view.IBaseMvpView
 
 interface DetailsDeliveryContract {
     interface View : IBaseMvpView{
-
+        fun showIncidentsActivity()
     }
 
     interface Presenter : IBaseMvpPresenter<View>{
