@@ -1,5 +1,6 @@
 package com.entrego.entregouser.ui.profile.history.list
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.entrego.entregouser.R
 import com.entrego.entregouser.mvp.view.BaseMvpFragment
+import com.entrego.entregouser.ui.profile.history.details.DetailsDeliveryActivity
 import com.entrego.entregouser.ui.profile.history.list.model.DeliveryHistoryAdapter
 import com.entrego.entregouser.ui.profile.history.list.model.DeliveryListType
 import com.entrego.entregouser.ui.profile.history.list.model.EntregoDeliveryPreview
@@ -78,6 +80,9 @@ class DeliveryListFragment private constructor() : BaseMvpFragment<DeliveryListC
     val mClickItemListener = object : DeliveryHistoryAdapter.ClickItemListener {
         override fun onItemClicked(delivery: EntregoDeliveryPreview) {
             view?.showSnack("Clicked with price: " + delivery.price.toView())
+            activity.startActivityFromFragment(this@DeliveryListFragment,
+                    Intent(activity, DetailsDeliveryActivity::class.java),
+                    0)
         }
 
     }

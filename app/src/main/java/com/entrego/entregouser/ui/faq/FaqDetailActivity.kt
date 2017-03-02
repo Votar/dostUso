@@ -36,9 +36,9 @@ class FaqDetailActivity : AppCompatActivity() {
         faq_send_email_link.setOnClickListener {
             val i = Intent(Intent.ACTION_SEND)
             i.type = "message/rfc822"
-            i.putExtra(Intent.EXTRA_EMAIL, arrayOf("faq_send_email_link"))
-            i.putExtra(Intent.EXTRA_SUBJECT, "User")
-            i.putExtra(Intent.EXTRA_TEXT, "body of email")
+            i.putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(R.string.support_email)))
+            i.putExtra(Intent.EXTRA_SUBJECT, "Support")
+            i.putExtra(Intent.EXTRA_TEXT, "")
             try {
                 startActivity(Intent.createChooser(i, getString(R.string.send_email)))
             } catch (ex: ActivityNotFoundException) {

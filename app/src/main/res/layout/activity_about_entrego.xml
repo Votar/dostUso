@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    tools:context="com.entrego.entregouser.ui.comon.AboutEntregoActivity">
+
+    <ScrollView
+        style="@style/EntregoContentScroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/about_toolbar">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:padding="@dimen/default_screen_padding"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/double_screen_padding"
+                    app:srcCompat="@drawable/logo_medium" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/default_screen_padding"
+                    android:text="@string/about_entrego_title"
+                    android:textSize="@dimen/tsize_medium" />
+
+                <TextView
+                    android:text="@string/about_entrego_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/double_screen_padding" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </ScrollView>
+
+    <include
+        android:id="@+id/about_toolbar"
+        layout="@layout/navigation_toolbar" />
+</RelativeLayout>

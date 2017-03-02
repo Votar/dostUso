@@ -8,5 +8,11 @@ interface IRootPresenter {
     fun onStart()
     fun onMapReady()
     fun onStop()
+    fun onDestroy()
     fun shareLinkOnSite(activity:Activity)
+    fun showConditions()
+    fun showAboutEntrego()
+    fun showContactUs()
+    fun showFaq()
+    fun showWorkForUs()
 }

@@ -73,8 +73,7 @@
     <string name="favorites">Favorites</string>
     <string name="my_deliveries">My deliveries</string>
     <string name="users_manual">User\'s manual</string>
-    <string name="frequent_question">Frecuent Asked Questions</string>
-    <string name="about_entrego">Abount entreGo</string>
+    <string name="frequent_question">Frequently Asked Questions</string>
     <string name="text_contact">Contact</string>
     <string name="work_for_us">Work for us</string>
     <string name="term_conditions"><![CDATA[Terms & Conditions]]></string>
@@ -131,4 +130,22 @@
     <string name="text_dismiss">dismiss</string>
     <string name="text_home">Home</string>
     <string name="text_work">Work</string>
+
+    <string name="user_conditions_title">User conditions</string>
+    <string name="user_conditions_text">User conditions</string>
+    <string name="about_entrego_title">About EntreGO</string>
+    <string name="about_entrego_text">En entreGO estamos transformando la mensajería de ultima milla, permitiendo que cualquier persona pueda enviar o recibir lo que quiera, cuando quiera. Nuestra revolucionaria plataforma bajo demanda conecta a comercios y particulares con una amplia red de mensajeros independientes a través de tu smartphone o computadora. En segundos y de una manera fácil y segura podrás solucionar todos tus problemas de mensajería conociendo en todo momento la ubicación de tu pedido en tiempo real.</string>
+    <string name="text_working_hours">Working hours</string>
+    <string name="text_working_hours_value">Mon - Sun 7:30 am - 10:00 pm</string>
+    <string name="text_talk_with_agent">Talk with an Agent</string>
+    <string name="text_send_by">Send email</string>
+
+    <string name="link_entrego_facebook">https://www.facebook.com/entreGOya/</string>
+    <string name="link_entrego_insta">https://www.instagram.com/entreGOya/</string>
+    <string name="link_entrego_youtube">https://www.youtube.com/channel/UC38z2WAKqdKe2tZioqW8HIw</string>
+    <string name="link_entrego_twitter">https://twitter.com/entregoya</string>
+    <string name="work_for_us_title">Work for Us</string>
+    <string name="work_for_us_message">EntreGO es una plataforma que te conecta automáticamente con miles de clientes a través de tu smartphone en el horario que tu decidas y de la forma mas sencilla, esta aplicación te ayudará a generar nuevos ingresos y vas a poder ser al fin tu propio jefe.</string>
+    <string name="text_share_video">Share Video</string>
+
 </resources>

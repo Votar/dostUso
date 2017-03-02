@@ -90,8 +90,14 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
         tab_fl_deliver.setOnClickListener { showTypeDeliverFragment() }
         tab_fl_transaction.setOnClickListener { showTypeTransactionFragment() }
 
-        root_favorites_rl.setOnClickListener { showFavotiresActivity() }
+        root_favorites_rl.setOnClickListener { showFavoritesActivity() }
         drawer_share_btn.setOnClickListener { mPresenter.shareLinkOnSite(RootActivity@ this) }
+        drawer_conditions.setOnClickListener { mPresenter.showConditions() }
+        drawer_about_entrego.setOnClickListener { mPresenter.showAboutEntrego() }
+        drawaer_contact_us.setOnClickListener { mPresenter.showContactUs() }
+        drawer_frequently_asked.setOnClickListener { mPresenter.showFaq() }
+        drawer_work_for_us.setOnClickListener { mPresenter.showWorkForUs() }
+
     }
 
     private fun showMyDeliveries() {
@@ -101,8 +107,6 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
     override fun onStart() {
         super.onStart()
         mPresenter.onStart()
-
-
         logd(TAG, "onStart")
     }
 
@@ -121,6 +125,11 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
         super.onStop()
         mPresenter.onStop()
         logd(TAG, "onStop")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mPresenter.onDestroy()
     }
 
 
@@ -237,9 +246,11 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
 
     override fun getCurrentFocusOnMap(): LatLngBounds? = mMap?.projection?.visibleRegion?.latLngBounds
 
-    override fun showFavotiresActivity() {
+    override fun showFavoritesActivity() {
         startActivity(Intent(this, FavoritesActivity::class.java))
     }
+
+    override fun getAppContext(): Context = this
 
 
 }

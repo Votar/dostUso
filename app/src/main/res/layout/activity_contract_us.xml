@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent">
+
+    <ScrollView
+        style="@style/EntregoContentScroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/contact_us_toolbar">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/default_screen_padding">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/double_screen_padding"
+                    app:srcCompat="@drawable/logo_medium" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/double_screen_padding"
+                    android:text="@string/text_working_hours"
+                    android:textSize="@dimen/tsize_medium" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/padding_medium"
+                    android:text="@string/text_working_hours_value" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/double_screen_padding"
+                    android:text="@string/text_talk_with_agent"
+                    android:textSize="@dimen/tsize_large" />
+
+                <RelativeLayout
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:clipToPadding="false"
+                    android:padding="@dimen/double_screen_padding">
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/contact_us_call_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:fabSize="normal"
+                        app:srcCompat="@drawable/ic_call_36dp" />
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/contact_us_chat_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        app:fabSize="normal"
+                        app:srcCompat="@drawable/ic_question_answer_32dp" />
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom">
+
+                    <TextView
+                        android:id="@+id/contact_us_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:text="@string/support_email"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="@dimen/tsize_medium" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_below="@id/contact_us_email"
+                        android:layout_marginTop="@dimen/padding_large"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/padding_large">
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:background="@null">
+
+                            <ImageButton
+                                android:id="@+id/contact_us_fb_btn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                app:srcCompat="@drawable/ic_fb_small" />
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:background="@null">
+
+                            <ImageButton
+                                android:id="@+id/contact_us_twitter_btn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                app:srcCompat="@drawable/ic_twitter_small" />
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:background="@null">
+
+                            <ImageButton
+                                android:id="@+id/contact_us_insta_btn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                app:srcCompat="@drawable/ic_insta_small" />
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:background="@null">
+
+                            <ImageButton
+                                android:id="@+id/contact_us_youtube_btn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:padding="@dimen/padding_small"
+                                app:srcCompat="@drawable/ic_youtube_small" />
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@null">
+
+                            <ImageButton
+                                android:id="@+id/contact_us_linkein_btn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                app:srcCompat="@drawable/ic_linkedin_small" />
+                        </FrameLayout>
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </ScrollView>
+
+    <include
+        android:id="@+id/contact_us_toolbar"
+        layout="@layout/navigation_toolbar" />
+</RelativeLayout>

@@ -184,6 +184,7 @@
     <include layout="@layout/horizontal_divider" />
 
     <RelativeLayout
+        android:id="@+id/drawer_frequently_asked"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground"
@@ -208,6 +209,7 @@
     <include layout="@layout/horizontal_divider" />
 
     <RelativeLayout
+        android:id="@+id/drawer_about_entrego"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground"
@@ -219,7 +221,7 @@
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/padding_large"
             android:paddingTop="@dimen/padding_medium"
-            android:text="@string/about_entrego" />
+            android:text="@string/about_entrego_title" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -232,6 +234,7 @@
     <include layout="@layout/horizontal_divider" />
 
     <RelativeLayout
+        android:id="@+id/drawaer_contact_us"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground"
@@ -256,6 +259,7 @@
     <include layout="@layout/horizontal_divider" />
 
     <RelativeLayout
+        android:id="@+id/drawer_work_for_us"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground"
@@ -277,9 +281,11 @@
             app:srcCompat="@drawable/ic_small_next" />
     </RelativeLayout>
 
-    <include layout="@layout/horizontal_divider" />
+    <include
+        layout="@layout/horizontal_divider" />
 
     <RelativeLayout
+        android:id="@+id/drawer_conditions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground"

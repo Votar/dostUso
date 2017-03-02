@@ -29,6 +29,10 @@ class HistoryDeliveriesActivity : BaseMvpActivity<HistoryDeliveryContract.View, 
         setupLayouts()
     }
 
+    override fun onStart() {
+        super.onStart()
+    }
+
     fun setupLayouts() {
         setupListeners()
         setupViewPager()

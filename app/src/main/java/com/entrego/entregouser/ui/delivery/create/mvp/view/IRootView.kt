@@ -1,6 +1,7 @@
 package com.entrego.entregouser.ui.delivery.create.mvp.view
 
 import android.app.Fragment
+import android.content.Context
 import com.entrego.entregouser.ui.delivery.create.mvp.model.FragmentType
 import com.entrego.entregouser.web.model.response.delivery.create.EntregoDeliveryCreationResponse
 import com.google.android.gms.maps.model.LatLng
@@ -18,6 +19,7 @@ interface IRootView {
     fun showMessage(stringId: Int)
     fun showWelcomeBuilder()
     fun showPaymentMethods()
-    fun getCurrentFocusOnMap() : LatLngBounds?
-    fun showFavotiresActivity()
+    fun getCurrentFocusOnMap(): LatLngBounds?
+    fun showFavoritesActivity()
+    fun getAppContext(): Context
 }

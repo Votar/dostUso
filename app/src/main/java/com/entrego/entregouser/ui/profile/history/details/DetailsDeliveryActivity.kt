@@ -1,7 +1,9 @@
 package com.entrego.entregouser.ui.profile.history.details
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.NavUtils
 import android.view.View
 import com.entrego.entregouser.R
 import com.entrego.entregouser.mvp.view.BaseMvpActivity
@@ -10,9 +12,12 @@ import com.entrego.entregouser.util.logd
 import com.sothree.slidinguppanel.SlidingUpPanelLayout
 import kotlinx.android.synthetic.main.activity_details_delivery.*
 import kotlinx.android.synthetic.main.history_details_description_layout.*
+import kotlinx.android.synthetic.main.navigation_toolbar.*
 
 class DetailsDeliveryActivity : BaseMvpActivity<DetailsDeliveryContract.View, DetailsDeliveryContract.Presenter>(),
         DetailsDeliveryContract.View {
+
+
 
     override var mPresenter: DetailsDeliveryContract.Presenter = DetailsDeliveryPresenter()
 
@@ -46,6 +51,7 @@ class DetailsDeliveryActivity : BaseMvpActivity<DetailsDeliveryContract.View, De
     fun setupListeners() {
         history_details_bill_btn.setOnClickListener { toggleSwipePanel() }
         details_delivery_incidents_btn.setOnClickListener { showIncidentsActivity() }
+        nav_toolbar_back.setOnClickListener { NavUtils.navigateUpFromSameTask(this) }
     }
 
     override fun showIncidentsActivity() {
