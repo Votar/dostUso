@@ -17,9 +17,9 @@ import com.entrego.entregouser.R
 import com.entrego.entregouser.mvp.view.BaseMvpActivity
 import com.entrego.entregouser.ui.autocomplete.model.AutocompleteAddressAdapter
 import com.entrego.entregouser.ui.profile.favorites.FavoritesFragment
+import com.entrego.entregouser.util.GsonHolder
 import com.google.android.gms.location.places.AutocompletePrediction
 import com.google.android.gms.maps.model.LatLngBounds
-import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_entrego_autocomplete.*
 
 
@@ -54,7 +54,7 @@ class EntregoAutocompleteActivity : BaseMvpActivity<AutocompleteContract.View,
 
             fun build(ctx: Context): Intent {
                 val intent = Intent(ctx, EntregoAutocompleteActivity::class.java)
-                val gson = Gson()
+                val gson = GsonHolder.instance
                 if (bounds != null) {
                     val json = gson.toJson(bounds, LatLngBounds::class.java)
                     intent.putExtra(KEY_BOUNDS, json)
@@ -82,7 +82,7 @@ class EntregoAutocompleteActivity : BaseMvpActivity<AutocompleteContract.View,
     }
 
     fun deserializeExtras() {
-        val gson = Gson()
+        val gson = GsonHolder.instance
         if (intent.hasExtra(KEY_BOUNDS)) {
             val json = intent.getStringExtra(KEY_BOUNDS)
             val bounds = gson.fromJson(json, LatLngBounds::class.java)

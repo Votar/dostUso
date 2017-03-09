@@ -1,6 +1,5 @@
 package com.entrego.entregouser.ui.profile.history.list
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
@@ -8,12 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.entrego.entregouser.R
+import com.entrego.entregouser.entity.back.EntregoDeliveryPreview
+import com.entrego.entregouser.entity.delivery.EntregoDeliveryStatuses
 import com.entrego.entregouser.mvp.view.BaseMvpFragment
+import com.entrego.entregouser.ui.delivery.escort.root.EscortActivity
 import com.entrego.entregouser.ui.profile.history.details.DetailsDeliveryActivity
 import com.entrego.entregouser.ui.profile.history.list.model.DeliveryHistoryAdapter
 import com.entrego.entregouser.ui.profile.history.list.model.DeliveryListType
-import com.entrego.entregouser.ui.profile.history.list.model.EntregoDeliveryPreview
-import com.entrego.entregouser.util.showSnack
 import kotlinx.android.synthetic.main.fragment_delivery_list.*
 
 
@@ -79,10 +79,18 @@ class DeliveryListFragment private constructor() : BaseMvpFragment<DeliveryListC
 
     val mClickItemListener = object : DeliveryHistoryAdapter.ClickItemListener {
         override fun onItemClicked(delivery: EntregoDeliveryPreview) {
-            view?.showSnack("Clicked with price: " + delivery.price.toView())
-            activity.startActivityFromFragment(this@DeliveryListFragment,
-                    Intent(activity, DetailsDeliveryActivity::class.java),
-                    0)
+            when (delivery.status) {
+                EntregoDeliveryStatuses.ASSIGNED,
+                EntregoDeliveryStatuses.CONFIRMATION,
+                EntregoDeliveryStatuses.PENDING -> {
+                    val intent = EscortActivity.getIntent(activity, delivery)
+                    startActivity(intent)
+                }
+                else -> {
+                    val intent = DetailsDeliveryActivity.getIntent(activity, delivery)
+                    startActivity(intent)
+                }
+            }
         }
 
     }

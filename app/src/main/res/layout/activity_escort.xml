@@ -5,9 +5,10 @@
         <variable
             name="messenger"
             type="com.entrego.entregouser.entity.common.EntregoMessengerView" />
+
         <variable
             name="delivery"
-            type="com.entrego.entregouser.entity.delivery.EntregoDelivery" />
+            type="com.entrego.entregouser.entity.back.EntregoDeliveryPreview" />
     </data>
 
     <com.sothree.slidinguppanel.SlidingUpPanelLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -59,12 +60,12 @@
 
                     <TextView
                         android:id="@+id/escort_next_point_address"
-                        android:text="@{delivery.route.currentPoint.address}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:textAlignment="center"
                         android:gravity="center"
+                        android:text="@{delivery.route.currentPoint.address}"
+                        android:textAlignment="center"
                         android:textSize="@dimen/tsize_medium"
                         tool:text="Rabocha 152/1332" />
 
@@ -74,9 +75,9 @@
         </RelativeLayout>
 
         <include
+            layout="@layout/escort_description_layout"
             app:delivery="@{delivery}"
-            app:messenger="@{messenger}"
-            layout="@layout/escort_description_layout" />
+            app:messenger="@{messenger}" />
 
     </com.sothree.slidinguppanel.SlidingUpPanelLayout>
 </layout>

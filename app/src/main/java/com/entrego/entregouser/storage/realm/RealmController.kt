@@ -1,9 +1,8 @@
 package com.entrego.entregouser.storage.realm
 
 import android.content.Context
-import com.entrego.entregouser.storage.realm.models.RealmAddressModel
-import com.entrego.entregouser.storage.realm.StorageContract
 import com.entrego.entregouser.storage.realm.models.AddressType
+import com.entrego.entregouser.storage.realm.models.RealmAddressModel
 import io.realm.Realm
 import io.realm.RealmConfiguration
 
@@ -69,6 +68,9 @@ object RealmController : RealmContract {
     override fun addRecentSearch(address: String) {
         val item = RealmAddressModel(address)
         item.type = AddressType.RECENT_SEARCH.value
+        if (isRecentAddressesLimit())
+            cleanRecentAddressByLimit()
+
         Realm.getDefaultInstance().apply {
             beginTransaction()
             copyToRealmOrUpdate(item)
@@ -92,5 +94,36 @@ object RealmController : RealmContract {
         }
     }
 
+    override fun isRecentAddressesLimit(): Boolean {
+
+        Realm.getDefaultInstance().apply {
+            val addressCount = where(RealmAddressModel::class.java)
+                    .equalTo("type", AddressType.RECENT_SEARCH.value)
+                    .findAll()
+                    .count()
+            return (addressCount > RealmContract.AddressesTableContract.MAX_ROWS)
+        }
+        return false
+    }
+
+    override fun cleanRecentAddressByLimit() {
+        Realm.getDefaultInstance().apply {
+            val recentAddressList = where(RealmAddressModel::class.java)
+                    .equalTo("type", AddressType.RECENT_SEARCH.value)
+                    .findAll()
+                    .toList()
+                    .sortedBy { it.createdTime }
+                    .reversed()
+            val lastIndex = recentAddressList.lastIndex
+
+            val trashList = recentAddressList
+                    .subList(RealmContract.AddressesTableContract.MAX_ROWS, lastIndex)
+
+            beginTransaction()
+            trashList.forEach { it.deleteFromRealm() }
+            commitTransaction()
+
+        }
+    }
 }
 

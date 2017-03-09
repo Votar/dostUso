@@ -5,14 +5,13 @@ import android.app.Fragment
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.entrego.entregouser.R
+import com.entrego.entregouser.entity.back.EntregoDeliveryPreview
 import com.entrego.entregouser.entity.delivery.DeliveryEntityBuilder
-import com.entrego.entregouser.entity.delivery.EntregoDelivery
 import com.entrego.entregouser.entity.delivery.EntregoServiceCategory
 import com.entrego.entregouser.ui.delivery.create.mvp.model.FragmentType
 import com.entrego.entregouser.ui.delivery.create.mvp.presenter.IRootPresenter
@@ -20,18 +19,19 @@ import com.entrego.entregouser.ui.delivery.create.mvp.presenter.RootPresenter
 import com.entrego.entregouser.ui.delivery.create.mvp.view.IRootView
 import com.entrego.entregouser.ui.delivery.create.mvp.view.RootActivityController
 import com.entrego.entregouser.ui.delivery.create.steps.BaseBuilderFragment
-import com.entrego.entregouser.ui.delivery.create.steps.accept.AcceptDeliveryCreationFragment
 import com.entrego.entregouser.ui.delivery.create.steps.building.category.deliver.DeliverBuyFragment
 import com.entrego.entregouser.ui.delivery.create.steps.building.category.transaction.TransactionTypesFragment
 import com.entrego.entregouser.ui.delivery.create.steps.building.dummy.SelectServiceFragment
 import com.entrego.entregouser.ui.delivery.create.steps.building.size.SelectSizeFragment
-import com.entrego.entregouser.ui.delivery.escort.root.EscortActivity
+import com.entrego.entregouser.ui.delivery.create.steps.confirmation.DeliveryConfirmationFragment
 import com.entrego.entregouser.ui.faq.FaqListActivity
 import com.entrego.entregouser.ui.profile.edit.EditProfileActivity
 import com.entrego.entregouser.ui.profile.favorites.FavoritesActivity
 import com.entrego.entregouser.ui.profile.history.HistoryDeliveriesActivity
 import com.entrego.entregouser.ui.profile.payment.PaymentMethodActivity
+import com.entrego.entregouser.util.GsonHolder
 import com.entrego.entregouser.util.showSnack
+import com.entrego.entregouser.web.socket.SocketService
 import com.facebook.internal.Utility.logd
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -39,7 +39,6 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
-import com.google.gson.Gson
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import kotlinx.android.synthetic.main.activity_root.*
@@ -64,17 +63,19 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
         mPresenter.onCreate(this)
         setupLayouts()
         setupListeners()
+        startService(Intent(this, SocketService::class.java))
+
     }
 
     fun setupLayouts() {
         supportActionBar?.title = ""
-        val drawer = findViewById(R.id.activity_root_drawer_layout) as DrawerLayout
+
         val toggle = ActionBarDrawerToggle(this,
-                drawer,
+                activity_root_drawer_layout,
                 root_toolbar,
                 R.string.navigation_drawer_open,
                 R.string.navigation_drawer_close)
-        drawer.addDrawerListener(toggle)
+        activity_root_drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
     }
 
@@ -97,6 +98,9 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
         drawaer_contact_us.setOnClickListener { mPresenter.showContactUs() }
         drawer_frequently_asked.setOnClickListener { mPresenter.showFaq() }
         drawer_work_for_us.setOnClickListener { mPresenter.showWorkForUs() }
+        drawer_hire_delivery.setOnClickListener {
+            activity_root_drawer_layout.closeDrawers()
+        }
 
     }
 
@@ -108,6 +112,7 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
         super.onStart()
         mPresenter.onStart()
         logd(TAG, "onStart")
+
     }
 
     override fun onRestart() {
@@ -130,12 +135,12 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
     override fun onDestroy() {
         super.onDestroy()
         mPresenter.onDestroy()
+        stopService(Intent(this, SocketService::class.java))
     }
 
 
     override fun onMapReady(googleMap: GoogleMap) {
-        googleMap.uiSettings
-                .isMyLocationButtonEnabled = true
+        googleMap.uiSettings.isMyLocationButtonEnabled = true
         googleMap.isMyLocationEnabled = true
         mMap = googleMap
         mPresenter.onMapReady()
@@ -187,7 +192,7 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
         val firstFragment = SelectSizeFragment()
         deliveryBuilder.category = EntregoServiceCategory.SHIPMENT
         val args = Bundle()
-        val gson = Gson()
+        val gson = GsonHolder.instance
         args.putString(BaseBuilderFragment.KEY_BUILDER, gson.toJson(deliveryBuilder, DeliveryEntityBuilder::class.java))
         firstFragment.arguments = args
         showBuilderFragment(firstFragment, FragmentType.PARAMETERS)
@@ -217,22 +222,18 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
         }
     }
 
-    override fun showAcceptDeliveryCreationFragment(model: EntregoDelivery) {
-        val fragment = AcceptDeliveryCreationFragment.getInstance(model)
+    override fun showAcceptDeliveryCreationFragment(model: EntregoDeliveryPreview) {
+        val fragment = DeliveryConfirmationFragment.getInstance(model)
         fragmentManager.beginTransaction()
-                .replace(R.id.root_front_container, fragment, AcceptDeliveryCreationFragment.TAG)
+                .replace(R.id.root_front_container, fragment, DeliveryConfirmationFragment.TAG)
                 .addToBackStack(null)
                 .commit()
     }
 
 
-    override fun showCreatedDelivery(delivery: EntregoDelivery?) {
-        delivery?.let {
-            val intent = EscortActivity.getIntent(this, delivery)
-            startActivity(intent)
-        }
+    override fun showCreatedDelivery(delivery: EntregoDeliveryPreview?) {
         showWelcomeBuilder()
-        fragmentManager.findFragmentByTag(AcceptDeliveryCreationFragment.TAG)?.let {
+        fragmentManager.findFragmentByTag(DeliveryConfirmationFragment.TAG)?.let {
             fragmentManager.beginTransaction()
                     .remove(it)
                     .commit()

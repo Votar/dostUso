@@ -1,208 +1,225 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/dragView"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/colorTransparent"
-    android:clickable="true"
-    android:focusable="false">
 
-    <LinearLayout
-        android:id="@+id/history_details_top_container"
+<layout>
+
+    <data>
+
+        <variable
+            name="messenger"
+            type="com.entrego.entregouser.entity.common.EntregoMessengerView" />
+
+        <variable
+            name="delivery"
+            type="com.entrego.entregouser.entity.back.EntregoDeliveryPreview" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/dragView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorTransparent"
-        android:orientation="vertical">
+        android:clickable="true"
+        android:focusable="false">
 
-
-        <RelativeLayout
+        <LinearLayout
+            android:id="@+id/history_details_top_container"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:background="@color/colorTransparent">
+            android:layout_height="wrap_content"
+            android:background="@color/colorTransparent"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:background="@color/colorWhite"
-                android:padding="@dimen/padding_large">
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:id="@+id/history_details_score_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_gravity="center"
-                        android:text="@string/text_score" />
-
-                    <RatingBar
-                        style="@style/Widget.AppCompat.RatingBar.Small"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/history_details_score_label"
-                        android:layout_centerHorizontal="true"
-                        android:numStars="5" />
-                </RelativeLayout>
-
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAlignment="center" />
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:id="@+id/history_details_service_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_gravity="center"
-                        android:text="@string/text_score" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/history_details_service_label"
-                        android:layout_centerHorizontal="true"
-                        android:layout_gravity="center"
-                        android:text="$125.22" />
-                </RelativeLayout>
-            </LinearLayout>
 
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_margin="@dimen/padding_small">
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@color/colorTransparent">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/padding_large"
-                    android:src="@drawable/ic_user_pic_holder" />
-
-                <FrameLayout
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:background="@drawable/messenger_name_background"
-                    android:paddingBottom="@dimen/padding_small"
-                    android:paddingLeft="@dimen/padding_medium"
-                    android:paddingRight="@dimen/padding_medium"
-                    android:paddingTop="@dimen/padding_small">
+                    android:background="@color/colorWhite"
+                    android:padding="@dimen/padding_large">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/history_details_score_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:text="@string/text_score" />
+
+                        <RatingBar
+                            style="@style/Widget.AppCompat.RatingBar.Small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/history_details_score_label"
+                            android:layout_centerHorizontal="true"
+                            android:numStars="5" />
+                    </RelativeLayout>
+
 
                     <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textAlignment="center" />
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/history_details_service_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:text="@string/text_score" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/history_details_service_label"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:text="@{delivery.price.toView()}" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="@dimen/padding_small">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/history_details_msngr_photo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Leo Asld" />
-                </FrameLayout>
+                        android:layout_marginBottom="@dimen/padding_large"
+                        android:src="@drawable/ic_user_pic_holder" />
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/messenger_name_background"
+                        android:paddingBottom="@dimen/padding_small"
+                        android:paddingLeft="@dimen/padding_medium"
+                        android:paddingRight="@dimen/padding_medium"
+                        android:paddingTop="@dimen/padding_small">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{messenger.name}" />
+                    </FrameLayout>
+                </RelativeLayout>
             </RelativeLayout>
-        </RelativeLayout>
 
-        <FrameLayout
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite">
+
+                <Button
+                    android:id="@+id/details_delivery_incidents_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/padding_medium"
+                    android:layout_marginTop="@dimen/padding_medium"
+                    android:text="@string/text_incidents" />
+            </FrameLayout>
+
+            <RelativeLayout
+                android:id="@+id/history_details_bill_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorGrey"
+                android:padding="@dimen/padding_small">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/text_bill"
+                    android:textColor="@color/colorBlue" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/textView"
+                    app:srcCompat="@drawable/ic_arrow_down_24dp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorWhite">
+            android:layout_below="@id/history_details_top_container"
+            android:background="@color/colorWhite"
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/details_delivery_incidents_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="@dimen/padding_medium"
-                android:layout_marginTop="@dimen/padding_medium"
-                android:text="@string/text_incidents" />
-        </FrameLayout>
+            <RelativeLayout
+                style="@style/HistoryCeilStyle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/payment_method_cell_height">
 
-        <RelativeLayout
-            android:padding="@dimen/padding_small"
-            android:id="@+id/history_details_bill_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorGrey">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/text_price" />
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="@string/text_bill"
-                android:textColor="@color/colorBlue" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="$15.22" />
+            </RelativeLayout>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/textView"
-                app:srcCompat="@drawable/ic_arrow_down_24dp" />
-        </RelativeLayout>
-    </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorDivider" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/history_details_top_container"
-        android:background="@color/colorWhite"
-        android:orientation="vertical">
+            <RelativeLayout
+                style="@style/HistoryCeilStyle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/payment_method_cell_height">
 
-        <RelativeLayout
-            style="@style/HistoryCeilStyle"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/payment_method_cell_height">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/text_price" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="@string/text_price" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="$15.22" />
+            </RelativeLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:text="$15.22" />
-        </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorDivider" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorDivider" />
+        </LinearLayout>
+    </RelativeLayout>
 
-        <RelativeLayout
-            style="@style/HistoryCeilStyle"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/payment_method_cell_height">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="@string/text_price" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:text="$15.22" />
-        </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorDivider" />
-
-    </LinearLayout>
-</RelativeLayout>
+</layout>

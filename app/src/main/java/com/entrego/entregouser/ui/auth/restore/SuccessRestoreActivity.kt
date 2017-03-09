@@ -1,6 +1,5 @@
 package com.entrego.entregouser.ui.auth.restore
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.NavUtils
 import android.support.v7.app.AppCompatActivity
@@ -14,7 +13,7 @@ class SuccessRestoreActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_success_restore)
         succ_restore_btn_login.setOnClickListener {
-            startActivity(Intent(applicationContext, AuthActivity::class.java))
+            startActivity(AuthActivity.getIntent(SuccessRestoreActivity@ this))
         }
     }
 

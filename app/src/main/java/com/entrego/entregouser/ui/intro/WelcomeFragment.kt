@@ -12,12 +12,11 @@ import com.entrego.entregouser.ui.registration.RegistrationActivity
 import com.entrego.entregouser.util.showSnack
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
-import com.facebook.FacebookSdk
 import com.facebook.login.LoginResult
 import kotlinx.android.synthetic.main.fragment_welcome.*
 
 class WelcomeFragment : Fragment() {
-    val mCallbackManager = com.facebook.CallbackManager.Factory.create();
+    val mCallbackManager = com.facebook.CallbackManager.Factory.create()
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater?.inflate(R.layout.fragment_welcome, container, false)
@@ -26,7 +25,7 @@ class WelcomeFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        login_button.fragment = this;
+        login_button.fragment = this
         welcome_log_fb_btn.setOnClickListener { login_button.performClick() }
         login_button.registerCallback(mCallbackManager, mLoginFbListener)
         welcome_login_btn.setOnClickListener { startEntregoAuth() }
@@ -39,7 +38,7 @@ class WelcomeFragment : Fragment() {
     }
 
     private fun startEntregoAuth() {
-        val intent = Intent(context, AuthActivity::class.java)
+        val intent = AuthActivity.getIntent(activity)
         startActivity(intent)
     }
 

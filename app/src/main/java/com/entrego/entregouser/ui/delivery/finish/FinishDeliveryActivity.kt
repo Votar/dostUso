@@ -11,9 +11,9 @@ import com.entrego.entregouser.R
 import com.entrego.entregouser.entity.common.EntregoMessengerView
 import com.entrego.entregouser.mvp.view.BaseMvpActivity
 import com.entrego.entregouser.ui.delivery.create.RootActivity
+import com.entrego.entregouser.util.GsonHolder
 import com.entrego.entregouser.util.ui.EntregoCancelableProgressDialog
 import com.entrego.entregouser.util.ui.EntregoProgressDialog
-import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_finish_delivery.*
 import kotlinx.android.synthetic.main.navigation_toolbar.*
 
@@ -27,7 +27,7 @@ class FinishDeliveryActivity : FinishDeliveryContract.View,
 
         fun getIntent(ctx: Context, deliveryId: Long, messenger: EntregoMessengerView) =
                 Intent(ctx, FinishDeliveryActivity::class.java).apply {
-                    putExtra(KEY_MESSENGER, Gson().toJson(messenger, EntregoMessengerView::class.java))
+                    putExtra(KEY_MESSENGER, GsonHolder.instance.toJson(messenger, EntregoMessengerView::class.java))
                     putExtra(KEY_MESSENGER, deliveryId)
                 }
     }
@@ -57,7 +57,7 @@ class FinishDeliveryActivity : FinishDeliveryContract.View,
     fun deserializeIntent() {
         if (intent.hasExtra(KEY_MESSENGER)) {
             val jsonMessenger = intent.getStringExtra(KEY_MESSENGER)
-            val messengerModel = Gson().fromJson(jsonMessenger, EntregoMessengerView::class.java)
+            val messengerModel = GsonHolder.instance.fromJson(jsonMessenger, EntregoMessengerView::class.java)
             setupMessenger(messengerModel)
         } else throw Exception("No messenger information in intent")
         if (intent.hasExtra(KEY_DELIVERY_ID)) {

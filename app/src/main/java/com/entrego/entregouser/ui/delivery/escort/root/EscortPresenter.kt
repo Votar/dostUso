@@ -5,12 +5,11 @@ import android.content.Intent
 import android.net.Uri
 import com.entrego.entregouser.R
 import com.entrego.entregouser.entity.EntregoPhoneModel
-import com.entrego.entregouser.entity.common.EntregoStatusModel
+import com.entrego.entregouser.entity.back.EntregoOrderView
 import com.entrego.entregouser.mvp.presenter.BaseMvpPresenter
 import com.entrego.entregouser.storage.preferences.PreferencesManager
 import com.entrego.entregouser.ui.delivery.escort.chat.ChatMessengerActivity
 import com.entrego.entregouser.ui.delivery.escort.root.model.GetDeliveryStatusRequest
-import com.entrego.entregouser.ui.delivery.escort.status.StatusDeliveryActivity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -18,7 +17,6 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
-import java.sql.Time
 import java.util.*
 
 
@@ -31,7 +29,7 @@ class EscortPresenter : BaseMvpPresenter<EscortContract.View>(),
     var mMessengerPhone: EntregoPhoneModel? = null
     var mMap: GoogleMap? = null
     val mGetDeliveryStatusListener = object : GetDeliveryStatusRequest.ResponseListener {
-        override fun onSuccessResponse(result: EntregoStatusModel) {
+        override fun onSuccessResponse(result: EntregoOrderView) {
             mView?.setupWayoints(result.waypoints)
             mView?.setupMessengerView(result.messenger)
             mMessengerPhone = result.messenger.phone

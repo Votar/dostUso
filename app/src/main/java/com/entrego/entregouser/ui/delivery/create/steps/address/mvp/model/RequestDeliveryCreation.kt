@@ -1,7 +1,7 @@
 package com.entrego.entregouser.ui.delivery.create.steps.address.mvp.model
 
+import com.entrego.entregouser.entity.back.EntregoDeliveryPreview
 import com.entrego.entregouser.entity.delivery.DeliveryEntityBuilder
-import com.entrego.entregouser.entity.delivery.EntregoDelivery
 import com.entrego.entregouser.storage.preferences.PreferencesManager
 import com.entrego.entregouser.util.logd
 import com.entrego.entregouser.web.api.ApiCreator
@@ -22,7 +22,7 @@ object RequestDeliveryCreation {
 
 
     interface DeliveryCreationResponseListener {
-        fun onSuccessCreationResponse(response: EntregoDelivery)
+        fun onSuccessCreationResponse(response: EntregoDeliveryPreview)
         fun onFailureCreationResponse(code: Int?, message: String?)
     }
 
@@ -41,6 +41,7 @@ object RequestDeliveryCreation {
         call.enqueue(object : Callback<EntregoDeliveryCreationResponse> {
             override fun onResponse(call: Call<EntregoDeliveryCreationResponse>?, response: Response<EntregoDeliveryCreationResponse>?) {
                 response?.body()?.let {
+                    logd(toString())
                     when (it.code) {
                         0 -> {
                             listener.onSuccessCreationResponse(it.payload)
@@ -59,11 +60,6 @@ object RequestDeliveryCreation {
             }
 
         })
-
-//        Handler().postDelayed({
-//            val mockResponse = EntregoDeliveryCreationResponse(0, null, EntregoPriceEntity(12.5f), EntregoTimingCategory.EXPRESS, -1)
-//            listener.onSuccessCreationResponse(mockResponse)
-//        }, 1500)
 
         return call
     }

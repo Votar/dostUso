@@ -19,7 +19,6 @@ class WorkForUsActivity : AppCompatActivity() {
         work_for_us_videoview.setVideoURI(Uri.parse(path))
         work_for_us_videoview.setMediaController(MediaController(this))
         work_for_us_videoview.requestFocus(0)
-        work_for_us_videoview.start()
     }
 
     fun setupListeners() {
@@ -29,7 +28,7 @@ class WorkForUsActivity : AppCompatActivity() {
     }
 
     fun shareVideo(){
-        
+
     }
 
 }

@@ -23,6 +23,7 @@
 
         <activity
             android:name=".ui.intro.IntroActivity"
+            android:excludeFromRecents="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeTransparent" />
         <activity
@@ -30,7 +31,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.auth.AuthActivity"
-            android:clearTaskOnLaunch="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
@@ -79,11 +79,8 @@
         <activity
             android:name=".ui.delivery.escort.root.EscortActivity"
             android:launchMode="singleTask"
-            android:parentActivityName=".ui.delivery.create.RootActivity"
             android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.delivery.create.RootActivity" />
+
         </activity>
         <activity
             android:name=".ui.faq.FaqListActivity"
@@ -134,7 +131,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.delivery.create.RootActivity" />
         </activity>
-        <activity android:name=".ui.delivery.escort.status.StatusDeliveryActivity" />
+        <activity
+            android:name=".ui.delivery.escort.status.StatusDeliveryActivity"
+            android:parentActivityName=".ui.delivery.escort.root.EscortActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.delivery.escort.root.EscortActivity" />
+        </activity>
         <activity
             android:name=".ui.profile.payment.PaymentMethodActivity"
             android:parentActivityName=".ui.delivery.create.RootActivity"
@@ -214,7 +218,8 @@
                 android:value=".ui.delivery.create.RootActivity" />
 
         </activity>
-        <activity android:name=".ui.promo.WorkForUsActivity"
+        <activity
+            android:name=".ui.promo.WorkForUsActivity"
             android:parentActivityName=".ui.delivery.create.RootActivity"
             android:screenOrientation="portrait">
             <meta-data
@@ -222,6 +227,9 @@
                 android:value=".ui.delivery.create.RootActivity" />
 
         </activity>
+
+        <service android:name=".web.socket.SocketService" />
+
     </application>
 
 </manifest>

@@ -1,8 +1,8 @@
 package com.entrego.entregouser.ui.delivery.create.steps.address.mvp.presenter
 
 import com.entrego.entregouser.R
+import com.entrego.entregouser.entity.back.EntregoDeliveryPreview
 import com.entrego.entregouser.entity.delivery.DeliveryEntityBuilder
-import com.entrego.entregouser.entity.delivery.EntregoDelivery
 import com.entrego.entregouser.ui.delivery.create.steps.address.mvp.model.RequestDeliveryCreation
 import com.entrego.entregouser.ui.delivery.create.steps.address.mvp.view.ISelectAddressView
 
@@ -40,7 +40,7 @@ class SelectAddressPresenter : ISelectAddressPresenter {
 
         }
 
-        override fun onSuccessCreationResponse(response: EntregoDelivery) {
+        override fun onSuccessCreationResponse(response: EntregoDeliveryPreview) {
             mView?.hideProgress()
             mView?.showAcceptView(response)
         }

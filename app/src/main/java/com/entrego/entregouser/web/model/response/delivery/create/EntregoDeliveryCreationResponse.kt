@@ -1,12 +1,12 @@
 package com.entrego.entregouser.web.model.response.delivery.create
 
-import com.entrego.entregouser.entity.delivery.EntregoDelivery
+import com.entrego.entregouser.entity.back.EntregoDeliveryPreview
 import com.entrego.entregouser.web.model.response.BaseEntregoResponse
 
 
 class EntregoDeliveryCreationResponse(code: Int?,
                                       message: String?,
-                                      val payload: EntregoDelivery) : BaseEntregoResponse(code, message) {
+                                      val payload: EntregoDeliveryPreview) : BaseEntregoResponse(code, message) {
 
 
     override fun toString(): String {

@@ -1,10 +1,7 @@
 package com.entrego.entregouser.ui.profile.edit.model
 
 import android.os.Handler
-import com.entrego.entregouser.entity.common.EntregoPriceEntity
 import com.entrego.entregouser.entity.profile.UserProfileModel
-import com.entrego.entregouser.ui.profile.history.list.model.DeliveryListType
-import com.entrego.entregouser.ui.profile.history.list.model.EntregoDeliveryPreview
 import com.entrego.entregouser.web.api.ApiCreator
 import com.entrego.entregouser.web.model.response.delivery.list.EntregoDeliveryListResponse
 import entrego.com.android.web.api.EntregoApi

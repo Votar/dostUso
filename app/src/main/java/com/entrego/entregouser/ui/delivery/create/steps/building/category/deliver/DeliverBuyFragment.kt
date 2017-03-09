@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.entrego.entregouser.R
 import com.entrego.entregouser.entity.delivery.DeliveryEntityBuilder
+import com.entrego.entregouser.entity.delivery.EntregoParcel
 import com.entrego.entregouser.entity.delivery.EntregoServiceCategory
-import com.entrego.entregouser.entity.delivery.EntregoParcelType
 import com.entrego.entregouser.ui.delivery.create.mvp.model.FragmentType
 import com.entrego.entregouser.ui.delivery.create.steps.BaseBuilderFragment
 import com.entrego.entregouser.ui.delivery.create.steps.building.size.SelectSizeFragment
@@ -35,7 +35,7 @@ class DeliverBuyFragment : BaseBuilderFragment() {
     val mClickListener = View.OnClickListener {
         when (it.id) {
             R.id.type_deliver_restaurant -> {
-                mDeliveryBuilder?.parcel = EntregoParcelType.SMALL
+                mDeliveryBuilder?.parcel = EntregoParcel.SMALL
                 prepareNextFragment(DeliveryTypesFragment(), FragmentType.PARAMETERS)
             }
 

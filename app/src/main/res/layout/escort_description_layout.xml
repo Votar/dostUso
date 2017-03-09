@@ -8,7 +8,7 @@
             type="com.entrego.entregouser.entity.common.EntregoMessengerView"/>
         <variable
             name="delivery"
-            type="com.entrego.entregouser.entity.delivery.EntregoDelivery" />
+            type="com.entrego.entregouser.entity.back.EntregoDeliveryPreview" />
     </data>
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -51,8 +51,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:text="@{delivery.route.path.durationInMinutesString}"
-                            android:textAlignment="center" />
+                            android:text="@{delivery.route.path.durationInMinutesString}" />
 
                         <TextView
                             android:paddingLeft="@dimen/padding_small"

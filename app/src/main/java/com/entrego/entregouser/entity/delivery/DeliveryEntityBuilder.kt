@@ -3,7 +3,7 @@ package com.entrego.entregouser.entity.delivery
 
 class DeliveryEntityBuilder {
     var category: EntregoServiceCategory? = null
-    var parcel: EntregoParcelType? = null
+    var parcel: EntregoParcel? = null
     var type: EntregoTimingCategory? = null
     var pickup: Long? = null
     var addresses: List<String>? = null

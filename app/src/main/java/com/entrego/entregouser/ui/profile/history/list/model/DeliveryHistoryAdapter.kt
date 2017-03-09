@@ -8,8 +8,9 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.entrego.entregouser.R
 import com.entrego.entregouser.databinding.ItemDeliveryPreviewBinding
+import com.entrego.entregouser.entity.back.EntregoDeliveryPreview
 import com.entrego.entregouser.entity.route.EntregoRouteModel
-import com.entrego.entregouser.util.getStaticMapUrl
+import com.entrego.entregouser.util.getStaticMapUrlWithWaypoints
 import com.entrego.entregouser.util.logd
 
 class DeliveryHistoryAdapter(val dataset: List<EntregoDeliveryPreview>, val listener: ClickItemListener) : RecyclerView.Adapter<DeliveryHistoryAdapter.ViewHolder>() {
@@ -33,12 +34,13 @@ class DeliveryHistoryAdapter(val dataset: List<EntregoDeliveryPreview>, val list
 
         val ctx = holder?.itemView?.context
         if (ctx != null) {
-            val url = currentModel.ulrPic
+            logd(currentModel.toString())
+            val url = buildUrlForStaticMap(currentModel.route)
             logd(url)
             Glide.with(ctx)
                     .load(url)
                     .error(R.drawable.ic_cloud_off_48dp)
-                    .into(holder?.binder?.historyRoutesStaticMap)
+                    .into(holder.binder?.historyRoutesStaticMap)
 
         }
         holder?.binder?.root?.setOnClickListener { listener.onItemClicked(currentModel) }
@@ -56,7 +58,6 @@ class DeliveryHistoryAdapter(val dataset: List<EntregoDeliveryPreview>, val list
     }
 
     fun buildUrlForStaticMap(route: EntregoRouteModel): String {
-        val path = route.path.line
-        return route.waypoints.getStaticMapUrl(path)
+        return route.getStaticMapUrlWithWaypoints()
     }
 }

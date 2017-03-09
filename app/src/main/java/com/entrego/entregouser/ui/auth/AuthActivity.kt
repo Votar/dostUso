@@ -22,6 +22,13 @@ import kotlinx.android.synthetic.main.activity_auth.*
 
 class AuthActivity : AppCompatActivity(), IAuthView {
 
+    companion object {
+        fun getIntent(ctx: Context): Intent {
+            val intent = Intent(ctx, AuthActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            return intent
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,7 +88,7 @@ class AuthActivity : AppCompatActivity(), IAuthView {
         auth_edit_password.setOnEditorActionListener(object : TextView.OnEditorActionListener {
             override fun onEditorAction(p0: TextView?, actionId: Int, event: KeyEvent?): Boolean {
                 if ((actionId == EditorInfo.IME_ACTION_DONE) || ((event?.keyCode == KeyEvent.KEYCODE_ENTER)
-                        && (event?.action == KeyEvent.ACTION_DOWN))) {
+                        && (event.action == KeyEvent.ACTION_DOWN))) {
                     startAuth()
                     return true
                 } else {

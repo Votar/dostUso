@@ -7,8 +7,8 @@ import com.entrego.entregouser.R
 import com.entrego.entregouser.entity.delivery.DeliveryEntityBuilder
 import com.entrego.entregouser.ui.delivery.create.mvp.model.FragmentType
 import com.entrego.entregouser.ui.delivery.create.mvp.view.RootActivityController
+import com.entrego.entregouser.util.GsonHolder
 import com.entrego.entregouser.util.showSnack
-import com.google.gson.Gson
 
 abstract class BaseBuilderFragment : Fragment() {
 
@@ -20,7 +20,7 @@ abstract class BaseBuilderFragment : Fragment() {
 
     protected fun prepareNextFragment(fragment: BaseBuilderFragment, fragmentType: FragmentType) {
         val args = Bundle()
-        val gson = Gson()
+        val gson = GsonHolder.instance
         if (mDeliveryBuilder != null) {
             args.putString(KEY_BUILDER, gson.toJson(mDeliveryBuilder, DeliveryEntityBuilder::class.java))
             fragment.arguments = args
@@ -37,7 +37,7 @@ abstract class BaseBuilderFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         if (arguments != null) {
             val jsonBuilder = arguments.getString(KEY_BUILDER, "")
-            mDeliveryBuilder = Gson().fromJson(jsonBuilder, DeliveryEntityBuilder::class.java)
+            mDeliveryBuilder = GsonHolder.instance.fromJson(jsonBuilder, DeliveryEntityBuilder::class.java)
         }
     }
 

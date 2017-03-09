@@ -42,7 +42,7 @@
             android:id="@+id/delivery_states_delivered_sw"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/finish_dot" />
+            android:src="@drawable/default_dot" />
 
 
     </RelativeLayout>

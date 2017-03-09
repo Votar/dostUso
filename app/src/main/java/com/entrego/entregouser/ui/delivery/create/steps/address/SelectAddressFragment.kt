@@ -10,7 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.entrego.entregouser.R
-import com.entrego.entregouser.entity.delivery.EntregoDelivery
+import com.entrego.entregouser.entity.back.EntregoDeliveryPreview
 import com.entrego.entregouser.ui.autocomplete.EntregoAutocompleteActivity
 import com.entrego.entregouser.ui.delivery.create.mvp.view.IRootView
 import com.entrego.entregouser.ui.delivery.create.mvp.view.RootActivityController
@@ -133,7 +133,7 @@ class SelectAddressFragment : BaseBuilderFragment(), ISelectAddressView, FieldCl
         mProgessView?.dismiss()
     }
 
-    override fun showAcceptView(response: EntregoDelivery) {
+    override fun showAcceptView(response: EntregoDeliveryPreview) {
         (activity as? RootActivityController)?.showAcceptDeliveryCreationFragment(response)
     }
 

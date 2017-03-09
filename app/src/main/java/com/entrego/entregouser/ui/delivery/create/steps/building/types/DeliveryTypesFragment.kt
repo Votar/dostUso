@@ -39,7 +39,7 @@ class DeliveryTypesFragment : BaseBuilderFragment() {
             prepareNextFragment(SelectBookingFragment(), FragmentType.PARAMETERS)
         }
         type_shipment_all_day.setOnClickListener {
-            mDeliveryBuilder?.type = EntregoTimingCategory.ALL_DAY
+            mDeliveryBuilder?.type = EntregoTimingCategory.ALLDAY
             prepareNextFragment(SelectAllDayFragment(), FragmentType.PARAMETERS)
         }
     }

@@ -43,7 +43,7 @@
             android:id="@+id/delivery_states_waiting_for_ship_sw"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/finish_dot" />
+            android:src="@drawable/default_dot" />
 
         <View
             android:layout_centerHorizontal="true"

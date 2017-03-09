@@ -1,22 +1,25 @@
 package com.entrego.entregouser.ui.delivery.escort.root
 
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v4.app.NavUtils
+import android.support.v4.content.LocalBroadcastManager
 import android.view.View
 import com.entrego.entregouser.R
 import com.entrego.entregouser.databinding.ActivityEscortBinding
+import com.entrego.entregouser.entity.back.EntregoDeliveryPreview
+import com.entrego.entregouser.entity.back.EntregoWaypoint
+import com.entrego.entregouser.entity.back.getCurrentPoint
 import com.entrego.entregouser.entity.common.EntregoMessengerView
-import com.entrego.entregouser.entity.delivery.EntregoDelivery
-import com.entrego.entregouser.entity.route.EntregoPointBinding
 import com.entrego.entregouser.mvp.view.BaseMvpActivity
 import com.entrego.entregouser.ui.delivery.escort.cancel.CancelDeliveryActivity
 import com.entrego.entregouser.ui.delivery.escort.status.StatusDeliveryActivity
 import com.entrego.entregouser.ui.delivery.finish.FinishDeliveryActivity
-import com.entrego.entregouser.util.getCurrentPoint
-import com.google.gson.Gson
+import com.entrego.entregouser.util.GsonHolder
+import com.entrego.entregouser.web.socket.SocketContract
 import kotlinx.android.synthetic.main.activity_escort.*
 import kotlinx.android.synthetic.main.escort_description_layout.*
 import kotlinx.android.synthetic.main.navigation_toolbar.*
@@ -28,9 +31,9 @@ class EscortActivity : BaseMvpActivity<EscortContract.View, EscortContract.Prese
 
     companion object {
         val KEY_DELIVERY = "ext_k_delivery"
-        fun getIntent(ctx: Context, delivery: EntregoDelivery): Intent {
+        fun getIntent(ctx: Context, delivery: EntregoDeliveryPreview): Intent {
             val intent = Intent(ctx, EscortActivity::class.java)
-            val jsonDelivery = Gson().toJson(delivery, EntregoDelivery::class.java)
+            val jsonDelivery = GsonHolder.instance.toJson(delivery, EntregoDeliveryPreview::class.java)
             intent.putExtra(KEY_DELIVERY, jsonDelivery)
             return intent
         }
@@ -42,7 +45,7 @@ class EscortActivity : BaseMvpActivity<EscortContract.View, EscortContract.Prese
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val jsonDelivery = intent.getStringExtra(KEY_DELIVERY)
-        val delivery = Gson().fromJson(jsonDelivery, EntregoDelivery::class.java)
+        val delivery = GsonHolder.instance.fromJson(jsonDelivery, EntregoDeliveryPreview::class.java)
         binder = DataBindingUtil.setContentView(this, R.layout.activity_escort)
         binder.delivery = delivery
         setupLayouts()
@@ -53,15 +56,21 @@ class EscortActivity : BaseMvpActivity<EscortContract.View, EscortContract.Prese
     override fun onStart() {
         super.onStart()
         mPresenter.loadMapAsync()
-        binder?.delivery?.id?.let {
+        binder.delivery?.id?.let {
             mPresenter.requestDeliveryStatus(it)
         }
-        startStatusTimer()
+
+        registerUpdateDeliveryReceiver()
+        registerUpdateMessengerLocationReceiver()
+//        startStatusTimer()
+
     }
 
     override fun onStop() {
         super.onStop()
-        stopStatusTimer()
+        unregisterUpdateDeliveryReceiver()
+        unregisterUpdateMessengerLocationReceiver()
+//        stopStatusTimer()
     }
 
     fun setupLayouts() {
@@ -71,7 +80,7 @@ class EscortActivity : BaseMvpActivity<EscortContract.View, EscortContract.Prese
         escort_call_messenger_fl.setOnClickListener { mPresenter.callMessenger() }
         escort_chat_messenger_fl.setOnClickListener { mPresenter.chatMessenger() }
         escort_status_fl.setOnClickListener { showStatusDelivery() }
-        nav_toolbar_back.setOnClickListener { NavUtils.navigateUpFromSameTask(this) }
+        nav_toolbar_back.setOnClickListener { onBackPressed() }
 
     }
 
@@ -81,10 +90,8 @@ class EscortActivity : BaseMvpActivity<EscortContract.View, EscortContract.Prese
         escort_messenger_name.text = messenger.name
     }
 
-    override fun setupWayoints(pointsArray: Array<EntregoPointBinding>) {
-        setupNextPoint(pointsArray.getCurrentPoint())
-
-
+    override fun setupWayoints(waypoints: Array<EntregoWaypoint>) {
+        setupNextPoint(waypoints.getCurrentPoint())
     }
 
     override fun showFinishDelivery(deliveryId: Long, messenger: EntregoMessengerView) {
@@ -92,8 +99,8 @@ class EscortActivity : BaseMvpActivity<EscortContract.View, EscortContract.Prese
     }
 
 
-    fun setupNextPoint(point: EntregoPointBinding) {
-        escort_next_point_address.text = point.address
+    fun setupNextPoint(waypoint: EntregoWaypoint) {
+        escort_next_point_address.text = waypoint.waypoint.address
     }
 
     fun startStatusTimer() {
@@ -113,8 +120,63 @@ class EscortActivity : BaseMvpActivity<EscortContract.View, EscortContract.Prese
     }
 
     override fun showStatusDelivery() {
-        binder.messenger?.let {
+        if (binder.messenger == null)
+            showMessage(R.string.error_no_messenger_yet)
+        else
             startActivity(StatusDeliveryActivity.getIntent(this, binder.messenger, binder.delivery))
+
+    }
+
+    fun registerUpdateDeliveryReceiver() {
+        LocalBroadcastManager.getInstance(this)
+                .registerReceiver(
+                        mUpdateDeliveryEventReceiver,
+                        IntentFilter(SocketContract.UpdateDeliveryEvent.ACTION)
+                )
+    }
+
+    fun unregisterUpdateDeliveryReceiver() {
+        LocalBroadcastManager.getInstance(this)
+                .unregisterReceiver(mUpdateDeliveryEventReceiver)
+    }
+
+    fun registerUpdateMessengerLocationReceiver() {
+        LocalBroadcastManager.getInstance(this)
+                .registerReceiver(
+                        mUpdateMessengerLocationReceiver,
+                        IntentFilter(SocketContract.UpdateMessengerLocationEvent.ACTION)
+                )
+    }
+
+    fun unregisterUpdateMessengerLocationReceiver() {
+        LocalBroadcastManager.getInstance(this)
+                .unregisterReceiver(mUpdateMessengerLocationReceiver)
+    }
+
+
+    val mUpdateDeliveryEventReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            if (intent?.hasExtra(SocketContract.UpdateDeliveryEvent.KEY_DELIVERY_ID) == true) {
+                val deliveryId = intent.getLongExtra(SocketContract.UpdateDeliveryEvent.KEY_DELIVERY_ID, 0)
+                binder.delivery?.apply {
+                    if (deliveryId == this.id)
+                        mPresenter.requestDeliveryStatus(id)
+                }
+            } else throw Exception("No delivery id in intent with UpdateDeliveryEvent")
+        }
+    }
+
+    val mUpdateMessengerLocationReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            if (intent?.hasExtra(SocketContract
+                    .UpdateMessengerLocationEvent
+                    .KEY_MESSENGER_LOCATION) == true) {
+                val messengerLocationJson = intent.getStringExtra(
+                        SocketContract
+                                .UpdateMessengerLocationEvent
+                                .KEY_MESSENGER_LOCATION
+                )
+            } else throw Exception("No messenger location in intent with UpdateMessengerLocationEvent")
         }
     }
 }

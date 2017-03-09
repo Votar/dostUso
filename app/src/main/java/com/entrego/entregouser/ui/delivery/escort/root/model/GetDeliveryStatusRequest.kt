@@ -1,15 +1,15 @@
 package com.entrego.entregouser.ui.delivery.escort.root.model
 
-import com.entrego.entregouser.entity.common.EntregoStatusModel
+import com.entrego.entregouser.entity.back.EntregoOrderView
 import com.entrego.entregouser.web.api.ApiCreator
 import com.entrego.entregouser.web.model.response.delivery.EntregoGetStatusResult
 import entrego.com.android.web.api.EntregoApi
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Headers
-import retrofit2.http.POST
 import retrofit2.http.Path
 
 class GetDeliveryStatusRequest {
@@ -20,12 +20,12 @@ class GetDeliveryStatusRequest {
 
     interface Request {
         @Headers(EntregoApi.CONTENT_JSON)
-        @POST(END_POINT)
+        @GET(END_POINT)
         fun parameters(@Header(EntregoApi.TOKEN) token: String, @Path("id") deliveryId: Long): Call<EntregoGetStatusResult>
     }
 
     interface ResponseListener {
-        fun onSuccessResponse(result: EntregoStatusModel)
+        fun onSuccessResponse(result: EntregoOrderView)
         fun onFailureResponse(code: Int?, message: String?)
     }
 
