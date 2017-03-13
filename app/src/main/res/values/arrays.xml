@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="intro_descr">
-        <item>            Ordena productos de cualquier establecimiento o restaurante en tu ciudad.        </item>
-        <item>            Nuestros mensajeros efectuarán la compra o buscarán tu pedido y            lo llevarán donde estés en minutos.
+        <item>Ordena productos de cualquier establecimiento o restaurante en tu ciudad.</item>
+        <item> Nuestros mensajeros efectuarán la compra o buscarán tu pedido y lo llevarán donde estés en minutos.
         </item>
-        <item>            Haz tus pedidos de inmediato o coordina para una fecha posterior.
+        <item>Haz tus pedidos de inmediato o coordina para una fecha posterior.
             Todo de una manera segura a través de nuestro app.        </item>
-        <item>            Elige de nuestro menú o ingresa “Otros” para pedidos especiales.        </item>
+        <item>Elige de nuestro menú o ingresa “Otros” para pedidos especiales.        </item>
         <item>Ingresa información adicional tal como nombre de contacto o a quién debemos entregar tu envío.</item>
         <item>Te mostraremos el costo del servicio y podrás verificar tu información de contacto para estar siempre comunicados.</item>
         <item>Confirma tu método de pago o agrega uno nuevo</item>

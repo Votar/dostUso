@@ -159,8 +159,8 @@ class EscortActivity : BaseMvpActivity<EscortContract.View, EscortContract.Prese
             if (intent?.hasExtra(SocketContract.UpdateDeliveryEvent.KEY_DELIVERY_ID) == true) {
                 val deliveryId = intent.getLongExtra(SocketContract.UpdateDeliveryEvent.KEY_DELIVERY_ID, 0)
                 binder.delivery?.apply {
-                    if (deliveryId == this.id)
-                        mPresenter.requestDeliveryStatus(id)
+//                    if (deliveryId == this.id)
+                        mPresenter.requestDeliveryStatus(isd)
                 }
             } else throw Exception("No delivery id in intent with UpdateDeliveryEvent")
         }

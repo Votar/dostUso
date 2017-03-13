@@ -3,7 +3,10 @@ package com.entrego.entregouser.web.socket
 import android.os.Handler
 import com.entrego.entregouser.util.GsonHolder
 import com.entrego.entregouser.util.logd
+import com.entrego.entregouser.web.socket.model.BaseSocketMessage
+import com.entrego.entregouser.web.socket.model.SocketMessageType
 import com.neovisionaries.ws.client.*
+import java.lang.IllegalStateException
 
 class SocketClient(val serverListener: SocketContract.ReceiveMessagesListener) {
 
@@ -36,12 +39,9 @@ class SocketClient(val serverListener: SocketContract.ReceiveMessagesListener) {
             logd(TAG, "Socket connected")
         }
 
-        override fun onTextMessage(websocket: WebSocket?, text: String?) {
+        override fun onTextMessage(websocket: WebSocket?, text: String) {
             super.onTextMessage(websocket, text)
-            //TODO Parse message & init call
-//            serverListener.receivedDeliveryUpdated()
-            logd(TAG, text)
-
+            parseMessage(text)
         }
 
         override fun onConnectError(websocket: WebSocket?, exception: WebSocketException?) {
@@ -57,17 +57,23 @@ class SocketClient(val serverListener: SocketContract.ReceiveMessagesListener) {
                 }
             }
         }
+
+        fun parseMessage(json: String) {
+            val base = GsonHolder.instance.fromJson(json, BaseSocketMessage::class.java)
+            when (base.type) {
+                SocketMessageType.WAYPOINT, SocketMessageType.ORDER_STATUS -> {
+                    //TODO: Will with delivery Id for filtering updates
+                    serverListener.receivedDeliveryUpdated(0)
+                }
+                SocketMessageType.ORDER -> logd(TAG, json)
+                SocketMessageType.TRACK  -> logd(TAG, json)
+                SocketMessageType.TRACK_LIST -> logd(TAG, json)
+                else -> IllegalStateException("Invalid type of socket message")
+            }
+
+        }
     }
 
-//    fun sendLocation(location: String) {
-//        logd(location)
-//        if (mSocketConnection?.isOpen == true) {
-//            mSocketConnection?.sendText(location)
-//        } else {
-//            logd("SOCKET IS DISCONNECTED")
-//            openConnection()
-//        }
-//    }
 
     fun openConnection() {
         isNeed = true
@@ -84,6 +90,8 @@ class SocketClient(val serverListener: SocketContract.ReceiveMessagesListener) {
         isNeed = false
         mSocketConnection = mSocketConnection?.disconnect()
     }
+
+
 
 
 }
