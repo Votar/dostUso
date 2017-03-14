@@ -1,7 +1,7 @@
 package com.entrego.entregouser.entity.route
 
 class EntregoRouteModel(val path: EntregoPath,
-                        val waypoints: Array<EntregoPointBinding>) {
+                        var waypoints: Array<EntregoPointBinding>) {
 
 
 

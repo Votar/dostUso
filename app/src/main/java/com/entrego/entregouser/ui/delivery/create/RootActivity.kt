@@ -161,7 +161,7 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
 
     override fun onBuildMap() {
         val mapFragment = supportFragmentManager
-                .findFragmentById(R.id.map) as SupportMapFragment
+                .findFragmentById(R.id.root_map) as SupportMapFragment
         mapFragment.getMapAsync(this)
     }
 

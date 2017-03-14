@@ -1,14 +1,11 @@
 package com.entrego.entregouser.web.socket
 
 import android.app.Service
-import android.content.BroadcastReceiver
-import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.os.IBinder
 import android.support.v4.content.LocalBroadcastManager
+import com.entrego.entregouser.storage.EntregoStorage
 import com.entrego.entregouser.util.logd
-import com.entrego.entregouser.web.socket.SocketContract.Companion.ACTION_FILTER
 
 class SocketService : Service() {
     companion object {
@@ -30,28 +27,27 @@ class SocketService : Service() {
             sendDeliveryUpdatedEvent(deliveryId)
         }
     }
-    val mReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context?, intent: Intent?) {
-            if (intent?.hasExtra(KEY_EVENT) == true)
-                when (intent.getStringExtra(KEY_EVENT)) {
-                    SocketServiceEvents.CONNECT.value -> {
-                        mSocketClient?.openConnection()
-                    }
-                    SocketServiceEvents.DISCONNECT.value -> mSocketClient?.closeConnection()
-                    SocketServiceEvents.SEND_TEXT.value -> {
-
-                    }
-                }
-        }
-
-    }
+//    val mReceiver = object : BroadcastReceiver() {
+//        override fun onReceive(context: Context?, intent: Intent?) {
+//            if (intent?.hasExtra(KEY_EVENT) == true)
+//                when (intent.getStringExtra(KEY_EVENT)) {
+//                    SocketServiceEvents.CONNECT.value -> {
+//                        mSocketClient?.openConnection()
+//                    }
+//                    SocketServiceEvents.DISCONNECT.value -> mSocketClient?.closeConnection()
+//                    SocketServiceEvents.SEND_TEXT.value -> {
+//
+//                    }
+//                }
+//        }
+//
+//    }
 
     private fun sendDeliveryUpdatedEvent(deliveryId: Long) {
+        logd("sent intent with deliveryId = $deliveryId")
         val intent = Intent(SocketContract.UpdateDeliveryEvent.ACTION)
         intent.putExtra(SocketContract.UpdateDeliveryEvent.KEY_DELIVERY_ID, deliveryId)
-        LocalBroadcastManager
-                .getInstance(this)
-                .sendBroadcast(intent)
+        LocalBroadcastManager.getInstance(this).sendBroadcast(intent)
     }
 
     override fun onBind(intent: Intent?): IBinder {
@@ -60,9 +56,12 @@ class SocketService : Service() {
 
     override fun onCreate() {
         super.onCreate()
-        mSocketClient = SocketClient(mReceiveMessagesListener)
+        if (applicationContext == null)
+            stopSelf()
+        val token = EntregoStorage.getTokenOrEmpty()
+        mSocketClient = SocketClient(token, mReceiveMessagesListener)
         mSocketClient?.openConnection()
-        LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, IntentFilter(ACTION_FILTER))
+
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -71,7 +70,6 @@ class SocketService : Service() {
 
     override fun onDestroy() {
         super.onDestroy()
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(mReceiver)
         mSocketClient?.closeConnection()
         logd("SocketService destroyed")
     }

@@ -12,18 +12,23 @@ import com.entrego.entregouser.R
 import com.entrego.entregouser.databinding.ActivityEscortBinding
 import com.entrego.entregouser.entity.back.EntregoDeliveryPreview
 import com.entrego.entregouser.entity.back.EntregoWaypoint
-import com.entrego.entregouser.entity.back.getCurrentPoint
+import com.entrego.entregouser.entity.back.HistoryHolder
 import com.entrego.entregouser.entity.common.EntregoMessengerView
+import com.entrego.entregouser.entity.route.EntregoPointBinding
 import com.entrego.entregouser.mvp.view.BaseMvpActivity
 import com.entrego.entregouser.ui.delivery.escort.cancel.CancelDeliveryActivity
 import com.entrego.entregouser.ui.delivery.escort.status.StatusDeliveryActivity
 import com.entrego.entregouser.ui.delivery.finish.FinishDeliveryActivity
 import com.entrego.entregouser.util.GsonHolder
 import com.entrego.entregouser.web.socket.SocketContract
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.model.LatLngBounds
 import kotlinx.android.synthetic.main.activity_escort.*
 import kotlinx.android.synthetic.main.escort_description_layout.*
 import kotlinx.android.synthetic.main.navigation_toolbar.*
 import java.util.*
+
 
 class EscortActivity : BaseMvpActivity<EscortContract.View, EscortContract.Presenter>(),
         EscortContract.View {
@@ -48,6 +53,9 @@ class EscortActivity : BaseMvpActivity<EscortContract.View, EscortContract.Prese
         val delivery = GsonHolder.instance.fromJson(jsonDelivery, EntregoDeliveryPreview::class.java)
         binder = DataBindingUtil.setContentView(this, R.layout.activity_escort)
         binder.delivery = delivery
+        mPresenter.setupDelivery(delivery)
+        mPresenter.loadMapAsync()
+
         setupLayouts()
     }
 
@@ -55,14 +63,13 @@ class EscortActivity : BaseMvpActivity<EscortContract.View, EscortContract.Prese
 
     override fun onStart() {
         super.onStart()
-        mPresenter.loadMapAsync()
         binder.delivery?.id?.let {
             mPresenter.requestDeliveryStatus(it)
         }
 
         registerUpdateDeliveryReceiver()
         registerUpdateMessengerLocationReceiver()
-//        startStatusTimer()
+
 
     }
 
@@ -70,7 +77,6 @@ class EscortActivity : BaseMvpActivity<EscortContract.View, EscortContract.Prese
         super.onStop()
         unregisterUpdateDeliveryReceiver()
         unregisterUpdateMessengerLocationReceiver()
-//        stopStatusTimer()
     }
 
     fun setupLayouts() {
@@ -90,17 +96,14 @@ class EscortActivity : BaseMvpActivity<EscortContract.View, EscortContract.Prese
         escort_messenger_name.text = messenger.name
     }
 
-    override fun setupWayoints(waypoints: Array<EntregoWaypoint>) {
-        setupNextPoint(waypoints.getCurrentPoint())
-    }
 
     override fun showFinishDelivery(deliveryId: Long, messenger: EntregoMessengerView) {
         startActivity(FinishDeliveryActivity.getIntent(this, deliveryId, messenger))
     }
 
 
-    fun setupNextPoint(waypoint: EntregoWaypoint) {
-        escort_next_point_address.text = waypoint.waypoint.address
+    override fun setupNextPoint(waypointAddress: String) {
+        escort_next_point_address.text = waypointAddress
     }
 
     fun startStatusTimer() {
@@ -120,10 +123,12 @@ class EscortActivity : BaseMvpActivity<EscortContract.View, EscortContract.Prese
     }
 
     override fun showStatusDelivery() {
-        if (binder.messenger == null)
+        if (binder.messenger == null || binder.waypoints == null)
             showMessage(R.string.error_no_messenger_yet)
         else
-            startActivity(StatusDeliveryActivity.getIntent(this, binder.messenger, binder.delivery))
+            startActivity(StatusDeliveryActivity.getIntent(this, binder.messenger,
+                    binder.delivery,
+                    binder.waypoints.value))
 
     }
 
@@ -153,14 +158,28 @@ class EscortActivity : BaseMvpActivity<EscortContract.View, EscortContract.Prese
                 .unregisterReceiver(mUpdateMessengerLocationReceiver)
     }
 
+    override fun moveCameraToRouteByBounds(map: GoogleMap, waypoints: Array<EntregoPointBinding>) {
+        val boundsBuilder = LatLngBounds.Builder()
+        waypoints.forEach { boundsBuilder.include(it.point) }
+        val bounds = boundsBuilder.build()
+
+        val width = resources.displayMetrics.widthPixels
+        val height = resources.displayMetrics.heightPixels - escort_navbar.height
+        val padding = (width * 0.12).toInt() // offset from edges of the map 12% of screen
+        map.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding))
+
+    }
+
+    override fun getRoutePath(): String = binder.delivery.route.path.line
+
 
     val mUpdateDeliveryEventReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             if (intent?.hasExtra(SocketContract.UpdateDeliveryEvent.KEY_DELIVERY_ID) == true) {
                 val deliveryId = intent.getLongExtra(SocketContract.UpdateDeliveryEvent.KEY_DELIVERY_ID, 0)
                 binder.delivery?.apply {
-//                    if (deliveryId == this.id)
-                        mPresenter.requestDeliveryStatus(isd)
+                    if (deliveryId == this.id)
+                        mPresenter.requestDeliveryStatus(id)
                 }
             } else throw Exception("No delivery id in intent with UpdateDeliveryEvent")
         }
@@ -179,4 +198,10 @@ class EscortActivity : BaseMvpActivity<EscortContract.View, EscortContract.Prese
             } else throw Exception("No messenger location in intent with UpdateMessengerLocationEvent")
         }
     }
+
+    override fun setupStatusDelivery(waypoints: Array<EntregoWaypoint>) {
+        binder.waypoints = HistoryHolder(waypoints)
+    }
+
+
 }

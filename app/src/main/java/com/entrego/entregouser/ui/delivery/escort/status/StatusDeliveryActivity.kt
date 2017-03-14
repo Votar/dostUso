@@ -10,9 +10,11 @@ import android.widget.ImageView
 import com.entrego.entregouser.R
 import com.entrego.entregouser.databinding.ActivityTrackStatusDeliveryBinding
 import com.entrego.entregouser.entity.back.EntregoDeliveryPreview
+import com.entrego.entregouser.entity.back.EntregoWaypoint
 import com.entrego.entregouser.entity.common.EntregoMessengerView
 import com.entrego.entregouser.mvp.view.BaseMvpActivity
 import com.entrego.entregouser.util.GsonHolder
+import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_track_status_delivery.*
 import kotlinx.android.synthetic.main.navigation_toolbar.*
 import kotlinx.android.synthetic.main.status_service_delivered.*
@@ -20,6 +22,7 @@ import kotlinx.android.synthetic.main.status_service_on_the_way.*
 import kotlinx.android.synthetic.main.status_service_ship_on_way.*
 import kotlinx.android.synthetic.main.status_service_waiting_for_delivery.*
 import kotlinx.android.synthetic.main.status_service_waiting_for_ship.*
+import java.lang.reflect.Type
 
 class StatusDeliveryActivity : BaseMvpActivity<StatusDeliveryContract.View,
         StatusDeliveryContract.Presenter>(),
@@ -28,17 +31,23 @@ class StatusDeliveryActivity : BaseMvpActivity<StatusDeliveryContract.View,
     companion object {
         private const val KEY_MESSENGER = "ext_k_messenger"
         private const val KEY_DELIVERY = "ext_k_delivery"
+        private const val KEY_WAYPOINTS = "ext_k_waypoints"
 
-        fun getIntent(ctx: Context, messenger: EntregoMessengerView, delivery: EntregoDeliveryPreview): Intent {
+        fun getIntent(ctx: Context, messenger: EntregoMessengerView,
+                      delivery: EntregoDeliveryPreview,
+                      waypoints: Array<EntregoWaypoint>): Intent {
             val intent = Intent(ctx, StatusDeliveryActivity::class.java)
             val gson = GsonHolder.instance
             intent.apply {
                 putExtra(KEY_MESSENGER, gson.toJson(messenger, EntregoMessengerView::class.java))
                 putExtra(KEY_DELIVERY, gson.toJson(delivery, EntregoDeliveryPreview::class.java))
+                putExtra(KEY_WAYPOINTS, gson.toJson(waypoints, getArrayType()))
             }
 
             return intent
         }
+
+        fun getArrayType(): Type = object : TypeToken<Array<EntregoWaypoint>>() {}.type
     }
 
     override fun getRootView(): View? = activity_track_status_delivery
@@ -50,11 +59,13 @@ class StatusDeliveryActivity : BaseMvpActivity<StatusDeliveryContract.View,
         binder = DataBindingUtil.setContentView<ActivityTrackStatusDeliveryBinding>(this, R.layout.activity_track_status_delivery)
         val jsonMessenger = intent.getStringExtra(KEY_MESSENGER)
         val jsonDelivery = intent.getStringExtra(KEY_DELIVERY)
+        val jsonWaypoints = intent.getStringExtra(KEY_WAYPOINTS)
         val gson = GsonHolder.instance
         binder.delivery = gson.fromJson(jsonDelivery, EntregoDeliveryPreview::class.java)
         binder.messenger = gson.fromJson(jsonMessenger, EntregoMessengerView::class.java)
+        val waypoints = gson.fromJson<Array<EntregoWaypoint>>(jsonWaypoints, getArrayType())
         nav_toolbar_back.setOnClickListener { NavUtils.navigateUpFromSameTask(this) }
-        mPresenter.buildSwitchListByState(binder.delivery.order.waypoints, getSwitchList())
+        mPresenter.buildSwitchListByState(waypoints, getSwitchList())
     }
 
     fun getSwitchList(): List<ImageView> =

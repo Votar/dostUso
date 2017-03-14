@@ -1,8 +1,8 @@
 package com.entrego.entregouser.util
 
+import android.app.Activity
 import android.app.Dialog
 import android.app.ProgressDialog
-import android.content.Context
 import android.content.DialogInterface
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
@@ -59,9 +59,10 @@ fun ProgressDialog.loadingWithCancel(cancelAction: (dialog: DialogInterface, whi
     this.show()
 }
 
-fun Context.logout() {
+fun Activity.logout() {
     PreferencesManager.setToken("")
     startActivity(AuthActivity.getIntent(this))
+    finish()
 }
 
 fun EntregoRouteModel.getStaticMapUrlWithWaypoints(): String {
