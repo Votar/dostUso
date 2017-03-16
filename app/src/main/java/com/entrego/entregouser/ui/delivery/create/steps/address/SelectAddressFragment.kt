@@ -87,11 +87,11 @@ class SelectAddressFragment : BaseBuilderFragment(), ISelectAddressView, FieldCl
             addressesList.add(select_address_to.text.toString())
             addressesList.addAll((select_address_recycler.adapter as WayPointsAdapter).getAddressList())
             mDeliveryBuilder?.addresses = addressesList
-
+            mDeliveryBuilder?.returnFlag = select_address_return.isChecked
             logd(mDeliveryBuilder.toString())
-            if (mDeliveryBuilder != null)
-                mPresenter.requestDeliveryCreation(mDeliveryBuilder!!)
-
+            mDeliveryBuilder?.let {
+                mPresenter.requestDeliveryCreation(it)
+            }
         }
     }
 

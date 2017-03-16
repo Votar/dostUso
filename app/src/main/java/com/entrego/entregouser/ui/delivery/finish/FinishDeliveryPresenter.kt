@@ -33,10 +33,12 @@ class FinishDeliveryPresenter : FinishDeliveryContract.Presenter,
 
     val mFinishDeliveryListener = object : FinishDelivery.ResponseListener {
         override fun onSuccess() {
+            mView?.hideProgress()
             mView?.onSuccessFinished()
         }
 
         override fun onFailure(message: String?, code: Int?) {
+            mView?.hideProgress()
             mView?.showError(message)
         }
     }

@@ -2,15 +2,12 @@ package com.entrego.entregouser.storage
 
 import android.content.Context
 import com.entrego.entregouser.storage.preferences.PreferencesManager
-import com.entrego.entregouser.storage.realm.RealmContract
 import com.entrego.entregouser.storage.realm.RealmController
 import com.entrego.entregouser.storage.realm.StorageContract
-import com.entrego.entregouser.storage.realm.models.AddressType
+import com.entrego.entregouser.storage.realm.models.CustomerProfileModel
 import com.entrego.entregouser.storage.realm.models.RealmAddressModel
-import io.realm.Realm
 
 object EntregoStorage : StorageContract {
-
 
     override fun getRecentSearch(): List<RealmAddressModel> = RealmController.getRecentSearch()
     override fun addRecentSearch(address: String) {
@@ -53,4 +50,16 @@ object EntregoStorage : StorageContract {
     override fun removeAddress(item: RealmAddressModel) {
         RealmController.removeAddress(item)
     }
+
+    override fun getLastEmail(): String = PreferencesManager.getLastEmail()
+
+    override fun setLastEmail(email: String) {
+        PreferencesManager.setLastEmail(email)
+    }
+
+    override fun saveProfileJson(model: CustomerProfileModel) {
+        PreferencesManager.saveProfileJson(model)
+    }
+
+    override fun getProfile(): CustomerProfileModel? = PreferencesManager.getProfile()
 }

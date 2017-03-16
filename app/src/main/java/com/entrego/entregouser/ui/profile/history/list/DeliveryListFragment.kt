@@ -17,7 +17,7 @@ import com.entrego.entregouser.ui.profile.history.list.model.DeliveryListType
 import kotlinx.android.synthetic.main.fragment_delivery_list.*
 
 
-class DeliveryListFragment private constructor() : BaseMvpFragment<DeliveryListContract.View, DeliveryListContract.Presenter>(), DeliveryListContract.View {
+class DeliveryListFragment : BaseMvpFragment<DeliveryListContract.View, DeliveryListContract.Presenter>(), DeliveryListContract.View {
 
 
     override var mPresenter: DeliveryListContract.Presenter = DeliveryListPresenter()

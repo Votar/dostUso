@@ -1,10 +1,5 @@
 package entrego.com.android.web.api
 
-import com.google.android.gms.maps.model.LatLng
-import com.google.gson.JsonElement
-import retrofit2.Call
-import retrofit2.http.*
-
 /**
  * Created by bertalt on 29.11.16.
  */
@@ -15,26 +10,7 @@ object EntregoApi {
     const val CONTENT_JSON = "content-type: application/json"
     const val TOKEN = "x-auth-token"
 
-    object REQUESTS {
-        const val AUTH = "login"
-        const val REGISTRATION = "messenger/user/register"
-        const val PROFILE = "messenger/user"
-        const val VEHICLE = "messenger/user/vehicle"
-        const val CHANGE_PROFILE = "messenger/user/change"
-        const val CHANGE_PROFILE_PASSWORD = "messenger/user/change/password"
-        const val GET_DELIVERY = "messenger/delivery"
-        const val POST_LOCATION = "messenger/user/track"
-        const val POST_CANCEL_DELIVERY = "messenger/delivery/{id}/cancel"
-        const val POST_ACCEPT_DELIVERY = "messenger/delivery/{id}/accept"
-        const val POST_DECLINE_DELIVERY = "messenger/delivery/{id}/decline"
-        const val POST_CHANGE_STATUS = "messenger/delivery/{id}/status"
-        const val POST_DRIVER_LICENCE = "messenger/user/change/driverLicense"
-        const val POST_PERSON_LICENCE = "messenger/user/change/driverLicense"
-        const val POST_USER_PHOTO =  "messenger/user/change/photo"
-        const val POST_FINISH_DELIVERY ="messenger/delivery/{id}/finish"
-        const val POST_POST_RESTORE_PASSWORD = ""
 
-    }
 
 //    interface Authorization {
 //        @Headers(CONTENT_JSON)

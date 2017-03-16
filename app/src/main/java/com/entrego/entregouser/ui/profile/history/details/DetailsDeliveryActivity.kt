@@ -84,7 +84,7 @@ class DetailsDeliveryActivity : BaseMvpActivity<DetailsDeliveryContract.View,
                             intent.getStringExtra(KEY_DELIVERY), EntregoDeliveryPreview::class.java
                     )
             mBinder.delivery = delivery
-            mBinder.messenger = delivery.order.messenger
+            mBinder.messenger = delivery?.order?.messenger
         }
     }
 

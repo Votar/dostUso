@@ -34,6 +34,9 @@ class AuthActivity : AppCompatActivity(), IAuthView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
         setupListeners()
+        auth_edit_email.setText(EntregoStorage.getLastEmail())
+        if (auth_edit_email.text.toString().isNotEmpty())
+            auth_edit_password.requestFocus()
     }
 
     var progress: ProgressDialog? = null
@@ -58,7 +61,8 @@ class AuthActivity : AppCompatActivity(), IAuthView {
 
 
     override fun goToMainScreen() {
-        EntregoStorage.clear()
+
+
         val intent = Intent(applicationContext, RootActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)

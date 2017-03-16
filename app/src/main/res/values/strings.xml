@@ -147,5 +147,6 @@
     <string name="work_for_us_title">Work for Us</string>
     <string name="work_for_us_message">EntreGO es una plataforma que te conecta automáticamente con miles de clientes a través de tu smartphone en el horario que tu decidas y de la forma mas sencilla, esta aplicación te ayudará a generar nuevos ingresos y vas a poder ser al fin tu propio jefe.</string>
     <string name="text_share_video">Share Video</string>
+    <string name="message_delivery_have_canceled">Order have been canceled</string>
 
 </resources>

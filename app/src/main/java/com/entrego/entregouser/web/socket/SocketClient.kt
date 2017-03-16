@@ -6,27 +6,17 @@ import com.entrego.entregouser.util.logd
 import com.entrego.entregouser.web.socket.model.BaseSocketMessage
 import com.entrego.entregouser.web.socket.model.SocketMessageType
 import com.entrego.entregouser.web.socket.model.UpdateDeliverySocketMessage
-import com.google.gson.reflect.TypeToken
 import com.neovisionaries.ws.client.*
 import entrego.com.android.web.api.EntregoApi
 import java.lang.IllegalStateException
-import java.lang.reflect.Type
 
 class SocketClient(token: String, val serverListener: SocketContract.ReceiveMessagesListener) {
-
-    companion object {
-        @JvmStatic
-        fun getHashMapType(): Type =
-                object : TypeToken<HashMap<String, String>>() {
-                }.type
-
-    }
-
 
     val END_POINT = "ws://62.149.12.54/mobile-gateway-1.0.0-SNAPSHOT/status"
     val TIMEOUT = 5000 //5sec
     var mSocketConnection: WebSocket? = null
     val mGson = GsonHolder.instance
+    private var isNeed = false
 
     init {
         mSocketConnection = WebSocketFactory()
@@ -42,7 +32,10 @@ class SocketClient(token: String, val serverListener: SocketContract.ReceiveMess
 
         override fun onDisconnected(websocket: WebSocket?, serverCloseFrame: WebSocketFrame?, clientCloseFrame: WebSocketFrame?, closedByServer: Boolean) {
             super.onDisconnected(websocket, serverCloseFrame, clientCloseFrame, closedByServer)
-            logd(TAG, "Socket disconnected")
+            logd(TAG, "Socket disconnected is need keep alive $isNeed")
+            if (isNeed)
+                connectAsync()
+
         }
 
         override fun onConnected(websocket: WebSocket?, headers: MutableMap<String, MutableList<String>>?) {
@@ -52,7 +45,6 @@ class SocketClient(token: String, val serverListener: SocketContract.ReceiveMess
 
         override fun onTextMessage(websocket: WebSocket?, text: String) {
             super.onTextMessage(websocket, text)
-//            logd(TAG, text)
             parseMessage(text)
         }
 
@@ -65,11 +57,16 @@ class SocketClient(token: String, val serverListener: SocketContract.ReceiveMess
         fun parseMessage(json: String) {
 
             val baseMessage = GsonHolder.instance.fromJson(json, BaseSocketMessage::class.java)
-
+            //I know, but not now
             when (baseMessage.type) {
-                SocketMessageType.WAYPOINT,
                 SocketMessageType.ORDER_STATUS -> {
-                    logd(TAG, json)
+                    val updateOrderModel = GsonHolder
+                            .instance
+                            .fromJson(json, UpdateDeliverySocketMessage::class.java)
+                    logd(TAG, updateOrderModel.toString())
+                    serverListener.receivedOrderUpdated(updateOrderModel.delivery)
+                }
+                SocketMessageType.WAYPOINT -> {
                     val updateDeliveryModel = GsonHolder
                             .instance
                             .fromJson(json, UpdateDeliverySocketMessage::class.java)
@@ -79,13 +76,24 @@ class SocketClient(token: String, val serverListener: SocketContract.ReceiveMess
                 SocketMessageType.ORDER -> logd(TAG, json)
                 SocketMessageType.TRACK -> logd(TAG, json)
                 SocketMessageType.TRACK_LIST -> logd(TAG, json)
+                SocketMessageType.MESSAGE -> {
+                    logd(json)
+                    serverListener.receivedChatMessage(json)
+                }
                 else -> IllegalStateException("Invalid type of socket message")
             }
         }
     }
 
+    fun sendMessage(message: String) {
+        if (mSocketConnection?.isOpen == true)
+            sendMessage(message)
+        else
+            openConnection()
+    }
 
     fun openConnection() {
+        isNeed = true
         connectAsync()
     }
 
@@ -97,7 +105,9 @@ class SocketClient(token: String, val serverListener: SocketContract.ReceiveMess
                 ?.connectAsynchronously()
     }
 
+
     fun closeConnection() {
+        isNeed = false
         mSocketConnection = mSocketConnection?.disconnect()
     }
 

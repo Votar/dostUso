@@ -9,6 +9,7 @@ import android.support.v4.app.NavUtils
 import android.view.View
 import com.entrego.entregouser.R
 import com.entrego.entregouser.entity.common.EntregoMessengerView
+import com.entrego.entregouser.entity.common.EntregoPriceEntity
 import com.entrego.entregouser.mvp.view.BaseMvpActivity
 import com.entrego.entregouser.ui.delivery.create.RootActivity
 import com.entrego.entregouser.util.GsonHolder
@@ -24,11 +25,13 @@ class FinishDeliveryActivity : FinishDeliveryContract.View,
     companion object {
         private const val KEY_MESSENGER = "ext_k_messenger"
         private const val KEY_DELIVERY_ID = "ext_k_delivery_id"
+        private const val KEY_DELIVERY_SUM = "ext_k_delivery_sum"
 
-        fun getIntent(ctx: Context, deliveryId: Long, messenger: EntregoMessengerView) =
+        fun getIntent(ctx: Context, deliveryId: Long, sum: EntregoPriceEntity, messenger: EntregoMessengerView) =
                 Intent(ctx, FinishDeliveryActivity::class.java).apply {
                     putExtra(KEY_MESSENGER, GsonHolder.instance.toJson(messenger, EntregoMessengerView::class.java))
-                    putExtra(KEY_MESSENGER, deliveryId)
+                    putExtra(KEY_DELIVERY_ID, deliveryId)
+                    putExtra(KEY_DELIVERY_SUM, GsonHolder.instance.toJson(sum, EntregoPriceEntity::class.java))
                 }
     }
 
@@ -59,12 +62,16 @@ class FinishDeliveryActivity : FinishDeliveryContract.View,
             val jsonMessenger = intent.getStringExtra(KEY_MESSENGER)
             val messengerModel = GsonHolder.instance.fromJson(jsonMessenger, EntregoMessengerView::class.java)
             setupMessenger(messengerModel)
-        } else throw Exception("No messenger information in intent")
+        } else throw IllegalStateException("No messenger information in intent")
         if (intent.hasExtra(KEY_DELIVERY_ID)) {
             val deliveryId = intent.getLongExtra(KEY_DELIVERY_ID, 0)
             mPresenter.setupDeliveryId(deliveryId)
-        } else throw Exception("No deliveryId in intent")
-
+        } else throw IllegalStateException("No deliveryId in intent")
+        if (intent.hasExtra(KEY_DELIVERY_SUM)) {
+            val priceJson = intent.getStringExtra(KEY_DELIVERY_SUM)
+            val priceModel = GsonHolder.instance.fromJson(priceJson, EntregoPriceEntity::class.java)
+            finish_total_sum.text = priceModel.toView()
+        }
     }
 
     fun setupMessenger(messenger: EntregoMessengerView) {

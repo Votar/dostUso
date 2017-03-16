@@ -7,10 +7,13 @@ import android.support.v4.content.ContextCompat
 import com.entrego.entregouser.R
 import com.entrego.entregouser.entity.EntregoPhoneModel
 import com.entrego.entregouser.entity.back.*
+import com.entrego.entregouser.entity.delivery.EntregoDeliveryStatuses
 import com.entrego.entregouser.entity.route.EntregoPointBinding
 import com.entrego.entregouser.mvp.presenter.BaseMvpPresenter
+import com.entrego.entregouser.storage.EntregoStorage
 import com.entrego.entregouser.storage.preferences.PreferencesManager
 import com.entrego.entregouser.ui.delivery.escort.chat.ChatMessengerActivity
+import com.entrego.entregouser.ui.delivery.escort.root.model.GetDeliveryRequest
 import com.entrego.entregouser.ui.delivery.escort.root.model.GetDeliveryStatusRequest
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -56,8 +59,6 @@ class EscortPresenter : BaseMvpPresenter<EscortContract.View>(),
     }
 
     val mCallPermissionListener = object : PermissionListener {
-
-
         override fun onPermissionGranted() {
             callMessenger()
         }
@@ -85,9 +86,9 @@ class EscortPresenter : BaseMvpPresenter<EscortContract.View>(),
     }
 
     override fun callMessenger() {
-        if (mMessengerPhone == null) {
+        if (mMessengerPhone == null)
             mView?.showError(R.string.error_no_messenger_yet)
-        } else {
+        else {
             mView?.getAppContext()?.let {
 
                 try {
@@ -106,8 +107,16 @@ class EscortPresenter : BaseMvpPresenter<EscortContract.View>(),
     }
 
     override fun chatMessenger() {
+
+        if (mMessengerPhone == null) {
+            mView?.showError(R.string.error_no_messenger_yet)
+            return
+        }
         val ctx = mView?.getAppContext()
-        ctx?.let { it.startActivity(ChatMessengerActivity.getIntent(it)) }
+        val orderId = mDelivery.order.id
+        val userID = EntregoStorage.getProfile()?.apply {
+            ctx?.let { it.startActivity(ChatMessengerActivity.getIntent(it, orderId, id)) }
+        }
     }
 
     override fun cancelDelivery() {
@@ -137,6 +146,37 @@ class EscortPresenter : BaseMvpPresenter<EscortContract.View>(),
         mMap = map
         setupView()
     }
+
+    val mGetDeliveryResponseLisnter = object : GetDeliveryRequest.ResponseListener {
+        override fun onFailureResponse(code: Int?, message: String?) {
+
+        }
+
+        override fun onSuccessResponse(result: EntregoDeliveryPreview) {
+            mDelivery = result
+            when (result.status) {
+                EntregoDeliveryStatuses.PENDING -> {
+                }
+                EntregoDeliveryStatuses.ASSIGNED -> requestDeliveryStatus(result.id)
+                EntregoDeliveryStatuses.DELIVERED -> {
+                    mView?.showFinishDelivery(result.id, result.price, result.order.messenger)
+                }
+                EntregoDeliveryStatuses.CANCELED -> {
+                    mView?.showMessage(R.string.message_delivery_have_canceled)
+                    mView?.setupMessengerView(null)
+                    mMessengerPhone = null
+                }
+                EntregoDeliveryStatuses.CONFIRMATION -> {
+                }
+            }
+        }
+    }
+
+    override fun requestOrderStatus(deliveryId: Long) {
+        val token = EntregoStorage.getTokenOrEmpty()
+        GetDeliveryRequest().requestAsync(token, deliveryId, mGetDeliveryResponseLisnter)
+    }
+
 
     fun setupView() {
         mMap?.let {

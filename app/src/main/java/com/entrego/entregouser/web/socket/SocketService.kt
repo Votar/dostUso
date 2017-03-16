@@ -23,25 +23,34 @@ class SocketService : Service() {
 
     var mSocketClient: SocketClient? = null
     var mReceiveMessagesListener = object : SocketContract.ReceiveMessagesListener {
+        override fun receivedChatMessage(messageJson: String) {
+            sendChatMessageEvent(messageJson)
+        }
+
+        override fun receivedOrderUpdated(deliveryId: Long) {
+            sendOrderUpdatedEvent(deliveryId)
+        }
+
         override fun receivedDeliveryUpdated(deliveryId: Long) {
             sendDeliveryUpdatedEvent(deliveryId)
         }
+
     }
-//    val mReceiver = object : BroadcastReceiver() {
-//        override fun onReceive(context: Context?, intent: Intent?) {
-//            if (intent?.hasExtra(KEY_EVENT) == true)
-//                when (intent.getStringExtra(KEY_EVENT)) {
-//                    SocketServiceEvents.CONNECT.value -> {
-//                        mSocketClient?.openConnection()
-//                    }
-//                    SocketServiceEvents.DISCONNECT.value -> mSocketClient?.closeConnection()
-//                    SocketServiceEvents.SEND_TEXT.value -> {
-//
-//                    }
-//                }
-//        }
-//
-//    }
+
+    private fun sendChatMessageEvent(messageJson: String) {
+        Intent(SocketContract.ReceivedChatMessageBySocketEvent.ACTION).apply {
+            putExtra(SocketContract.ReceivedChatMessageBySocketEvent.KEY_MESSAGE, messageJson)
+            LocalBroadcastManager.getInstance(applicationContext).sendBroadcast(this)
+        }
+
+    }
+
+    private fun sendOrderUpdatedEvent(deliveryId: Long) {
+        val intent = Intent(SocketContract.UpdateOrderEvent.ACTION)
+        intent.putExtra(SocketContract.UpdateOrderEvent.KEY_DELIVERY_ID, deliveryId)
+        LocalBroadcastManager.getInstance(this).sendBroadcast(intent)
+    }
+
 
     private fun sendDeliveryUpdatedEvent(deliveryId: Long) {
         logd("sent intent with deliveryId = $deliveryId")
@@ -56,16 +65,13 @@ class SocketService : Service() {
 
     override fun onCreate() {
         super.onCreate()
-        if (applicationContext == null)
-            stopSelf()
         val token = EntregoStorage.getTokenOrEmpty()
         mSocketClient = SocketClient(token, mReceiveMessagesListener)
         mSocketClient?.openConnection()
-
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        return super.onStartCommand(intent, flags, startId)
+        return START_NOT_STICKY
     }
 
     override fun onDestroy() {
@@ -73,6 +79,5 @@ class SocketService : Service() {
         mSocketClient?.closeConnection()
         logd("SocketService destroyed")
     }
-
 
 }

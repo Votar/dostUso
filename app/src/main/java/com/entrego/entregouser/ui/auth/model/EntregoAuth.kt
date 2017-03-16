@@ -2,10 +2,10 @@ package com.entrego.entregouser.ui.auth.model
 
 import com.entrego.entregouser.storage.preferences.PreferencesManager
 import com.entrego.entregouser.web.api.ApiCreator
+import com.entrego.entregouser.web.model.response.BaseEntregoResponse
+import com.entrego.entregouser.web.model.response.CommonResponseListener
 import entrego.com.android.web.api.EntregoApi
 import entrego.com.android.web.model.request.auth.AuthBody
-import com.entrego.entregouser.web.model.response.CommonResponseListener
-import com.entrego.entregouser.web.model.response.BaseEntregoResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,7 +36,7 @@ class EntregoAuth(val email: String, val password: String) {
             override fun onResponse(call: Call<BaseEntregoResponse>?, response: Response<BaseEntregoResponse>?) {
                 when (response?.body()?.code) {
                     0 -> {
-                        val token = response?.headers()?.get(EntregoApi.TOKEN)
+                        val token = response.headers()?.get(EntregoApi.TOKEN)
                         token?.let {
                             listener.onSuccessResponse()
                             PreferencesManager.setToken(token)

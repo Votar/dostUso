@@ -3,8 +3,6 @@ package com.entrego.entregouser.entity.route
 class EntregoRouteModel(val path: EntregoPath,
                         var waypoints: Array<EntregoPointBinding>) {
 
-
-
     fun getCurrentPoint(): EntregoPointBinding {
         var currentPoint = waypoints.findLast { (it.status == PointStatus.GOING && waypoints.indexOf(it) != waypoints.lastIndex) }
         if (currentPoint == null) {
