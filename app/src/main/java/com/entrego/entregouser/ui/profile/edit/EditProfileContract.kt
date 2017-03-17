@@ -1,15 +1,15 @@
 package com.entrego.entregouser.ui.profile.edit
 
-import com.entrego.entregouser.entity.profile.UserProfileModel
 import com.entrego.entregouser.mvp.presenter.IBaseMvpPresenter
 import com.entrego.entregouser.mvp.view.IBaseMvpView
+import com.entrego.entregouser.storage.realm.models.CustomerProfileModel
 
 
 interface EditProfileContract {
     interface View : IBaseMvpView {
         fun showProgress()
         fun hideProgress()
-        fun showUserProfile(profile: UserProfileModel)
+        fun showUserProfile(profile: CustomerProfileModel)
         fun setFieldError(field: EditProfileActivity.FIELDS, message: String?)
         fun clearFieldsError()
     }

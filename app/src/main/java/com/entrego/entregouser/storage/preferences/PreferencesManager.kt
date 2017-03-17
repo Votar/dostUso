@@ -46,7 +46,7 @@ object PreferencesManager : PreferencesContract {
 
     override fun getLastEmail(): String = mSharedPref.getString(KEY_LAST_EMAIL, "")
 
-    override fun saveProfileJson(model: CustomerProfileModel) {
+    override fun saveProfile(model: CustomerProfileModel) {
         val serialize = GsonHolder.instance
                 .toJson(model, CustomerProfileModel::class.java)
         mSharedPref

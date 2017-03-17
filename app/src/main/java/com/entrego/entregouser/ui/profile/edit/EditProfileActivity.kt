@@ -3,16 +3,14 @@ package com.entrego.entregouser.ui.profile.edit
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.TextInputLayout
 import android.support.v4.app.NavUtils
 import android.support.v4.content.ContextCompat
 import android.view.View
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.entrego.entregouser.R
-import com.entrego.entregouser.entity.profile.UserProfileModel
 import com.entrego.entregouser.mvp.view.BaseMvpActivity
-import com.entrego.entregouser.util.setDefaultColorSchema
+import com.entrego.entregouser.storage.realm.models.CustomerProfileModel
 import kotlinx.android.synthetic.main.activity_edit_profile.*
 import kotlinx.android.synthetic.main.navigation_toolbar.*
 
@@ -46,6 +44,7 @@ class EditProfileActivity : BaseMvpActivity<EditProfileContract.View, EditProfil
 
     override fun onStart() {
         super.onStart()
+        edit_profile_swipe.isEnabled = false
         val colorAccent = ContextCompat.getColor(this, R.color.colorAccent)
         val colorDarkBlue = ContextCompat.getColor(this, R.color.colorDarkBlue)
         edit_profile_swipe.setColorSchemeColors(colorAccent, colorDarkBlue)
@@ -95,7 +94,7 @@ class EditProfileActivity : BaseMvpActivity<EditProfileContract.View, EditProfil
         edit_profile_swipe.isRefreshing = false
     }
 
-    override fun showUserProfile(profile: UserProfileModel) {
+    override fun showUserProfile(profile: CustomerProfileModel) {
         Glide.with(this)
                 .load("https://s-media-cache-ak0.pinimg.com/736x/a6/92/ae/a692aeb7da83d36f5d8e30dfa0801f9a.jpg")
                 .skipMemoryCache(true)

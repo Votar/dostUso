@@ -51,7 +51,7 @@ class AuthPresenter(val view: IAuthView) : IAuthPresenter {
                 .requestAsync(EntregoStorage.getTokenOrEmpty(),
                         object : GetProfileRequest.ResponseListener {
                             override fun onSuccessResponse(profileJson: CustomerProfileModel) {
-                                EntregoStorage.saveProfileJson(profileJson)
+                                EntregoStorage.saveProfile(profileJson)
                             }
 
                             override fun onFailureResponse(code: Int?, message: String?) {

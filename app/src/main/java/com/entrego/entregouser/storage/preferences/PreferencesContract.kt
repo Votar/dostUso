@@ -11,6 +11,6 @@ interface PreferencesContract {
     fun clearForNewUser()
     fun setLastEmail(email:String)
     fun getLastEmail():String
-    fun saveProfileJson(model: CustomerProfileModel)
+    fun saveProfile(model: CustomerProfileModel)
     fun getProfile(): CustomerProfileModel?
 }

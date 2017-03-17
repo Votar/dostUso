@@ -57,8 +57,8 @@ object EntregoStorage : StorageContract {
         PreferencesManager.setLastEmail(email)
     }
 
-    override fun saveProfileJson(model: CustomerProfileModel) {
-        PreferencesManager.saveProfileJson(model)
+    override fun saveProfile(model: CustomerProfileModel) {
+        PreferencesManager.saveProfile(model)
     }
 
     override fun getProfile(): CustomerProfileModel? = PreferencesManager.getProfile()

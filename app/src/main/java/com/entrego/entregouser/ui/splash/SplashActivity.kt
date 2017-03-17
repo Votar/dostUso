@@ -29,7 +29,7 @@ class SplashActivity : AppCompatActivity() {
         val token = EntregoStorage.getTokenOrEmpty()
         GetProfileRequest().requestAsync(token, object : GetProfileRequest.ResponseListener {
             override fun onSuccessResponse(profileJson: CustomerProfileModel) {
-                EntregoStorage.saveProfileJson(profileJson)
+                EntregoStorage.saveProfile(profileJson)
                 startRootActivity()
             }
 
