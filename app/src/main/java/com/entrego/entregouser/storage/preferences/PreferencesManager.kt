@@ -35,7 +35,7 @@ object PreferencesManager : PreferencesContract {
     }
 
     fun setToken(value: String) {
-        mSharedPref.edit().putString(KEY_TOKEN, value).apply()
+        mSharedPref.edit().putString(KEY_TOKEN, value).commit()
     }
 
     fun getTokenOrEmpty(): String = mSharedPref.getString(KEY_TOKEN, "")

@@ -21,7 +21,6 @@ class DeliveryListPresenter : BaseMvpPresenter<DeliveryListContract.View>(),
 
     override fun attachView(view: DeliveryListContract.View) {
         super.attachView(view)
-        requestUpdate()
     }
 
     override fun requestUpdate() {

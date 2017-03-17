@@ -135,7 +135,6 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
     override fun onDestroy() {
         super.onDestroy()
         mPresenter.onDestroy()
-        stopService(Intent(this, SocketService::class.java))
     }
 
 

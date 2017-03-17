@@ -10,6 +10,7 @@ import com.entrego.entregouser.R
 import com.entrego.entregouser.entity.back.EntregoDeliveryPreview
 import com.entrego.entregouser.entity.delivery.EntregoDeliveryStatuses
 import com.entrego.entregouser.mvp.view.BaseMvpFragment
+import com.entrego.entregouser.ui.delivery.create.steps.confirmation.DeliveryConfirmationFragment
 import com.entrego.entregouser.ui.delivery.escort.root.EscortActivity
 import com.entrego.entregouser.ui.profile.history.details.DetailsDeliveryActivity
 import com.entrego.entregouser.ui.profile.history.list.model.DeliveryHistoryAdapter
@@ -45,14 +46,20 @@ class DeliveryListFragment : BaseMvpFragment<DeliveryListContract.View, Delivery
 
     override fun onStart() {
         super.onStart()
-        val extraType = arguments.getString(ARG_TYPE)
-        mPresenter.setupType(DeliveryListType.valueOf(extraType))
-        setupLayouts()
+        if (delivery_list_recycler.adapter == null)
+            mPresenter.requestUpdate()
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater?.inflate(R.layout.fragment_delivery_list, container, false)
         return view
+    }
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val extraType = arguments.getString(ARG_TYPE)
+        mPresenter.setupType(DeliveryListType.valueOf(extraType))
+        setupLayouts()
     }
 
     fun setupLayouts() {
@@ -80,8 +87,16 @@ class DeliveryListFragment : BaseMvpFragment<DeliveryListContract.View, Delivery
     val mClickItemListener = object : DeliveryHistoryAdapter.ClickItemListener {
         override fun onItemClicked(delivery: EntregoDeliveryPreview) {
             when (delivery.status) {
+
+                EntregoDeliveryStatuses.CONFIRMATION -> {
+                    val fragment = DeliveryConfirmationFragment.getInstance(delivery)
+                    activity.fragmentManager
+                            .beginTransaction()
+                            .replace(R.id.history_delivery_confirmation_container, fragment)
+                            .addToBackStack(DeliveryConfirmationFragment.TAG)
+                            .commit()
+                }
                 EntregoDeliveryStatuses.ASSIGNED,
-                EntregoDeliveryStatuses.CONFIRMATION,
                 EntregoDeliveryStatuses.PENDING -> {
                     val intent = EscortActivity.getIntent(activity, delivery)
                     startActivity(intent)

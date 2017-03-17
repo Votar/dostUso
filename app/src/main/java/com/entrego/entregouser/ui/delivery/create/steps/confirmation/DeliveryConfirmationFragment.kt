@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.entrego.entregouser.R
 import com.entrego.entregouser.entity.back.EntregoDeliveryPreview
-import com.entrego.entregouser.ui.delivery.create.mvp.view.RootActivityController
 import com.entrego.entregouser.ui.delivery.create.steps.confirmation.presenter.AcceptDeliveryPresenter
 import com.entrego.entregouser.ui.delivery.create.steps.confirmation.presenter.IAcceptDeliveryPresenter
 import com.entrego.entregouser.ui.delivery.create.steps.confirmation.view.IAcceptDeliveryView
@@ -81,8 +80,8 @@ class DeliveryConfirmationFragment : Fragment(), IAcceptDeliveryView {
     }
 
     override fun successAccept(confirmedDelivery: EntregoDeliveryPreview) {
-        (activity as? RootActivityController)?.showCreatedDelivery(mDeliveryModel)
-
+//        (activity as? RootActivityController)?.showCreatedDelivery(mDeliveryModel)
+        activity.fragmentManager.popBackStack()
         val intent = EscortActivity.getIntent(activity, confirmedDelivery)
         startActivity(intent)
     }
