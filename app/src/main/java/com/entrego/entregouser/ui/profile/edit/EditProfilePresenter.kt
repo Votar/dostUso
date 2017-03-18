@@ -38,7 +38,7 @@ class EditProfilePresenter : BaseMvpPresenter<EditProfileContract.View>(),
         mView?.clearFieldsError()
         if (password.isEmpty()) {
             mView?.setFieldError(EditProfileActivity.FIELDS.PASSWORD, mView?.getAppContext()?.getString(R.string.error_empty_fields))
-        } else if (password.equals(confPassword, true)) {
+        } else if (!password.equals(confPassword, true)) {
             mView?.setFieldError(EditProfileActivity.FIELDS.CONF_PASSWORD, mView?.getAppContext()?.getString(R.string.error_passwords_not_equals))
         } else {
             mView?.showProgress()

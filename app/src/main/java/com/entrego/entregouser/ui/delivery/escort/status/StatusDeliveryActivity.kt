@@ -5,6 +5,7 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.NavUtils
+import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.ImageView
 import com.entrego.entregouser.R
@@ -16,6 +17,7 @@ import com.entrego.entregouser.mvp.view.BaseMvpActivity
 import com.entrego.entregouser.util.GsonHolder
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_track_status_delivery.*
+import kotlinx.android.synthetic.main.include_delivery_route.*
 import kotlinx.android.synthetic.main.navigation_toolbar.*
 import kotlinx.android.synthetic.main.status_service_delivered.*
 import kotlinx.android.synthetic.main.status_service_on_the_way.*
@@ -56,7 +58,10 @@ class StatusDeliveryActivity : BaseMvpActivity<StatusDeliveryContract.View,
     lateinit var binder: ActivityTrackStatusDeliveryBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binder = DataBindingUtil.setContentView<ActivityTrackStatusDeliveryBinding>(this, R.layout.activity_track_status_delivery)
+        binder = DataBindingUtil
+                .setContentView<ActivityTrackStatusDeliveryBinding>(
+                        this, R.layout.activity_track_status_delivery
+                )
         val jsonMessenger = intent.getStringExtra(KEY_MESSENGER)
         val jsonDelivery = intent.getStringExtra(KEY_DELIVERY)
         val jsonWaypoints = intent.getStringExtra(KEY_WAYPOINTS)
@@ -66,6 +71,13 @@ class StatusDeliveryActivity : BaseMvpActivity<StatusDeliveryContract.View,
         val waypoints = gson.fromJson<Array<EntregoWaypoint>>(jsonWaypoints, getArrayType())
         nav_toolbar_back.setOnClickListener { NavUtils.navigateUpFromSameTask(this) }
         mPresenter.buildSwitchListByState(waypoints, getSwitchList())
+        setupAddressList(waypoints)
+    }
+
+    fun setupAddressList(waypoints: Array<EntregoWaypoint>) {
+        status_address_recycler
+                .layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        status_address_recycler.adapter = AddressListAdapter(waypoints.toList())
     }
 
     fun getSwitchList(): List<ImageView> =

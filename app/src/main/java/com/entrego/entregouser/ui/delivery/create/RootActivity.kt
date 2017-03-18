@@ -101,6 +101,8 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
         drawer_hire_delivery.setOnClickListener {
             activity_root_drawer_layout.closeDrawers()
         }
+        drawer_user_manual.setOnClickListener {mPresenter.showUserManual()
+        }
 
     }
 

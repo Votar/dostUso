@@ -35,7 +35,24 @@
     </string-array>
 
     <array name="faq_titles">
-        <item>I can’t accept the service</item>
+        <item>What is entreGO?</item>
+        <item>How to ask a delivery?</item>
+        <item> How much I pay for a service?</item>
+        <item>Does entreGO delivers in my address?</item>
+        <item> What is the schedule?</item>
+        <item>Who are the messengers?</item>
+        <item> Can I book a service?</item>
+        <item>What can I ask for?</item>
+        <item>What payment methods are accepted?</item>
+        <item> It’s my credit card protected?</item>
+        <item> How does the payment realizes?</item>
+        <item>How can I refund?</item>
+        <item> I want a cancellation</item>
+        <item>What if I had to modify my delivery</item>
+        <item>Do I need to tip the messenger?</item>
+        <item>How can I exchange a promo code?</item>
+        <item>Can I ask for a multiple delivery in a service?</item>
+        <item>Does my shippment has a warranty?</item>
     </array>
 
     <array name="faq_body">

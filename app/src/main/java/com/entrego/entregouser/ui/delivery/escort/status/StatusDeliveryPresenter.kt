@@ -19,12 +19,12 @@ class StatusDeliveryPresenter : BaseMvpPresenter<StatusDeliveryContract.View>(),
 
 
             when (waypoints.getCurrentPoint().status) {
-                PointStatus.PENDING -> switchList[0].loadDrawable(R.drawable.going_dot)
+                PointStatus.PENDING -> switchList[0].loadDrawable(R.drawable.red_dot)
 
                 PointStatus.GOING -> {
                     val currentIndex = 1
                     switchList.loadDone(currentIndex)
-                    switchList[currentIndex].loadDrawable(R.drawable.going_dot)
+                    switchList[currentIndex].loadDrawable(R.drawable.red_dot)
                 }
 
                 PointStatus.WAITING, PointStatus.DONE ->
@@ -33,19 +33,19 @@ class StatusDeliveryPresenter : BaseMvpPresenter<StatusDeliveryContract.View>(),
                         PointStatus.PENDING -> {
                             val currentIndex = 2
                             switchList.loadDone(currentIndex)
-                            switchList[currentIndex].loadDrawable(R.drawable.going_dot)
+                            switchList[currentIndex].loadDrawable(R.drawable.red_dot)
                         }
 
                         PointStatus.GOING -> {
                             val currentIndex = 3
                             switchList.loadDone(currentIndex)
-                            switchList[currentIndex].loadDrawable(R.drawable.going_dot)
+                            switchList[currentIndex].loadDrawable(R.drawable.red_dot)
                         }
 
                         PointStatus.WAITING-> {
                             val currentIndex = 4
                             switchList.loadDone(currentIndex)
-                            switchList[currentIndex].loadDrawable(R.drawable.going_dot)
+                            switchList[currentIndex].loadDrawable(R.drawable.red_dot)
                         }
                         PointStatus.DONE->{
                             val currentIndex = 5

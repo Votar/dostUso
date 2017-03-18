@@ -34,7 +34,8 @@ class SocketClient(token: String, val serverListener: SocketContract.ReceiveMess
             super.onDisconnected(websocket, serverCloseFrame, clientCloseFrame, closedByServer)
             logd(TAG, "Socket disconnected is need keep alive $isNeed")
             if (isNeed)
-                connectAsync()
+                Handler().postDelayed({ connectAsync() }, 1500)
+
 
         }
 
@@ -80,6 +81,7 @@ class SocketClient(token: String, val serverListener: SocketContract.ReceiveMess
                     logd(json)
                     serverListener.receivedChatMessage(json)
                 }
+                SocketMessageType.TRACK_ORDER -> logd(TAG, json)
                 else -> IllegalStateException("Invalid type of socket message")
             }
         }
@@ -98,11 +100,12 @@ class SocketClient(token: String, val serverListener: SocketContract.ReceiveMess
     }
 
     private fun connectAsync() {
-        mSocketConnection?.disconnect()
+        if (mSocketConnection?.isOpen == true) return
         //new socketConnection
         mSocketConnection = mSocketConnection
-                ?.recreate(0)
-                ?.connectAsynchronously()
+                ?.recreate(TIMEOUT)
+
+        mSocketConnection?.connectAsynchronously()
     }
 
 

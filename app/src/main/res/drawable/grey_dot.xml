@@ -4,6 +4,6 @@
     <size
         android:width="@dimen/dot_size"
         android:height="@dimen/dot_size" />
-    <solid android:color="@color/colorDivider" />
+    <solid android:color="@color/colorDarkGrey" />
 
 </shape>

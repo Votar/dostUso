@@ -9,7 +9,7 @@ object PreferencesManager : PreferencesContract {
 
 
     override fun clearForNewUser() {
-        mSharedPref.edit().clear().apply()
+        mSharedPref.edit().clear().commit()
     }
 
     override fun getWorkAddressOrEmpty(): String = mSharedPref.getString(KEY_WORK_ADDRESS, "")

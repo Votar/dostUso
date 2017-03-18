@@ -161,6 +161,7 @@
     <include layout="@layout/horizontal_divider" />
 
     <RelativeLayout
+        android:id="@+id/drawer_user_manual"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground"

@@ -15,4 +15,5 @@ interface IRootPresenter {
     fun showContactUs()
     fun showFaq()
     fun showWorkForUs()
+    fun showUserManual()
 }

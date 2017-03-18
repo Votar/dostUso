@@ -47,9 +47,7 @@
                 <include
                     layout="@layout/include_delivery_route"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    bind:destination="@{delivery.route.destinationPoint}"
-                    bind:start="@{delivery.route.currentPoint}" />
+                    android:layout_height="wrap_content" />
 
                 <include layout="@layout/include_delivery_states" />
 

@@ -3,18 +3,20 @@ package com.entrego.entregouser.ui.delivery.create.mvp.presenter
 import android.app.Activity
 import android.content.Intent
 import com.entrego.entregouser.R
-import com.entrego.entregouser.ui.comon.AboutEntregoActivity
-import com.entrego.entregouser.ui.comon.ContactUsActivity
-import com.entrego.entregouser.ui.comon.DescriptionWithTopicActivity
+import com.entrego.entregouser.ui.comon.*
 import com.entrego.entregouser.ui.delivery.create.mvp.view.IRootView
 import com.entrego.entregouser.ui.faq.FaqListActivity
-import com.entrego.entregouser.ui.profile.history.details.DetailsDeliveryActivity
-import com.entrego.entregouser.ui.promo.WorkForUsActivity
 import com.google.android.gms.maps.model.LatLng
 import com.gun0912.tedpermission.PermissionListener
 import java.util.*
 
 class RootPresenter : IRootPresenter {
+    override fun showUserManual() {
+        mView?.getAppContext()?.apply {
+            startActivity(Intent(this, UserManualActivity::class.java))
+        }
+    }
+
     override fun showWorkForUs() {
         mView?.getAppContext()?.apply {
             startActivity(Intent(this, WorkForUsActivity::class.java))
@@ -33,7 +35,7 @@ class RootPresenter : IRootPresenter {
         sendIntent.action = Intent.ACTION_SEND
         sendIntent.putExtra(Intent.EXTRA_TEXT, "https://www.whatsapp.com/?l=ru")
         sendIntent.type = "text/plain"
-        sendIntent.putExtra(Intent.EXTRA_SUBJECT, "Check out this site!");
+        sendIntent.putExtra(Intent.EXTRA_SUBJECT, "Check out this site!")
         activity.startActivity(sendIntent)
     }
 

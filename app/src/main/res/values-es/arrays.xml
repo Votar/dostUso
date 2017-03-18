@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="intro_descr">
+        <item>Ordena productos de cualquier establecimiento o restaurante en tu ciudad.</item>
+        <item> Nuestros mensajeros efectuarán la compra o buscarán tu pedido y lo llevarán donde estés en minutos.
+        </item>
+        <item>Haz tus pedidos de inmediato o coordina para una fecha posterior.
+            Todo de una manera segura a través de nuestro app.        </item>
+        <item>Elige de nuestro menú o ingresa “Otros” para pedidos especiales.        </item>
+        <item>Ingresa información adicional tal como nombre de contacto o a quién debemos entregar tu envío.</item>
+        <item>Te mostraremos el costo del servicio y podrás verificar tu información de contacto para estar siempre comunicados.</item>
+        <item>Confirma tu método de pago o agrega uno nuevo</item>
+        <item>Rastrea a tu mensajero en tiempo real de una manera constante y segura</item>
+        <item>Calificar asegura brindarte un mejor servicio siempre.</item>
+        <item>La factura llegará vía correo electrónico con todos los detalles de tu transacción.</item>
+    </string-array>
+
+    <string-array name="itro_titles">
+        <item>Lo que quieras</item>
+        <item>Donde quiera que estes</item>
+        <item>Cuando quieras</item>
+        <item>Elige lo que quieras enviar o comprar</item>
+        <item>Escoge la dirección de origen y destino</item>
+        <item>Verifica la información</item>
+        <item>Paga</item>
+        <item>Sigue tu envío</item>
+        <item>Califica a tu mensajero</item>
+        <item>Obten tu factura</item>
+    </string-array>
+
+    <string-array name="tab_titles">
+        <item>Envío</item>
+        <item>Compra / Entrega</item>
+        <item>Tramites</item>
+    </string-array>
+
+    <array name="faq_titles">
+        <item>¿Qué es entreGO?</item>
+        <item>¿Cómo hago un pedido?</item>
+        <item>¿Cuánto cuesta el pedido?</item>
+        <item>¿Llega entreGO a mi área?</item>
+        <item>¿Cuáles son los horarios de servicio?</item>
+        <item>¿Quiénes son los afiliados?</item>
+        <item>¿Puedo agendar un pedido?</item>
+        <item>¿Qué puedo pedir?</item>
+        <item>¿Cuáles son los métodos de pago?</item>
+        <item>¿Es seguro añadir mi tarjeta de crédito?</item>
+        <item>¿Cómo se realiza el pago?</item>
+        <item>¿Cómo funcionan las devoluciones?</item>
+        <item>Quiero cancelar mi pedido</item>
+        <item>¿Y si tengo que modificarlo?</item>
+        <item>¿Tengo que dar propina a los afiliados?</item>
+        <item>¿Cómo uso el código promocional?</item>
+        <item>¿Se puéden realizar múltiples entregas en un solo servicio?</item>
+        <item>¿Qué garantía me pueden dar sobre mi pedido?</item>
+    </array>
+
+
+    <array name="faq_body">
+        <item>EntreGO es una plataforma creada con la idea de facilitarle los servicios de
+            mensajería, compras y transacciones a personas y empresas mediante el uso de la
+            tecnología en el menor tiempo posible.
+        </item>
+        <item>Solo tienes que seguir estos simples pasos:\n
+            1. Elegir una de nuestras categorías.
+            \n2. Poner la dirección donde quieres que recojamos y entreguemos tu entreGO.
+            \n3. Solicitar el servicio.
+            \n4. Relajarte y esperar a que tu entreGO llegue.
+            \n5. Calificar el servicio.
+        </item>
+        <item>
+            Una vez solicitado tu entreGO aparecerá el costo aproximado del servicio en tu pantalla.
+        </item>
+        <item>Actualmente entreGO acaba de empezar operaciones con un soft opening en ciudad de Panamá específicamente en Bella Vista, y San Francisco.
+        </item>
+        <item>Los afiliados están disponible para atenderle de 7:30a.m. a 10:00p.m. los 7 días de la semana.
+        </item>
+        <item>
+            Los afiliados son mensajeros independientes conectados a nuestra plataforma. Son personas que disponen de tiempo libre, vehículo propio y buscan sacarle el máximo rendimiento ayudándote a resolver tus gestiones del modo más rápido, seguro y confiable.
+            ¿Quieres ser un afiliado? Solo tienes que llenar la solicitud que aparece en nuestra página web.
+        </item>
+        <item>
+            ¡Claro! Puedes agendar cuantos entreGO quieras. Solo tienes que elegir la fecha y la hora que quieres que lo entreguemos.
+        </item>
+        <item>
+            Úsanos para comprar cualquier producto o hacer tus envíos y recados.\n
+            Pídenos lo que quieras o se te ocurra hasta un monto de B/. 250.00 y un afiliado ira lo comprará, pagará por ti y te lo llevará donde tu desees.
+        </item>
+        <item>
+            Registrando tu tarjeta en nuestra web o en la aplicación podrás pagar a través de Visa y Master Card de manera segura y automática una vez realizado el servicio.\n
+            A nuestros afiliados. Una vez realizado el servicio a través del punto de venta podrás pagar con Visa, Master Card y tarjeta clave.\n
+            También podrás pagarle en efectivo a  nuestros afiliados una vez realizado el servicio.\n
+            Registrando tu cuenta de Paypal en nuestra web o en la aplicación podrás pagar de manera segura y automática una vez realizado el servicio.
+        </item>
+        <item>
+            Nuestro sistema de pago es totalmente seguro. Una vez introducida tu tarjeta en nuestro sistema la misma es codificada bajo los estándares de Visa/Master Card y solo es descodificada cada vez que se procede a un pago, lo que te garantiza que tus datos no son almacenados ni visibles en ningún otro momento. Este mismo sistema es el utilizado por las mejores compañías del mundo.
+        </item>
+        <item>
+            El pago se hace a través de la aplicación, de la web o con el mensajero solo cuando el servicio a sido validado por el cliente. El afiliado te pedirá que firmes la entrega y en ese momento procederemos a cobrarte por el servicio y la compra, en caso de que hubiera.
+        </item>
+        <item>
+            En entreGO nos encargamos de ponerte en contacto con los afiliados, que actúan como mensajeros. El afiliado realiza la compra en tu nombre. De este modo tú continúas siendo el comprador y consumidor final del producto. Cualquier devolución o queja sobre el producto se realizará directamente en el comercio local por parte del consumidor, aunque nos gustaría que nos  comunicaras a través de nuestro call center. En entreGO contamos con un seguro de responsabilidad civil para responder ante cualquier situación.
+        </item>
+        <item>
+            ¿Necesitas cancelarlo? Ponte en contacto con nuestro call center cuanto antes. Si el pedido ya ha sido aceptado por el afiliado, deberás asumir los costos de transporte y en caso de que se haya efectuado la compra, los costos del producto.
+        </item>
+        <item>
+            Si quieres modificarlo solo tienes que ponerte en contacto con el afiliado o con el call center. En cuanto se acepta el pedido, ambos cuentan con sus teléfonos para resolver cualquier duda que pueda surgir del modo más eficaz.
+        </item>
+        <item>
+            Como tu decidas.\m
+            Si crees que la merece, ¿por qué no?\n
+            Los afiliados son libres de aceptar o no propinas, pero nunca te la pedirán.
+        </item>
+        <item>
+            En tu perfil de la app o de la página web encontrarás la sección \'Código Promocional\'. Solo tienes que introducir el código para activarlo y podrás disfrutar del descuento.
+        </item>
+        <item>
+            ¡Claro que sí!\n
+            Con entreGO podrás realizar entregas múltiples en cada uno de tus servicios de una manera muy fácil, solo tienes que añadir las diferentes direcciones donde quieres que se realicen tus entreGO o recojo y listo.
+        </item>
+        <item>
+            Además de que contamos con un seguro de responsabilidad civil también podrás ver a través de nuestra web o aplicación la trazabilidad en tiempo real de tu envío.
+        </item>
+    </array>
+
+    <array name="cancel_reasons">
+        <item>Cancel reason example</item>
+    </array>
+</resources>

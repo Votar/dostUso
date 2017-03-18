@@ -33,7 +33,6 @@ class AuthPresenter(val view: IAuthView) : IAuthPresenter {
             override fun onSuccessResponse() {
                 view.hideProgress()
                 view.goToMainScreen()
-                EntregoStorage.clear()
                 EntregoStorage.setLastEmail(email)
                 requestProfile()
             }

@@ -1,4 +1,4 @@
-package com.entrego.entregouser.ui.promo
+package com.entrego.entregouser.ui.comon
 
 import android.os.Bundle
 import android.support.v4.app.NavUtils

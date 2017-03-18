@@ -1,5 +1,6 @@
 package com.entrego.entregouser.ui.auth.model
 
+import com.entrego.entregouser.storage.EntregoStorage
 import com.entrego.entregouser.storage.preferences.PreferencesManager
 import com.entrego.entregouser.web.api.ApiCreator
 import com.entrego.entregouser.web.model.response.BaseEntregoResponse
@@ -38,8 +39,9 @@ class EntregoAuth(val email: String, val password: String) {
                     0 -> {
                         val token = response.headers()?.get(EntregoApi.TOKEN)
                         token?.let {
-                            listener.onSuccessResponse()
+                            EntregoStorage.clear()
                             PreferencesManager.setToken(token)
+                            listener.onSuccessResponse()
                         }
                     }
                     else -> listener.onFailureResponse(response?.body()?.code, response?.body()?.message)

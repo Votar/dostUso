@@ -33,13 +33,15 @@ class ChatMessengerPresenter : BaseMvpPresenter<ChatContract.View>(),
         if (message.order != mOrderId) return
 
         if (message.sender == mSenderId)
-            chatMessage = ChatMessageEntity(//message.timestamp,
+            chatMessage = ChatMessageEntity(
                     message.text,
-                    UserType.SELF)
+                    UserType.SELF,
+                    message.timestamp)
         else
-            chatMessage = ChatMessageEntity(//message.timestamp,
+            chatMessage = ChatMessageEntity(
                     message.text,
-                    UserType.OTHER)
+                    UserType.OTHER,
+                    message.timestamp)
 
         mView?.popupMessage(chatMessage)
     }
@@ -64,13 +66,15 @@ class ChatMessengerPresenter : BaseMvpPresenter<ChatContract.View>(),
             val convertedList = reslutList.map {
                 val chatMessage: ChatMessageEntity
                 if (it.sender == mSenderId)
-                    chatMessage = ChatMessageEntity(//message.timestamp,
+                    chatMessage = ChatMessageEntity(
                             it.text,
-                            UserType.SELF)
+                            UserType.SELF,
+                            it.timestamp)
                 else
-                    chatMessage = ChatMessageEntity(//message.timestamp,
+                    chatMessage = ChatMessageEntity(
                             it.text,
-                            UserType.OTHER)
+                            UserType.OTHER,
+                            it.timestamp)
 
                 return@map chatMessage
             }

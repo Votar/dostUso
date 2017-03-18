@@ -41,7 +41,7 @@ class SendChatMessageRequest {
 
             override fun onResponse(call: Call<BaseEntregoResponse>?, response: Response<BaseEntregoResponse>?) {
                 if (response != null)
-                    response.body().apply {
+                    response.body()?.apply {
                         when (code) {
                             0 -> listener?.onSuccessResponse()
                             else -> listener?.onFailureResponse(code, this.message)

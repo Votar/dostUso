@@ -6,5 +6,6 @@ enum class SocketMessageType {
     WAYPOINT,
     TRACK,
     TRACK_LIST,
-    MESSAGE
+    MESSAGE,
+    TRACK_ORDER
 }

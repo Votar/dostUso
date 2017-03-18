@@ -1,5 +1,5 @@
 <resources>
-    <string name="facebook_app_id">1777348322521293</string>
+    <string name="facebook_app_id" translatable="false">1777348322521293</string>
     <string name="app_name">EntregoUser</string>
     <string name="login_with_fb">Log in with Facebook</string>
     <string name="log_in">Log in</string>
@@ -11,7 +11,7 @@
     <string name="cancel_delivery_message">Do you really want to cancel?</string>
     <string name="ui_success_cancellation">Successful cancellation!</string>
 
-    <string name="font_fontFamily_medium">sans-serif-medium</string>
+    <string name="font_fontFamily_medium" translatable="false">sans-serif-medium</string>
     <string name="ui_progress_dialog_title">Loading…</string>
     <string name="ui_loading">Please, wait a second</string>
     <string name="hint_email">Email</string>
@@ -47,8 +47,8 @@
     <string name="all_day">All day</string>
     <string name="booking">Booking</string>
     <string name="size">Size</string>
-    <string name="size_moto"> - 45 x 55 x 55 cm</string>
-    <string name="size_auto">+ 55 x 45 x 55 cm</string>
+    <string name="size_moto" translatable="false"> - 45 x 55 x 55 cm</string>
+    <string name="size_auto" translatable="false">+ 55 x 45 x 55 cm</string>
     <string name="type_transaction">Type of transaction</string>
     <string name="documents">Documents</string>
     <string name="text_package">Package</string>
@@ -84,7 +84,7 @@
     <string name="title_activity_escort">Map</string>
     <string name="text_cancel">Cancel</string>
     <string name="text_status">Status</string>
-    <string name="support_email">operaciones@entregoya.com</string>
+    <string name="support_email" translatable="false">operaciones@entregoya.com</string>
     <string name="send_email">Send by…</string>
     <string name="express_label">Deliver in:</string>
     <string name="express_now">Now!</string>
@@ -99,7 +99,7 @@
     <string name="text_send">send</string>
     <string name="text_add_credit_card">+ Add credit card</string>
     <string name="text_add_money_to_wallet">+ Add money to wallet</string>
-    <string name="text_ukrainian_code">380</string>
+    <string name="text_ukrainian_code" translatable="false">380</string>
     <string name="hint_card_number">Card number</string>
     <string name="text_scan_card">Scan your card</string>
     <string name="text_save_card">Save credit card</string>
@@ -134,20 +134,24 @@
     <string name="user_conditions_title">User conditions</string>
     <string name="user_conditions_text">User conditions</string>
     <string name="about_entrego_title">About EntreGO</string>
-    <string name="about_entrego_text">En entreGO estamos transformando la mensajería de ultima milla, permitiendo que cualquier persona pueda enviar o recibir lo que quiera, cuando quiera. Nuestra revolucionaria plataforma bajo demanda conecta a comercios y particulares con una amplia red de mensajeros independientes a través de tu smartphone o computadora. En segundos y de una manera fácil y segura podrás solucionar todos tus problemas de mensajería conociendo en todo momento la ubicación de tu pedido en tiempo real.</string>
     <string name="text_working_hours">Working hours</string>
     <string name="text_working_hours_value">Mon - Sun 7:30 am - 10:00 pm</string>
     <string name="text_talk_with_agent">Talk with an Agent</string>
     <string name="text_send_by">Send email</string>
 
-    <string name="link_entrego_facebook">https://www.facebook.com/entreGOya/</string>
-    <string name="link_entrego_insta">https://www.instagram.com/entreGOya/</string>
-    <string name="link_entrego_youtube">https://www.youtube.com/channel/UC38z2WAKqdKe2tZioqW8HIw</string>
-    <string name="link_entrego_twitter">https://twitter.com/entregoya</string>
+    <string name="link_entrego_facebook" translatable="false">https://www.facebook.com/entreGOya/</string>
+    <string name="link_entrego_insta" translatable="false">https://www.instagram.com/entreGOya/</string>
+    <string name="link_entrego_youtube" translatable="false">https://www.youtube.com/channel/UC38z2WAKqdKe2tZioqW8HIw</string>
+    <string name="link_entrego_twitter" translatable="false">https://twitter.com/entregoya</string>
     <string name="work_for_us_title">Work for Us</string>
     <string name="work_for_us_message">EntreGO es una plataforma que te conecta automáticamente con miles de clientes a través de tu smartphone en el horario que tu decidas y de la forma mas sencilla, esta aplicación te ayudará a generar nuevos ingresos y vas a poder ser al fin tu propio jefe.</string>
     <string name="text_share_video">Share Video</string>
-    <string name="message_delivery_have_canceled">Order have been canceled</string>
     <string name="success_profile_update">Profile have been updated</string>
+    <string name="about_entrego_text">En entreGO estamos transformando la mensajería de ultima milla, permitiendo que cualquier persona pueda enviar o recibir lo que quiera, cuando quiera. Nuestra revolucionaria plataforma bajo demanda conecta a comercios y particulares con una amplia red de mensajeros independientes a través de tu smartphone o computadora. En segundos y de una manera fácil y segura podrás solucionar todos tus problemas de mensajería conociendo en todo momento la ubicación de tu pedido en tiempo real.</string>
+    <string name="message_delivery_have_canceled">Order have been canceled</string>
+    <string name="text_user_licence">User License</string>
+    <string name="text_copyriting_text">“Copyright” El autor o el que ostenta este derecho, se reserva todos los derechos y por lo tanto nadie puede hacer nada, fuera de las excepciones previstas por la ley, sin tener permiso expreso y generalmente por  escrito, del autor o del tenedor de dicho derecho.</string>
+    <string name="text_politics_title">Politics to apply</string>
+    <string name="text_polotics_text">Entiéndase todas aquellas formas del uso por la cual el tenedor del derecho, el autor expone para el uso de su obra en este caso su aplicación. Es por ello que se determinan las siguientes políticas de copyright y licencia de uso la Política Copyright y Licencia de Uso son de obligatorio cumplimiento para los usuarios desde el momento en que acceda a la descarga de la Aplicación, (Entrego) así como por el uso de nuestra Aplicación o aplicaciones. También aplican estas  Políticas cuando los usuarios accedan a nuestra página web www.entregoya.com Aquellos términos que no se encuentren definidos total o parcialmente en esta Política de Copyright y Licencia de Uso  contendrán dicha definición comprendida a dichos  términos y en las Condiciones del Usuario, las cuales cada usuario podrá leer, revisar y aceptar en el sitio. Esta Política de Copyright y Licencia de Uso es  complementaria a las Condiciones del Usuario, y ambas constituyen, en su conjunto, un solo  documento de obligatorio cumplimiento para los  usuarios y que se acepta y da su consentimiento a través de la descarga y uso de la Aplicación así como por su visita al Sitio Web.\n\n  Podrá conocer las Condiciones del Usuario  Íntegramente en los legales de nuestro sitio web http://www.entregoya.com.\n\n  Fecha de actualización de las Condiciones del  Usuario 18/10/2016</string>
 
 </resources>

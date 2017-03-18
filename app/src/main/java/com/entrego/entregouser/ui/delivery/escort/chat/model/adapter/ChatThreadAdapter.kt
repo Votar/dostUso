@@ -73,7 +73,7 @@ class ChatThreadAdapter : RecyclerView.Adapter<ChatThreadAdapter.ViewHolder>() {
 
     private fun Long.getFormattedTimestamp(): String {
 
-        val date = Date(this)
+        val date = Date(this*1000)
         val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
         val timestamp = format.format(date)
         return timestamp

@@ -17,7 +17,6 @@ import kotlinx.android.synthetic.main.navigation_toolbar.*
 class EditProfileActivity : BaseMvpActivity<EditProfileContract.View, EditProfileContract.Presenter>(),
         EditProfileContract.View {
 
-
     companion object {
         fun getIntent(ctx: Context): Intent = Intent(ctx, EditProfileActivity::class.java)
     }
@@ -129,7 +128,7 @@ class EditProfileActivity : BaseMvpActivity<EditProfileContract.View, EditProfil
 
             FIELDS.PASSWORD -> edit_profile_il_password.error = message
 
-            FIELDS.CONF_PASSWORD -> edit_profile_edit_password_conf.error = message
+            FIELDS.CONF_PASSWORD -> edit_profile_il_password_conf.error = message
 
             else -> showMessage(field.toString() + " " + message)
         }
@@ -141,7 +140,7 @@ class EditProfileActivity : BaseMvpActivity<EditProfileContract.View, EditProfil
         edit_profile_il_phone.error = null
         edit_profile_il_phone_code.error = null
         edit_profile_il_password.error = null
-        edit_profile_edit_password_conf.error = null
+        edit_profile_il_password_conf.error = null
     }
 //        edit_profile_btn_save_pass.setOnClickListener {
 //
