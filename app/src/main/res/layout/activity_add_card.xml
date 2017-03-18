@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorAccent"
-    tools:context="com.entrego.entregouser.ui.profile.payment.card.AddCardActivity">
+    tools:context=".ui.payment.card.AddCardActivity">
 
     <include
         android:id="@+id/add_card_toolbar"

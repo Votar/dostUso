@@ -124,7 +124,38 @@
         </item>
     </array>
 
+    <array name="incidents_faq_titles">
+        <item>Servicio cancelado</item>
+        <item>No puedo escribir la dirección correctamente</item>
+        <item>Issuess to talk with the messenger</item>
+        <item>Temas para hablar con el mensajero</item>
+        <item>Issues in maps traceablity </item>
+        <item>Problemas en la trazabilidad de mapas</item>
+        <item>Problemas con el código promocional</item>
+        <item>The messenger is not the one in the profile</item>
+        <item>El mensajero no es el del perfil</item>
+        <item>Asuntos de la ley</item>
+        <item>Invitaciones no enviadas</item>
+        <item>El precio no aparece</item>
+    </array>
+    <array name="incidents_faq_bodyes">
+        <item>Servicio cancelado</item>
+        <item>No puedo escribir la dirección correctamente</item>
+        <item>Issuess to talk with the messenger</item>
+        <item>Temas para hablar con el mensajero</item>
+        <item>Issues in maps traceablity </item>
+        <item>Problemas en la trazabilidad de mapas</item>
+        <item>Problemas con el código promocional</item>
+        <item>The messenger is not the one in the profile</item>
+        <item>El mensajero no es el del perfil</item>
+        <item>Asuntos de la ley</item>
+        <item>Invitaciones no enviadas</item>
+        <item>El precio no aparece</item>
+    </array>
+
+
     <array name="cancel_reasons">
-        <item>Cancel reason example</item>
+        <item>Me cobran tarifa de cancelación</item>
+        <item>Artículos perdidos</item>
     </array>
 </resources>

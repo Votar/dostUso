@@ -28,12 +28,13 @@ object EscortContract {
         fun callMessenger()
         fun chatMessenger()
         fun shareDelivery()
-        fun loadMapAsync()
+
         fun moveCamera(position: LatLng)
         fun requestDeliveryStatus(deliveryId: Long)
         fun replaceMessengerMarker()
         fun setupWayoints(waypoints: Array<EntregoPointBinding>)
         fun drawRoute(path: String)
+        fun loadMapAsync()
         fun setupDelivery(delivery: EntregoDeliveryPreview)
         fun requestOrderStatus(deliveryId: Long)
     }

@@ -2,7 +2,7 @@ package com.entrego.entregouser.ui.autocomplete
 
 import com.entrego.entregouser.mvp.presenter.IBaseMvpPresenter
 import com.entrego.entregouser.mvp.view.IBaseMvpView
-import com.entrego.entregouser.ui.profile.favorites.FavoritesController
+import com.entrego.entregouser.ui.favorites.FavoritesController
 import com.google.android.gms.location.places.AutocompletePrediction
 import com.google.android.gms.maps.model.LatLngBounds
 import com.miguelcatalan.materialsearchview.MaterialSearchView

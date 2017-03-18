@@ -29,15 +29,15 @@
 
 
             <include
-                android:id="@+id/escort_navbar"
+                android:id="@+id/details_delivery_navbar"
                 layout="@layout/navigation_toolbar" />
 
             <fragment
-                android:id="@+id/escort_map"
+                android:id="@+id/details_delivery_map"
                 android:name="com.google.android.gms.maps.SupportMapFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/escort_navbar" />
+                android:layout_below="@id/details_delivery_navbar" />
 
         </RelativeLayout>
 

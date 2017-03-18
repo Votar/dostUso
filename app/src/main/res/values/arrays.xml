@@ -55,6 +55,37 @@
         <item>Does my shippment has a warranty?</item>
     </array>
 
+    <array name="incidents_faq_titles">
+        <item>Service cancelled</item>
+        <item>I can’t write the address properly</item>
+        <item>Issuess to talk with the messenger</item>
+        <item>Comunication issues with CDA</item>
+        <item>Issues in maps traceablity </item>
+        <item>I have a cancellation rate</item>
+        <item>Promo code issues</item>
+        <item>The messenger is not the one in the profile</item>
+        <item>I don’t get any service check points</item>
+        <item>Bill issues</item>
+        <item>Invitations not sended</item>
+        <item>The price doesn’t appears</item>
+    </array>
+
+    <array name="incidents_faq_bodies">
+        <item>Service cancelled</item>
+        <item>I can’t write the address properly</item>
+        <item>Issuess to talk with the messenger</item>
+        <item>Comunication issues with CDA</item>
+        <item>Issues in maps traceablity </item>
+        <item>I have a cancellation rate</item>
+        <item>Promo code issues</item>
+        <item>The messenger is not the one in the profile</item>
+        <item>I don’t get any service check points</item>
+        <item>Bill issues</item>
+        <item>Invitations not sended</item>
+        <item>The price doesn’t appears</item>
+    </array>
+
+
     <array name="faq_body">
         <item>Por favor prenda y apague su celular o hágale reset.\n\n
             En caso de que el problema persista comuniquese con operaciones.
@@ -62,6 +93,7 @@
     </array>
 
     <array name="cancel_reasons">
-        <item>Cancel reason example</item>
+        <item>I charge cancellation fee</item>
+        <item>Lost articles</item>
     </array>
 </resources>

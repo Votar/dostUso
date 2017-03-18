@@ -140,7 +140,7 @@
                 android:value=".ui.delivery.escort.root.EscortActivity" />
         </activity>
         <activity
-            android:name=".ui.profile.payment.PaymentMethodActivity"
+            android:name="com.entrego.entregouser.ui.payment.PaymentMethodActivity"
             android:parentActivityName=".ui.delivery.create.RootActivity"
             android:screenOrientation="portrait">
             <meta-data
@@ -148,23 +148,23 @@
                 android:value=".ui.delivery.create.RootActivity" />
         </activity>
         <activity
-            android:name=".ui.profile.payment.card.AddCardActivity"
-            android:parentActivityName=".ui.profile.payment.PaymentMethodActivity"
+            android:name="com.entrego.entregouser.ui.payment.card.AddCardActivity"
+            android:parentActivityName="com.entrego.entregouser.ui.payment.PaymentMethodActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.profile.payment.PaymentMethodActivity" />
+                android:value="com.entrego.entregouser.ui.payment.PaymentMethodActivity" />
         </activity>
         <activity
-            android:name=".ui.profile.payment.wallet.AddMoneyToWalletActivity"
-            android:parentActivityName=".ui.profile.payment.PaymentMethodActivity"
+            android:name="com.entrego.entregouser.ui.payment.wallet.AddMoneyToWalletActivity"
+            android:parentActivityName="com.entrego.entregouser.ui.payment.PaymentMethodActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.profile.payment.PaymentMethodActivity" />
+                android:value="com.entrego.entregouser.ui.payment.PaymentMethodActivity" />
         </activity>
         <activity
-            android:name=".ui.profile.history.HistoryDeliveriesActivity"
+            android:name="com.entrego.entregouser.ui.history.HistoryDeliveriesActivity"
             android:launchMode="singleTask"
             android:parentActivityName=".ui.delivery.create.RootActivity"
             android:screenOrientation="portrait">
@@ -173,19 +173,19 @@
                 android:value=".ui.delivery.create.RootActivity" />
         </activity>
         <activity
-            android:name=".ui.profile.history.details.DetailsDeliveryActivity"
+            android:name="com.entrego.entregouser.ui.history.details.DetailsDeliveryActivity"
             android:launchMode="singleTask"
-            android:parentActivityName=".ui.profile.history.HistoryDeliveriesActivity"
+            android:parentActivityName="com.entrego.entregouser.ui.history.HistoryDeliveriesActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.profile.history.HistoryDeliveriesActivity" />
+                android:value="com.entrego.entregouser.ui.history.HistoryDeliveriesActivity" />
         </activity>
         <activity
             android:name=".ui.autocomplete.EntregoAutocompleteActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.profile.favorites.FavoritesActivity"
+            android:name="com.entrego.entregouser.ui.favorites.FavoritesActivity"
             android:parentActivityName=".ui.delivery.create.RootActivity"
             android:screenOrientation="portrait">
             <meta-data
@@ -193,12 +193,12 @@
                 android:value=".ui.delivery.create.RootActivity" />
         </activity>
         <activity
-            android:name=".ui.profile.history.incidents.IncidentsActivity"
-            android:parentActivityName=".ui.profile.history.details.DetailsDeliveryActivity"
+            android:name="com.entrego.entregouser.ui.history.incidents.IncidentsActivity"
+            android:parentActivityName="com.entrego.entregouser.ui.history.details.DetailsDeliveryActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.profile.history.details.DetailsDeliveryActivity" />
+                android:value="com.entrego.entregouser.ui.history.details.DetailsDeliveryActivity" />
         </activity>
         <activity android:name=".ui.comon.DescriptionWithTopicActivity" />
         <activity

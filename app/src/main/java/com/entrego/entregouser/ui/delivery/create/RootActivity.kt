@@ -25,10 +25,10 @@ import com.entrego.entregouser.ui.delivery.create.steps.building.dummy.SelectSer
 import com.entrego.entregouser.ui.delivery.create.steps.building.size.SelectSizeFragment
 import com.entrego.entregouser.ui.delivery.create.steps.confirmation.DeliveryConfirmationFragment
 import com.entrego.entregouser.ui.faq.FaqListActivity
+import com.entrego.entregouser.ui.favorites.FavoritesActivity
+import com.entrego.entregouser.ui.history.HistoryDeliveriesActivity
+import com.entrego.entregouser.ui.payment.PaymentMethodActivity
 import com.entrego.entregouser.ui.profile.edit.EditProfileActivity
-import com.entrego.entregouser.ui.profile.favorites.FavoritesActivity
-import com.entrego.entregouser.ui.profile.history.HistoryDeliveriesActivity
-import com.entrego.entregouser.ui.profile.payment.PaymentMethodActivity
 import com.entrego.entregouser.util.GsonHolder
 import com.entrego.entregouser.util.showSnack
 import com.entrego.entregouser.web.socket.SocketService

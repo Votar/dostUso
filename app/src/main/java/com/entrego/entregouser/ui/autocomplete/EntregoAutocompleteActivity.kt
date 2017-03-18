@@ -16,7 +16,7 @@ import android.view.View
 import com.entrego.entregouser.R
 import com.entrego.entregouser.mvp.view.BaseMvpActivity
 import com.entrego.entregouser.ui.autocomplete.model.AutocompleteAddressAdapter
-import com.entrego.entregouser.ui.profile.favorites.FavoritesFragment
+import com.entrego.entregouser.ui.favorites.FavoritesFragment
 import com.entrego.entregouser.util.GsonHolder
 import com.google.android.gms.location.places.AutocompletePrediction
 import com.google.android.gms.maps.model.LatLngBounds

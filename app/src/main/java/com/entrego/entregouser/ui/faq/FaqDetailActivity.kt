@@ -3,7 +3,6 @@ package com.entrego.entregouser.ui.faq
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.NavUtils
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.entrego.entregouser.R
@@ -25,7 +24,7 @@ class FaqDetailActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        nav_toolbar_back.setOnClickListener { NavUtils.navigateUpFromSameTask(this) }
+        nav_toolbar_back.setOnClickListener { onBackPressed() }
         if (intent != null) {
             val title = intent.getStringExtra(EXT_TITLE)
             val message = intent.getStringExtra(EXT_MSG)
