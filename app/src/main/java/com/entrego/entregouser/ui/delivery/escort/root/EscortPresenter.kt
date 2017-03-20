@@ -64,10 +64,6 @@ class EscortPresenter : BaseMvpPresenter<EscortContract.View>(),
         }
     }
 
-    override fun attachView(view: EscortContract.View) {
-        super.attachView(view)
-    }
-
     override fun detachView() {
         super.detachView()
         mMap = null

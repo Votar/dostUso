@@ -17,17 +17,22 @@ import com.entrego.entregouser.ui.auth.view.IAuthView
 import com.entrego.entregouser.ui.delivery.create.RootActivity
 import com.entrego.entregouser.util.loading
 import com.entrego.entregouser.util.showSnack
+import com.entrego.entregouser.util.showSnackError
 import entrego.com.android.ui.auth.presenter.IAuthPresenter
 import kotlinx.android.synthetic.main.activity_auth.*
 
 class AuthActivity : AppCompatActivity(), IAuthView {
 
     companion object {
+        const val KEY_LOGOUT = "ext_k_logout"
+
         fun getIntent(ctx: Context): Intent {
             val intent = Intent(ctx, AuthActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
             return intent
         }
+        fun getIntentLogout(ctx: Context): Intent =
+                getIntent(ctx).apply { putExtra(KEY_LOGOUT, true) }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,8 +54,13 @@ class AuthActivity : AppCompatActivity(), IAuthView {
         progress?.dismiss()
     }
 
+    fun deserializeIntent() {
+        if (intent.hasExtra(KEY_LOGOUT))
+            activity_auth?.showSnackError(getString(R.string.error_session_expired))
+    }
+
     override fun showMessage(message: String?) {
-        activity_registration?.showSnack(message)
+        activity_auth?.showSnack(message)
     }
 
     val presenter: IAuthPresenter = AuthPresenter(this)
