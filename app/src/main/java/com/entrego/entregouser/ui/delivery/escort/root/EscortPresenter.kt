@@ -19,10 +19,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.gms.maps.model.PolylineOptions
+import com.google.android.gms.maps.model.*
 import com.google.maps.android.PolyUtil
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
@@ -31,7 +28,6 @@ import java.util.*
 
 class EscortPresenter : BaseMvpPresenter<EscortContract.View>(),
         EscortContract.Presenter, OnMapReadyCallback {
-
 
     val mToken: String = PreferencesManager.getTokenOrEmpty()
     //Dnipro
@@ -81,8 +77,16 @@ class EscortPresenter : BaseMvpPresenter<EscortContract.View>(),
         GetDeliveryStatusRequest().requestAsync(mToken, deliveryId, mGetDeliveryStatusListener)
     }
 
-    override fun replaceMessengerMarker() {
-
+    var mMessengerMarker: Marker? = null
+    override fun replaceMessengerMarker(orderId: Long, coordinates: LatLng) {
+        if (mDelivery.order.id == orderId)
+            if (mMessengerMarker == null)
+                mMessengerMarker = mMap?.addMarker(MarkerOptions()
+                        .position(coordinates)
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.map_user_pin))
+                        .draggable(false))
+            else
+                mMessengerMarker?.position = coordinates
     }
 
     override fun callMessenger() {
@@ -117,10 +121,6 @@ class EscortPresenter : BaseMvpPresenter<EscortContract.View>(),
         val userID = EntregoStorage.getProfile()?.apply {
             ctx?.let { it.startActivity(ChatMessengerActivity.getIntent(it, orderId, id)) }
         }
-    }
-
-    override fun cancelDelivery() {
-
     }
 
 

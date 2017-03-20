@@ -19,14 +19,31 @@ import kotlinx.android.synthetic.main.navigation_toolbar.*
 
 class CancelDeliveryActivity : AppCompatActivity(), ICancelDeliveryView {
 
+    companion object {
+        const val KEY_DELIVERY = "ext_k_delivey_id"
+        fun getIntent(ctx: Context, deliveryId: Long): Intent {
+            val intent = Intent(ctx, CancelDeliveryActivity::class.java)
+            intent.putExtra(KEY_DELIVERY, deliveryId)
+            return intent
+        }
+    }
+
     val mPresenter: ICancelDeliveryPresenter = CancelDeliveryPresenter()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cancel_delivery)
         mPresenter.onCreate(this)
         setupLayouts()
-        setupAdapter()
+        deserializeIntent()
     }
+
+    fun deserializeIntent() {
+        if (intent.hasExtra(KEY_DELIVERY)) {
+            setupAdapter(intent.getLongExtra(KEY_DELIVERY, 0))
+        } else throw IllegalStateException("No delivery id in intent")
+
+    }
+
 
     fun setupLayouts() {
         nav_toolbar_back.setOnClickListener { NavUtils.navigateUpFromSameTask(this) }
@@ -36,9 +53,9 @@ class CancelDeliveryActivity : AppCompatActivity(), ICancelDeliveryView {
         cancel_delivery_recycler_reasons.layoutManager = layoutManager
     }
 
-    fun setupAdapter() {
+    fun setupAdapter(deliveryId: Long) {
         val reasons = resources.getStringArray(R.array.cancel_reasons).toList()
-        mPresenter.setupRecyclerView(cancel_delivery_recycler_reasons, reasons)
+        mPresenter.setupRecyclerView(cancel_delivery_recycler_reasons, deliveryId, reasons)
     }
 
     override fun onDestroy() {

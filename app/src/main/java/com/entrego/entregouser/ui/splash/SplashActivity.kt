@@ -22,7 +22,7 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        Handler().postDelayed({ checkToken() }, 1500)
+        Handler().postDelayed({ checkToken() }, 500)
     }
 
     private fun checkToken() {

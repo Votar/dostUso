@@ -81,7 +81,10 @@ class SocketClient(token: String, val serverListener: SocketContract.ReceiveMess
                     logd(json)
                     serverListener.receivedChatMessage(json)
                 }
-                SocketMessageType.TRACK_ORDER -> logd(TAG, json)
+                SocketMessageType.TRACK_ORDER -> {
+                    logd(json)
+                    serverListener.receivedMessengerLocation(json)
+                }
                 else -> IllegalStateException("Invalid type of socket message")
             }
         }

@@ -23,6 +23,7 @@ import com.entrego.entregouser.ui.delivery.finish.FinishDeliveryActivity
 import com.entrego.entregouser.util.GsonHolder
 import com.entrego.entregouser.util.logd
 import com.entrego.entregouser.web.socket.SocketContract
+import com.entrego.entregouser.web.socket.model.MessengerLocationMessage
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLngBounds
@@ -59,6 +60,10 @@ class EscortActivity : BaseMvpActivity<EscortContract.View, EscortContract.Prese
         mPresenter.setupDelivery(delivery)
         mPresenter.loadMapAsync()
         setupLayouts()
+        registerUpdateDeliveryReceiver()
+        registerUpdateMessengerLocationReceiver()
+        registerUpdateOrderReceiver()
+
     }
 
     override fun getRootView(): View = escort_sliding_layout
@@ -69,14 +74,16 @@ class EscortActivity : BaseMvpActivity<EscortContract.View, EscortContract.Prese
             mPresenter.requestDeliveryStatus(it)
         }
 
-        registerUpdateDeliveryReceiver()
-        registerUpdateMessengerLocationReceiver()
-        registerUpdateOrderReceiver()
 
     }
 
     override fun onStop() {
         super.onStop()
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
         unregisterUpdateDeliveryReceiver()
         unregisterUpdateMessengerLocationReceiver()
         unregisterUpdateOrderReceiver()
@@ -84,7 +91,7 @@ class EscortActivity : BaseMvpActivity<EscortContract.View, EscortContract.Prese
 
     fun setupLayouts() {
         escort_cancel_fl.setOnClickListener {
-            startActivity(Intent(this, CancelDeliveryActivity::class.java))
+            startActivity(CancelDeliveryActivity.getIntent(this, binder.delivery.id))
         }
         escort_call_messenger_fl.setOnClickListener { mPresenter.callMessenger() }
         escort_chat_messenger_fl.setOnClickListener { mPresenter.chatMessenger() }
@@ -197,6 +204,11 @@ class EscortActivity : BaseMvpActivity<EscortContract.View, EscortContract.Prese
                                 .UpdateMessengerLocationEvent
                                 .KEY_MESSENGER_LOCATION
                 )
+                val messageModel = GsonHolder.instance
+                        .fromJson(messengerLocationJson, MessengerLocationMessage::class.java)
+
+                mPresenter.replaceMessengerMarker(messageModel.order, messageModel.coordinates)
+
             } else throw IllegalStateException("No messenger location in intent with UpdateMessengerLocationEvent")
         }
     }
@@ -215,6 +227,7 @@ class EscortActivity : BaseMvpActivity<EscortContract.View, EscortContract.Prese
         }
 
     }
+
 
     override fun setupStatusDelivery(waypoints: Array<EntregoWaypoint>) {
         binder.waypoints = HistoryHolder(waypoints)

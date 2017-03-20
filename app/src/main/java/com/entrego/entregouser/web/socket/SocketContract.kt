@@ -13,6 +13,7 @@ interface SocketContract {
         }
     }
 
+
     interface UpdateOrderEvent {
         companion object {
             const val ACTION = "com.entrego.entregouser.web.socket.REQUEST_DELIVERY"
@@ -46,5 +47,6 @@ interface SocketContract {
         fun receivedDeliveryUpdated(deliveryId: Long)
         fun receivedOrderUpdated(deliveryId: Long)
         fun receivedChatMessage(messageJson: String)
+        fun receivedMessengerLocation(messageJson: String)
     }
 }

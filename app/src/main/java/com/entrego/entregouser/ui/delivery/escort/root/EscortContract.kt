@@ -24,14 +24,13 @@ object EscortContract {
     }
 
     interface Presenter : IBaseMvpPresenter<View> {
-        fun cancelDelivery()
         fun callMessenger()
         fun chatMessenger()
         fun shareDelivery()
 
         fun moveCamera(position: LatLng)
         fun requestDeliveryStatus(deliveryId: Long)
-        fun replaceMessengerMarker()
+        fun replaceMessengerMarker(orderId: Long, coordinates: LatLng)
         fun setupWayoints(waypoints: Array<EntregoPointBinding>)
         fun drawRoute(path: String)
         fun loadMapAsync()

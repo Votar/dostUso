@@ -5,7 +5,6 @@ import android.content.DialogInterface
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.RecyclerView
 import com.entrego.entregouser.R
-import com.entrego.entregouser.access.EntregoToken
 import com.entrego.entregouser.storage.preferences.PreferencesManager
 import com.entrego.entregouser.ui.delivery.escort.cancel.ReasonsAdapter
 import com.entrego.entregouser.ui.delivery.escort.cancel.model.CancelDelivery
@@ -13,7 +12,10 @@ import com.entrego.entregouser.ui.delivery.escort.cancel.view.ICancelDeliveryVie
 
 
 class CancelDeliveryPresenter : ICancelDeliveryPresenter {
-    override fun setupRecyclerView(recycler: RecyclerView, reasons: List<String>) {
+
+    var mDeliveryId : Long = 0
+    override fun setupRecyclerView(recycler: RecyclerView, deliveryId: Long, reasons: List<String>) {
+        mDeliveryId = deliveryId
         recycler.adapter = ReasonsAdapter(reasons, mReasonClickedListener)
     }
 
@@ -30,11 +32,11 @@ class CancelDeliveryPresenter : ICancelDeliveryPresenter {
         override fun onClickedReason(reason: String) {
             val ctx = mView?.getActivityContext()
             if (ctx != null)
-                cancelDeliveryDialog(ctx, reason)
+                cancelDeliveryDialog(ctx, mDeliveryId, reason)
         }
     }
 
-    fun cancelDeliveryDialog(context: Context, reason: String) {
+    fun cancelDeliveryDialog(context: Context, deliveryId:Long,reason: String) {
 
         val builder = AlertDialog.Builder(context)
         builder.setMessage(R.string.cancel_delivery_message)
@@ -42,7 +44,6 @@ class CancelDeliveryPresenter : ICancelDeliveryPresenter {
             val token = PreferencesManager.getTokenOrEmpty()
             mView?.onShowProgress()
 
-            val deliveryId = 0
 
             CancelDelivery.executeAsync(token, deliveryId, reason, object : CancelDelivery.CancelDeliveryListener {
                 override fun onSuccessCancel() {

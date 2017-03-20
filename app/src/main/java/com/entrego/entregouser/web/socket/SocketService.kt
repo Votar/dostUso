@@ -23,6 +23,10 @@ class SocketService : Service() {
 
     var mSocketClient: SocketClient? = null
     var mReceiveMessagesListener = object : SocketContract.ReceiveMessagesListener {
+        override fun receivedMessengerLocation(messageJson: String) {
+            sendMessengerLocation(messageJson)
+        }
+
         override fun receivedChatMessage(messageJson: String) {
             sendChatMessageEvent(messageJson)
         }
@@ -35,6 +39,13 @@ class SocketService : Service() {
             sendDeliveryUpdatedEvent(deliveryId)
         }
 
+    }
+
+    private fun sendMessengerLocation(messageJson: String) {
+        Intent(SocketContract.UpdateMessengerLocationEvent.ACTION).apply {
+            putExtra(SocketContract.UpdateMessengerLocationEvent.KEY_MESSENGER_LOCATION, messageJson)
+            LocalBroadcastManager.getInstance(applicationContext).sendBroadcast(this)
+        }
     }
 
     private fun sendChatMessageEvent(messageJson: String) {

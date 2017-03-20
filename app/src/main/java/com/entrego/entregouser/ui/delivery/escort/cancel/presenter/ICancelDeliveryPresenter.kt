@@ -7,5 +7,5 @@ import com.entrego.entregouser.ui.delivery.escort.cancel.view.ICancelDeliveryVie
 interface ICancelDeliveryPresenter {
     fun onCreate(view: ICancelDeliveryView)
     fun onDestroy()
-    fun setupRecyclerView(recycler: RecyclerView, reasons: List<String>)
+    fun setupRecyclerView(recycler: RecyclerView, deliveryId:Long, reasons: List<String>)
 }
