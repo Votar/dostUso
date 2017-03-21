@@ -1,46 +1,58 @@
 package com.entrego.entregouser.ui.delivery.finish.model
 
-import android.os.Handler
 import android.support.annotation.Nullable
+import com.entrego.entregouser.web.api.ApiContract
 import com.entrego.entregouser.web.api.ApiCreator
-import entrego.com.android.web.api.EntregoApi
+import com.entrego.entregouser.web.model.request.delivery.FinishDeliveryBody
 import com.entrego.entregouser.web.model.response.BaseEntregoResponse
+import entrego.com.android.web.api.EntregoApi
 import retrofit2.Call
-import retrofit2.http.Headers
-import retrofit2.http.POST
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.http.*
 
 
 object FinishDelivery {
 
-    const val END_POINT = "/"
+    const val END_POINT = "customer/delivery/{deliveryId}/score/{orderId}"
 
     interface Request {
         @Headers(EntregoApi.CONTENT_JSON)
         @POST(END_POINT)
-        fun parameters(): Call<BaseEntregoResponse>
+        fun parameters(@Header(EntregoApi.TOKEN) toket: String,
+                       @Path("deliveryId") deliveryId: Long,
+                       @Path("orderId") orderId: Long,
+                       @Body body: FinishDeliveryBody): Call<BaseEntregoResponse>
     }
 
     interface ResponseListener {
         fun onSuccess()
-        fun onFailure(message: String?, code: Int?)
+        fun onFailure(code: Int?, message: String?)
     }
 
-    var isRequested: Boolean = false
 
-    fun executeAsync(token: String, deliveryId: Long, comment: String, rating: Float, @Nullable listener: ResponseListener?): Call<BaseEntregoResponse> {
+    fun executeAsync(token: String, orderId: Long, deliveryId: Long, comment: String, rating: Int, @Nullable listener: ResponseListener?): Call<BaseEntregoResponse> {
 
-
+        val body = FinishDeliveryBody(rating, comment)
         val request = ApiCreator.get()
                 .create(Request::class.java)
-                .parameters()
+                .parameters(token, deliveryId, orderId, body)
 
-        if (!isRequested) {
-            isRequested = true
-            Handler().postDelayed({
-                listener?.onSuccess()
-                isRequested = false
-            }, 1500)
-        }
+        request.enqueue(object : Callback<BaseEntregoResponse> {
+            override fun onFailure(call: Call<BaseEntregoResponse>?, t: Throwable?) {
+                listener?.onFailure(null, null)
+            }
+
+            override fun onResponse(call: Call<BaseEntregoResponse>?, response: Response<BaseEntregoResponse>?) {
+                if (response?.body() != null)
+                    response.body().apply {
+                        when (code) {
+                            ApiContract.RESPONSE_OK -> listener?.onSuccess()
+                            else -> listener?.onFailure(code, message)
+                        }
+                    } else listener?.onFailure(null, null)
+            }
+        })
 
         return request
     }

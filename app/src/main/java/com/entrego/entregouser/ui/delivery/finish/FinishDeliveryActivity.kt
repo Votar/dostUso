@@ -25,12 +25,18 @@ class FinishDeliveryActivity : FinishDeliveryContract.View,
     companion object {
         private const val KEY_MESSENGER = "ext_k_messenger"
         private const val KEY_DELIVERY_ID = "ext_k_delivery_id"
+        private const val KEY_ORDER_ID = "ext_k_order_id"
         private const val KEY_DELIVERY_SUM = "ext_k_delivery_sum"
 
-        fun getIntent(ctx: Context, deliveryId: Long, sum: EntregoPriceEntity, messenger: EntregoMessengerView) =
+        fun getIntent(ctx: Context,
+                      deliveryId: Long,
+                      orderId: Long,
+                      sum: EntregoPriceEntity,
+                      messenger: EntregoMessengerView) =
                 Intent(ctx, FinishDeliveryActivity::class.java).apply {
                     putExtra(KEY_MESSENGER, GsonHolder.instance.toJson(messenger, EntregoMessengerView::class.java))
                     putExtra(KEY_DELIVERY_ID, deliveryId)
+                    putExtra(KEY_ORDER_ID, orderId)
                     putExtra(KEY_DELIVERY_SUM, GsonHolder.instance.toJson(sum, EntregoPriceEntity::class.java))
                 }
     }
@@ -58,6 +64,7 @@ class FinishDeliveryActivity : FinishDeliveryContract.View,
     }
 
     fun deserializeIntent() {
+        val orderId: Long
         if (intent.hasExtra(KEY_MESSENGER)) {
             val jsonMessenger = intent.getStringExtra(KEY_MESSENGER)
             val messengerModel = GsonHolder.instance.fromJson(jsonMessenger, EntregoMessengerView::class.java)
@@ -72,6 +79,10 @@ class FinishDeliveryActivity : FinishDeliveryContract.View,
             val priceModel = GsonHolder.instance.fromJson(priceJson, EntregoPriceEntity::class.java)
             finish_total_sum.text = priceModel.toView()
         }
+        if (intent.hasExtra(KEY_ORDER_ID)) {
+            orderId = intent.getLongExtra(KEY_ORDER_ID, 0)
+            mPresenter.setupOrderId(orderId)
+        } else throw IllegalStateException("No orderId in intent")
     }
 
     fun setupMessenger(messenger: EntregoMessengerView) {
@@ -108,7 +119,7 @@ class FinishDeliveryActivity : FinishDeliveryContract.View,
     val sendClickListener = View.OnClickListener {
         val message = finish_delivery_comment.text.toString()
         val rating = finish_delivery_mark.rating
-        mPresenter.sendDeliveryComment(message, rating)
+        mPresenter.sendDeliveryComment(message, rating.toInt())
     }
 
     override fun onSuccessFinished() {

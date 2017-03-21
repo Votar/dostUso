@@ -35,7 +35,7 @@ class EscortPresenter : BaseMvpPresenter<EscortContract.View>(),
     var mMessengerPhone: EntregoPhoneModel? = null
     var mMap: GoogleMap? = null
     var isViewPrepared = false
-    lateinit var mDelivery: EntregoDeliveryPreview
+    var mDelivery: EntregoDeliveryPreview? = null
     val mGetDeliveryStatusListener = object : GetDeliveryStatusRequest.ResponseListener {
         override fun onSuccessResponse(result: EntregoOrderView) {
             mView?.setupNextPoint(result.waypoints.getCurrentPoint().waypoint.address)
@@ -75,7 +75,7 @@ class EscortPresenter : BaseMvpPresenter<EscortContract.View>(),
 
     var mMessengerMarker: Marker? = null
     override fun replaceMessengerMarker(orderId: Long, coordinates: LatLng) {
-        if (mDelivery.order.id == orderId)
+        if (mDelivery?.order?.id != null)
             if (mMessengerMarker == null)
                 mMessengerMarker = mMap?.addMarker(MarkerOptions()
                         .position(coordinates)
@@ -113,9 +113,11 @@ class EscortPresenter : BaseMvpPresenter<EscortContract.View>(),
             return
         }
         val ctx = mView?.getAppContext()
-        val orderId = mDelivery.order.id
+        val orderId = mDelivery?.order?.id
         val userID = EntregoStorage.getProfile()?.apply {
-            ctx?.let { it.startActivity(ChatMessengerActivity.getIntent(it, orderId, id)) }
+            if (orderId != null)
+                ctx?.let { it.startActivity(ChatMessengerActivity.getIntent(it, orderId, id)) }
+            else throw IllegalStateException("Order id in mDelivery is null")
         }
     }
 
@@ -155,7 +157,15 @@ class EscortPresenter : BaseMvpPresenter<EscortContract.View>(),
                 }
                 EntregoDeliveryStatuses.ASSIGNED -> requestDeliveryStatus(result.id)
                 EntregoDeliveryStatuses.DELIVERED -> {
-                    mView?.showFinishDelivery(result.id, result.price, result.order.messenger)
+                    if (result.order != null)
+                        mView?.showFinishDelivery(
+                                result.id,
+                                result.order.id,
+                                result.price,
+                                result.order.messenger
+                        )
+                    else
+                        throw IllegalStateException("Order from getDelivery is null")
                 }
                 EntregoDeliveryStatuses.CANCELED -> {
                     mView?.showMessage(R.string.message_delivery_have_canceled)
@@ -175,11 +185,12 @@ class EscortPresenter : BaseMvpPresenter<EscortContract.View>(),
 
 
     fun setupView() {
-        mMap?.let {
-            drawRoute(mDelivery.route.path.line)
-            mView?.moveCameraToRouteByBounds(it, mDelivery.route.waypoints)
-            setupWayoints(mDelivery.route.waypoints)
+        mDelivery?.apply {
+            drawRoute(route.path.line)
+            mMap?.also { mView?.moveCameraToRouteByBounds(it, route.waypoints) }
+            setupWayoints(route.waypoints)
         }
+
     }
 
 

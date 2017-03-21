@@ -104,6 +104,7 @@ class SocketService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        if (applicationContext == null) stopSelf()
         return START_NOT_STICKY
     }
 

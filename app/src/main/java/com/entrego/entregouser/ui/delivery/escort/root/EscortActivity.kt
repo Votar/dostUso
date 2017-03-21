@@ -108,8 +108,8 @@ class EscortActivity : BaseMvpActivity<EscortContract.View, EscortContract.Prese
     }
 
 
-    override fun showFinishDelivery(deliveryId: Long, price: EntregoPriceEntity, messenger: EntregoMessengerView) {
-        startActivity(FinishDeliveryActivity.getIntent(this, deliveryId, price, messenger))
+    override fun showFinishDelivery(deliveryId: Long, orderId: Long, price: EntregoPriceEntity, messenger: EntregoMessengerView) {
+        startActivity(FinishDeliveryActivity.getIntent(this, deliveryId, orderId, price, messenger))
     }
 
 

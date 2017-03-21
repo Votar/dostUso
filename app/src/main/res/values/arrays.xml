@@ -34,33 +34,13 @@
         <item>Transactions</item>
     </string-array>
 
-    <array name="faq_titles">
-        <item>What is entreGO?</item>
-        <item>How to ask a delivery?</item>
-        <item> How much I pay for a service?</item>
-        <item>Does entreGO delivers in my address?</item>
-        <item> What is the schedule?</item>
-        <item>Who are the messengers?</item>
-        <item> Can I book a service?</item>
-        <item>What can I ask for?</item>
-        <item>What payment methods are accepted?</item>
-        <item> It’s my credit card protected?</item>
-        <item> How does the payment realizes?</item>
-        <item>How can I refund?</item>
-        <item> I want a cancellation</item>
-        <item>What if I had to modify my delivery</item>
-        <item>Do I need to tip the messenger?</item>
-        <item>How can I exchange a promo code?</item>
-        <item>Can I ask for a multiple delivery in a service?</item>
-        <item>Does my shippment has a warranty?</item>
-    </array>
 
     <array name="incidents_faq_titles">
         <item>Service cancelled</item>
         <item>I can’t write the address properly</item>
         <item>Issuess to talk with the messenger</item>
         <item>Comunication issues with CDA</item>
-        <item>Issues in maps traceablity </item>
+        <item>Issues in maps traceablity</item>
         <item>I have a cancellation rate</item>
         <item>Promo code issues</item>
         <item>The messenger is not the one in the profile</item>
@@ -71,91 +51,135 @@
     </array>
 
     <array name="incidents_faq_bodies">
-        <item>Service cancelled</item>
-        <item>I can’t write the address properly</item>
-        <item>Issuess to talk with the messenger</item>
-        <item>Comunication issues with CDA</item>
-        <item>Issues in maps traceablity </item>
-        <item>I have a cancellation rate</item>
-        <item>Promo code issues</item>
-        <item>The messenger is not the one in the profile</item>
-        <item>I don’t get any service check points</item>
-        <item>Bill issues</item>
-        <item>Invitations not sended</item>
-        <item>The price doesn’t appears</item>
+        <item>Turn off and on your mobile or reset it. If trouble persist please contact our help
+            center.
+        </item>
+        <item>Verify the adress or input the points manually. If trouble persist please contact our
+            help center.
+        </item>
+        <item>If you have repeatedly tried and are unable to communicate with your courier, please
+            try our help center.
+        </item>
+        <item>Please email to us so we can provide you personal help.</item>
+        <item>Turn on the GPS in your mobile. If trouble persist please contact our help center.
+        </item>
+        <item>Please contact our help center.</item>
+        <item>Verify the expiration date of the promo, If trouble persist please contact our help
+            center.
+        </item>
+        <item>Please send us an email to:</item>
+        <item>Check that the signal of your mobile be optimal. If trouble persist please contact
+            your messenger, and contact to our help center.
+        </item>
+        <item>If you need a tax bill, check the option that appears in the electronic bill and we
+            deliver it to your email, if you had an unknow payment please contact our Help center.
+        </item>
+        <item>Please, contact our help center.</item>
+        <item>Please, contact our help center.</item>
     </array>
 
 
-        <array name="faq_body">
-            <item>EntreGO es una plataforma creada con la idea de facilitarle los servicios de
-                mensajería, compras y transacciones a personas y empresas mediante el uso de la
-                tecnología en el menor tiempo posible.
-            </item>
-            <item>Solo tienes que seguir estos simples pasos:\n
-                1. Elegir una de nuestras categorías.
-                \n2. Poner la dirección donde quieres que recojamos y entreguemos tu entreGO.
-                \n3. Solicitar el servicio.
-                \n4. Relajarte y esperar a que tu entreGO llegue.
-                \n5. Calificar el servicio.
-            </item>
-            <item>
-                Una vez solicitado tu entreGO aparecerá el costo aproximado del servicio en tu pantalla.
-            </item>
-            <item>Actualmente entreGO acaba de empezar operaciones con un soft opening en ciudad de Panamá específicamente en Bella Vista, y San Francisco.
-            </item>
-            <item>Los afiliados están disponible para atenderle de 7:30a.m. a 10:00p.m. los 7 días de la semana.
-            </item>
-            <item>
-                Los afiliados son mensajeros independientes conectados a nuestra plataforma. Son personas que disponen de tiempo libre, vehículo propio y buscan sacarle el máximo rendimiento ayudándote a resolver tus gestiones del modo más rápido, seguro y confiable.
-                ¿Quieres ser un afiliado? Solo tienes que llenar la solicitud que aparece en nuestra página web.
-            </item>
-            <item>
-                ¡Claro! Puedes agendar cuantos entreGO quieras. Solo tienes que elegir la fecha y la hora que quieres que lo entreguemos.
-            </item>
-            <item>
-                Úsanos para comprar cualquier producto o hacer tus envíos y recados.\n
-                Pídenos lo que quieras o se te ocurra hasta un monto de B/. 250.00 y un afiliado ira lo comprará, pagará por ti y te lo llevará donde tu desees.
-            </item>
-            <item>
-                Registrando tu tarjeta en nuestra web o en la aplicación podrás pagar a través de Visa y Master Card de manera segura y automática una vez realizado el servicio.\n
-                A nuestros afiliados. Una vez realizado el servicio a través del punto de venta podrás pagar con Visa, Master Card y tarjeta clave.\n
-                También podrás pagarle en efectivo a  nuestros afiliados una vez realizado el servicio.\n
-                Registrando tu cuenta de Paypal en nuestra web o en la aplicación podrás pagar de manera segura y automática una vez realizado el servicio.
-            </item>
-            <item>
-                Nuestro sistema de pago es totalmente seguro. Una vez introducida tu tarjeta en nuestro sistema la misma es codificada bajo los estándares de Visa/Master Card y solo es descodificada cada vez que se procede a un pago, lo que te garantiza que tus datos no son almacenados ni visibles en ningún otro momento. Este mismo sistema es el utilizado por las mejores compañías del mundo.
-            </item>
-            <item>
-                El pago se hace a través de la aplicación, de la web o con el mensajero solo cuando el servicio a sido validado por el cliente. El afiliado te pedirá que firmes la entrega y en ese momento procederemos a cobrarte por el servicio y la compra, en caso de que hubiera.
-            </item>
-            <item>
-                En entreGO nos encargamos de ponerte en contacto con los afiliados, que actúan como mensajeros. El afiliado realiza la compra en tu nombre. De este modo tú continúas siendo el comprador y consumidor final del producto. Cualquier devolución o queja sobre el producto se realizará directamente en el comercio local por parte del consumidor, aunque nos gustaría que nos  comunicaras a través de nuestro call center. En entreGO contamos con un seguro de responsabilidad civil para responder ante cualquier situación.
-            </item>
-            <item>
-                ¿Necesitas cancelarlo? Ponte en contacto con nuestro call center cuanto antes. Si el pedido ya ha sido aceptado por el afiliado, deberás asumir los costos de transporte y en caso de que se haya efectuado la compra, los costos del producto.
-            </item>
-            <item>
-                Si quieres modificarlo solo tienes que ponerte en contacto con el afiliado o con el call center. En cuanto se acepta el pedido, ambos cuentan con sus teléfonos para resolver cualquier duda que pueda surgir del modo más eficaz.
-            </item>
-            <item>
-                Como tu decidas.\m
-                Si crees que la merece, ¿por qué no?\n
-                Los afiliados son libres de aceptar o no propinas, pero nunca te la pedirán.
-            </item>
-            <item>
-                En tu perfil de la app o de la página web encontrarás la sección \'Código Promocional\'. Solo tienes que introducir el código para activarlo y podrás disfrutar del descuento.
-            </item>
-            <item>
-                ¡Claro que sí!\n
-                Con entreGO podrás realizar entregas múltiples en cada uno de tus servicios de una manera muy fácil, solo tienes que añadir las diferentes direcciones donde quieres que se realicen tus entreGO o recojo y listo.
-            </item>
-            <item>
-                Además de que contamos con un seguro de responsabilidad civil también podrás ver a través de nuestra web o aplicación la trazabilidad en tiempo real de tu envío.
-            </item>
-        </array>
+    <array name="faq_titles">
+        <item>What is entreGO?</item>
+        <item>How to ask a delivery?</item>
+        <item>How much I pay for a service?</item>
+        <item>Does entreGO delivers in my address?</item>
+        <item>What is the schedule?</item>
+        <item>Who are the messengers?</item>
+        <item>Can I book a service?</item>
+        <item>What can I ask for?</item>
+        <item>What payment methods are accepted?</item>
+        <item>It’s my credit card protected?</item>
+        <item>How does the payment realizes?</item>
+        <item>How can I refund?</item>
+        <item>I want a cancellation</item>
+        <item>What if I had to modify my delivery</item>
+        <item>Do I need to tip the messenger?</item>
+        <item>How can I exchange a promo code?</item>
+        <item>Can I ask for a multiple delivery in a service?</item>
+        <item>Does my shippment has a warranty?</item>
+    </array>
+
+    <array name="faq_body">
+        <item>EntreGO is transforming shipment, allowing anyone to send or receive what they want,
+            whenever they want. Our revolutionary on-demand platform connects businesses and people
+            with an extensive network of independent messengers through your smartphone or computer.
+            In seconds and in an easy and safe way you can solve all your deliver problems knowing
+            the status of your order in real time.
+        </item>
+        <item>Just has to follow this simple steps
+            \n 1. Select one of our categories
+            \n 2.Set the address of origin and delivery of your entreGO
+            \n3. Request the service
+            \n4. Relax and wait for entreGo to comes
+            \n 5 Score the service
+        </item>
+        <item>
+            Once you request your delivery antes an approximately fee will display
+        </item>
+        <item>EntreGO has just started operations in Panama Bella Vista and San Francisco
+            specifically
+        </item>
+        <item>The messengers are available from 7:30 to 22:00 all days of the week
+        </item>
+        <item>
+            Messengers are independent people with free time and a vehicle who just wants to made
+            use of them and help you get your shipments done fast and safe
+        </item>
+
+        <item>
+            Of course, you can book all the services you want! just. set the time you want to get them.
+        </item>
+        <item>
+            request us to buy any product or send any delivery
+            \n request us anything up to B/. 250.00 and a messenger will brought and deliver it for you
+        </item>
+        <item>
+            Register your credit card in our website or app and you could pay with VISA or MASTER CARD safely and automatically\n
+            To our messengers. Once the service is done through the bank terminal you can pay with Visa, Master Card and key card.\n
+            You can also pay in cash to the messenger once the service is done.\n
+            Registering your Paypal account on our website or in the application you can pay safely and automatically once the service is done.
+        </item>
+        <item>
+            Our payment system is totally safe. Once your card is add in our system, it is cypher according to Visa / Master Card standards and only decoded every time a payment is made, which guarantees that your data is not stored or visible at any other time. This same system is used by the best companies in the world.
+        </item>
+        <item>
+            Payment is made through the application, the web or the messenger only when the service has been validated by the client. The affiliate will ask you to sign the delivery and at that time we will proceed to charge you for the service and the purchase, if any.
+        </item>
+        <item>
+            In entrust we take care of contacting the affiliates, who act as messengers. The affiliate makes the purchase on your behalf. In this way you continue to be the buyer and final consumer of the product. Any return or complaint about the product will be made directly in the local trade by the consumer, although we would like you to communicate through our call center. At entrGO we have a liability insurance to respond to any situation.
+        </item>
+        <item>
+            Do you need to cancel it? Get in touch with our call center as soon as possible. If the order has already been accepted by the member, you must assume the costs of transportation and, if the purchase has been made, the costs of the product.
+        </item>
+        <item>
+            If you want to change it just have to contact the affiliate or the call center. As soon as the order is accepted, both have their phones to resolve any doubts that may arise in the most effective way.
+        </item>
+        <item>
+            Whatever you chosse.\n
+            If you think they deserve it, why not?\n
+            Messengers are free to accept tips but they never ask for them.
+        </item>
+        <item>
+            In your profile in the app or in the website you\'ll find the promo code section, just enter it and you\'ll get your disscount applied
+        </item>
+        <item>
+            Yes, of course!\n
+            With entreGO you could had multiple deliveries in each of your services, just add the address where you want entreGO to deliver it
+        </item>
+        <item>
+            In addition to having a liability insurance you can also track your shipment in real-time trought your app or web browser.
+        </item>
+    </array>
 
     <array name="cancel_reasons">
         <item>I charge cancellation fee</item>
-        <item>Lost articles</item>
+        <item>Lost things</item>
+        <item>Rate doubts</item>
+        <item>I had problems with the route </item>
+        <item>Feedback on the messenger</item>
+        <item>Service comments</item>
+        <item>Comments on the arrival of my package</item>
+        <item>Troubles with billing</item>
     </array>
 </resources>

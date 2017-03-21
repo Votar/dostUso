@@ -16,7 +16,7 @@ object EscortContract {
         fun getSupportFragmentManager(): android.support.v4.app.FragmentManager
         fun setupMessengerView(messenger: EntregoMessengerView?)
         fun setupNextPoint(waypointAddress: String)
-        fun showFinishDelivery(deliveryId: Long, price: EntregoPriceEntity, messenger: EntregoMessengerView)
+        fun showFinishDelivery(deliveryId: Long, orderId: Long, price: EntregoPriceEntity, messenger: EntregoMessengerView)
         fun setupStatusDelivery(waypoints: Array<EntregoWaypoint>)
         fun showStatusDelivery()
         fun getRoutePath(): String

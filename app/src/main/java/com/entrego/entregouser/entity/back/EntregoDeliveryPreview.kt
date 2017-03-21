@@ -15,7 +15,7 @@ class EntregoDeliveryPreview(val pickup: Long,
                              val status: EntregoDeliveryStatuses,
                              val category: EntregoServiceCategory,
                              val id: Long,
-                             val order: EntregoOrderView,
+                             val order: EntregoOrderView?,
                              val type: EntregoTimingCategory,
                              val route: EntregoRouteModel,
                              val price: EntregoPriceEntity) {

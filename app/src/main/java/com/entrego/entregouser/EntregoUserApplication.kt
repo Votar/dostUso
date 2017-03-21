@@ -16,7 +16,6 @@ class EntregoUserApplication : MultiDexApplication() {
         FacebookSdk.sdkInitialize(applicationContext)
         AppEventsLogger.activateApp(this)
         Fabric.with(this, Crashlytics())
-
     }
 
 

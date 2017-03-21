@@ -28,11 +28,11 @@ class SocketClient(token: String, val serverListener: SocketContract.ReceiveMess
     inner class SocketListener : WebSocketAdapter() {
         val TAG = "SOCKET_RECEIVER"
         val TAG_ERROR = "SOCKET_ERROR"
-        val RECONNECT_TIMEOUT = 5000 // sec
 
         override fun onDisconnected(websocket: WebSocket?, serverCloseFrame: WebSocketFrame?, clientCloseFrame: WebSocketFrame?, closedByServer: Boolean) {
             super.onDisconnected(websocket, serverCloseFrame, clientCloseFrame, closedByServer)
             logd(TAG, "Socket disconnected is need keep alive $isNeed")
+            logd(TAG, "Is closed by server $closedByServer")
             if (isNeed)
                 Handler().postDelayed({ connectAsync() }, 1500)
 

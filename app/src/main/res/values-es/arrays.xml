@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string-array name="intro_descr">
         <item>Ordena productos de cualquier establecimiento o restaurante en tu ciudad.</item>
         <item> Nuestros mensajeros efectuarán la compra o buscarán tu pedido y lo llevarán donde estés en minutos.
@@ -14,7 +15,6 @@
         <item>Calificar asegura brindarte un mejor servicio siempre.</item>
         <item>La factura llegará vía correo electrónico con todos los detalles de tu transacción.</item>
     </string-array>
-
     <string-array name="itro_titles">
         <item>Lo que quieras</item>
         <item>Donde quiera que estes</item>
@@ -54,7 +54,7 @@
         <item>¿Tengo que dar propina a los afiliados?</item>
         <item>¿Cómo uso el código promocional?</item>
         <item>¿Se puéden realizar múltiples entregas en un solo servicio?</item>
-        <item>¿Qué garantía me pueden dar sobre mi pedido?</item>
+        <item>¿Qué garantía me pueden dar sobre mi pedido?</item> <!--18-->
     </array>
 
 
@@ -81,6 +81,7 @@
             Los afiliados son mensajeros independientes conectados a nuestra plataforma. Son personas que disponen de tiempo libre, vehículo propio y buscan sacarle el máximo rendimiento ayudándote a resolver tus gestiones del modo más rápido, seguro y confiable.
             ¿Quieres ser un afiliado? Solo tienes que llenar la solicitud que aparece en nuestra página web.
         </item>
+
         <item>
             ¡Claro! Puedes agendar cuantos entreGO quieras. Solo tienes que elegir la fecha y la hora que quieres que lo entreguemos.
         </item>
@@ -140,24 +141,31 @@
         <item>Invitaciones no enviadas</item>
         <item>El precio no aparece</item>
     </array>
+
     <array name="incidents_faq_bodyes">
-        <item>Servicio cancelado</item>
-        <item>No puedo escribir la dirección correctamente</item>
-        <item>Issuess to talk with the messenger</item>
-        <item>Temas para hablar con el mensajero</item>
-        <item>Issues in maps traceablity </item>
-        <item>Problemas en la trazabilidad de mapas</item>
-        <item>Problemas con el código promocional</item>
-        <item>The messenger is not the one in the profile</item>
-        <item>El mensajero no es el del perfil</item>
-        <item>Asuntos de la ley</item>
-        <item>Invitaciones no enviadas</item>
-        <item>El precio no aparece</item>
+        <item>Apaga y prende el celular o resetealo. En caso de que el problema persista comuníquese con nuestro centro de atención.</item>
+        <item>Verifique que sea una dirección, local existente o coloque los puntos manualmente en su celular, si el problema persiste comuníquese con nuestro centro de atención.</item>
+        <item>En caso de haber tratado en reiteradas ocasiones y no poder comunicarse con su mensajero, por favor intente a través de nuestro centro de atención.</item>
+        <item>Por favor escribanos y en breves momentos atenderemos su necesidad.</item>
+        <item>Confirme que el localizador de su celular este activado, si el problema persiste comuníquese con nuestro centro de atención.</item>
+        <item>Por favor comuníquese con nuestro centro de atención.</item>
+        <item>Verifique la vigencia de la promoción e intente reingresarlo, si el problema persiste por favor comuníquese con nuestro centro de atención.</item>
+        <item>Por favor envíenos un correo a:</item>
+        <item>Verifique que la señal de su teléfono sea optima, si persiste el problema comuníqueselo a su mensajero, si no se resuelve el problema comuníquese con nuestro centro de servicio.</item>
+        <item>Si necesita una factura fiscal, cliquear en la opción que aparece en el recibo electrónico y le haremos llegar la misma. Si tuvo un cobro errado por favor notificarnos a través de nuestro centro de atención.</item>
+        <item>Por favor comuníquese con nuestro centro de atención.</item>
+        <item>Por favor comuníquese con nuestro centro de servicio.</item>
     </array>
 
 
     <array name="cancel_reasons">
         <item>Me cobran tarifa de cancelación</item>
         <item>Artículos perdidos</item>
+        <item>Dudas de tarifa</item>
+        <item>Tuve problemas con la ruta </item>
+        <item>Comentarios sobre el mensajero</item>
+        <item> Comentarios sobre el servicio</item>
+        <item>Cometarios sobre el arribo de mi paquete</item>
+        <item>Facturación</item>
     </array>
 </resources>

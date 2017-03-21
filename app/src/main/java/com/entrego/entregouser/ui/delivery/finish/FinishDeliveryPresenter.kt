@@ -12,18 +12,26 @@ class FinishDeliveryPresenter : FinishDeliveryContract.Presenter,
 
 
     var mLastRequest: Call<BaseEntregoResponse>? = null
-    var mDeliveryId: Long? = null
-    override fun sendDeliveryComment(message: String, rating: Float) {
+    var mDeliveryId: Long = 0
+    var mOrderId: Long = 0
+    override fun sendDeliveryComment(message: String, rating: Int) {
 
-        if (mDeliveryId == null)
-            throw Exception("DeliveryId is null")
+        if (mDeliveryId == 0L)
+            throw IllegalArgumentException("deliveryId is null")
+        if (mOrderId == 0L)
+            throw IllegalArgumentException("orderId is null")
 
-        mDeliveryId?.let {
-            mView?.showProgress()
-            val token = PreferencesManager.getTokenOrEmpty()
-            mLastRequest = FinishDelivery.executeAsync(token, it, message, rating, mFinishDeliveryListener)
-        }
 
+        mView?.showProgress()
+        val token = PreferencesManager.getTokenOrEmpty()
+        mLastRequest = FinishDelivery.executeAsync(
+                token,
+                mOrderId,
+                mDeliveryId,
+                message,
+                rating,
+                mFinishDeliveryListener
+        )
 
     }
 
@@ -37,7 +45,7 @@ class FinishDeliveryPresenter : FinishDeliveryContract.Presenter,
             mView?.onSuccessFinished()
         }
 
-        override fun onFailure(message: String?, code: Int?) {
+        override fun onFailure(code: Int?, message: String?) {
             mView?.hideProgress()
             mView?.showError(message)
         }
@@ -45,5 +53,9 @@ class FinishDeliveryPresenter : FinishDeliveryContract.Presenter,
 
     override fun setupDeliveryId(deliveryId: Long) {
         mDeliveryId = deliveryId
+    }
+
+    override fun setupOrderId(orderId: Long) {
+        mOrderId = orderId
     }
 }

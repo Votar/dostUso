@@ -53,10 +53,11 @@ class IncidentsActivity : AppCompatActivity() {
         if (intent.hasExtra(KEY_DELIVERY)) {
             val json = intent.getStringExtra(KEY_DELIVERY)
             val delivery = GsonHolder.instance.fromJson(json, EntregoDeliveryPreview::class.java)
-
-            setupAddressList(delivery.order.waypoints.toList())
+            if (delivery.order != null){
+                setupAddressList(delivery.order.waypoints.toList())
+                setupMessengerView(delivery.order.messenger)
+            }
             setupStaticMap(delivery.route)
-            setupMessengerView(delivery.order.messenger)
             incidents_time.text = delivery.formattedPickup()
         } else throw IllegalStateException("No delivery in intent")
     }
