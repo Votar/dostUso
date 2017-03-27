@@ -39,9 +39,7 @@ class EscortPresenter : BaseMvpPresenter<EscortContract.View>(),
     val mGetDeliveryStatusListener = object : GetDeliveryStatusRequest.ResponseListener {
         override fun onSuccessResponse(result: EntregoOrderView) {
             mView?.setupNextPoint(result.waypoints.getCurrentPoint().waypoint.address)
-            mView?.setupMessengerView(result.messenger)
             mView?.setupStatusDelivery(result.waypoints)
-            mMessengerPhone = result.messenger.phone
         }
 
         override fun onFailureResponse(code: Int?, message: String?) {
@@ -114,7 +112,7 @@ class EscortPresenter : BaseMvpPresenter<EscortContract.View>(),
         }
         val ctx = mView?.getAppContext()
         val orderId = mDelivery?.order?.id
-        val userID = EntregoStorage.getProfile()?.apply {
+        EntregoStorage.getProfile()?.apply {
             if (orderId != null)
                 ctx?.let { it.startActivity(ChatMessengerActivity.getIntent(it, orderId, id)) }
             else throw IllegalStateException("Order id in mDelivery is null")
@@ -155,7 +153,11 @@ class EscortPresenter : BaseMvpPresenter<EscortContract.View>(),
             when (result.status) {
                 EntregoDeliveryStatuses.PENDING -> {
                 }
-                EntregoDeliveryStatuses.ASSIGNED -> requestDeliveryStatus(result.id)
+                EntregoDeliveryStatuses.ASSIGNED -> {
+                    mView?.setupMessengerView(result.order?.messenger)
+                    mMessengerPhone = result.order?.messenger?.phone
+                    requestDeliveryStatus(result.id)
+                }
                 EntregoDeliveryStatuses.DELIVERED -> {
                     if (result.order != null)
                         mView?.showFinishDelivery(

@@ -13,6 +13,7 @@ import com.entrego.entregouser.R
 import com.entrego.entregouser.entity.back.EntregoDeliveryPreview
 import com.entrego.entregouser.entity.delivery.DeliveryEntityBuilder
 import com.entrego.entregouser.entity.delivery.EntregoServiceCategory
+import com.entrego.entregouser.storage.EntregoStorage
 import com.entrego.entregouser.ui.delivery.create.mvp.model.FragmentType
 import com.entrego.entregouser.ui.delivery.create.mvp.presenter.IRootPresenter
 import com.entrego.entregouser.ui.delivery.create.mvp.presenter.RootPresenter
@@ -63,8 +64,8 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
         mPresenter.onCreate(this)
         setupLayouts()
         setupListeners()
+        val token = EntregoStorage.getTokenOrEmpty()
         startService(Intent(this, SocketService::class.java))
-
     }
 
     fun setupLayouts() {
@@ -101,7 +102,8 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
         drawer_hire_delivery.setOnClickListener {
             activity_root_drawer_layout.closeDrawers()
         }
-        drawer_user_manual.setOnClickListener {mPresenter.showUserManual()
+        drawer_user_manual.setOnClickListener {
+            mPresenter.showUserManual()
         }
 
     }

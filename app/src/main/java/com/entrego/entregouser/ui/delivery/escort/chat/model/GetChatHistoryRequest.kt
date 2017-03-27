@@ -1,9 +1,9 @@
 package com.entrego.entregouser.ui.delivery.escort.chat.model
 
 import com.entrego.entregouser.web.api.ApiCreator
+import com.entrego.entregouser.web.api.EntregoApi
 import com.entrego.entregouser.web.model.response.chat.EntregoGetChatHistoryResponse
 import com.entrego.entregouser.web.socket.model.ChatSocketMessage
-import entrego.com.android.web.api.EntregoApi
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

@@ -19,6 +19,7 @@
         android:layout_height="match_parent"
         android:gravity="bottom"
         app:umanoOverlay="true"
+        app:umanoFadeColor="@android:color/transparent"
         app:umanoPanelHeight="176dp"
         app:umanoShadowHeight="0dp">
 

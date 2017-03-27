@@ -2,10 +2,10 @@ package com.entrego.entregouser.ui.auth.restore.model
 
 import android.os.Handler
 import com.entrego.entregouser.web.api.ApiCreator
-import entrego.com.android.web.api.EntregoApi
-import entrego.com.android.web.model.request.auth.RestorePasswordBody
-import com.entrego.entregouser.web.model.response.CommonResponseListener
+import com.entrego.entregouser.web.api.EntregoApi
 import com.entrego.entregouser.web.model.response.BaseEntregoResponse
+import com.entrego.entregouser.web.model.response.CommonResponseListener
+import entrego.com.android.web.model.request.auth.RestorePasswordBody
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.Headers

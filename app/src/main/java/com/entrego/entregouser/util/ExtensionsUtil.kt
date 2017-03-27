@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.support.v4.widget.SwipeRefreshLayout
@@ -14,6 +15,7 @@ import com.entrego.entregouser.entity.route.EntregoPointBinding
 import com.entrego.entregouser.entity.route.EntregoRouteModel
 import com.entrego.entregouser.storage.preferences.PreferencesManager
 import com.entrego.entregouser.ui.auth.AuthActivity
+import com.entrego.entregouser.web.socket.SocketService
 
 fun View.showSnack(message: String?) {
     val text: String
@@ -60,6 +62,7 @@ fun ProgressDialog.loadingWithCancel(cancelAction: (dialog: DialogInterface, whi
 }
 
 fun Context.logout() {
+    stopService(Intent(this, SocketService::class.java))
     PreferencesManager.setToken("")
     val intent = AuthActivity.getIntentLogout(this)
     startActivity(intent)

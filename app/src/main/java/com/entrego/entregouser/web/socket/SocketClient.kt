@@ -3,12 +3,10 @@ package com.entrego.entregouser.web.socket
 import android.os.Handler
 import com.entrego.entregouser.util.GsonHolder
 import com.entrego.entregouser.util.logd
+import com.entrego.entregouser.web.api.EntregoApi
 import com.entrego.entregouser.web.socket.model.BaseSocketMessage
 import com.entrego.entregouser.web.socket.model.SocketMessageType
-import com.entrego.entregouser.web.socket.model.UpdateDeliverySocketMessage
 import com.neovisionaries.ws.client.*
-import entrego.com.android.web.api.EntregoApi
-import java.lang.IllegalStateException
 
 class SocketClient(token: String, val serverListener: SocketContract.ReceiveMessagesListener) {
 
@@ -28,11 +26,11 @@ class SocketClient(token: String, val serverListener: SocketContract.ReceiveMess
     inner class SocketListener : WebSocketAdapter() {
         val TAG = "SOCKET_RECEIVER"
         val TAG_ERROR = "SOCKET_ERROR"
+        val RECONNECT_TIMEOUT = 5000 // sec
 
         override fun onDisconnected(websocket: WebSocket?, serverCloseFrame: WebSocketFrame?, clientCloseFrame: WebSocketFrame?, closedByServer: Boolean) {
             super.onDisconnected(websocket, serverCloseFrame, clientCloseFrame, closedByServer)
             logd(TAG, "Socket disconnected is need keep alive $isNeed")
-            logd(TAG, "Is closed by server $closedByServer")
             if (isNeed)
                 Handler().postDelayed({ connectAsync() }, 1500)
 
@@ -51,8 +49,6 @@ class SocketClient(token: String, val serverListener: SocketContract.ReceiveMess
 
         override fun onConnectError(websocket: WebSocket?, exception: WebSocketException?) {
             super.onConnectError(websocket, exception)
-            Handler().postDelayed({ connectAsync() }, 1500)
-            logd(TAG_ERROR, exception?.error.toString())
         }
 
         fun parseMessage(json: String) {
@@ -61,18 +57,10 @@ class SocketClient(token: String, val serverListener: SocketContract.ReceiveMess
             //I know, but not now
             when (baseMessage.type) {
                 SocketMessageType.ORDER_STATUS -> {
-                    val updateOrderModel = GsonHolder
-                            .instance
-                            .fromJson(json, UpdateDeliverySocketMessage::class.java)
-                    logd(TAG, updateOrderModel.toString())
-                    serverListener.receivedOrderUpdated(updateOrderModel.delivery)
+                    logd(json)
                 }
                 SocketMessageType.WAYPOINT -> {
-                    val updateDeliveryModel = GsonHolder
-                            .instance
-                            .fromJson(json, UpdateDeliverySocketMessage::class.java)
-                    logd(TAG, updateDeliveryModel.toString())
-                    serverListener.receivedDeliveryUpdated(updateDeliveryModel.delivery)
+                    logd(json)
                 }
                 SocketMessageType.ORDER -> logd(TAG, json)
                 SocketMessageType.TRACK -> logd(TAG, json)
@@ -81,21 +69,13 @@ class SocketClient(token: String, val serverListener: SocketContract.ReceiveMess
                     logd(json)
                     serverListener.receivedChatMessage(json)
                 }
-                SocketMessageType.TRACK_ORDER -> {
-                    logd(json)
-                    serverListener.receivedMessengerLocation(json)
-                }
                 else -> IllegalStateException("Invalid type of socket message")
             }
         }
     }
 
-    fun sendMessage(message: String) {
-        if (mSocketConnection?.isOpen == true)
-            sendMessage(message)
-        else
-            openConnection()
-    }
+    fun inOpen(): Boolean = (mSocketConnection?.isOpen == true)
+
 
     fun openConnection() {
         isNeed = true
@@ -114,7 +94,7 @@ class SocketClient(token: String, val serverListener: SocketContract.ReceiveMess
 
     fun closeConnection() {
         isNeed = false
-        mSocketConnection = mSocketConnection?.disconnect()
+        mSocketConnection?.disconnect()
     }
 
 

@@ -1,12 +1,12 @@
 package com.entrego.entregouser.ui.registration.model
 
-import com.entrego.entregouser.web.model.request.registration.RegistrationBody
-import com.entrego.entregouser.web.model.response.common.FieldErrorResponse
-import com.entrego.entregouser.web.model.response.registration.EntregoResultRegistration
 import com.entrego.entregouser.entity.EntregoPhoneModel
 import com.entrego.entregouser.web.api.ApiCreator
-import entrego.com.android.web.api.EntregoApi
+import com.entrego.entregouser.web.api.EntregoApi
+import com.entrego.entregouser.web.model.request.registration.RegistrationBody
 import com.entrego.entregouser.web.model.response.CommonResponseListener
+import com.entrego.entregouser.web.model.response.common.FieldErrorResponse
+import com.entrego.entregouser.web.model.response.registration.EntregoResultRegistration
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -44,7 +44,7 @@ class EntregoRegistration(val email: String,
                 .enqueue(object : Callback<EntregoResultRegistration> {
                     override fun onResponse(call: Call<EntregoResultRegistration>?, response: Response<EntregoResultRegistration>?) {
                         if (response?.body() != null) {
-                            val result = response?.body()!!
+                            val result = response.body()!!
                             when (result.code) {
                                 0 -> listener.onSuccessResponse()
                                 1 -> if (result.fields.isNotEmpty()) {

@@ -1,6 +1,5 @@
 package com.entrego.entregouser.web.api
 
-import entrego.com.android.web.api.EntregoApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

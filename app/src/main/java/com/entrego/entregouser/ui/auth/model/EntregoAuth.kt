@@ -3,9 +3,9 @@ package com.entrego.entregouser.ui.auth.model
 import com.entrego.entregouser.storage.EntregoStorage
 import com.entrego.entregouser.storage.preferences.PreferencesManager
 import com.entrego.entregouser.web.api.ApiCreator
+import com.entrego.entregouser.web.api.EntregoApi
 import com.entrego.entregouser.web.model.response.BaseEntregoResponse
 import com.entrego.entregouser.web.model.response.CommonResponseListener
-import entrego.com.android.web.api.EntregoApi
 import entrego.com.android.web.model.request.auth.AuthBody
 import retrofit2.Call
 import retrofit2.Callback

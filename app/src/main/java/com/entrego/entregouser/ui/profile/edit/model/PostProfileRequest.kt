@@ -3,8 +3,8 @@ package com.entrego.entregouser.ui.profile.edit.model
 import com.entrego.entregouser.storage.realm.models.CustomerProfileModel
 import com.entrego.entregouser.web.api.ApiContract
 import com.entrego.entregouser.web.api.ApiCreator
+import com.entrego.entregouser.web.api.EntregoApi
 import com.entrego.entregouser.web.model.response.BaseEntregoResponse
-import entrego.com.android.web.api.EntregoApi
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

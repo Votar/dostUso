@@ -16,27 +16,21 @@ import com.entrego.entregouser.ui.delivery.escort.chat.ChatMessengerActivity
 import com.entrego.entregouser.util.GsonHolder
 import com.entrego.entregouser.util.logd
 import com.entrego.entregouser.web.socket.model.ChatSocketMessage
-
+import java.util.*
 
 class SocketService : Service() {
-    companion object {
-        val KEY_EVENT = "key_event"
-        val KEY_MESSAGE = "ext_key_message"
-        val RECEIVED_KEY = "service_ext_key"
-    }
 
-
-    enum class SocketServiceEvents(val value: String) {
-        CONNECT("connect"),
-        DISCONNECT("disconnect"),
-        SEND_TEXT("message")
-    }
+    companion object
 
     var mSocketClient: SocketClient? = null
     var mUserProfile: CustomerProfileModel? = null
-    var mReceiveMessagesListener = object : SocketContract.ReceiveMessagesListener {
+    val TIMER_INTERVAL = 10000L //10 sec
+    var mKeepAliveSocketTimer: Timer? = null
+
+
+    val mReceiveMessagesListener = object : SocketContract.ReceiveMessagesListener {
         override fun receivedMessengerLocation(messageJson: String) {
-            sendMessengerLocation(messageJson)
+
         }
 
         override fun receivedChatMessage(messageJson: String) {
@@ -48,7 +42,7 @@ class SocketService : Service() {
                     .fromJson(messageJson, ChatSocketMessage::class.java)
                     .apply {
                         if (mUserProfile?.id != sender)
-                            sendChatMessageReceivedNotification(order, sender, text)
+                            sendChatMessageReceivedNotification(order, subscriber, text)
                     }
         }
 
@@ -60,13 +54,6 @@ class SocketService : Service() {
             sendDeliveryUpdatedEvent(deliveryId)
         }
 
-    }
-
-    private fun sendMessengerLocation(messageJson: String) {
-        Intent(SocketContract.UpdateMessengerLocationEvent.ACTION).apply {
-            putExtra(SocketContract.UpdateMessengerLocationEvent.KEY_MESSENGER_LOCATION, messageJson)
-            LocalBroadcastManager.getInstance(applicationContext).sendBroadcast(this)
-        }
     }
 
     private fun sendChatMessageEvent(messageJson: String) {
@@ -92,27 +79,52 @@ class SocketService : Service() {
     }
 
     override fun onBind(intent: Intent?): IBinder {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+        throw TODO()
     }
 
     override fun onCreate() {
         super.onCreate()
-        val token = EntregoStorage.getTokenOrEmpty()
-        mSocketClient = SocketClient(token, mReceiveMessagesListener)
-        mSocketClient?.openConnection()
-        mUserProfile = EntregoStorage.getProfile()
+
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        if (applicationContext == null) stopSelf()
-        return START_NOT_STICKY
+
+        checkTimer()
+        return START_STICKY
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        mSocketClient?.closeConnection()
-        logd("SocketService destroyed")
+    private fun checkTimer() {
+        if (mKeepAliveSocketTimer == null)
+            startTimer()
     }
+
+    fun stopTimer() {
+        mKeepAliveSocketTimer?.cancel()
+        mKeepAliveSocketTimer?.purge()
+        mKeepAliveSocketTimer = null
+    }
+
+    fun startTimer() {
+        stopTimer()
+        mKeepAliveSocketTimer = Timer()
+        mKeepAliveSocketTimer?.schedule(object : TimerTask() {
+            override fun run() {
+                if (mSocketClient?.inOpen() != true)
+                    startSocket()
+            }
+        }, 0, TIMER_INTERVAL
+        )
+    }
+
+    fun startSocket() {
+        mSocketClient?.closeConnection()
+        val token = EntregoStorage.getTokenOrEmpty()
+        if (token.isNullOrEmpty())
+            stopSelf()
+        mSocketClient = SocketClient(token, mReceiveMessagesListener)
+        mSocketClient?.openConnection()
+    }
+
 
     fun sendChatMessageReceivedNotification(orderId: Long, userId: Long, message: String) {
 
@@ -140,6 +152,13 @@ class SocketService : Service() {
         val mNotifyMgr = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         mNotifyMgr.notify(orderId.toInt(), mBuilder.build())
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mSocketClient?.closeConnection()
+        stopTimer()
+        logd("SocketService destroyed")
     }
 
 }

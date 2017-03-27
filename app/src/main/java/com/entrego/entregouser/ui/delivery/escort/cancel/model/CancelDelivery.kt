@@ -3,9 +3,9 @@ package com.entrego.entregouser.ui.delivery.escort.cancel.model
 import android.support.annotation.Nullable
 import com.entrego.entregouser.web.api.ApiContract
 import com.entrego.entregouser.web.api.ApiCreator
+import com.entrego.entregouser.web.api.EntregoApi
 import com.entrego.entregouser.web.model.request.delivery.cancel.CancelDeliveryBody
 import com.entrego.entregouser.web.model.response.BaseEntregoResponse
-import entrego.com.android.web.api.EntregoApi
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -38,18 +38,20 @@ object CancelDelivery {
         ApiCreator.get()
                 .create(Request::class.java)
                 .parameters(token, deliveryId, CancelDeliveryBody(reason))
+
                 .enqueue(object : Callback<BaseEntregoResponse> {
                     override fun onFailure(call: Call<BaseEntregoResponse>?, t: Throwable?) {
                         listener?.onFailureCancel(null, null)
                     }
 
                     override fun onResponse(call: Call<BaseEntregoResponse>?, response: Response<BaseEntregoResponse>?) {
+
                         if (response?.body() != null) {
-                            when (response.body().code) {
-                                ApiContract.RESPONSE_OK -> {
-                                    listener?.onSuccessCancel()
+                            response.body().apply {
+                                when (code) {
+                                    ApiContract.RESPONSE_OK ->  listener?.onSuccessCancel()
+                                    else -> listener?.onFailureCancel(message, code)
                                 }
-                                else -> listener?.onFailureCancel(response.body().message,response.body().code)
                             }
                         } else listener?.onFailureCancel(null, null)
                 }

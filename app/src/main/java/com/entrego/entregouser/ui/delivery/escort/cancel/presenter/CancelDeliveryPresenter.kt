@@ -45,7 +45,11 @@ class CancelDeliveryPresenter : ICancelDeliveryPresenter {
             mView?.onShowProgress()
 
 
-            CancelDelivery.executeAsync(token, deliveryId, reason, object : CancelDelivery.CancelDeliveryListener {
+            CancelDelivery.executeAsync(
+                    token,
+                    deliveryId,
+                    reason,
+                    object : CancelDelivery.CancelDeliveryListener {
                 override fun onSuccessCancel() {
                     mView?.onHideProgress()
                     mView?.showSuccessScreen()

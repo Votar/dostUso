@@ -6,6 +6,7 @@ import com.entrego.entregouser.ui.delivery.escort.chat.model.ChatMessageEntity
 import com.entrego.entregouser.ui.delivery.escort.chat.model.GetChatHistoryRequest
 import com.entrego.entregouser.ui.delivery.escort.chat.model.SendChatMessageRequest
 import com.entrego.entregouser.ui.delivery.escort.chat.model.UserType
+import com.entrego.entregouser.web.api.ApiContract
 import com.entrego.entregouser.web.model.request.chat.ChatMessageBody
 import com.entrego.entregouser.web.socket.model.ChatSocketMessage
 
@@ -23,7 +24,10 @@ class ChatMessengerPresenter : BaseMvpPresenter<ChatContract.View>(),
         }
 
         override fun onFailureResponse(code: Int?, message: String?) {
-            mView?.showError(message)
+            when (code) {
+                ApiContract.RESPONSE_INVALID_TOKEN -> mView?.onLogout()
+                else -> mView?.showError(message)
+            }
         }
     }
 
@@ -58,7 +62,10 @@ class ChatMessengerPresenter : BaseMvpPresenter<ChatContract.View>(),
     val mGetHistoryResponseListener = object : GetChatHistoryRequest.ResponseListener {
         override fun onFailureResponse(code: Int?, message: String?) {
             mView?.hideProgress()
-            mView?.showError(message)
+            when (code) {
+                ApiContract.RESPONSE_INVALID_TOKEN -> mView?.onLogout()
+                else -> mView?.showError(message)
+            }
         }
 
         override fun onSuccessResponse(reslutList: List<ChatSocketMessage>) {

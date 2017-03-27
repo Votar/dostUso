@@ -28,6 +28,7 @@ class AuthActivity : AppCompatActivity(), IAuthView {
 
         fun getIntent(ctx: Context): Intent {
             val intent = Intent(ctx, AuthActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
             return intent
         }

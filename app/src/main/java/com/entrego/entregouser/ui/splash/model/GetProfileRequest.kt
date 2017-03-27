@@ -2,8 +2,8 @@ package com.entrego.entregouser.ui.splash.model
 
 import com.entrego.entregouser.storage.realm.models.CustomerProfileModel
 import com.entrego.entregouser.web.api.ApiCreator
+import com.entrego.entregouser.web.api.EntregoApi
 import com.entrego.entregouser.web.model.response.profile.GetProfileResponse
-import entrego.com.android.web.api.EntregoApi
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

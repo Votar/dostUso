@@ -24,6 +24,7 @@
         android:gravity="bottom"
         app:umanoOverlay="true"
         app:umanoPanelHeight="80dp"
+        app:umanoFadeColor="@android:color/transparent"
         app:umanoShadowHeight="0dp">
 
         <RelativeLayout

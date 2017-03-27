@@ -1,5 +1,6 @@
 package com.entrego.entregouser.ui.delivery.escort.root
 
+import android.app.NotificationManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -71,7 +72,7 @@ class EscortActivity : BaseMvpActivity<EscortContract.View, EscortContract.Prese
     override fun onStart() {
         super.onStart()
         binder.delivery?.id?.let {
-            mPresenter.requestDeliveryStatus(it)
+            mPresenter.requestOrderStatus(it)
         }
 
 
@@ -108,8 +109,13 @@ class EscortActivity : BaseMvpActivity<EscortContract.View, EscortContract.Prese
     }
 
 
-    override fun showFinishDelivery(deliveryId: Long, orderId: Long, price: EntregoPriceEntity, messenger: EntregoMessengerView) {
+    override fun showFinishDelivery(deliveryId: Long,
+                                    orderId: Long,
+                                    price: EntregoPriceEntity,
+                                    messenger: EntregoMessengerView) {
         startActivity(FinishDeliveryActivity.getIntent(this, deliveryId, orderId, price, messenger))
+        (getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager).cancel(orderId.toInt())
+        finish()
     }
 
 
