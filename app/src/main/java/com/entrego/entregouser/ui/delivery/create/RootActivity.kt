@@ -108,6 +108,10 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
 
     }
 
+    override fun onSaveInstanceState(outState: Bundle?) {
+//        super.onSaveInstanceState(outState)
+    }
+
     private fun showMyDeliveries() {
         startActivity(HistoryDeliveriesActivity.getIntent(this))
     }
@@ -202,7 +206,7 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
     }
 
     override fun showTypeDeliverFragment() {
-        showBuilderFragment(DeliverBuyFragment(), FragmentType.PARAMETERS)
+            showBuilderFragment(DeliverBuyFragment(), FragmentType.PARAMETERS)
     }
 
     override fun showTypeTransactionFragment() {
@@ -210,38 +214,42 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
     }
 
     override fun showBuilderFragment(fragment: Fragment, type: FragmentType) {
-
-        when (type) {
-            FragmentType.ADDRESS ->
-                fragmentManager.beginTransaction()
-                        .replace(R.id.root_builder_container, Fragment())
-                        .replace(R.id.root_address_container, fragment)
-                        .commit()
-            FragmentType.PARAMETERS ->
-                fragmentManager.beginTransaction()
-                        .replace(R.id.root_address_container, Fragment())
-                        .replace(R.id.root_builder_container, fragment)
-                        .commit()
+        if (mPresenter.isViewAvailable()) {
+            when (type) {
+                FragmentType.ADDRESS ->
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.root_builder_container, Fragment())
+                            .replace(R.id.root_address_container, fragment)
+                            .commit()
+                FragmentType.PARAMETERS ->
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.root_address_container, Fragment())
+                            .replace(R.id.root_builder_container, fragment)
+                            .commit()
+            }
         }
     }
 
     override fun showAcceptDeliveryCreationFragment(model: EntregoDeliveryPreview) {
-        val fragment = DeliveryConfirmationFragment.getInstance(model)
-        fragmentManager.beginTransaction()
-                .replace(R.id.root_front_container, fragment, DeliveryConfirmationFragment.TAG)
-                .addToBackStack(null)
-                .commit()
+        if (mPresenter.isViewAvailable()) {
+            val fragment = DeliveryConfirmationFragment.getInstance(model)
+            fragmentManager.beginTransaction()
+                    .replace(R.id.root_front_container, fragment, DeliveryConfirmationFragment.TAG)
+                    .addToBackStack(null)
+                    .commit()
+        }
     }
 
 
     override fun showCreatedDelivery(delivery: EntregoDeliveryPreview?) {
-        showWelcomeBuilder()
-        fragmentManager.findFragmentByTag(DeliveryConfirmationFragment.TAG)?.let {
-            fragmentManager.beginTransaction()
-                    .remove(it)
-                    .commit()
+        if (mPresenter.isViewAvailable()) {
+            showWelcomeBuilder()
+            fragmentManager.findFragmentByTag(DeliveryConfirmationFragment.TAG)?.let {
+                fragmentManager.beginTransaction()
+                        .remove(it)
+                        .commit()
+            }
         }
-
     }
 
     override fun showPaymentMethods() {

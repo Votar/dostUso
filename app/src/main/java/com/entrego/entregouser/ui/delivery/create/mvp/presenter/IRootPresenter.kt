@@ -16,4 +16,5 @@ interface IRootPresenter {
     fun showFaq()
     fun showWorkForUs()
     fun showUserManual()
+    fun isViewAvailable() :Boolean
 }

@@ -16,7 +16,7 @@ class WorkForUsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_work_for_us)
         setupListeners()
 
-        work_for_us_videoview.setVideoURI(Uri.parse("https://youtu.be/KznSPXxiV5c"))
+        work_for_us_videoview.setVideoURI(Uri.parse("https://dl.dropboxusercontent.com/s/gh3868qqcctg7w0/entreGO%20-%20Lo%20que%20quieras%2C%20cuando%20quieras.mp4?dl=0"))
         work_for_us_videoview.setMediaController(MediaController(this))
         work_for_us_videoview.requestFocus(0)
     }

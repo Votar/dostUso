@@ -138,4 +138,8 @@
     <string name="text_service_total">Total del servicio</string>
     <string name="error_session_expired">Sesión expirada</string>
     <string name="notification_received_chat_message">Nuevo mensaje de messenger</string>
+    <string name="text_card_have_been_added">Tarjeta se han añadido</string>
+    <string name="text_politics_title">Política a aplicar</string>
+    <string name="text_user_licence">Licencia de usuario</string>
+    <string name="hint_card_expiry">Fecha de caducidad</string>
 </resources>

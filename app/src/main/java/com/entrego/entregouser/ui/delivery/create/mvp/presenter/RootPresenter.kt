@@ -11,6 +11,8 @@ import com.gun0912.tedpermission.PermissionListener
 import java.util.*
 
 class RootPresenter : IRootPresenter {
+    override fun isViewAvailable(): Boolean = mView != null
+
     override fun showUserManual() {
         mView?.getAppContext()?.apply {
             startActivity(Intent(this, UserManualActivity::class.java))
@@ -39,22 +41,22 @@ class RootPresenter : IRootPresenter {
         activity.startActivity(sendIntent)
     }
 
-    var mView: IRootView? = null
     //Panama city
     val mDefaultLocation = LatLng(9.047261, -79.484000)
+    var mView: IRootView? = null
+    override fun onCreate(view: IRootView) {
+        mView = view
+        mView?.requestPermissions(mPermissionListener)
+
+    }
+
     val mPermissionListener = object : PermissionListener {
         override fun onPermissionGranted() {
             mView?.onBuildMap()
         }
-
         override fun onPermissionDenied(deniedPermissions: ArrayList<String>?) {
-            //
-        }
-    }
 
-    override fun onCreate(view: IRootView) {
-        mView = view
-        mView?.requestPermissions(mPermissionListener)
+        }
     }
 
     override fun onStart() {
