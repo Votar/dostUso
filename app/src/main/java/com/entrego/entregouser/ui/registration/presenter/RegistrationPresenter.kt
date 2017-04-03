@@ -1,10 +1,9 @@
 package com.entrego.entregouser.ui.registration.presenter
 
 import com.entrego.entregouser.R
-import com.entrego.entregouser.ui.registration.presenter.IRegistrationPresenter
 import com.entrego.entregouser.ui.registration.model.EntregoRegistration
 import com.entrego.entregouser.ui.registration.view.IRegistrationView
-import com.entrego.entregouser.web.model.response.common.FieldErrorResponse
+import com.entrego.entregouser.web.model.response.common.FieldError
 
 class RegistrationPresenter(val view: IRegistrationView) : IRegistrationPresenter {
 
@@ -44,7 +43,7 @@ class RegistrationPresenter(val view: IRegistrationView) : IRegistrationPresente
                         view.successRegistration()
                     }
 
-                    override fun onValidationError(field: FieldErrorResponse) {
+                    override fun onValidationError(field: FieldError) {
                         view.hideProgress()
                         when (field.field) {
 

@@ -1,11 +1,14 @@
 package com.entrego.entregouser.ui.payment.card.model
 
-import android.os.Handler
 import android.support.annotation.Nullable
+import com.entrego.entregouser.web.api.ApiContract
+import com.entrego.entregouser.web.api.ApiCreator
 import com.entrego.entregouser.web.api.EntregoApi
 import com.entrego.entregouser.web.model.request.AddCardBody
-import com.entrego.entregouser.web.model.response.BaseEntregoResponse
+import com.entrego.entregouser.web.model.response.common.FieldError
 import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.Header
 import retrofit2.http.Headers
@@ -15,45 +18,42 @@ class AddCardRequest {
 
     //TODO:fix it
     companion object {
-        const val END_POINT = "addCard"
+        const val END_POINT = "customer/payment/card"
     }
 
     interface Request {
         @Headers(EntregoApi.CONTENT_JSON)
         @POST(END_POINT)
         fun parameters(@Header(EntregoApi.TOKEN) token: String,
-                       @Body body: AddCardBody): Call<BaseEntregoResponse>
+                       @Body body: AddCardBody): Call<EntregoAddCardResponse>
     }
 
     interface AddCardListener {
         fun onSuccessAddCard()
-        fun onFailureAddCard(message: String?, code: Int?)
+        fun onFailureAddCard(code: Int?, message: String?)
+        fun onValidationError(fields: Array<FieldError>)
     }
 
     fun executeAsync(token: String, body: AddCardBody, @Nullable listener: AddCardListener?) {
-
-        Handler().postDelayed({ listener?.onSuccessAddCard() }, 1500)
-        /*ApiCreator.get()
+        ApiCreator.get()
                 .create(Request::class.java)
                 .parameters(token, body)
-
-                .enqueue(object : Callback<BaseEntregoResponse> {
-                    override fun onFailure(call: Call<BaseEntregoResponse>?, t: Throwable?) {
+                .enqueue(object : Callback<EntregoAddCardResponse> {
+                    override fun onFailure(call: Call<EntregoAddCardResponse>?, t: Throwable?) {
                         listener?.onFailureAddCard(null, null)
                     }
 
-                    override fun onResponse(call: Call<BaseEntregoResponse>?, response: Response<BaseEntregoResponse>?) {
-
-                        if (response?.body() != null) {
-                            response.body().apply {
-                                when (code) {
-                                    ApiContract.RESPONSE_OK -> listener?.onSuccessAddCard()
-                                    else -> listener?.onFailureAddCard(message, code)
-                                }
+                    override fun onResponse(call: Call<EntregoAddCardResponse>?, response: Response<EntregoAddCardResponse>?) {
+                        if (response?.body() != null)
+                            when (response.body().code) {
+                                ApiContract.RESPONSE_OK -> listener?.onSuccessAddCard()
+                                ApiContract.FIELD_ERROR -> listener?.onValidationError(response.body().fields)
+                                else -> listener?.onFailureAddCard(response.body().code, response.body().message)
                             }
-                        } else listener?.onFailureAddCard(null, null)
+                        else
+                            listener?.onFailureAddCard(null, null)
                     }
 
-                })*/
+                })
     }
 }

@@ -59,7 +59,7 @@
     <string name="navigation_drawer_open">Abrir Navegación</string>
     <string name="other_shipents">Otros envíos</string>
     <string name="payments_methods">Métodos de pago</string>
-    <string name="register">Registro</string>
+    <string name="register">Registrarse</string>
     <string name="restaurant">Restaurante</string>
     <string name="save_password">Guardar contraseña</string>
     <string name="search_title">Ingresar nombre...</string>
@@ -77,7 +77,7 @@
     <string name="tab_history">Historial</string>
     <string name="tab_on_the_way">En camino</string>
     <string name="term_conditions">Terminos y Condiciones</string>
-    <string name="text_accept">Acreditar</string>
+    <string name="text_accept">Pedir</string>
     <string name="text_add">Agregar</string>
     <string name="text_add_credit_card">+ Agregar Tarjeta</string>
     <string name="text_add_favorites">+ Agregar a Favoritos</string>
@@ -109,7 +109,7 @@
     <string name="text_total">Total</string>
     <string name="text_work">Trabajo</string>
     <string name="text_working_hours">Horario de Atención:</string>
-    <string name="text_working_hours_value">Lun - Sab : 7:30 am  - 10 pm</string>
+    <string name="text_working_hours_value">Lun - Sab : 7:30 am  - 10:00 pm</string>
     <string name="title_activity_escort">Mapa</string>
     <string name="title_activity_root">Mapa</string>
     <string name="transactions">Tramites</string>
@@ -142,4 +142,9 @@
     <string name="text_politics_title">Política a aplicar</string>
     <string name="text_user_licence">Licencia de usuario</string>
     <string name="hint_card_expiry">Fecha de caducidad</string>
+    <string name="hint_card_expire_month">Meses de vencimiento</string>
+    <string name="hint_card_expire_year">Año de vencimiento</string>
+    <string name="hint_card_holder_name">Nombre del tarjetahabiente</string>
+    <string name="hint_special_description">Descripción especial</string>
+    <string name="text_accept_price">Acepto tarifa</string>
 </resources>

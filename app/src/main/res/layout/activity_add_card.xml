@@ -16,7 +16,7 @@
         style="@style/EntregoContentScroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/add_card_toolbar"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true">
 
         <android.support.v7.widget.CardView
@@ -30,14 +30,28 @@
                 android:padding="@dimen/default_screen_padding">
 
                 <ImageView
-                    android:layout_marginTop="@dimen/double_screen_padding"
-                    android:layout_marginBottom="@dimen/double_screen_padding"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/double_screen_padding"
+                    android:layout_marginTop="@dimen/double_screen_padding"
                     app:srcCompat="@drawable/logo_medium" />
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/add_card_holder_il"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/add_card_holder_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/hint_card_holder_name"
+                        android:inputType="textPersonName"
+                        android:nextFocusDown="@+id/add_card_number" />
+                </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/add_card_number_il"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -45,7 +59,10 @@
                         android:id="@+id/add_card_number"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/hint_card_number" />
+                        android:hint="@string/hint_card_number"
+                        android:inputType="numberDecimal"
+                        android:maxLength="16"
+                        android:nextFocusDown="@+id/add_card_expiry_date" />
                 </android.support.design.widget.TextInputLayout>
 
                 <LinearLayout
@@ -54,32 +71,58 @@
                     android:orientation="horizontal">
 
                     <android.support.design.widget.TextInputLayout
+                        android:id="@+id/add_card_exp_month_il"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
 
                         <android.support.design.widget.TextInputEditText
-                            android:id="@+id/add_card_expiry_date"
+                            android:id="@+id/add_card_expire_month"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/hint_card_expiry" />
+                            android:hint="@string/hint_card_expire_month"
+                            android:inputType="numberDecimal"
+                            android:maxLength="2"
+                            android:nextFocusDown="@+id/add_card_expire_year" />
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
+                        android:id="@+id/add_card_exp_year_il"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
 
                         <android.support.design.widget.TextInputEditText
-                            android:id="@+id/add_card_cvv"
+                            android:id="@+id/add_card_expire_year"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/hint_card_cvv"
-                            android:inputType="numberPassword" />
+                            android:hint="@string/hint_card_expire_year"
+                            android:inputType="numberDecimal"
+                            android:maxLength="4"
+                            android:nextFocusDown="@+id/add_card_cvv" />
                     </android.support.design.widget.TextInputLayout>
 
 
                 </LinearLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/add_card_cvv_il"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/add_card_cvv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:hint="@string/hint_card_cvv"
+                        android:inputType="numberPassword"
+                        android:maxLength="4"
+                        android:maxLines="1"
+                        android:minWidth="120dp"
+                        android:nextFocusDown="@+id/add_card_save_btn" />
+                </android.support.design.widget.TextInputLayout>
+
 
                 <LinearLayout
                     android:id="@+id/add_card_scan_ll"

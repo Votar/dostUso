@@ -6,6 +6,7 @@ import com.entrego.entregouser.mvp.presenter.BaseMvpPresenter
 import com.entrego.entregouser.storage.EntregoStorage
 import com.entrego.entregouser.ui.payment.card.model.AddCardRequest
 import com.entrego.entregouser.web.model.request.AddCardBody
+import com.entrego.entregouser.web.model.response.common.FieldError
 import io.card.payment.CardIOActivity
 import io.card.payment.CreditCard
 
@@ -19,21 +20,32 @@ class AddCardPresenter : BaseMvpPresenter<AddCardContract.View>(), AddCardContra
     val mToken = EntregoStorage.getTokenOrEmpty()
 
     val mAddCardListener = object : AddCardRequest.AddCardListener {
+
         override fun onSuccessAddCard() {
             mView?.hideProgress()
             mView?.showMessage(R.string.text_card_have_been_added)
         }
 
-        override fun onFailureAddCard(message: String?, code: Int?) {
+        override fun onFailureAddCard(code: Int?, message: String?) {
             //TODO: add error parsing
             mView?.hideProgress()
             mView?.showError(message)
         }
+
+        override fun onValidationError(fields: Array<FieldError>) {
+            mView?.enableInputLayoutsError()
+            mView?.hideProgress()
+            fields.forEach {
+                val filed = AddCardContract.FieldType.fromString(it.field)
+                mView?.setError(filed, it.message)
+            }
+        }
     }
 
-    override fun saveCard(name: String, number: String, expiry: String, cvv: String) {
+    override fun saveCard(name: String, number: String, month: String, year: String, cvv: String) {
+        mView?.disableInputLayoutsError()
         //TODO : Add data validation
-        val body = AddCardBody(name, number, expiry, cvv)
+        val body = AddCardBody(name, number.toLong(), month.toInt(), year.toInt(), cvv.toShort())
         mView?.showProgress()
         AddCardRequest().executeAsync(mToken, body, mAddCardListener)
     }
@@ -57,15 +69,15 @@ class AddCardPresenter : BaseMvpPresenter<AddCardContract.View>(), AddCardContra
 
                 // Do something with the raw number, e.g.:
                 // myService.setCardNumber( scanResult.cardNumber );
-                if (scanResult.isExpiryValid) {
-                    //TODO : refactor by required format
-                    val expiry = scanResult.expiryMonth.toString() + "/" + scanResult.expiryYear
-                    mView?.setupExpire(expiry)
-                }
+                //TODO : refactor by required format
+                mView?.setupExpire(
+                        scanResult.expiryMonth.toString(),
+                        scanResult.expiryYear.toString()
+                )
 
-                if (scanResult.cvv != null) {
+                if (scanResult.cvv != null)
                     mView?.setupCvv(scanResult.cvv)
-                }
+
             }
 
         } else {

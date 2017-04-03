@@ -112,7 +112,7 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
 //        super.onSaveInstanceState(outState)
     }
 
-    private fun showMyDeliveries() {
+private fun showMyDeliveries() {
         startActivity(HistoryDeliveriesActivity.getIntent(this))
     }
 

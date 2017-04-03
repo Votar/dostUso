@@ -6,6 +6,7 @@ import com.entrego.entregouser.util.logd
 import com.entrego.entregouser.web.api.EntregoApi
 import com.entrego.entregouser.web.socket.model.BaseSocketMessage
 import com.entrego.entregouser.web.socket.model.SocketMessageType
+import com.entrego.entregouser.web.socket.model.UpdateDeliverySocketMessage
 import com.neovisionaries.ws.client.*
 
 class SocketClient(token: String, val serverListener: SocketContract.ReceiveMessagesListener) {
@@ -54,16 +55,28 @@ class SocketClient(token: String, val serverListener: SocketContract.ReceiveMess
         fun parseMessage(json: String) {
 
             val baseMessage = GsonHolder.instance.fromJson(json, BaseSocketMessage::class.java)
-            //I know, but not now
             when (baseMessage.type) {
                 SocketMessageType.ORDER_STATUS -> {
-                    logd(json)
+                    val updateOrderModel = GsonHolder
+                            .instance
+                            .fromJson(json, UpdateDeliverySocketMessage::class.java)
+                    logd(TAG, updateOrderModel.toString())
+                    serverListener.receivedOrderUpdated(updateOrderModel.delivery)
                 }
                 SocketMessageType.WAYPOINT -> {
-                    logd(json)
+                    val updateDeliveryModel = GsonHolder
+                            .instance
+                            .fromJson(json, UpdateDeliverySocketMessage::class.java)
+                    logd(TAG, updateDeliveryModel.toString())
+                    serverListener.receivedDeliveryUpdated(updateDeliveryModel.delivery)
                 }
-                SocketMessageType.ORDER -> logd(TAG, json)
-                SocketMessageType.TRACK -> logd(TAG, json)
+                SocketMessageType.ORDER -> {
+                    logd(TAG, json)
+                }
+                SocketMessageType.TRACK -> {
+                    serverListener.receivedMessengerLocation(json)
+                    logd(TAG, json)
+                }
                 SocketMessageType.TRACK_LIST -> logd(TAG, json)
                 SocketMessageType.MESSAGE -> {
                     logd(json)

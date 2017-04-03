@@ -5,7 +5,7 @@ import com.entrego.entregouser.web.api.ApiCreator
 import com.entrego.entregouser.web.api.EntregoApi
 import com.entrego.entregouser.web.model.request.registration.RegistrationBody
 import com.entrego.entregouser.web.model.response.CommonResponseListener
-import com.entrego.entregouser.web.model.response.common.FieldErrorResponse
+import com.entrego.entregouser.web.model.response.common.FieldError
 import com.entrego.entregouser.web.model.response.registration.EntregoResultRegistration
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,7 +22,7 @@ class EntregoRegistration(val email: String,
                           val phoneNumber: String) {
 
     interface ResultListener : CommonResponseListener {
-        fun onValidationError(field: FieldErrorResponse)
+        fun onValidationError(field: FieldError)
     }
 
     companion object {

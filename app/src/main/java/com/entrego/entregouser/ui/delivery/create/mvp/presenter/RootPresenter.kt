@@ -3,9 +3,13 @@ package com.entrego.entregouser.ui.delivery.create.mvp.presenter
 import android.app.Activity
 import android.content.Intent
 import com.entrego.entregouser.R
-import com.entrego.entregouser.ui.comon.*
+import com.entrego.entregouser.ui.comon.AboutEntregoActivity
+import com.entrego.entregouser.ui.comon.ContactUsActivity
+import com.entrego.entregouser.ui.comon.DescriptionWithTopicActivity
+import com.entrego.entregouser.ui.comon.WorkForUsActivity
 import com.entrego.entregouser.ui.delivery.create.mvp.view.IRootView
 import com.entrego.entregouser.ui.faq.FaqListActivity
+import com.entrego.entregouser.ui.manual.ManualActivity
 import com.google.android.gms.maps.model.LatLng
 import com.gun0912.tedpermission.PermissionListener
 import java.util.*
@@ -15,7 +19,7 @@ class RootPresenter : IRootPresenter {
 
     override fun showUserManual() {
         mView?.getAppContext()?.apply {
-            startActivity(Intent(this, UserManualActivity::class.java))
+            startActivity(Intent(this, ManualActivity::class.java))
         }
     }
 

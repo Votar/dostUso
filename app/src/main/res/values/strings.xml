@@ -84,7 +84,7 @@
     <string name="title_activity_escort">Map</string>
     <string name="text_cancel">Cancel</string>
     <string name="text_status">Status</string>
-    <string name="support_email" translatable="false">operaciones@entregoya.com</string>
+    <string name="support_email" translatable="false">hola@entregoya.com</string>
     <string name="send_email">Send by…</string>
     <string name="express_label">Deliver in:</string>
     <string name="express_now">Now!</string>
@@ -159,5 +159,10 @@
     <string name="hint_card_expiry">Expiry date</string>
     <string name="hint_card_cvv" translatable="false">CVV</string>
     <string name="text_card_have_been_added">Card have been added</string>
+    <string name="hint_card_expire_month">Expire month</string>
+    <string name="hint_card_expire_year">Expire year</string>
+    <string name="hint_card_holder_name">Card holder\'s name</string>
+    <string name="hint_special_description">Special description</string>
+    <string name="text_accept_price">Accept price</string>
 
 </resources>

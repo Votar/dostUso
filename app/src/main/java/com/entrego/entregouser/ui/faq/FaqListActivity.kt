@@ -44,6 +44,7 @@ class FaqListActivity : AppCompatActivity() {
             val intent = Intent(applicationContext, FaqDetailActivity::class.java)
             intent.putExtra(FaqDetailActivity.EXT_TITLE, title)
             intent.putExtra(FaqDetailActivity.EXT_MSG, message)
+            intent.putExtra(FaqDetailActivity.EXT_KEY_EMAIL_LINK, true)
             startActivity(intent)
         }
     }

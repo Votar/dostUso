@@ -219,16 +219,25 @@
 
         </activity>
         <activity
-        android:name=".ui.comon.WorkForUsActivity"
-        android:parentActivityName=".ui.delivery.create.RootActivity"
-        android:screenOrientation="portrait">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".ui.delivery.create.RootActivity" />
+            android:name=".ui.comon.WorkForUsActivity"
+            android:parentActivityName=".ui.delivery.create.RootActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.delivery.create.RootActivity" />
 
-    </activity>
+        </activity>
         <activity
             android:name=".ui.comon.UserManualActivity"
+            android:parentActivityName=".ui.delivery.create.RootActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.delivery.create.RootActivity" />
+
+        </activity>
+        <activity
+            android:name=".ui.manual.ManualActivity"
             android:parentActivityName=".ui.delivery.create.RootActivity"
             android:screenOrientation="portrait">
             <meta-data
