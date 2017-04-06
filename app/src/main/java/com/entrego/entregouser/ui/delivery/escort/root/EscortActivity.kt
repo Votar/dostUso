@@ -22,6 +22,7 @@ import com.entrego.entregouser.ui.delivery.escort.cancel.CancelDeliveryActivity
 import com.entrego.entregouser.ui.delivery.escort.status.StatusDeliveryActivity
 import com.entrego.entregouser.ui.delivery.finish.FinishDeliveryActivity
 import com.entrego.entregouser.util.GsonHolder
+import com.entrego.entregouser.util.loadMessengerPicWithToken
 import com.entrego.entregouser.util.logd
 import com.entrego.entregouser.web.socket.SocketContract
 import com.entrego.entregouser.web.socket.model.MessengerLocationMessage
@@ -98,13 +99,15 @@ class EscortActivity : BaseMvpActivity<EscortContract.View, EscortContract.Prese
         escort_chat_messenger_fl.setOnClickListener { mPresenter.chatMessenger() }
         escort_status_fl.setOnClickListener { showStatusDelivery() }
         nav_toolbar_back.setOnClickListener { onBackPressed() }
-
     }
+
 
     override fun setupMessengerView(messenger: EntregoMessengerView?) {
         binder.messenger = messenger
         escort_messenger_form.visibility = View.VISIBLE
         escort_messenger_name.text = messenger?.name
+        if (messenger?.id != null)
+            escort_messenger_pic.loadMessengerPicWithToken(messenger.id)
         binder.invalidateAll()
     }
 

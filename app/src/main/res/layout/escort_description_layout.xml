@@ -94,6 +94,7 @@
                     android:layout_margin="@dimen/padding_small">
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/escort_messenger_pic"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"

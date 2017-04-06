@@ -1,4 +1,4 @@
-package com.entrego.entregouser.ui.payment.card
+package com.entrego.entregouser.ui.payment.card.add
 
 import android.content.Intent
 import com.entrego.entregouser.mvp.presenter.IBaseMvpPresenter
@@ -38,6 +38,7 @@ object AddCardContract {
         fun showScanCardActivity(requestCode: Int, intent: Intent?)
         fun disableInputLayoutsError()
         fun enableInputLayoutsError()
+        fun logout()
     }
 
     interface Presenter : IBaseMvpPresenter<View> {

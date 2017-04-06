@@ -16,6 +16,7 @@ import com.entrego.entregouser.entity.route.EntregoPointBinding
 import com.entrego.entregouser.mvp.view.BaseMvpActivity
 import com.entrego.entregouser.ui.history.incidents.IncidentsActivity
 import com.entrego.entregouser.util.GsonHolder
+import com.entrego.entregouser.util.loadMessengerPicWithToken
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -96,6 +97,7 @@ class DetailsDeliveryActivity : BaseMvpActivity<DetailsDeliveryContract.View,
                     )
             mBinder.delivery = delivery
             mBinder.messenger = delivery?.order?.messenger
+            history_details_msngr_photo.loadMessengerPicWithToken(mBinder.messenger.id)
         } else throw IllegalStateException("No delivery in intent")
     }
 

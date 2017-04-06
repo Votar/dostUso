@@ -8,4 +8,6 @@ object EntregoApi {
     const val CONTENT_JSON = "content-type: application/json"
     const val TOKEN = "x-auth-token"
 
+    const val URL_MESSENGER_PIC = BASE_URL+ "customer/image/messenger/"
+
 }

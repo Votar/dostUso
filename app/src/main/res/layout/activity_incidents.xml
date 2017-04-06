@@ -47,8 +47,8 @@
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/incidents_messenger_photo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/user_photo_holder_size"
+                        android:layout_height="@dimen/user_photo_holder_size"
                         android:layout_alignParentBottom="true"
                         android:layout_marginLeft="@dimen/padding_medium"
                         android:src="@drawable/ic_user_pic_holder" />

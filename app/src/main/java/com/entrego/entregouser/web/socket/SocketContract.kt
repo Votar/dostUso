@@ -48,5 +48,7 @@ interface SocketContract {
         fun receivedOrderUpdated(deliveryId: Long)
         fun receivedChatMessage(messageJson: String)
         fun receivedMessengerLocation(messageJson: String)
+        fun disconnectedByServer()
+
     }
 }

@@ -1,4 +1,4 @@
-package com.entrego.entregouser.ui.payment.card.model
+package com.entrego.entregouser.ui.payment.card.add.model
 
 import android.support.annotation.Nullable
 import com.entrego.entregouser.web.api.ApiContract
@@ -35,7 +35,8 @@ class AddCardRequest {
     }
 
     fun executeAsync(token: String, body: AddCardBody, @Nullable listener: AddCardListener?) {
-        ApiCreator.get()
+        ApiCreator
+                .get()
                 .create(Request::class.java)
                 .parameters(token, body)
                 .enqueue(object : Callback<EntregoAddCardResponse> {

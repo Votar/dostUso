@@ -32,10 +32,13 @@ class SocketClient(token: String, val serverListener: SocketContract.ReceiveMess
         override fun onDisconnected(websocket: WebSocket?, serverCloseFrame: WebSocketFrame?, clientCloseFrame: WebSocketFrame?, closedByServer: Boolean) {
             super.onDisconnected(websocket, serverCloseFrame, clientCloseFrame, closedByServer)
             logd(TAG, "Socket disconnected is need keep alive $isNeed")
-            if (isNeed)
+            if (isNeed && !closedByServer)
                 Handler().postDelayed({ connectAsync() }, 1500)
 
-
+            if(closedByServer){
+                logd("Closed by server")
+                serverListener.disconnectedByServer()
+            }
         }
 
         override fun onConnected(websocket: WebSocket?, headers: MutableMap<String, MutableList<String>>?) {

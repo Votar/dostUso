@@ -31,6 +31,7 @@ import com.entrego.entregouser.ui.history.HistoryDeliveriesActivity
 import com.entrego.entregouser.ui.payment.PaymentMethodActivity
 import com.entrego.entregouser.ui.profile.edit.EditProfileActivity
 import com.entrego.entregouser.util.GsonHolder
+import com.entrego.entregouser.util.logout
 import com.entrego.entregouser.util.showSnack
 import com.entrego.entregouser.web.socket.SocketService
 import com.facebook.internal.Utility.logd
@@ -102,6 +103,7 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
         drawer_hire_delivery.setOnClickListener {
             activity_root_drawer_layout.closeDrawers()
         }
+        drawer_logout.setOnClickListener { this.logout() }
         drawer_user_manual.setOnClickListener {
             mPresenter.showUserManual()
         }
@@ -112,7 +114,7 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
 //        super.onSaveInstanceState(outState)
     }
 
-private fun showMyDeliveries() {
+    private fun showMyDeliveries() {
         startActivity(HistoryDeliveriesActivity.getIntent(this))
     }
 
@@ -206,7 +208,7 @@ private fun showMyDeliveries() {
     }
 
     override fun showTypeDeliverFragment() {
-            showBuilderFragment(DeliverBuyFragment(), FragmentType.PARAMETERS)
+        showBuilderFragment(DeliverBuyFragment(), FragmentType.PARAMETERS)
     }
 
     override fun showTypeTransactionFragment() {

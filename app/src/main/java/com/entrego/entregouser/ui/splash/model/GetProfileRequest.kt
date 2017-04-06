@@ -39,7 +39,7 @@ class GetProfileRequest {
             }
 
             override fun onResponse(call: Call<GetProfileResponse>?, response: Response<GetProfileResponse>?) {
-                if (response != null)
+                if (response?.body() != null)
                     response.body().apply {
                         when (code) {
                             0 -> listener?.onSuccessResponse(payload)

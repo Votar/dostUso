@@ -248,11 +248,6 @@
                             android:maxLines="3" />
                     </android.support.design.widget.TextInputLayout>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="@color/colorGrey" />
-
                     <Button
                         android:id="@+id/select_address_accept_btn"
                         android:layout_width="wrap_content"

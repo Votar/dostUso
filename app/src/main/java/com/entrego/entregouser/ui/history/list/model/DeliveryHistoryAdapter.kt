@@ -11,6 +11,7 @@ import com.entrego.entregouser.databinding.ItemDeliveryPreviewBinding
 import com.entrego.entregouser.entity.back.EntregoDeliveryPreview
 import com.entrego.entregouser.entity.route.EntregoRouteModel
 import com.entrego.entregouser.util.getStaticMapUrlWithWaypoints
+import com.entrego.entregouser.util.loadMessengerPicWithToken
 import com.entrego.entregouser.util.logd
 
 class DeliveryHistoryAdapter(val dataset: List<EntregoDeliveryPreview>, val listener: ClickItemListener) : RecyclerView.Adapter<DeliveryHistoryAdapter.ViewHolder>() {
@@ -41,6 +42,10 @@ class DeliveryHistoryAdapter(val dataset: List<EntregoDeliveryPreview>, val list
                     .load(url)
                     .error(R.drawable.ic_cloud_off_48dp)
                     .into(holder.binder?.historyRoutesStaticMap)
+            if (currentModel.order?.messenger != null)
+            {
+                holder.binder?.messengerPic?.loadMessengerPicWithToken(currentModel.order.messenger.id)
+            }
 
         }
         holder?.binder?.root?.setOnClickListener { listener.onItemClicked(currentModel) }

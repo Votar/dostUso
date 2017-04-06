@@ -164,5 +164,10 @@
     <string name="hint_card_holder_name">Card holder\'s name</string>
     <string name="hint_special_description">Special description</string>
     <string name="text_accept_price">Accept price</string>
+    <string name="error_invalid_value">Invalid value</string>
+    <string name="text_loguout">Logout</string>
+    <string name="list_is_empty">List is empty</string>
+    <string name="card_list_is_empty">Card list is empty</string>
+    <string name="registered_field">Probably already registered</string>
 
 </resources>

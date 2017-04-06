@@ -1,4 +1,4 @@
-package com.entrego.entregouser.ui.payment.card.model
+package com.entrego.entregouser.ui.payment.card.add.model
 
 import com.entrego.entregouser.web.model.response.BaseEntregoResponse
 import com.entrego.entregouser.web.model.response.common.FieldError

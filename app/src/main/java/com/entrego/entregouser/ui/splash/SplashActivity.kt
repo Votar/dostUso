@@ -10,7 +10,6 @@ import com.entrego.entregouser.storage.realm.models.CustomerProfileModel
 import com.entrego.entregouser.ui.delivery.create.RootActivity
 import com.entrego.entregouser.ui.intro.IntroActivity
 import com.entrego.entregouser.ui.splash.model.GetProfileRequest
-import com.entrego.entregouser.util.logd
 
 class SplashActivity : AppCompatActivity() {
 
@@ -34,7 +33,6 @@ class SplashActivity : AppCompatActivity() {
             }
 
             override fun onFailureResponse(code: Int?, message: String?) {
-                logd(message)
                 startLoginScreen()
             }
         })

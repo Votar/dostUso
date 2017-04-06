@@ -17,6 +17,7 @@ import com.entrego.entregouser.ui.faq.FaqAdapter
 import com.entrego.entregouser.ui.faq.FaqDetailActivity
 import com.entrego.entregouser.util.GsonHolder
 import com.entrego.entregouser.util.getStaticMapUrlWithWaypoints
+import com.entrego.entregouser.util.loadMessengerPicWithToken
 import kotlinx.android.synthetic.main.activity_incidents.*
 import kotlinx.android.synthetic.main.include_delivery_route.*
 import kotlinx.android.synthetic.main.navigation_toolbar.*
@@ -53,7 +54,7 @@ class IncidentsActivity : AppCompatActivity() {
         if (intent.hasExtra(KEY_DELIVERY)) {
             val json = intent.getStringExtra(KEY_DELIVERY)
             val delivery = GsonHolder.instance.fromJson(json, EntregoDeliveryPreview::class.java)
-            if (delivery.order != null){
+            if (delivery.order != null) {
                 setupAddressList(delivery.order.waypoints.toList())
                 setupMessengerView(delivery.order.messenger)
             }
@@ -81,6 +82,7 @@ class IncidentsActivity : AppCompatActivity() {
 
     fun setupMessengerView(messenger: EntregoMessengerView) {
         incidents_messenger_name.text = messenger.name
+        incidents_messenger_photo.loadMessengerPicWithToken(messenger.id)
     }
 
     fun setupFaqList() {

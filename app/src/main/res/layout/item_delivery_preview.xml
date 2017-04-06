@@ -21,25 +21,42 @@
                 android:id="@+id/history_routes_static_map"
                 android:layout_width="match_parent"
                 android:layout_height="165dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true" />
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:paddingLeft="@dimen/padding_medium"
+                android:paddingBottom="@dimen/padding_medium"
+                android:id="@+id/messenger_pic"
+                android:layout_width="@dimen/user_photo_holder_size"
+                android:layout_height="@dimen/user_photo_holder_size"
+                android:layout_alignBottom="@+id/delivery_description_ll"
+                android:src="@drawable/ic_user_pic_holder" />
 
             <LinearLayout
+                android:id="@+id/delivery_description_ll"
+                android:layout_toEndOf="@+id/messenger_pic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/history_routes_static_map"
                 android:orientation="vertical"
                 android:paddingBottom="@dimen/default_screen_padding"
-                android:paddingLeft="@dimen/default_screen_padding"
-                android:paddingRight="@dimen/default_screen_padding">
+                android:paddingLeft="@dimen/padding_medium"
+                android:paddingRight="@dimen/padding_medium">
+
+
 
                 <LinearLayout
+                    android:gravity="bottom"
+                    android:layout_gravity="bottom"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
 
                     <TextView
+                        android:paddingRight="@dimen/padding_small"
                         android:id="@+id/del_his_time"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -48,9 +65,8 @@
 
                     <TextView
                         android:id="@+id/del_his_sum"
-                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
                         android:gravity="right"
                         android:text="@{model.price.toView()}" />
                 </LinearLayout>

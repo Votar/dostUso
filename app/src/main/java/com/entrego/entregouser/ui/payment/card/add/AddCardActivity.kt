@@ -1,4 +1,4 @@
-package com.entrego.entregouser.ui.payment.card
+package com.entrego.entregouser.ui.payment.card.add
 
 import android.app.ProgressDialog
 import android.content.Context
@@ -139,5 +139,10 @@ class AddCardActivity : BaseMvpActivity<AddCardContract.View, AddCardContract.Pr
     override fun showScanCardActivity(requestCode: Int, intent: Intent?) {
         startActivityForResult(intent, requestCode)
     }
+
+    override fun logout() {
+        this.logout()
+    }
+
 }
 

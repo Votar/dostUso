@@ -1,10 +1,14 @@
-package com.entrego.entregouser.ui.payment.card
+package com.entrego.entregouser.ui.payment.card.add
 
 import android.content.Intent
 import com.entrego.entregouser.R
 import com.entrego.entregouser.mvp.presenter.BaseMvpPresenter
 import com.entrego.entregouser.storage.EntregoStorage
-import com.entrego.entregouser.ui.payment.card.model.AddCardRequest
+import com.entrego.entregouser.ui.payment.card.add.model.AddCardRequest
+import com.entrego.entregouser.util.isValidInt
+import com.entrego.entregouser.util.isValidLong
+import com.entrego.entregouser.util.isValidShort
+import com.entrego.entregouser.web.api.ApiContract
 import com.entrego.entregouser.web.model.request.AddCardBody
 import com.entrego.entregouser.web.model.response.common.FieldError
 import io.card.payment.CardIOActivity
@@ -27,9 +31,11 @@ class AddCardPresenter : BaseMvpPresenter<AddCardContract.View>(), AddCardContra
         }
 
         override fun onFailureAddCard(code: Int?, message: String?) {
-            //TODO: add error parsing
             mView?.hideProgress()
-            mView?.showError(message)
+            when (code) {
+                ApiContract.RESPONSE_INVALID_TOKEN -> mView?.logout()
+                else -> mView?.showError(message)
+            }
         }
 
         override fun onValidationError(fields: Array<FieldError>) {
@@ -44,7 +50,46 @@ class AddCardPresenter : BaseMvpPresenter<AddCardContract.View>(), AddCardContra
 
     override fun saveCard(name: String, number: String, month: String, year: String, cvv: String) {
         mView?.disableInputLayoutsError()
-        //TODO : Add data validation
+
+        if (name.isEmpty()) {
+            mView?.setError(AddCardContract.FieldType.NAME, R.string.error_required_field)
+            return
+        }
+        if (number.isEmpty()) {
+            mView?.setError(AddCardContract.FieldType.NUMBER, R.string.error_required_field)
+            return
+        }
+        if (month.isEmpty()) {
+            mView?.setError(AddCardContract.FieldType.MONTH, R.string.error_required_field)
+            return
+        }
+        if (year.isEmpty()) {
+            mView?.setError(AddCardContract.FieldType.YEAR, R.string.error_required_field)
+            return
+        }
+        if (cvv.isEmpty()) {
+            mView?.setError(AddCardContract.FieldType.CVV, R.string.error_required_field)
+            return
+        }
+
+        if (number.isValidLong().not()) {
+            mView?.setError(AddCardContract.FieldType.NUMBER, R.string.error_invalid_value)
+            return
+        }
+        if (month.isValidInt().not()) {
+            mView?.setError(AddCardContract.FieldType.MONTH, R.string.error_invalid_value)
+            return
+        }
+        if (year.isValidInt().not()) {
+            mView?.setError(AddCardContract.FieldType.YEAR, R.string.error_invalid_value)
+            return
+        }
+        if (cvv.isValidShort().not()) {
+            mView?.setError(AddCardContract.FieldType.CVV, R.string.error_invalid_value)
+            return
+        }
+
+
         val body = AddCardBody(name, number.toLong(), month.toInt(), year.toInt(), cvv.toShort())
         mView?.showProgress()
         AddCardRequest().executeAsync(mToken, body, mAddCardListener)

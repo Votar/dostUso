@@ -33,7 +33,10 @@ class RegistrationPresenter(val view: IRegistrationView) : IRegistrationPresente
                     override fun onFailureResponse(code: Int?, message: String?) {
                         view.hideProgress()
                         when (code) {
-                            3 -> view.setErrorEmailRegistered()
+                            3 -> {
+                                view.setErrorEmailRegistered()
+                                view.setErrorPhoneRegistered()
+                            }
                             else -> view.showMessage(message)
                         }
                     }

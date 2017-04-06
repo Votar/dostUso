@@ -15,8 +15,10 @@ import com.entrego.entregouser.entity.back.EntregoWaypoint
 import com.entrego.entregouser.entity.common.EntregoMessengerView
 import com.entrego.entregouser.mvp.view.BaseMvpActivity
 import com.entrego.entregouser.util.GsonHolder
+import com.entrego.entregouser.util.loadMessengerPicWithToken
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_track_status_delivery.*
+import kotlinx.android.synthetic.main.include_delivery_header.*
 import kotlinx.android.synthetic.main.include_delivery_route.*
 import kotlinx.android.synthetic.main.navigation_toolbar.*
 import kotlinx.android.synthetic.main.status_service_delivered.*
@@ -68,6 +70,8 @@ class StatusDeliveryActivity : BaseMvpActivity<StatusDeliveryContract.View,
         val gson = GsonHolder.instance
         binder.delivery = gson.fromJson(jsonDelivery, EntregoDeliveryPreview::class.java)
         binder.messenger = gson.fromJson(jsonMessenger, EntregoMessengerView::class.java)
+
+        status_delivery_messenger_photo.loadMessengerPicWithToken(binder.messenger.id)
         val waypoints = gson.fromJson<Array<EntregoWaypoint>>(jsonWaypoints, getArrayType())
         nav_toolbar_back.setOnClickListener { NavUtils.navigateUpFromSameTask(this) }
         mPresenter.buildSwitchListByState(waypoints, getSwitchList())

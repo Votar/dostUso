@@ -9,12 +9,15 @@ import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.support.v4.widget.SwipeRefreshLayout
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.entrego.entregouser.R
 import com.entrego.entregouser.entity.route.EntregoPointBinding
 import com.entrego.entregouser.entity.route.EntregoRouteModel
 import com.entrego.entregouser.storage.preferences.PreferencesManager
 import com.entrego.entregouser.ui.auth.AuthActivity
+import com.entrego.entregouser.web.api.EntregoApi
 import com.entrego.entregouser.web.socket.SocketService
 
 fun View.showSnack(message: String?) {
@@ -112,5 +115,42 @@ fun SwipeRefreshLayout.setDefaultColorSchema() {
     val colorDarkBlue = ContextCompat.getColor(this.context, R.color.colorDarkBlue)
     this.setColorSchemeColors(colorAccent, colorDarkBlue)
 }
+
+fun String.isValidLong(): Boolean {
+    try {
+        this.toLong()
+    } catch (ex: java.lang.NumberFormatException) {
+        return false
+    }
+    return true
+}
+
+fun String.isValidInt(): Boolean {
+    try {
+        this.toInt()
+    } catch (ex: java.lang.NumberFormatException) {
+        return false
+    }
+    return true
+}
+
+fun String.isValidShort(): Boolean {
+    try {
+        this.toShort()
+    } catch (ex: java.lang.NumberFormatException) {
+        return false
+    }
+    return true
+}
+
+fun ImageView.loadMessengerPicWithToken(messengerId: Int) {
+    logd("Messenger url = " + EntregoApi.URL_MESSENGER_PIC + messengerId.toString())
+    Glide.with(this.context)
+            .load(EntregoApi.URL_MESSENGER_PIC + messengerId.toString())
+            .error(R.drawable.ic_user_pic_holder)
+            .into(this)
+}
+
+
 
 

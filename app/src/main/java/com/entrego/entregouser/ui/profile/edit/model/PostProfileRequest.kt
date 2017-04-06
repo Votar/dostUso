@@ -16,7 +16,7 @@ import retrofit2.http.POST
 class PostProfileRequest {
 
     companion object {
-        private const val END_POINT = "customer/user"
+        private const val END_POINT = "customer/user/change"
     }
 
     interface Request {
