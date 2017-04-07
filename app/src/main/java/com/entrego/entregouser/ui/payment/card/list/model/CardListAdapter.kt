@@ -38,7 +38,7 @@ class CardListAdapter(val mFieldClickListener: OnItemClicked) : RecyclerView.Ada
         // set the view's size, margins, paddings and layout parameters
         val vh = ViewHolder(v)
 
-        vh.cardMask = v.findViewById(R.id.item_card_masked_number) as TextView
+//        vh.cardMask = v.findViewById(R.id.item_card_masked_number) as TextView
         vh.icon = v.findViewById(R.id.item_card_icon) as ImageView
         return vh
     }

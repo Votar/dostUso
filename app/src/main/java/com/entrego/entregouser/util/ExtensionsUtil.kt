@@ -143,7 +143,7 @@ fun String.isValidShort(): Boolean {
     return true
 }
 
-fun ImageView.loadMessengerPicWithToken(messengerId: Int) {
+fun ImageView.loadMessengerPicWithToken(messengerId: Long) {
     logd("Messenger url = " + EntregoApi.URL_MESSENGER_PIC + messengerId.toString())
     Glide.with(this.context)
             .load(EntregoApi.URL_MESSENGER_PIC + messengerId.toString())

@@ -40,6 +40,7 @@ class DeliveryHistoryAdapter(val dataset: List<EntregoDeliveryPreview>, val list
             logd(url)
             Glide.with(ctx)
                     .load(url)
+                    .skipMemoryCache(true)
                     .error(R.drawable.ic_cloud_off_48dp)
                     .into(holder.binder?.historyRoutesStaticMap)
             if (currentModel.order?.messenger != null)

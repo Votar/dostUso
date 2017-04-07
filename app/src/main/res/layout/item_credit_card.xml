@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/selectableItemBackground">
+    android:orientation="horizontal">
 
-    <FrameLayout
-        android:id="@+id/payment_method_bank_icon"
-        android:layout_width="wrap_content"
-        android:layout_centerVertical="true"
+    <ImageView
+        android:id="@+id/item_card_icon"
+        android:layout_width="30dp"
         android:layout_height="@dimen/payment_method_cell_height"
-        android:background="?attr/selectableItemBackground">
+        android:layout_gravity="center_vertical"
+        android:visibility="gone"
+        android:paddingRight="@dimen/padding_small"
+        app:srcCompat="@drawable/ic_payment_escort" />
 
-        <ImageView
-            android:id="@+id/item_card_icon"
-            android:layout_width="30dp"
-            android:layout_height="@dimen/payment_method_cell_height"
-            app:srcCompat="@drawable/ic_payment_escort" />
-    </FrameLayout>
+    <CheckedTextView
+        android:gravity="center_vertical"
+        android:background="?attr/selectableItemBackground"
+        android:id="@+id/item_payment_title"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/payment_method_cell_height"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:checked="false" />
 
-    <TextView
-        android:id="@+id/item_card_masked_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toEndOf="@id/payment_method_bank_icon"
-        android:paddingLeft="@dimen/padding_medium" />
-</RelativeLayout>
+
+</LinearLayout>

@@ -2,17 +2,19 @@ package com.entrego.entregouser.storage.preferences
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.entrego.entregouser.entity.common.PaymentMethodEntity
+import com.entrego.entregouser.entity.common.PaymentMethodType
 import com.entrego.entregouser.storage.realm.models.CustomerProfileModel
 import com.entrego.entregouser.util.GsonHolder
 
 object PreferencesManager : PreferencesContract {
-
-
     override fun clearForNewUser() {
         mSharedPref.edit().clear().commit()
     }
 
+
     override fun getWorkAddressOrEmpty(): String = mSharedPref.getString(KEY_WORK_ADDRESS, "")
+
     override fun getHomeAddressOrEmpty(): String = mSharedPref.getString(KEY_HOME_ADDRESS, "")
     override fun saveHomeAddress(address: String) {
         mSharedPref.edit().putString(KEY_HOME_ADDRESS, address).apply()
@@ -23,13 +25,15 @@ object PreferencesManager : PreferencesContract {
     }
 
     val STORAGE_NAME = "ENTREGO_STORE"
+
     private val KEY_TOKEN = "pref_k_token"
     private val KEY_HOME_ADDRESS = "pref_k_home_address"
     private val KEY_WORK_ADDRESS = "pref_k_work_address"
     private val KEY_LAST_EMAIL = "pref_k_last_email"
     private val KEY_CUSTOMER_PROFILE = "pref_k_profile"
-
+    private val KEY_DEFAULT_PAYMENT_METHOD = "pref_k_default_payment"
     lateinit private var mSharedPref: SharedPreferences
+
     fun init(context: Context) {
         mSharedPref = context.getSharedPreferences(STORAGE_NAME, Context.MODE_PRIVATE)
     }
@@ -65,6 +69,20 @@ object PreferencesManager : PreferencesContract {
                     .fromJson(profileJson, CustomerProfileModel::class.java)
         else return null
 
+    }
+
+    override fun saveDefaultPaymentMethod(method: PaymentMethodEntity): Boolean {
+        val json = GsonHolder.instance.toJson(method, PaymentMethodEntity::class.java)
+        return mSharedPref.edit().putString(KEY_DEFAULT_PAYMENT_METHOD, json).commit()
+    }
+
+    override fun getDefaultPaymentMethod(): PaymentMethodEntity {
+        val json = mSharedPref.getString(KEY_DEFAULT_PAYMENT_METHOD, "")
+        if (json.isNullOrEmpty())
+            return PaymentMethodEntity(PaymentMethodType.CASH)
+        else
+            return GsonHolder.instance
+                    .fromJson(json, PaymentMethodEntity::class.java)
     }
 
 }

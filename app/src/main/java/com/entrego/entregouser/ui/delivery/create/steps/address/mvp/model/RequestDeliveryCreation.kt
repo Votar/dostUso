@@ -40,16 +40,18 @@ object RequestDeliveryCreation {
 
         call.enqueue(object : Callback<EntregoDeliveryCreationResponse> {
             override fun onResponse(call: Call<EntregoDeliveryCreationResponse>?, response: Response<EntregoDeliveryCreationResponse>?) {
-                response?.body()?.let {
+
+                if (response?.body() != null) {
                     logd(toString())
-                    when (it.code) {
+                    when (response.body().code) {
                         0 -> {
-                            listener.onSuccessCreationResponse(it.payload)
-                            logd(it.toString())
+                            listener.onSuccessCreationResponse(response.body().payload)
+                            logd(response.body().toString())
                         }
-                        2 -> listener.onFailureCreationResponse(it.code, it.message)
+                        2 -> listener.onFailureCreationResponse(response.body().code,
+                                response.body().message)
                     }
-                }
+                } else listener.onFailureCreationResponse(null, null)
             }
 
             override fun onFailure(call: Call<EntregoDeliveryCreationResponse>?, t: Throwable?) {

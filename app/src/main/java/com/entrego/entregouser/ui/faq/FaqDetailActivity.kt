@@ -42,8 +42,7 @@ class FaqDetailActivity : AppCompatActivity() {
             val i = Intent(Intent.ACTION_SEND)
             i.type = "message/rfc822"
             i.putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(R.string.support_email)))
-            i.putExtra(Intent.EXTRA_SUBJECT, "Support")
-            i.putExtra(Intent.EXTRA_TEXT, "")
+            i.putExtra(Intent.EXTRA_SUBJECT, faq_det_title.text.toString())
             try {
                 startActivity(Intent.createChooser(i, getString(R.string.send_email)))
             } catch (ex: ActivityNotFoundException) {

@@ -5,7 +5,9 @@ import com.entrego.entregouser.entity.EntregoPhoneModel
 import com.entrego.entregouser.mvp.presenter.BaseMvpPresenter
 import com.entrego.entregouser.storage.EntregoStorage
 import com.entrego.entregouser.storage.realm.models.CustomerProfileModel
+import com.entrego.entregouser.ui.profile.edit.model.ChangeCustomerPassword
 import com.entrego.entregouser.ui.profile.edit.model.PostProfileRequest
+import com.entrego.entregouser.web.api.ApiContract
 
 
 class EditProfilePresenter : BaseMvpPresenter<EditProfileContract.View>(),
@@ -26,6 +28,22 @@ class EditProfilePresenter : BaseMvpPresenter<EditProfileContract.View>(),
 
     }
 
+    val mEditPasswordListener = object : ChangeCustomerPassword.ChangeCustomerPasswordListener {
+        override fun onSuccessChangeCustomerPassword() {
+            mView?.showMessage(R.string.success_change_password)
+            mView?.hideProgress()
+        }
+
+        override fun onFailureChangeCustomerPassword(code: Int?, message: String?) {
+            when (code) {
+                ApiContract.RESPONSE_INVALID_TOKEN -> mView?.onLogout()
+                else -> mView?.showError(message)
+            }
+            mView?.hideProgress()
+        }
+
+    }
+
     override fun postEditProfile(name: String, email: String, code: String, phone: String) {
         mView?.clearFieldsError()
         mView?.showProgress()
@@ -42,10 +60,11 @@ class EditProfilePresenter : BaseMvpPresenter<EditProfileContract.View>(),
             mView?.setFieldError(EditProfileActivity.FIELDS.CONF_PASSWORD, mView?.getAppContext()?.getString(R.string.error_passwords_not_equals))
         } else {
             mView?.showProgress()
+            ChangeCustomerPassword().executeAsync(mToken, password, mEditPasswordListener)
         }
     }
 
     override fun getUserProfile() {
-       EntregoStorage.getProfile()?.also { mView?.showUserProfile(it) }
+        EntregoStorage.getProfile()?.also { mView?.showUserProfile(it) }
     }
 }

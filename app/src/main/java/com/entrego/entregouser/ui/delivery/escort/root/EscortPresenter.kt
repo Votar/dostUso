@@ -15,6 +15,7 @@ import com.entrego.entregouser.storage.preferences.PreferencesManager
 import com.entrego.entregouser.ui.delivery.escort.chat.ChatMessengerActivity
 import com.entrego.entregouser.ui.delivery.escort.root.model.GetDeliveryRequest
 import com.entrego.entregouser.ui.delivery.escort.root.model.GetDeliveryStatusRequest
+import com.entrego.entregouser.util.shareRoute
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -121,7 +122,10 @@ class EscortPresenter : BaseMvpPresenter<EscortContract.View>(),
 
 
     override fun shareDelivery() {
-
+        if (mDelivery != null)
+            mDelivery?.apply { mView?.getAppContext()?.shareRoute(code, id) }
+        else
+            throw IllegalStateException("DeliveryPreview is null")
     }
 
     override fun loadMapAsync() {

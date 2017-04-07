@@ -169,5 +169,12 @@
     <string name="list_is_empty">List is empty</string>
     <string name="card_list_is_empty">Card list is empty</string>
     <string name="registered_field">Probably already registered</string>
+    <string name="success_change_password">Password have been updated</string>
+    <string name="text_cash">Cash</string>
+    <string name="text_wallet">Wallet</string>
+    <string name="text_clave">Clave</string>
+    <string name="text_save_changes">Save changes</string>
+    <string name="text_success_save">Saved successfully</string>
+    <string name="error_storage">Something gone wrong</string>
 
 </resources>

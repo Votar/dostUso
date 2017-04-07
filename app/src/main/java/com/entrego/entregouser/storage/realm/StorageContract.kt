@@ -1,5 +1,6 @@
 package com.entrego.entregouser.storage.realm
 
+import com.entrego.entregouser.entity.common.PaymentMethodEntity
 import com.entrego.entregouser.storage.realm.models.CustomerProfileModel
 import com.entrego.entregouser.storage.realm.models.RealmAddressModel
 
@@ -19,4 +20,6 @@ interface StorageContract {
     fun getLastEmail(): String
     fun saveProfile(model: CustomerProfileModel)
     fun getProfile(): CustomerProfileModel?
+    fun saveDefaultPaymentMethod(method: PaymentMethodEntity): Boolean
+    fun getDefaultPaymentMethod(): PaymentMethodEntity
 }

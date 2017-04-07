@@ -3,6 +3,7 @@ package com.entrego.entregouser.ui.payment.card.list
 import com.entrego.entregouser.mvp.presenter.BaseMvpPresenter
 import com.entrego.entregouser.storage.EntregoStorage
 import com.entrego.entregouser.ui.payment.card.list.model.CardListRequest
+import com.entrego.entregouser.web.api.ApiContract
 import com.entrego.entregouser.web.model.response.card.EntregoCreditCardEntity
 
 class CardListPresenter : BaseMvpPresenter<CardListContract.View>(),
@@ -11,18 +12,22 @@ class CardListPresenter : BaseMvpPresenter<CardListContract.View>(),
     val mResponseListener = object : CardListRequest.CardListListener {
         override fun onSuccessCardList(resultList: Array<EntregoCreditCardEntity>) {
 
-            if (resultList.isNotEmpty()){
+            if (resultList.isNotEmpty()) {
                 mView?.hideEmptyView()
                 mView?.setupCardList(resultList.toList())
-            }
-            else
+            } else
                 mView?.showEmptyView()
 
             mView?.hideProgress()
         }
 
         override fun onFailureCardList(code: Int?, message: String?) {
-            mView?.showError(message)
+
+            when (code) {
+                ApiContract.RESPONSE_INVALID_TOKEN -> mView?.onLogout()
+
+                else -> mView?.showError(message)
+            }
             mView?.hideProgress()
             mView?.showEmptyView()
         }

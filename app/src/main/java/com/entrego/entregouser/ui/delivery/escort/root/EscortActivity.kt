@@ -95,6 +95,7 @@ class EscortActivity : BaseMvpActivity<EscortContract.View, EscortContract.Prese
         escort_cancel_fl.setOnClickListener {
             startActivity(CancelDeliveryActivity.getIntent(this, binder.delivery.id))
         }
+        escort_share_fl.setOnClickListener { mPresenter.shareDelivery() }
         escort_call_messenger_fl.setOnClickListener { mPresenter.callMessenger() }
         escort_chat_messenger_fl.setOnClickListener { mPresenter.chatMessenger() }
         escort_status_fl.setOnClickListener { showStatusDelivery() }

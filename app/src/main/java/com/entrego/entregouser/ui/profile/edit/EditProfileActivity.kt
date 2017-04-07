@@ -6,8 +6,6 @@ import android.os.Bundle
 import android.support.v4.app.NavUtils
 import android.support.v4.content.ContextCompat
 import android.view.View
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.entrego.entregouser.R
 import com.entrego.entregouser.mvp.view.BaseMvpActivity
 import com.entrego.entregouser.storage.realm.models.CustomerProfileModel
@@ -94,12 +92,6 @@ class EditProfileActivity : BaseMvpActivity<EditProfileContract.View, EditProfil
     }
 
     override fun showUserProfile(profile: CustomerProfileModel) {
-        Glide.with(this)
-                .load("https://s-media-cache-ak0.pinimg.com/736x/a6/92/ae/a692aeb7da83d36f5d8e30dfa0801f9a.jpg")
-                .skipMemoryCache(true)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .error(R.drawable.ic_user_pic_holder)
-                .into(edit_profile_user_pic_holder)
 
         profile.email?.let {
             edit_profile_edit_email.setText(it)
@@ -112,6 +104,9 @@ class EditProfileActivity : BaseMvpActivity<EditProfileContract.View, EditProfil
         }
         profile.phone?.number?.let {
             edit_profile_edit_phone.setText(it)
+        }
+        profile.id.let{
+//            edit_profile_user_pic_holder.loadMessengerPicWithToken(it)
         }
     }
 
