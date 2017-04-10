@@ -9,6 +9,8 @@ import android.view.View
 import com.entrego.entregouser.R
 import com.entrego.entregouser.mvp.view.BaseMvpActivity
 import com.entrego.entregouser.storage.realm.models.CustomerProfileModel
+import com.entrego.entregouser.ui.profile.edit.photo.UploadPhotoActivity
+import com.entrego.entregouser.util.loadCustomerPicWithToken
 import kotlinx.android.synthetic.main.activity_edit_profile.*
 import kotlinx.android.synthetic.main.navigation_toolbar.*
 
@@ -61,6 +63,9 @@ class EditProfileActivity : BaseMvpActivity<EditProfileContract.View, EditProfil
             edit_profile_btn_save_pass.visibility = View.VISIBLE
             edit_profile_edit_password.requestFocus()
         }
+        edit_profile_user_pic_holder.setOnClickListener {
+            startActivity(Intent(EditProfileActivity@ this, UploadPhotoActivity::class.java))
+        }
     }
 
     private fun postNewPassword() {
@@ -105,9 +110,7 @@ class EditProfileActivity : BaseMvpActivity<EditProfileContract.View, EditProfil
         profile.phone?.number?.let {
             edit_profile_edit_phone.setText(it)
         }
-        profile.id.let{
-//            edit_profile_user_pic_holder.loadMessengerPicWithToken(it)
-        }
+        edit_profile_user_pic_holder.loadCustomerPicWithToken()
     }
 
 
@@ -137,73 +140,5 @@ class EditProfileActivity : BaseMvpActivity<EditProfileContract.View, EditProfil
         edit_profile_il_password.error = null
         edit_profile_il_password_conf.error = null
     }
-//        edit_profile_btn_save_pass.setOnClickListener {
-//
-//            edit_profile_il_password.error = null
-//            edit_profile_il_password_conf.error = null
-//            val pass = edit_profile_edit_password.text.toString()
-//            val confPass = edit_profile_edit_password_conf.text.toString()
-//
-//            if (TextUtils.isEmpty(pass)) {
-//                edit_profile_il_password.error = getString(R.string.error_empty_fields)
-//                edit_profile_edit_password.requestFocus()
-//            } else if (pass != confPass) {
-//                edit_profile_il_password_conf.error = getString(R.string.error_passwords_not_equals)
-//                edit_profile_edit_password_conf.requestFocus()
-//
-//            } else {
-//                showProgress()
-//            }
-//        }
-//    }
-//
-//
-//    fun saveData() {
-//
-//        showProgress()
-//        edit_profile_il_name.error = null
-//        edit_profile_il_email.error = null
-//        edit_profile_il_phone.error = null
-//        edit_profile_il_phone_code.error = null
-//
-//        UserProfile.update(applicationContext,
-//                edit_profile_edit_email.text.toString(),
-//                edit_profile_edit_name.text.toString(),
-//                edit_profile_edit_phone_code.text.toString(),
-//                edit_profile_edit_phone.text.toString(),
-//                object : UserProfile.ResultUpdateListener {
-//                    override fun onFieldError(field: FieldErrorResponse) {
-//
-//                        hideProgress()
-//                        when (field.field) {
-//                            FIELDS.EMAIL -> {
-//                                edit_profile_il_email.error = field.message
-//                            }
-//                            FIELDS.NAME -> {
-//                                edit_profile_il_name.error = field.message
-//                            }
-//                            FIELDS.PHONE_NUMBER -> {
-//                                edit_profile_il_phone.error = field.message
-//                            }
-//                            FIELDS.PHONE_CODE -> {
-//                                edit_profile_il_phone_code.error = field.message
-//                            }
-//                            else -> showMessage(field.field + " " + field.message)
-//                        }
-//
-//                    }
-//
-//                    override fun onFailureUpdate(message: String) {
-//                        hideProgress()
-//                        UserMessageUtil.showSnackMessage(activity_edit_profile, message)
-//                    }
-//
-//                    override fun onSuccessUpdate(userProfile: UserProfileModel) {
-//                        hideProgress()
-//                        UserMessageUtil.showSnackMessage(activity_edit_profile, getString(R.string.success_profile_updated))
-//                    }
-//
-//                }
-//        )
-//    }
+
 }

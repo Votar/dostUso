@@ -28,7 +28,7 @@ class SelectAddressPresenter : ISelectAddressPresenter {
             return
 
         mView?.showProgress()
-        builder.payment = EntregoStorage.getDefaultPaymentMethod()
+        builder.payment = EntregoStorage.getDefaultPaymentMethod().toPaymentBody()
         RequestDeliveryCreation.requestAsync(builder, createDeliveryListener)
 
     }

@@ -176,5 +176,7 @@
     <string name="text_save_changes">Save changes</string>
     <string name="text_success_save">Saved successfully</string>
     <string name="error_storage">Something gone wrong</string>
-
+    <string name="add_file_descr">Add a photo by camera or chosse a picture from the gallery</string>
+    <string name="text_photo_updated">Photo have been updated</string>
+    <string name="link_entrego_linkedin" translatable="false">https://www.linkedin.com/company/16240397</string>
 </resources>

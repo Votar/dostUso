@@ -31,6 +31,7 @@ import com.entrego.entregouser.ui.history.HistoryDeliveriesActivity
 import com.entrego.entregouser.ui.payment.PaymentMethodActivity
 import com.entrego.entregouser.ui.profile.edit.EditProfileActivity
 import com.entrego.entregouser.util.GsonHolder
+import com.entrego.entregouser.util.loadCustomerPicWithToken
 import com.entrego.entregouser.util.logout
 import com.entrego.entregouser.util.showSnack
 import com.entrego.entregouser.web.socket.SocketService
@@ -53,7 +54,12 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
 
     companion object {
         val TAG = "RootActivity"
-        fun getIntent(ctx: Context): Intent = Intent(ctx, RootActivity::class.java)
+        fun getIntent(ctx: Context): Intent {
+            val intent = Intent(ctx, RootActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            return intent
+        }
     }
 
     private var mMap: GoogleMap? = null
@@ -107,7 +113,7 @@ class RootActivity : AppCompatActivity(), OnMapReadyCallback, IRootView, RootAct
         drawer_user_manual.setOnClickListener {
             mPresenter.showUserManual()
         }
-
+        account_user_pic_holder.loadCustomerPicWithToken()
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {

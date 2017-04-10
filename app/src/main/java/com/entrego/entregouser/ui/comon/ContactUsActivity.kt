@@ -26,6 +26,7 @@ class ContactUsActivity : AppCompatActivity() {
         contact_us_insta_btn.setOnClickListener { openLink(getString(R.string.link_entrego_insta)) }
         contact_us_twitter_btn.setOnClickListener { openLink(getString(R.string.link_entrego_twitter)) }
         contact_us_youtube_btn.setOnClickListener { openLink(getString(R.string.link_entrego_youtube)) }
+        contact_us_linkein_btn.setOnClickListener { openLink(getString(R.string.link_entrego_linkedin)) }
         contact_us_call_btn.setOnClickListener { }
         contact_us_chat_btn.setOnClickListener { }
 

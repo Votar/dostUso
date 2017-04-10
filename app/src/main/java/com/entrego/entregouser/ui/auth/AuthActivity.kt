@@ -72,8 +72,6 @@ class AuthActivity : AppCompatActivity(), IAuthView {
 
 
     override fun goToMainScreen() {
-
-
         val intent = Intent(applicationContext, RootActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)

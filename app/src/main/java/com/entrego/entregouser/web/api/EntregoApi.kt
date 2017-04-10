@@ -9,5 +9,6 @@ object EntregoApi {
     const val TOKEN = "x-auth-token"
 
     const val URL_MESSENGER_PIC = BASE_URL+ "customer/image/messenger/"
+    const val URL_CUSTOMER_PIC = BASE_URL + "customer/image/customer/"
 
 }

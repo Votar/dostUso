@@ -54,6 +54,7 @@ repositories {
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     maven { url "http://dl.bintray.com/kotlin/kotlin-eap-1.1" }
     maven { url 'https://maven.fabric.io/public' }
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
@@ -62,9 +63,6 @@ dependencies {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
     //crashlytic
     compile('com.crashlytics.sdk.android:crashlytics:2.6.7@aar') {
         transitive = true;
@@ -96,7 +94,10 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.sothree.slidinguppanel:library:3.3.1'
     compile 'com.miguelcatalan:materialsearchview:1.4.0'
-    testCompile 'junit:junit:4.12'
     compile 'com.android.support.constraint:constraint-layout:1.0.0'
+    compile 'com.github.jkwiecien:EasyImage:1.3.1'
+}
+dependencies {
+    compile 'com.android.support.constraint:constraint-layout:+'
 }
 

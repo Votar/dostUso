@@ -1,6 +1,6 @@
 package com.entrego.entregouser.entity.delivery
 
-import com.entrego.entregouser.entity.common.PaymentMethodEntity
+import com.entrego.entregouser.web.model.request.delivery.PaymentMethodBody
 import com.google.gson.annotations.SerializedName
 
 
@@ -9,7 +9,7 @@ class DeliveryEntityBuilder {
     var parcel: EntregoParcel? = null
     var type: EntregoTimingCategory? = null
     var pickup: Long? = null
-    var payment: PaymentMethodEntity? = null
+    var payment: PaymentMethodBody? = null
     var addresses: List<String>? = null
     @SerializedName("return")
     var returnFlag: Boolean = false

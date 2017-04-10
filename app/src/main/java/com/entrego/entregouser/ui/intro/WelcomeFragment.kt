@@ -2,21 +2,23 @@ package com.entrego.entregouser.ui.intro
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.entrego.entregouser.R
+import com.entrego.entregouser.mvp.view.BaseMvpFragment
 import com.entrego.entregouser.ui.auth.AuthActivity
+import com.entrego.entregouser.ui.delivery.create.RootActivity
 import com.entrego.entregouser.ui.registration.RegistrationActivity
-import com.entrego.entregouser.util.showSnack
+import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
-import com.facebook.FacebookException
 import com.facebook.login.LoginResult
 import kotlinx.android.synthetic.main.fragment_welcome.*
 
-class WelcomeFragment : Fragment() {
-    val mCallbackManager = com.facebook.CallbackManager.Factory.create()
+class WelcomeFragment : BaseMvpFragment<WelcomeContract.View, WelcomeContract.Presenter>(),
+        WelcomeContract.View {
+    override var mPresenter: WelcomeContract.Presenter = WelcomePresenter()
+
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater?.inflate(R.layout.fragment_welcome, container, false)
@@ -26,8 +28,11 @@ class WelcomeFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         login_button.fragment = this
-        welcome_log_fb_btn.setOnClickListener { login_button.performClick() }
-        login_button.registerCallback(mCallbackManager, mLoginFbListener)
+        welcome_log_fb_btn.setOnClickListener {
+            mPresenter.loginWithFb()
+        }
+
+
         welcome_login_btn.setOnClickListener { startEntregoAuth() }
         welcome_registr_btn.setOnClickListener { startRegistration() }
     }
@@ -44,20 +49,24 @@ class WelcomeFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        mCallbackManager.onActivityResult(requestCode, resultCode, data)
+        mPresenter.performActivityResult(requestCode, resultCode, data)
     }
 
-    val mLoginFbListener = object : FacebookCallback<LoginResult> {
-        override fun onSuccess(loginResult: LoginResult) {
-            view?.showSnack(loginResult.accessToken.token)
-        }
+    override fun registerFacebookCallback(manager: CallbackManager, callback: FacebookCallback<LoginResult>) {
+        login_button.registerCallback(manager, callback)
+    }
 
-        override fun onCancel() {
 
-        }
+    override fun showRootView() {
+        startActivity(RootActivity.getIntent(activity))
+        activity.finish()
+    }
 
-        override fun onError(e: FacebookException) {
+    override fun performFbClick() {
+        login_button.performClick()
+    }
 
-        }
+    override fun showEmailPhoneInput() {
+
     }
 }

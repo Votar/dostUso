@@ -12,11 +12,9 @@
         <item name="android:elevation">0dp</item>
     </style>
 
-
     <style name="AppThemeTransparent" parent="AppTheme">
         <item name="android:windowTranslucentStatus">true</item>
     </style>
-
 
     <style name="BlueButton" parent="Widget.AppCompat.Button.Colored">
         <item name="android:colorButtonNormal">@color/colorDarkBlue</item>
@@ -70,6 +68,7 @@
         <item name="android:clipToPadding">false</item>
         <item name="android:scrollbars">none</item>
     </style>
+
     <style name="HistoryCeilStyle">
         <item name="android:paddingLeft">@dimen/double_screen_padding</item>
         <item name="android:paddingRight">@dimen/double_screen_padding</item>

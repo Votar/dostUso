@@ -3,10 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.entrego.entregouser">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".EntregoUserApplication"
@@ -15,11 +20,9 @@
         android:label="@string/app_name"
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="com.entrego.entregouser.web.glide.CustomGlideModule"
             android:value="GlideModule" />
-
         <meta-data
             android:name="com.bumptech.glide.integration.okhttp3.OkHttpGlideModule"
             tools:node="remove" />
@@ -88,9 +91,7 @@
         <activity
             android:name=".ui.delivery.escort.root.EscortActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".ui.faq.FaqListActivity"
             android:parentActivityName=".ui.delivery.create.RootActivity"
@@ -149,7 +150,7 @@
                 android:value=".ui.delivery.escort.root.EscortActivity" />
         </activity>
         <activity
-            android:name="com.entrego.entregouser.ui.payment.PaymentMethodActivity"
+            android:name=".ui.payment.PaymentMethodActivity"
             android:parentActivityName=".ui.delivery.create.RootActivity"
             android:screenOrientation="portrait">
             <meta-data
@@ -157,23 +158,23 @@
                 android:value=".ui.delivery.create.RootActivity" />
         </activity>
         <activity
-            android:name="com.entrego.entregouser.ui.payment.card.add.AddCardActivity"
-            android:parentActivityName="com.entrego.entregouser.ui.payment.PaymentMethodActivity"
+            android:name=".ui.payment.card.add.AddCardActivity"
+            android:parentActivityName=".ui.payment.PaymentMethodActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.entrego.entregouser.ui.payment.PaymentMethodActivity" />
         </activity>
         <activity
-            android:name="com.entrego.entregouser.ui.payment.wallet.AddMoneyToWalletActivity"
-            android:parentActivityName="com.entrego.entregouser.ui.payment.PaymentMethodActivity"
+            android:name=".ui.payment.wallet.AddMoneyToWalletActivity"
+            android:parentActivityName=".ui.payment.PaymentMethodActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.entrego.entregouser.ui.payment.PaymentMethodActivity" />
         </activity>
         <activity
-            android:name="com.entrego.entregouser.ui.history.HistoryDeliveriesActivity"
+            android:name=".ui.history.HistoryDeliveriesActivity"
             android:launchMode="singleTask"
             android:parentActivityName=".ui.delivery.create.RootActivity"
             android:screenOrientation="portrait">
@@ -182,9 +183,9 @@
                 android:value=".ui.delivery.create.RootActivity" />
         </activity>
         <activity
-            android:name="com.entrego.entregouser.ui.history.details.DetailsDeliveryActivity"
+            android:name=".ui.history.details.DetailsDeliveryActivity"
             android:launchMode="singleTask"
-            android:parentActivityName="com.entrego.entregouser.ui.history.HistoryDeliveriesActivity"
+            android:parentActivityName=".ui.history.HistoryDeliveriesActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -194,7 +195,7 @@
             android:name=".ui.autocomplete.EntregoAutocompleteActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.entrego.entregouser.ui.favorites.FavoritesActivity"
+            android:name=".ui.favorites.FavoritesActivity"
             android:parentActivityName=".ui.delivery.create.RootActivity"
             android:screenOrientation="portrait">
             <meta-data
@@ -202,8 +203,8 @@
                 android:value=".ui.delivery.create.RootActivity" />
         </activity>
         <activity
-            android:name="com.entrego.entregouser.ui.history.incidents.IncidentsActivity"
-            android:parentActivityName="com.entrego.entregouser.ui.history.details.DetailsDeliveryActivity"
+            android:name=".ui.history.incidents.IncidentsActivity"
+            android:parentActivityName=".ui.history.details.DetailsDeliveryActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -225,7 +226,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.delivery.create.RootActivity" />
-
         </activity>
         <activity
             android:name=".ui.comon.WorkForUsActivity"
@@ -234,7 +234,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.delivery.create.RootActivity" />
-
         </activity>
         <activity
             android:name=".ui.comon.UserManualActivity"
@@ -243,7 +242,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.delivery.create.RootActivity" />
-
         </activity>
         <activity
             android:name=".ui.manual.ManualActivity"
@@ -252,13 +250,22 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.delivery.create.RootActivity" />
-
         </activity>
 
         <service android:name=".web.socket.SocketService" />
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="463a399516cd719b0fab38747783c8aeed730201" />
+
+        <activity
+            android:name=".ui.profile.edit.photo.UploadPhotoActivity"
+            android:parentActivityName=".ui.profile.edit.EditProfileActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.profile.edit.EditProfileActivity" />
+        </activity>
     </application>
 
 </manifest>

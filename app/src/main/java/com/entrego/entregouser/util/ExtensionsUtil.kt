@@ -151,6 +151,13 @@ fun ImageView.loadMessengerPicWithToken(messengerId: Long) {
             .into(this)
 }
 
+fun ImageView.loadCustomerPicWithToken(){
+    Glide.with(this.context)
+            .load(EntregoApi.URL_CUSTOMER_PIC)
+            .error(R.drawable.ic_user_pic_holder)
+            .into(this)
+}
+
 
 
 
