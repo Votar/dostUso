@@ -4,7 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+import android.provider.MediaStore
 import com.entrego.entregouser.R
 import com.entrego.entregouser.mvp.presenter.BaseMvpPresenter
 import com.entrego.entregouser.storage.EntregoStorage
@@ -12,10 +12,8 @@ import com.entrego.entregouser.ui.profile.edit.photo.model.UploadUserPic
 import com.entrego.entregouser.web.api.ApiContract
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
-import pl.aprilapps.easyphotopicker.DefaultCallback
-import pl.aprilapps.easyphotopicker.EasyImage
-import java.io.File
 import java.util.*
+
 
 class UploadFilePresenter : BaseMvpPresenter<UploadFileContract.View>(),
         UploadFileContract.Presenter {
@@ -43,17 +41,28 @@ class UploadFilePresenter : BaseMvpPresenter<UploadFileContract.View>(),
             if (requestCode == RQT_CAMERA) {
                 val photo = data.extras?.get("data") as Bitmap
                 uploadFileToServer(mToken, photo)
-            } else EasyImage.handleActivityResult(requestCode, resultCode, data, mView?.getActivityContext(), object : DefaultCallback() {
-                override fun onImagePicked(imageFile: File?, source: EasyImage.ImageSource?, type: Int) {
-                    val photo = BitmapFactory.decodeFile(imageFile?.path)
-                    uploadFileToServer(mToken, photo)
-                }
-            })
+            } else if (requestCode == RQT_GALLERY) {
+
+                val uri = data.data
+                val photo = MediaStore.Images.Media.getBitmap(mView?.getActivityContext()?.contentResolver, uri)
+                uploadFileToServer(mToken, photo)
+            }
+// else EasyImage.handleActivityResult(requestCode, resultCode, data, mView?.getActivityContext(), object : DefaultCallback() {
+//                override fun onImagePicked(imageFile: File?, source: EasyImage.ImageSource?, type: Int) {
+//                    val photo = BitmapFactory.decodeFile(imageFile?.path)
+//                    uploadFileToServer(mToken, photo)
+//                }
+//            })
     }
 
     override fun pickPhotoFromGallery() {
         mView?.getActivityContext()?.apply {
-            EasyImage.openGallery(this, 0)
+            val intent = Intent()
+// Show only images, no videos or anything else
+            intent.type = "image/*"
+            intent.action = Intent.ACTION_GET_CONTENT
+// Always show the chooser (if there are multiple options available)
+            startActivityForResult(Intent.createChooser(intent, getString(R.string.text_select_picture)), RQT_GALLERY)
         }
     }
 

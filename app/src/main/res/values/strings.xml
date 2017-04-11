@@ -179,4 +179,5 @@
     <string name="add_file_descr">Add a photo by camera or chosse a picture from the gallery</string>
     <string name="text_photo_updated">Photo have been updated</string>
     <string name="link_entrego_linkedin" translatable="false">https://www.linkedin.com/company/16240397</string>
+    <string name="text_select_picture">Select picture</string>
 </resources>

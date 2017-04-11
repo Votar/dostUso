@@ -192,32 +192,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:text="@string/share_route"
-                            android:textSize="@dimen/tsize_medium" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            app:srcCompat="@drawable/ic_share" />
-                    </RelativeLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="@color/colorGrey" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="@dimen/padding_large"
-                        android:paddingTop="@dimen/padding_large">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
                             android:text="@string/add_code"
                             android:textSize="@dimen/tsize_medium" />
 
@@ -227,6 +201,7 @@
                             android:layout_alignParentRight="true"
                             android:inputType="textPostalAddress"
                             android:maxLines="1"
+                            android:maxLength="20"
                             android:minWidth="50dp" />
                     </RelativeLayout>
 

@@ -12,8 +12,6 @@ import com.facebook.login.LoginResult
 class WelcomePresenter : BaseMvpPresenter<WelcomeContract.View>(),
         WelcomeContract.Presenter {
 
-
-
     val mCallbackManager = com.facebook.CallbackManager.Factory.create()
 
     val mLoginFbListener = object : FacebookCallback<LoginResult> {
@@ -44,7 +42,7 @@ class WelcomePresenter : BaseMvpPresenter<WelcomeContract.View>(),
         if (token == null)
             mView?.performFbClick()
         else {
-
+            mView?.showMessage("Facebook auth in develop")
         }
     }
 

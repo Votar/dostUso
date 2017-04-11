@@ -107,7 +107,6 @@ class FavoritesFragment : BaseMvpFragment<FavoritesContract.View, FavoritesContr
         val alertLayout = inflater.inflate(R.layout.fragment_add_favorite_place, null)
         val editTitle = alertLayout.findViewById(R.id.add_favorite_edit_place_title) as EditText
         alert.setView(alertLayout)
-
         alert.setNegativeButton(R.string.text_dismiss, { dialogInterface: DialogInterface, i: Int -> })
         alert.setPositiveButton(R.string.text_add, { dialogInterface: DialogInterface, i: Int ->
             run {
