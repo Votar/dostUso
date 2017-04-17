@@ -35,8 +35,8 @@ class SocketClient(token: String, val serverListener: SocketContract.ReceiveMess
             if (isNeed && !closedByServer)
                 Handler().postDelayed({ connectAsync() }, 1500)
 
-            if(closedByServer){
-                logd("Closed by server")
+            if(serverCloseFrame?.closeCode == 4500){
+                logd(TAG,"Closed by server with code ${serverCloseFrame.closeCode}"  )
                 serverListener.disconnectedByServer()
             }
         }

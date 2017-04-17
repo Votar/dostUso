@@ -39,9 +39,9 @@ class RootPresenter : IRootPresenter {
     override fun shareLinkOnSite(activity: Activity) {
         val sendIntent = Intent()
         sendIntent.action = Intent.ACTION_SEND
-        sendIntent.putExtra(Intent.EXTRA_TEXT, "https://www.whatsapp.com/?l=ru")
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "https://www.facebook.com/entreGOya/")
         sendIntent.type = "text/plain"
-        sendIntent.putExtra(Intent.EXTRA_SUBJECT, "Check out this site!")
+        sendIntent.putExtra(Intent.EXTRA_SUBJECT, "Check out this service!")
         activity.startActivity(sendIntent)
     }
 

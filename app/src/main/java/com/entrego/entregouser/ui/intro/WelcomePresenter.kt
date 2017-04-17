@@ -5,7 +5,9 @@ import com.entrego.entregouser.entity.EntregoPhoneModel
 import com.entrego.entregouser.mvp.presenter.BaseMvpPresenter
 import com.entrego.entregouser.storage.EntregoStorage
 import com.entrego.entregouser.storage.preferences.PreferencesManager
+import com.entrego.entregouser.storage.realm.models.CustomerProfileModel
 import com.entrego.entregouser.ui.intro.model.LoginWithFbRequest
+import com.entrego.entregouser.ui.splash.model.GetProfileRequest
 import com.entrego.entregouser.web.api.ApiContract
 import com.facebook.AccessToken
 import com.facebook.FacebookCallback
@@ -53,6 +55,7 @@ class WelcomePresenter : BaseMvpPresenter<WelcomeContract.View>(),
                     EntregoStorage.clear()
                     PreferencesManager.setToken(token)
                     mView?.showRootView()
+                    requestProfile()
                 }
 
                 override fun onFailureLoginWithFbRequest(code: Int?, message: String?) {
@@ -67,6 +70,20 @@ class WelcomePresenter : BaseMvpPresenter<WelcomeContract.View>(),
             LoginWithFbRequest().executeAsync(token.token, mResponseListenerLoginFb)
         }
 
+    }
+
+    fun requestProfile() {
+        GetProfileRequest()
+                .requestAsync(EntregoStorage.getTokenOrEmpty(),
+                        object : GetProfileRequest.ResponseListener {
+                            override fun onSuccessResponse(profileJson: CustomerProfileModel) {
+                                EntregoStorage.saveProfile(profileJson)
+                            }
+
+                            override fun onFailureResponse(code: Int?, message: String?) {
+
+                            }
+                        })
     }
 
     override fun performFbWithUserData(email: String, phone: EntregoPhoneModel) {
