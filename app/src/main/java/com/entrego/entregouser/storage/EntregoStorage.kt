@@ -65,7 +65,7 @@ object EntregoStorage : StorageContract {
 
     override fun getProfile(): CustomerProfileModel? = PreferencesManager.getProfile()
 
-    override fun saveDefaultPaymentMethod(method: PaymentMethodEntity): Boolean
+    override fun setDefaultPaymentMethod(method: PaymentMethodEntity): Boolean
             = PreferencesManager.saveDefaultPaymentMethod(method)
 
     override fun getDefaultPaymentMethod(): PaymentMethodEntity =

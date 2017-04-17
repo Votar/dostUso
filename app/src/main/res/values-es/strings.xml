@@ -147,4 +147,21 @@
     <string name="hint_card_holder_name">Nombre del tarjetahabiente</string>
     <string name="hint_special_description">Descripción especial</string>
     <string name="text_accept_price">Acepto tarifa</string>
+    <string name="card_list_is_empty">La lista de tarjetas está vacía</string>
+    <string name="add_file_descr">Añadir una foto por cámara o elegir una foto de la galería</string>
+    <string name="error_invalid_value">Valor no válido</string>
+    <string name="error_storage">Algo salió mal</string>
+    <string name="list_is_empty">La lista esta vacía</string>
+    <string name="registered_field">Probablemente ya registrado</string>
+    <string name="success_change_password">Se han actualizado las contraseñas</string>
+    <string name="text_cash">Efectivo</string>
+    <string name="text_empty_delivery_list_label">Haz el primero Ahora!</string>
+    <string name="text_empty_delivery_list">Aún no tienes servicios.</string>
+    <string name="text_loguout">Cerrar sesión</string>
+    <string name="text_photo_updated">Se han actualizado las fotos.</string>
+    <string name="text_save_changes">Guardar cambios</string>
+    <string name="text_select_picture">Seleccionar imagen</string>
+    <string name="text_success_save">Guardado exitosamente</string>
+    <string name="text_wallet">Billetera</string>
+    <string name="text_success_delete_card">Se ha eliminado la tarjeta</string>
 </resources>

@@ -40,8 +40,13 @@ class DeliveryListPresenter : BaseMvpPresenter<DeliveryListContract.View>(),
                                 || it.status == EntregoDeliveryStatuses.ASSIGNED
                                 || it.status == EntregoDeliveryStatuses.CONFIRMATION
                     }
-
-                    mView?.showList(filteredList)
+                    if (filteredList.isEmpty()) {
+                        mView?.hideList()
+                        mView?.showEmptyView()
+                    } else {
+                        mView?.hideEmptyView()
+                        mView?.showList(filteredList)
+                    }
                 }
                 DeliveryListType.HISTORY -> {
                     val filteredList = resultList.filterNot {
@@ -49,7 +54,13 @@ class DeliveryListPresenter : BaseMvpPresenter<DeliveryListContract.View>(),
                                 || it.status == EntregoDeliveryStatuses.ASSIGNED
                                 || it.status == EntregoDeliveryStatuses.CONFIRMATION
                     }
-                    mView?.showList(filteredList)
+                    if (filteredList.isEmpty()) {
+                        mView?.hideList()
+                        mView?.showEmptyView()
+                    } else {
+                        mView?.hideEmptyView()
+                        mView?.showList(filteredList)
+                    }
                 }
             }
         }

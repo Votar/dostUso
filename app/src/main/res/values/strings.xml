@@ -172,12 +172,15 @@
     <string name="success_change_password">Password have been updated</string>
     <string name="text_cash">Cash</string>
     <string name="text_wallet">Wallet</string>
-    <string name="text_clave">Clave</string>
+    <string name="text_clave" translatable="false">Clave</string>
     <string name="text_save_changes">Save changes</string>
     <string name="text_success_save">Saved successfully</string>
     <string name="error_storage">Something gone wrong</string>
-    <string name="add_file_descr">Add a photo by camera or chosse a picture from the gallery</string>
+    <string name="add_file_descr">Add a photo by camera or choose a picture from the gallery</string>
     <string name="text_photo_updated">Photo have been updated</string>
     <string name="link_entrego_linkedin" translatable="false">https://www.linkedin.com/company/16240397</string>
     <string name="text_select_picture">Select picture</string>
+    <string name="text_empty_delivery_list">You have no deliveries yet.</string>
+    <string name="text_empty_delivery_list_label">Make the first one NOW!</string>
+    <string name="text_success_delete_card">Card have been deleted</string>
 </resources>

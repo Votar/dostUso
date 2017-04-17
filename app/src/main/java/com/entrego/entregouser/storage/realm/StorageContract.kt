@@ -20,6 +20,6 @@ interface StorageContract {
     fun getLastEmail(): String
     fun saveProfile(model: CustomerProfileModel)
     fun getProfile(): CustomerProfileModel?
-    fun saveDefaultPaymentMethod(method: PaymentMethodEntity): Boolean
+    fun setDefaultPaymentMethod(method: PaymentMethodEntity): Boolean
     fun getDefaultPaymentMethod(): PaymentMethodEntity
 }

@@ -1,5 +1,6 @@
 package com.entrego.entregouser.ui.payment
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -13,21 +14,26 @@ import com.entrego.entregouser.mvp.view.BaseMvpActivity
 import com.entrego.entregouser.ui.payment.card.add.AddCardActivity
 import com.entrego.entregouser.ui.payment.model.PaymentMethodAdapter
 import com.entrego.entregouser.ui.payment.wallet.AddMoneyToWalletActivity
+import com.entrego.entregouser.util.loading
 import com.entrego.entregouser.web.model.response.card.EntregoCreditCardEntity
 import kotlinx.android.synthetic.main.activity_payment_method.*
-import kotlinx.android.synthetic.main.navigation_toolbar.*
+import kotlinx.android.synthetic.main.navigation_payment_toolbar.*
 import java.util.*
 
 class PaymentMethodActivity : BaseMvpActivity<PaymentMethodContract.View, PaymentMethodContract.Presenter>(),
         PaymentMethodContract.View {
-    companion object {
 
+    companion object {
         fun getIntent(ctx: Context): Intent = Intent(ctx, PaymentMethodActivity::class.java)
 
     }
 
     override var mPresenter: PaymentMethodContract.Presenter = PaymentMethodPresenter()
-    override fun getRootView(): View = activity_payment_method
+    val mPaymentClickListener = object : PaymentMethodAdapter.OnPaymentClickListener {
+        override fun onClick(method: PaymentMethodEntity) {
+            mPresenter.setupLastPaymentMethod(method)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,8 +46,8 @@ class PaymentMethodActivity : BaseMvpActivity<PaymentMethodContract.View, Paymen
         payment_method_recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         val dividerItemDecoration = DividerItemDecoration(this, LinearLayoutManager.VERTICAL)
         payment_method_recycler.addItemDecoration(dividerItemDecoration)
-        mPresenter.requestCardList()
         mPresenter.loadPaymentMethod()
+        mPresenter.requestCardList()
     }
 
     fun setupListeners() {
@@ -67,7 +73,27 @@ class PaymentMethodActivity : BaseMvpActivity<PaymentMethodContract.View, Paymen
     }
 
     override fun loadDatasetPaymentMethods(list: LinkedList<Pair<PaymentMethodEntity, Boolean>>) {
-        payment_method_recycler.adapter = PaymentMethodAdapter(list)
+        payment_method_recycler.adapter = PaymentMethodAdapter(list, mPaymentClickListener)
+    }
+
+    var mProgress: ProgressDialog? = null
+    override fun hideProgress() {
+        mProgress?.dismiss()
+    }
+
+    override fun showProgress() {
+        mProgress = ProgressDialog(this)
+        mProgress?.loading()
+    }
+
+    override fun getRootView(): View = activity_payment_method
+    override fun showEditCardMenu() {
+        edit_payment_menu.visibility = View.VISIBLE
+        edit_payment_menu.setOnClickListener { mPresenter.deletePayment() }
+    }
+
+    override fun showDefaultMenu() {
+        edit_payment_menu.visibility = View.GONE
     }
 }
 

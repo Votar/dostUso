@@ -3,6 +3,10 @@ package com.entrego.entregouser.ui.intro
 import android.content.Intent
 import com.entrego.entregouser.entity.EntregoPhoneModel
 import com.entrego.entregouser.mvp.presenter.BaseMvpPresenter
+import com.entrego.entregouser.storage.EntregoStorage
+import com.entrego.entregouser.storage.preferences.PreferencesManager
+import com.entrego.entregouser.ui.intro.model.LoginWithFbRequest
+import com.entrego.entregouser.web.api.ApiContract
 import com.facebook.AccessToken
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
@@ -16,7 +20,7 @@ class WelcomePresenter : BaseMvpPresenter<WelcomeContract.View>(),
 
     val mLoginFbListener = object : FacebookCallback<LoginResult> {
         override fun onSuccess(loginResult: LoginResult) {
-
+            loginWithFb()
         }
 
         override fun onCancel() {
@@ -27,6 +31,7 @@ class WelcomePresenter : BaseMvpPresenter<WelcomeContract.View>(),
 
         }
     }
+
 
     override fun attachView(view: WelcomeContract.View) {
         super.attachView(view)
@@ -42,8 +47,26 @@ class WelcomePresenter : BaseMvpPresenter<WelcomeContract.View>(),
         if (token == null)
             mView?.performFbClick()
         else {
-            mView?.showMessage("Facebook auth in develop")
+
+            val mResponseListenerLoginFb = object : LoginWithFbRequest.LoginWithFbRequestListener {
+                override fun onSuccessLoginWithFbRequest(token: String) {
+                    EntregoStorage.clear()
+                    PreferencesManager.setToken(token)
+                    mView?.showRootView()
+                }
+
+                override fun onFailureLoginWithFbRequest(code: Int?, message: String?) {
+                    when (code) {
+                        ApiContract.RESPONSE_INVALID_TOKEN -> {
+                            mView?.showRegistrationWithFb(token.token)
+                        }
+                        else -> mView?.showError(message)
+                    }
+                }
+            }
+            LoginWithFbRequest().executeAsync(token.token, mResponseListenerLoginFb)
         }
+
     }
 
     override fun performFbWithUserData(email: String, phone: EntregoPhoneModel) {

@@ -11,6 +11,9 @@ class DeliveryListContract {
         fun showProgress()
         fun hideProgress()
         fun showList(resultList: List<EntregoDeliveryPreview>)
+        fun showEmptyView()
+        fun hideList()
+        fun hideEmptyView()
     }
 
     interface Presenter : IBaseMvpPresenter<View> {

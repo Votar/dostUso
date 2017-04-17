@@ -12,11 +12,12 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.entrego.entregouser.R
 import com.entrego.entregouser.entity.route.EntregoPointBinding
 import com.entrego.entregouser.entity.route.EntregoRouteModel
 import com.entrego.entregouser.storage.preferences.PreferencesManager
-import com.entrego.entregouser.ui.auth.AuthActivity
+import com.entrego.entregouser.ui.intro.IntroActivity
 import com.entrego.entregouser.web.api.EntregoApi
 import com.entrego.entregouser.web.socket.SocketService
 
@@ -67,7 +68,7 @@ fun ProgressDialog.loadingWithCancel(cancelAction: (dialog: DialogInterface, whi
 fun Context.logout() {
     stopService(Intent(this, SocketService::class.java))
     PreferencesManager.setToken("")
-    val intent = AuthActivity.getIntentLogout(this)
+    val intent = IntroActivity.getIntent(this)
     startActivity(intent)
 }
 
@@ -148,13 +149,18 @@ fun ImageView.loadMessengerPicWithToken(messengerId: Long) {
     Glide.with(this.context)
             .load(EntregoApi.URL_MESSENGER_PIC + messengerId.toString())
             .error(R.drawable.ic_user_pic_holder)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
             .into(this)
 }
 
-fun ImageView.loadCustomerPicWithToken(){
+fun ImageView.loadCustomerPicWithToken() {
     Glide.with(this.context)
             .load(EntregoApi.URL_CUSTOMER_PIC)
+            .placeholder(R.drawable.ic_user_pic_holder)
+            .dontAnimate()
             .error(R.drawable.ic_user_pic_holder)
+            .skipMemoryCache(true)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
             .into(this)
 }
 

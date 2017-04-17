@@ -29,6 +29,7 @@
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
@@ -53,6 +54,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.intro.IntroActivity" />
         </activity>
+        <activity
+            android:name=".ui.intro.registration.RegistrationFbActivity"
+            android:parentActivityName=".ui.intro.IntroActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.intro.IntroActivity" />
+        </activity>
+
         <activity
             android:name=".ui.auth.restore.RestorePasswordActivity"
             android:parentActivityName=".ui.auth.AuthActivity"

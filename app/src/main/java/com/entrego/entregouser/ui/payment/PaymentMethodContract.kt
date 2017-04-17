@@ -12,11 +12,18 @@ object PaymentMethodContract {
         fun showAddMoneyToWallet()
         fun loadDatasetPaymentMethods(list: LinkedList<Pair<PaymentMethodEntity, Boolean>>)
         fun showCardList(list: List<EntregoCreditCardEntity>)
+        fun showEditCardMenu()
+        fun showDefaultMenu()
+        fun showProgress()
+        fun hideProgress()
+
     }
 
     interface Presenter : IBaseMvpPresenter<View> {
         fun requestCardList()
         fun savePaymentMethod(method: PaymentMethodEntity)
         fun loadPaymentMethod()
+        fun setupLastPaymentMethod(method: PaymentMethodEntity)
+        fun deletePayment()
     }
 }

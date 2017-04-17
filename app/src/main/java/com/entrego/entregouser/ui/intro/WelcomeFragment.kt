@@ -9,6 +9,7 @@ import com.entrego.entregouser.R
 import com.entrego.entregouser.mvp.view.BaseMvpFragment
 import com.entrego.entregouser.ui.auth.AuthActivity
 import com.entrego.entregouser.ui.delivery.create.RootActivity
+import com.entrego.entregouser.ui.intro.registration.RegistrationFbActivity
 import com.entrego.entregouser.ui.registration.RegistrationActivity
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -17,6 +18,10 @@ import kotlinx.android.synthetic.main.fragment_welcome.*
 
 class WelcomeFragment : BaseMvpFragment<WelcomeContract.View, WelcomeContract.Presenter>(),
         WelcomeContract.View {
+    override fun showRegistrationWithFb(fbToken: String) {
+        activity.startActivity(RegistrationFbActivity.getIntent(activity, fbToken))
+    }
+
     override var mPresenter: WelcomeContract.Presenter = WelcomePresenter()
 
 

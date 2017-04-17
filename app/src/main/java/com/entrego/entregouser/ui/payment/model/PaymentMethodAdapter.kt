@@ -15,7 +15,8 @@ import com.entrego.entregouser.web.model.response.card.EntregoCreditCardEntity
 import java.util.*
 
 
-class PaymentMethodAdapter(val dataset: LinkedList<Pair<PaymentMethodEntity, Boolean>>) : RecyclerView.Adapter<PaymentMethodAdapter.ViewHolder>() {
+class PaymentMethodAdapter(val dataset: LinkedList<Pair<PaymentMethodEntity, Boolean>>,
+                           val clickListener: OnPaymentClickListener) : RecyclerView.Adapter<PaymentMethodAdapter.ViewHolder>() {
     var recentCheck: CheckedTextView? = null
     var lastCheckedPosition: Int = -1
 
@@ -25,6 +26,10 @@ class PaymentMethodAdapter(val dataset: LinkedList<Pair<PaymentMethodEntity, Boo
             lastCheckedPosition = dataset.indexOf(defaultMethod)
         else
             throw IllegalStateException("No default method in adapter")
+    }
+
+    interface OnPaymentClickListener {
+        fun onClick(method: PaymentMethodEntity)
     }
 
     class ViewHolder(val rootView: View) : RecyclerView.ViewHolder(rootView) {
@@ -70,6 +75,7 @@ class PaymentMethodAdapter(val dataset: LinkedList<Pair<PaymentMethodEntity, Boo
 
         holder.title?.setOnClickListener { v ->
             (v as CheckedTextView).apply {
+                clickListener.onClick(nextValue.first)
                 lastCheckedPosition = position
                 notifyDataSetChanged()
             }

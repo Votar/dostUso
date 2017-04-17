@@ -15,6 +15,7 @@ interface WelcomeContract {
         fun showRootView()
         fun performFbClick()
         fun showEmailPhoneInput()
+        fun showRegistrationWithFb(fbToken: String)
     }
 
     interface Presenter : IBaseMvpPresenter<View> {

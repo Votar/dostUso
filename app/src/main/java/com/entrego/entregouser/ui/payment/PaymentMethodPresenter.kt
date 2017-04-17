@@ -6,6 +6,7 @@ import com.entrego.entregouser.entity.common.PaymentMethodType
 import com.entrego.entregouser.mvp.presenter.BaseMvpPresenter
 import com.entrego.entregouser.storage.EntregoStorage
 import com.entrego.entregouser.ui.payment.card.list.model.CardListRequest
+import com.entrego.entregouser.ui.payment.model.DeleteCardRequest
 import com.entrego.entregouser.web.api.ApiContract
 import com.entrego.entregouser.web.model.response.card.EntregoCreditCardEntity
 import java.util.*
@@ -14,6 +15,9 @@ import java.util.*
 class PaymentMethodPresenter : PaymentMethodContract.Presenter,
         BaseMvpPresenter<PaymentMethodContract.View>() {
     val mToken = EntregoStorage.getTokenOrEmpty()
+
+
+    var mLastPaymentMethod: PaymentMethodEntity? = null
 
     val mResponseListener = object : CardListRequest.CardListListener {
         override fun onSuccessCardList(resultList: Array<EntregoCreditCardEntity>) {
@@ -32,6 +36,7 @@ class PaymentMethodPresenter : PaymentMethodContract.Presenter,
         }
     }
 
+
     override fun attachView(view: PaymentMethodContract.View) {
         super.attachView(view)
     }
@@ -41,11 +46,48 @@ class PaymentMethodPresenter : PaymentMethodContract.Presenter,
     }
 
     override fun savePaymentMethod(method: PaymentMethodEntity) {
-        val result = EntregoStorage.saveDefaultPaymentMethod(method)
+        val result = EntregoStorage.setDefaultPaymentMethod(method)
         if (result)
             mView?.showMessage(R.string.text_success_save)
         else
             mView?.showError(R.string.error_storage)
+    }
+
+    override fun deletePayment() {
+        if (mLastPaymentMethod?.type != PaymentMethodType.CARD || mLastPaymentMethod == null)
+            throw IllegalStateException("This action is not allow with this payment method")
+        else {
+
+            val mDeleteCardListener = object : DeleteCardRequest.DeleteCardRequestListener {
+                override fun onSuccessDeleteCardRequest() {
+                    mView?.hideProgress()
+                    mView?.showMessage(R.string.text_success_delete_card)
+
+                    val currentDefault = EntregoStorage.getDefaultPaymentMethod()
+                    if (currentDefault.card?.token?.equals(mLastPaymentMethod?.card?.token) == true) {
+                        val default = PaymentMethodEntity(PaymentMethodType.CASH)
+                        EntregoStorage.setDefaultPaymentMethod(default)
+
+                    }
+                    loadPaymentMethod()
+                    requestCardList()
+                }
+
+                override fun onFailureDeleteCardRequest(code: Int?, message: String?) {
+                    mView?.hideProgress()
+                    mView?.showError(message)
+                }
+
+            }
+
+            mLastPaymentMethod?.card?.token?.also {
+                mView?.showProgress()
+                DeleteCardRequest().executeAsync(mToken,
+                        it,
+                        mDeleteCardListener
+                )
+            }
+        }
     }
 
     override fun loadPaymentMethod() {
@@ -53,10 +95,21 @@ class PaymentMethodPresenter : PaymentMethodContract.Presenter,
         loadListWithSelectedPaymentMethod(default)
     }
 
+    override fun setupLastPaymentMethod(method: PaymentMethodEntity) {
+        mLastPaymentMethod = method
+        if (mLastPaymentMethod?.type == PaymentMethodType.CARD)
+            mView?.showEditCardMenu()
+        else
+            mView?.showDefaultMenu()
+    }
+
     private fun loadListWithSelectedPaymentMethod(default: PaymentMethodEntity) {
+        if (default.type == PaymentMethodType.CARD) {
+            mLastPaymentMethod = default
+            mView?.showEditCardMenu()
+        } else mView?.showDefaultMenu()
         val listMethods = LinkedList<Pair<PaymentMethodEntity, Boolean>>()
         PaymentMethodType.values().forEach {
-
             if (default.type == it)
                 listMethods.add(Pair(default, true))
             else if (it != PaymentMethodType.CARD)

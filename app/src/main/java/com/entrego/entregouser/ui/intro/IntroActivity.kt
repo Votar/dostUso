@@ -1,14 +1,24 @@
 package com.entrego.entregouser.ui.intro
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.app.NavUtils
 import android.support.v4.content.ContextCompat
 import com.entrego.entregouser.R
 import com.github.paolorotolo.appintro.AppIntro
 
 
 class IntroActivity : AppIntro() {
+    companion object {
+        fun getIntent(ctx: Context): Intent {
+            val intent = Intent(ctx, IntroActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            return intent
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -25,13 +35,12 @@ class IntroActivity : AppIntro() {
                 R.drawable.introslider8,
                 R.drawable.introslider9,
                 R.drawable.introslider10
-                )
+        )
 
         addSlide(WelcomeFragment())
         titles.forEachIndexed { index, value ->
             addSlide(IntroFragment.newInstance(titles[index], descriptions[index], introImages[index]))
         }
-
 
         setBarColor(ContextCompat.getColor(this, R.color.colorTransparent))
         setSeparatorColor(ContextCompat.getColor(this, R.color.colorTransparent))
@@ -43,9 +52,7 @@ class IntroActivity : AppIntro() {
 
         showSkipButton(false)
         isProgressButtonEnabled = false
-
         showSkipButton(false)
-
     }
 
     override fun onStart() {

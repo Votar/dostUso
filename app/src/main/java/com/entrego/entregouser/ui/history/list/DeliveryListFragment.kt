@@ -1,6 +1,7 @@
 package com.entrego.entregouser.ui.history.list
 
 import android.os.Bundle
+import android.support.v4.app.NavUtils
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ import com.entrego.entregouser.ui.history.details.DetailsDeliveryActivity
 import com.entrego.entregouser.ui.history.list.model.DeliveryHistoryAdapter
 import com.entrego.entregouser.ui.history.list.model.DeliveryListType
 import kotlinx.android.synthetic.main.fragment_delivery_list.*
+import kotlinx.android.synthetic.main.include_empty_delivery_list.*
 
 
 class DeliveryListFragment : BaseMvpFragment<DeliveryListContract.View, DeliveryListContract.Presenter>(), DeliveryListContract.View {
@@ -68,7 +70,20 @@ class DeliveryListFragment : BaseMvpFragment<DeliveryListContract.View, Delivery
         val colorDarkBlue = ContextCompat.getColor(activity, R.color.colorDarkBlue)
         delivery_list_swipe.setColorSchemeColors(colorAccent, colorDarkBlue)
         delivery_list_recycler.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        delivery_empty_view_label.setOnClickListener { NavUtils.navigateUpFromSameTask(activity) }
+    }
 
+    override fun showEmptyView() {
+        hideList()
+        delivery_list_empty_view.visibility = View.VISIBLE
+    }
+
+    override fun hideList() {
+        delivery_list_swipe.visibility = View.GONE
+    }
+
+    override fun hideEmptyView() {
+        delivery_list_empty_view.visibility = View.GONE
     }
 
     override fun showProgress() {
@@ -80,6 +95,8 @@ class DeliveryListFragment : BaseMvpFragment<DeliveryListContract.View, Delivery
     }
 
     override fun showList(resultList: List<EntregoDeliveryPreview>) {
+        hideEmptyView()
+        delivery_list_swipe.visibility = View.VISIBLE
         delivery_list_recycler.adapter = DeliveryHistoryAdapter(resultList, mClickItemListener)
     }
 

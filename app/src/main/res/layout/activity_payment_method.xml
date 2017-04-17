@@ -9,7 +9,7 @@
 
     <include
         android:id="@+id/payment_method_toolbar"
-        layout="@layout/navigation_toolbar" />
+        layout="@layout/navigation_payment_toolbar" />
 
     <ScrollView
         style="@style/EntregoContentScroll"

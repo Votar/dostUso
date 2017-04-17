@@ -17,9 +17,9 @@ object ApiCreator {
         //Logger interceptor
         val client = OkHttpClient.Builder()
         client.addInterceptor(loggingInterceptor)
-        client.writeTimeout(20, TimeUnit.SECONDS)
-        client.readTimeout(20, TimeUnit.SECONDS)
-        client.connectTimeout(20, TimeUnit.SECONDS)
+        client.writeTimeout(60, TimeUnit.SECONDS)
+        client.readTimeout(60, TimeUnit.SECONDS)
+        client.connectTimeout(60, TimeUnit.SECONDS)
 
         server = Retrofit.Builder()
                 .baseUrl(EntregoApi.BASE_URL)

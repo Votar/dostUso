@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:id="@+id/delivery_list_swipe"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/delivery_list_recycler"
+    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/delivery_list_swipe"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-</android.support.v4.widget.SwipeRefreshLayout>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/delivery_list_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <include
+        android:visibility="gone"
+        android:id="@+id/delivery_list_empty_view"
+        layout="@layout/include_empty_delivery_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</RelativeLayout>
