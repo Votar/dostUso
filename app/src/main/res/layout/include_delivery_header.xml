@@ -9,7 +9,7 @@
 
         <variable
             name="messenter"
-            type="com.entrego.entregouser.entity.common.EntregoMessengerView" />
+            type="com.entregoya.entregouser.entity.common.EntregoMessengerView" />
     </data>
 
     <android.support.v7.widget.CardView

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.entrego.entregouser">
+    package="com.entregoya.entregouser">
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -14,14 +14,14 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".EntregoUserApplication"
+        android:name="com.entregoya.entregouser.EntregoUserApplication"
         android:allowBackup="false"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
         <meta-data
-            android:name="com.entrego.entregouser.web.glide.CustomGlideModule"
+            android:name="com.entregoya.entregouser.web.glide.CustomGlideModule"
             android:value="GlideModule" />
         <meta-data
             android:name="com.bumptech.glide.integration.okhttp3.OkHttpGlideModule"
@@ -35,47 +35,47 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".ui.intro.IntroActivity"
+            android:name="com.entregoya.entregouser.ui.intro.IntroActivity"
             android:excludeFromRecents="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeTransparent" />
         <activity
-            android:name=".ui.registration.SuccessRegistrationActivity"
+            android:name="com.entregoya.entregouser.ui.registration.SuccessRegistrationActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.auth.AuthActivity"
+            android:name="com.entregoya.entregouser.ui.auth.AuthActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.registration.RegistrationActivity"
-            android:parentActivityName=".ui.intro.IntroActivity"
+            android:name="com.entregoya.entregouser.ui.registration.RegistrationActivity"
+            android:parentActivityName="com.entregoya.entregouser.ui.intro.IntroActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.intro.IntroActivity" />
+                android:value="com.entregoya.entregouser.ui.intro.IntroActivity" />
         </activity>
         <activity
-            android:name=".ui.intro.registration.RegistrationFbActivity"
-            android:parentActivityName=".ui.intro.IntroActivity"
+            android:name="com.entregoya.entregouser.ui.intro.registration.RegistrationFbActivity"
+            android:parentActivityName="com.entregoya.entregouser.ui.intro.IntroActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.intro.IntroActivity" />
+                android:value="com.entregoya.entregouser.ui.intro.IntroActivity" />
         </activity>
 
         <activity
-            android:name=".ui.auth.restore.RestorePasswordActivity"
-            android:parentActivityName=".ui.auth.AuthActivity"
+            android:name="com.entregoya.entregouser.ui.auth.restore.RestorePasswordActivity"
+            android:parentActivityName="com.entregoya.entregouser.ui.auth.AuthActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.auth.AuthActivity" />
+                android:value="com.entregoya.entregouser.ui.auth.AuthActivity" />
         </activity>
         <activity
-            android:name=".ui.auth.restore.SuccessRestoreActivity"
+            android:name="com.entregoya.entregouser.ui.auth.restore.SuccessRestoreActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.splash.SplashActivity"
+            android:name="com.entregoya.entregouser.ui.splash.SplashActivity"
             android:noHistory="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -85,196 +85,196 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.delivery.create.RootActivity"
+            android:name="com.entregoya.entregouser.ui.delivery.create.RootActivity"
             android:clearTaskOnLaunch="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".ui.profile.edit.EditProfileActivity"
-            android:parentActivityName=".ui.delivery.create.RootActivity"
+            android:name="com.entregoya.entregouser.ui.profile.edit.EditProfileActivity"
+            android:parentActivityName="com.entregoya.entregouser.ui.delivery.create.RootActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.delivery.create.RootActivity" />
+                android:value="com.entregoya.entregouser.ui.delivery.create.RootActivity" />
         </activity>
         <activity
-            android:name=".ui.delivery.escort.root.EscortActivity"
+            android:name="com.entregoya.entregouser.ui.delivery.escort.root.EscortActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"></activity>
         <activity
-            android:name=".ui.faq.FaqListActivity"
-            android:parentActivityName=".ui.delivery.create.RootActivity"
+            android:name="com.entregoya.entregouser.ui.faq.FaqListActivity"
+            android:parentActivityName="com.entregoya.entregouser.ui.delivery.create.RootActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.delivery.create.RootActivity" />
+                android:value="com.entregoya.entregouser.ui.delivery.create.RootActivity" />
         </activity>
         <activity
-            android:name=".ui.faq.FaqDetailActivity"
-            android:parentActivityName=".ui.faq.FaqListActivity"
+            android:name="com.entregoya.entregouser.ui.faq.FaqDetailActivity"
+            android:parentActivityName="com.entregoya.entregouser.ui.faq.FaqListActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.faq.FaqListActivity" />
+                android:value="com.entregoya.entregouser.ui.faq.FaqListActivity" />
         </activity>
         <activity
-            android:name=".ui.delivery.escort.cancel.CancelDeliveryActivity"
-            android:parentActivityName=".ui.delivery.escort.root.EscortActivity"
+            android:name="com.entregoya.entregouser.ui.delivery.escort.cancel.CancelDeliveryActivity"
+            android:parentActivityName="com.entregoya.entregouser.ui.delivery.escort.root.EscortActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.entrego.entregouser.ui.delivery.escort.root.EscortActivity" />
+                android:value="com.entregoya.entregouser.ui.delivery.escort.root.EscortActivity" />
         </activity>
         <activity
-            android:name=".ui.delivery.escort.cancel.SuccessCancelActivity"
+            android:name="com.entregoya.entregouser.ui.delivery.escort.cancel.SuccessCancelActivity"
             android:noHistory="true"
-            android:parentActivityName=".ui.delivery.create.RootActivity"
+            android:parentActivityName="com.entregoya.entregouser.ui.delivery.create.RootActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.delivery.create.RootActivity" />
+                android:value="com.entregoya.entregouser.ui.delivery.create.RootActivity" />
         </activity>
         <activity
-            android:name=".ui.delivery.escort.chat.ChatMessengerActivity"
-            android:parentActivityName=".ui.delivery.escort.root.EscortActivity"
+            android:name="com.entregoya.entregouser.ui.delivery.escort.chat.ChatMessengerActivity"
+            android:parentActivityName="com.entregoya.entregouser.ui.delivery.escort.root.EscortActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.delivery.escort.root.EscortActivity" />
+                android:value="com.entregoya.entregouser.ui.delivery.escort.root.EscortActivity" />
         </activity>
         <activity
-            android:name=".ui.delivery.finish.FinishDeliveryActivity"
-            android:parentActivityName=".ui.delivery.create.RootActivity"
+            android:name="com.entregoya.entregouser.ui.delivery.finish.FinishDeliveryActivity"
+            android:parentActivityName="com.entregoya.entregouser.ui.delivery.create.RootActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.delivery.create.RootActivity" />
+                android:value="com.entregoya.entregouser.ui.delivery.create.RootActivity" />
         </activity>
         <activity
-            android:name=".ui.delivery.escort.status.StatusDeliveryActivity"
-            android:parentActivityName=".ui.delivery.escort.root.EscortActivity"
+            android:name="com.entregoya.entregouser.ui.delivery.escort.status.StatusDeliveryActivity"
+            android:parentActivityName="com.entregoya.entregouser.ui.delivery.escort.root.EscortActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.delivery.escort.root.EscortActivity" />
+                android:value="com.entregoya.entregouser.ui.delivery.escort.root.EscortActivity" />
         </activity>
         <activity
-            android:name=".ui.payment.PaymentMethodActivity"
-            android:parentActivityName=".ui.delivery.create.RootActivity"
+            android:name="com.entregoya.entregouser.ui.payment.PaymentMethodActivity"
+            android:parentActivityName="com.entregoya.entregouser.ui.delivery.create.RootActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.delivery.create.RootActivity" />
+                android:value="com.entregoya.entregouser.ui.delivery.create.RootActivity" />
         </activity>
         <activity
-            android:name=".ui.payment.card.add.AddCardActivity"
-            android:parentActivityName=".ui.payment.PaymentMethodActivity"
+            android:name="com.entregoya.entregouser.ui.payment.card.add.AddCardActivity"
+            android:parentActivityName="com.entregoya.entregouser.ui.payment.PaymentMethodActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.entrego.entregouser.ui.payment.PaymentMethodActivity" />
+                android:value="com.entregoya.entregouser.ui.payment.PaymentMethodActivity" />
         </activity>
         <activity
-            android:name=".ui.payment.wallet.AddMoneyToWalletActivity"
-            android:parentActivityName=".ui.payment.PaymentMethodActivity"
+            android:name="com.entregoya.entregouser.ui.payment.wallet.AddMoneyToWalletActivity"
+            android:parentActivityName="com.entregoya.entregouser.ui.payment.PaymentMethodActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.entrego.entregouser.ui.payment.PaymentMethodActivity" />
+                android:value="com.entregoya.entregouser.ui.payment.PaymentMethodActivity" />
         </activity>
         <activity
-            android:name=".ui.history.HistoryDeliveriesActivity"
+            android:name="com.entregoya.entregouser.ui.history.HistoryDeliveriesActivity"
             android:launchMode="singleTask"
-            android:parentActivityName=".ui.delivery.create.RootActivity"
+            android:parentActivityName="com.entregoya.entregouser.ui.delivery.create.RootActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.delivery.create.RootActivity" />
+                android:value="com.entregoya.entregouser.ui.delivery.create.RootActivity" />
         </activity>
         <activity
-            android:name=".ui.history.details.DetailsDeliveryActivity"
+            android:name="com.entregoya.entregouser.ui.history.details.DetailsDeliveryActivity"
             android:launchMode="singleTask"
-            android:parentActivityName=".ui.history.HistoryDeliveriesActivity"
+            android:parentActivityName="com.entregoya.entregouser.ui.history.HistoryDeliveriesActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.entrego.entregouser.ui.history.HistoryDeliveriesActivity" />
+                android:value="com.entregoya.entregouser.ui.history.HistoryDeliveriesActivity" />
         </activity>
         <activity
-            android:name=".ui.autocomplete.EntregoAutocompleteActivity"
+            android:name="com.entregoya.entregouser.ui.autocomplete.EntregoAutocompleteActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.favorites.FavoritesActivity"
-            android:parentActivityName=".ui.delivery.create.RootActivity"
+            android:name="com.entregoya.entregouser.ui.favorites.FavoritesActivity"
+            android:parentActivityName="com.entregoya.entregouser.ui.delivery.create.RootActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.delivery.create.RootActivity" />
+                android:value="com.entregoya.entregouser.ui.delivery.create.RootActivity" />
         </activity>
         <activity
-            android:name=".ui.history.incidents.IncidentsActivity"
-            android:parentActivityName=".ui.history.details.DetailsDeliveryActivity"
+            android:name="com.entregoya.entregouser.ui.history.incidents.IncidentsActivity"
+            android:parentActivityName="com.entregoya.entregouser.ui.history.details.DetailsDeliveryActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.entrego.entregouser.ui.history.details.DetailsDeliveryActivity" />
+                android:value="com.entregoya.entregouser.ui.history.details.DetailsDeliveryActivity" />
         </activity>
-        <activity android:name=".ui.comon.DescriptionWithTopicActivity" />
+        <activity android:name="com.entregoya.entregouser.ui.comon.DescriptionWithTopicActivity" />
         <activity
-            android:name=".ui.comon.AboutEntregoActivity"
-            android:parentActivityName=".ui.delivery.create.RootActivity"
+            android:name="com.entregoya.entregouser.ui.comon.AboutEntregoActivity"
+            android:parentActivityName="com.entregoya.entregouser.ui.delivery.create.RootActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.delivery.create.RootActivity" />
-        </activity>
-        <activity
-            android:name=".ui.comon.ContactUsActivity"
-            android:parentActivityName=".ui.delivery.create.RootActivity"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.delivery.create.RootActivity" />
+                android:value="com.entregoya.entregouser.ui.delivery.create.RootActivity" />
         </activity>
         <activity
-            android:name=".ui.comon.WorkForUsActivity"
-            android:parentActivityName=".ui.delivery.create.RootActivity"
+            android:name="com.entregoya.entregouser.ui.comon.ContactUsActivity"
+            android:parentActivityName="com.entregoya.entregouser.ui.delivery.create.RootActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.delivery.create.RootActivity" />
+                android:value="com.entregoya.entregouser.ui.delivery.create.RootActivity" />
         </activity>
         <activity
-            android:name=".ui.comon.UserManualActivity"
-            android:parentActivityName=".ui.delivery.create.RootActivity"
+            android:name="com.entregoya.entregouser.ui.comon.WorkForUsActivity"
+            android:parentActivityName="com.entregoya.entregouser.ui.delivery.create.RootActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.delivery.create.RootActivity" />
+                android:value="com.entregoya.entregouser.ui.delivery.create.RootActivity" />
         </activity>
         <activity
-            android:name=".ui.manual.ManualActivity"
-            android:parentActivityName=".ui.delivery.create.RootActivity"
+            android:name="com.entregoya.entregouser.ui.comon.UserManualActivity"
+            android:parentActivityName="com.entregoya.entregouser.ui.delivery.create.RootActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.delivery.create.RootActivity" />
+                android:value="com.entregoya.entregouser.ui.delivery.create.RootActivity" />
+        </activity>
+        <activity
+            android:name="com.entregoya.entregouser.ui.manual.ManualActivity"
+            android:parentActivityName="com.entregoya.entregouser.ui.delivery.create.RootActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.entregoya.entregouser.ui.delivery.create.RootActivity" />
         </activity>
 
-        <service android:name=".web.socket.SocketService" />
+        <service android:name="com.entregoya.entregouser.web.socket.SocketService" />
 
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="463a399516cd719b0fab38747783c8aeed730201" />
 
         <activity
-            android:name=".ui.profile.edit.photo.UploadPhotoActivity"
-            android:parentActivityName=".ui.profile.edit.EditProfileActivity"
+            android:name="com.entregoya.entregouser.ui.profile.edit.photo.UploadPhotoActivity"
+            android:parentActivityName="com.entregoya.entregouser.ui.profile.edit.EditProfileActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.profile.edit.EditProfileActivity" />
+                android:value="com.entregoya.entregouser.ui.profile.edit.EditProfileActivity" />
         </activity>
     </application>
 

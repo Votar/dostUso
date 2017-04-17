@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorAccent"
     android:fitsSystemWindows="true"
-    tools:context="com.entrego.entregouser.ui.splash.SplashActivity">
+    tools:context="com.entregoya.entregouser.ui.splash.SplashActivity">
 
 
     <ImageView

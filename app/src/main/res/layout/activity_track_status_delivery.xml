@@ -5,15 +5,15 @@
 
         <import type="android.view.View" />
 
-        <import type="com.entrego.entregouser.entity.route.PointStatus" />
+        <import type="com.entregoya.entregouser.entity.route.PointStatus" />
 
         <variable
             name="delivery"
-            type="com.entrego.entregouser.entity.back.EntregoDeliveryPreview" />
+            type="com.entregoya.entregouser.entity.back.EntregoDeliveryPreview" />
 
         <variable
             name="messenger"
-            type="com.entrego.entregouser.entity.common.EntregoMessengerView" />
+            type="com.entregoya.entregouser.entity.common.EntregoMessengerView" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"

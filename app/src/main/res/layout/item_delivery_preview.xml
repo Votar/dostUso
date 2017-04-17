@@ -5,7 +5,7 @@
 
         <variable
             name="model"
-            type="com.entrego.entregouser.entity.back.EntregoDeliveryPreview" />
+            type="com.entregoya.entregouser.entity.back.EntregoDeliveryPreview" />
     </data>
 
     <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
