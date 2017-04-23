@@ -13,6 +13,8 @@ class DeliveryEntityBuilder {
     var addresses: List<String>? = null
     @SerializedName("return")
     var returnFlag: Boolean = false
+    var promo: String? = null
+    var notes: String? = null
 
     override fun toString(): String {
         return "DeliveryEntityBuilder(category=$category, parcel=$parcel, type=$type, pickup=$pickup, addresses=$addresses)"

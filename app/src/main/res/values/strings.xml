@@ -132,7 +132,22 @@
     <string name="text_work">Work</string>
 
     <string name="user_conditions_title">User conditions</string>
-    <string name="user_conditions_text">User conditions</string>
+    <string name="user_conditions_text">El prestatario del servicio es la empresa SPEED ON DEMAND, S.A., es una sociedad anónima panameña inscrita en el Registro Público de Panamá bajo el folio 155634002, en adelante la empresa, por otra parte está EL USUARIO quien es cualquier persona que acceda a o use el Servicio o la Aplicación. En tal
+sentido ambas partes suscriben este contrato bajo las siguientes condiciones que son de estricto
+cumplimiento y se definen de la siguiente forma:\n\n
+\n\n
+IMPORTANTE Al descargar y utilizar esta aplicación el usuario, acepta automáticamente las condiciones establecidas en ellos.
+\n\n
+Estas condiciones de uso serán aplicables y de
+obligatorio cumplimiento para usted por la mera visita y uso de parte suya de la página web
+http://www.entregoya.com el Servicio y la Aplicación, así como a toda la información, recomendaciones o servicios prestados en o a través la página web, el Servicio y la Aplicación.
+\n\n
+Podrá conocer las Condiciones del Usuario
+Íntegramente en los legales de nuestro sitio web
+http://www.entregoya.com.
+\n\n
+Fecha de actualización de las Condiciones del
+Usuario 18/10/2016</string>
     <string name="about_entrego_title">About EntreGO</string>
     <string name="text_working_hours">Working hours</string>
     <string name="text_working_hours_value">Mon - Sun 7:30 am - 10:00 pm</string>
@@ -183,4 +198,5 @@
     <string name="text_empty_delivery_list">You have no deliveries yet.</string>
     <string name="text_empty_delivery_list_label">Make the first one NOW!</string>
     <string name="text_success_delete_card">Card have been deleted</string>
+    <string name="hint_required_length_9_chars">9 characters</string>
 </resources>

@@ -11,6 +11,7 @@ import android.widget.TextView
 import com.entregoya.entregouser.R
 import com.entregoya.entregouser.entity.common.PaymentMethodEntity
 import com.entregoya.entregouser.entity.common.PaymentMethodType
+import com.entregoya.entregouser.storage.EntregoStorage
 import com.entregoya.entregouser.web.model.response.card.EntregoCreditCardEntity
 import java.util.*
 
@@ -35,6 +36,7 @@ class PaymentMethodAdapter(val dataset: LinkedList<Pair<PaymentMethodEntity, Boo
     class ViewHolder(val rootView: View) : RecyclerView.ViewHolder(rootView) {
         var title: CheckedTextView? = null
         var icon: ImageView? = null
+        var walletBalance: TextView? = null
     }
 
     fun addCards(cardList: List<EntregoCreditCardEntity>) {
@@ -59,6 +61,7 @@ class PaymentMethodAdapter(val dataset: LinkedList<Pair<PaymentMethodEntity, Boo
 
         vh.title = v.findViewById(R.id.item_payment_title) as CheckedTextView
         vh.icon = v.findViewById(R.id.item_card_icon) as ImageView
+        vh.walletBalance = v.findViewById(R.id.item_payment_wallet_amount) as TextView
         return vh
     }
 
@@ -82,7 +85,7 @@ class PaymentMethodAdapter(val dataset: LinkedList<Pair<PaymentMethodEntity, Boo
         }
         when (nextValue.first.type) {
             PaymentMethodType.CASH -> holder.title.setupText(R.string.text_cash)
-            PaymentMethodType.WALLET -> holder.title.setupText(R.string.text_wallet)
+            PaymentMethodType.WALLET -> buildWalletView(holder)
             PaymentMethodType.CLAVE -> holder.title.setupText(R.string.text_clave)
             PaymentMethodType.CARD -> buildCardView(holder, nextValue.first.card!!)
         }
@@ -107,6 +110,14 @@ class PaymentMethodAdapter(val dataset: LinkedList<Pair<PaymentMethodEntity, Boo
             }
         }
 
+    }
+
+    fun buildWalletView(holder: ViewHolder) {
+        holder.title.setupText(R.string.text_wallet)
+        val wallet = EntregoStorage.getProfile()?.balance
+        wallet?.apply {
+            holder.walletBalance?.text = wallet.toView()
+        }
     }
 }
 

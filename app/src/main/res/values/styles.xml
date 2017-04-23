@@ -31,10 +31,7 @@
         <item name="android:textColor">@color/colorDarkBlue</item>
     </style>
 
-    <style name="CardActivityDefault">
-        <item name="android:background">@color/colorAccent</item>
-        <item name="android:padding">@dimen/padding_medium</item>
-    </style>
+
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Light">
         <item name="android:windowNoTitle">true</item>
@@ -67,6 +64,11 @@
         <item name="android:padding">@dimen/padding_medium</item>
         <item name="android:clipToPadding">false</item>
         <item name="android:scrollbars">none</item>
+    </style>
+
+    <style name="CardActivityDefault">
+        <item name="android:background">@color/colorAccent</item>
+        <item name="android:padding">@dimen/padding_medium</item>
     </style>
 
     <style name="HistoryCeilStyle">

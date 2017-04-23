@@ -13,6 +13,7 @@ import com.entregoya.entregouser.entity.common.EntregoPriceEntity
 import com.entregoya.entregouser.mvp.view.BaseMvpActivity
 import com.entregoya.entregouser.ui.delivery.create.RootActivity
 import com.entregoya.entregouser.util.GsonHolder
+import com.entregoya.entregouser.util.loadMessengerPicWithToken
 import com.entregoya.entregouser.util.ui.EntregoCancelableProgressDialog
 import com.entregoya.entregouser.util.ui.EntregoProgressDialog
 import kotlinx.android.synthetic.main.activity_finish_delivery.*
@@ -87,6 +88,7 @@ class FinishDeliveryActivity : FinishDeliveryContract.View,
 
     fun setupMessenger(messenger: EntregoMessengerView) {
         finish_messenger_name.text = messenger.name
+        finish_messenger_pic.loadMessengerPicWithToken(messenger.id)
 //        finish_messenger_rating.numStars = messenger.rating
     }
 

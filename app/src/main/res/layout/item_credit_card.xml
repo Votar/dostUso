@@ -23,6 +23,13 @@
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
         android:checked="false" />
+    <TextView
+        android:textColor="@color/colorBlack"
+        android:id="@+id/item_payment_wallet_amount"
+        android:paddingRight="@dimen/padding_medium"
+        android:gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
 
 
 </LinearLayout>

@@ -88,6 +88,12 @@ class SelectAddressFragment : BaseBuilderFragment(), ISelectAddressView, FieldCl
             addressesList.addAll((select_address_recycler.adapter as WayPointsAdapter).getAddressList())
             mDeliveryBuilder?.addresses = addressesList
             mDeliveryBuilder?.returnFlag = select_address_return.isChecked
+            select_address_promo.text.toString().apply {
+                if (this.isNotEmpty())
+                    mDeliveryBuilder?.promo = this
+            }
+            mDeliveryBuilder?.notes = select_address_special_field.text.toString()
+
             logd(mDeliveryBuilder.toString())
             mDeliveryBuilder?.let {
                 mPresenter.requestDeliveryCreation(it)

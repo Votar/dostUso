@@ -164,4 +164,5 @@
     <string name="text_success_save">Guardado exitosamente</string>
     <string name="text_wallet">Billetera</string>
     <string name="text_success_delete_card">Se ha eliminado la tarjeta</string>
+    <string name="hint_required_length_9_chars">9 caracteres</string>
 </resources>

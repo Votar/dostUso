@@ -196,13 +196,15 @@
                             android:textSize="@dimen/tsize_medium" />
 
                         <EditText
+                            android:id="@+id/select_address_promo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:inputType="textPostalAddress"
+                            android:maxLength="9"
+                            android:hint="@string/hint_required_length_9_chars"
                             android:maxLines="1"
-                            android:maxLength="20"
-                            android:minWidth="50dp" />
+                            android:minWidth="60dp" />
                     </RelativeLayout>
 
                     <View
