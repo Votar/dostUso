@@ -37,15 +37,15 @@ class PostProfileRequest {
 
         request.enqueue(object : Callback<BaseEntregoResponse> {
             override fun onResponse(call: Call<BaseEntregoResponse>?, response: Response<BaseEntregoResponse>?) {
-                if (response?.errorBody() != null)
-                    listener?.onFailureResponse(null, null)
-
-                response?.body()?.apply {
-                    when (code) {
-                        ApiContract.RESPONSE_OK -> listener?.onSuccessResponse(userProfileModel)
-                        else -> listener?.onFailureResponse(code, message)
+                if (response?.body() != null)
+                    response.body().apply {
+                        when (code) {
+                            ApiContract.RESPONSE_OK -> listener?.onSuccessResponse(userProfileModel)
+                            else -> listener?.onFailureResponse(code, message)
+                        }
                     }
-                }
+                else
+                    listener?.onFailureResponse(null, null)
             }
 
             override fun onFailure(call: Call<BaseEntregoResponse>?, t: Throwable?) {

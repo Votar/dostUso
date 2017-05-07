@@ -168,7 +168,7 @@
                 android:value="com.entregoya.entregouser.ui.delivery.create.RootActivity" />
         </activity>
         <activity
-            android:name="com.entregoya.entregouser.ui.payment.card.add.AddCardActivity"
+            android:name="com.entregoya.entregouser.ui.payment.wallet.card.AddCardActivity"
             android:parentActivityName="com.entregoya.entregouser.ui.payment.PaymentMethodActivity"
             android:screenOrientation="portrait">
             <meta-data
@@ -260,6 +260,24 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.entregoya.entregouser.ui.delivery.create.RootActivity" />
+        </activity>
+
+        <activity
+            android:name=".ui.payment.wallet.InputAmountActivity"
+            android:parentActivityName="com.entregoya.entregouser.ui.delivery.create.RootActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.entregoya.entregouser.ui.delivery.create.RootActivity" />
+        </activity>
+
+        <activity
+            android:name=".ui.payment.wallet.card.WalletInputActivity"
+            android:parentActivityName=".ui.payment.wallet.InputAmountActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.payment.wallet.InputAmountActivity" />
         </activity>
 
         <service android:name="com.entregoya.entregouser.web.socket.SocketService" />

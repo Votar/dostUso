@@ -45,7 +45,6 @@ abstract class BaseMvpFragment<in V : IBaseMvpView, T : IBaseMvpPresenter<V>> : 
 
     override fun onDestroy() {
         super.onDestroy()
-        mPresenter.detachView()
     }
 
     override fun onLogout() {

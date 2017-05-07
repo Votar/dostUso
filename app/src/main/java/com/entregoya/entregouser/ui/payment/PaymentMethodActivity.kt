@@ -13,8 +13,8 @@ import com.entregoya.entregouser.entity.common.PaymentMethodEntity
 import com.entregoya.entregouser.mvp.view.BaseMvpActivity
 import com.entregoya.entregouser.ui.payment.card.add.AddCardActivity
 import com.entregoya.entregouser.ui.payment.model.PaymentMethodAdapter
-import com.entregoya.entregouser.ui.payment.wallet.AddMoneyToWalletActivity
 import com.entregoya.entregouser.util.loading
+import com.entregoya.entregouser.util.showSnack
 import com.entregoya.entregouser.web.model.response.card.EntregoCreditCardEntity
 import kotlinx.android.synthetic.main.activity_payment_method.*
 import kotlinx.android.synthetic.main.navigation_payment_toolbar.*
@@ -65,7 +65,8 @@ class PaymentMethodActivity : BaseMvpActivity<PaymentMethodContract.View, Paymen
     }
 
     override fun showAddMoneyToWallet() {
-        startActivity(AddMoneyToWalletActivity.getIntent(this))
+//        startActivity(InputAmountActivity.getIntent(this))
+        getRootView().showSnack(getString(R.string.text_in_develop))
     }
 
     override fun showCardList(list: List<EntregoCreditCardEntity>) {
