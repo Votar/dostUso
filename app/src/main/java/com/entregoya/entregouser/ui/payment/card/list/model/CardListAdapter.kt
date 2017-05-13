@@ -38,7 +38,7 @@ class CardListAdapter(val mFieldClickListener: OnItemClicked) : RecyclerView.Ada
         // set the view's size, margins, paddings and layout parameters
         val vh = ViewHolder(v)
 
-//        vh.cardMask = v.findViewById(R.id.item_card_masked_number) as TextView
+        vh.cardMask = v.findViewById(R.id.item_payment_title) as TextView
         vh.icon = v.findViewById(R.id.item_card_icon) as ImageView
         return vh
     }
@@ -55,7 +55,7 @@ class CardListAdapter(val mFieldClickListener: OnItemClicked) : RecyclerView.Ada
                 holder.icon?.setImageDrawable(icon)
             }
             '5' -> {
-                val icon = ContextCompat.getDrawable(holder.cardMask?.context, R.drawable.ic_mastercard)
+                val icon = ContextCompat.getDrawable(holder.icon?.context, R.drawable.ic_mastercard)
                 holder.icon?.setImageDrawable(icon)
             }
         }

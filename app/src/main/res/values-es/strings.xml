@@ -167,4 +167,6 @@
     <string name="hint_required_length_9_chars">9 caracteres</string>
     <string name="text_in_develop">En desarrollo</string>
     <string name="text_add_the_total">Añadir la cantidad deseada</string>
+    <string name="error_should_select_card">Usted debe seleccionar la tarjeta</string>
+    <string name="success_added">La solicitud se ha terminado con éxito</string>
 </resources>

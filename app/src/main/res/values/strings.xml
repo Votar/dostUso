@@ -201,4 +201,6 @@ Usuario 18/10/2016</string>
     <string name="hint_required_length_9_chars">9 characters</string>
     <string name="text_in_develop">In develop</string>
     <string name="text_add_the_total">Add the wished amount</string>
+    <string name="error_should_select_card">You should select card</string>
+    <string name="success_added">Request have been finished with success</string>
 </resources>

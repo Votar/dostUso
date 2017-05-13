@@ -18,12 +18,16 @@ import kotlinx.android.synthetic.main.fragment_card_list.*
 class CardListFragment : BaseMvpFragment<CardListContract.View, CardListContract.Presenter>(),
         CardListContract.View {
 
-    override var mPresenter: CardListContract.Presenter = CardListPresenter()
-    val mItemClickListener = object : CardListAdapter.OnItemClicked {
-        override fun onClick(card: EntregoCreditCardEntity) {
-            //TODO: implement select card
+    companion object {
+        fun newInstance(listener: CardListAdapter.OnItemClicked): CardListFragment {
+            val fragment = CardListFragment()
+            fragment.mItemClickListener = listener
+            return fragment
         }
     }
+
+    override var mPresenter: CardListContract.Presenter = CardListPresenter()
+    var mItemClickListener: CardListAdapter.OnItemClicked? = null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_card_list, container, false)
@@ -38,7 +42,9 @@ class CardListFragment : BaseMvpFragment<CardListContract.View, CardListContract
         card_list_recycler.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         val dividerItemDecoration = DividerItemDecoration(activity, LinearLayoutManager.VERTICAL)
         card_list_recycler.addItemDecoration(dividerItemDecoration)
-        card_list_recycler.adapter = CardListAdapter(mItemClickListener)
+        mItemClickListener?.let {
+            card_list_recycler.adapter = CardListAdapter(it)
+        }
         card_list_refresh.setOnRefreshListener { mPresenter.requestUpdate() }
         val colorAccent = ContextCompat.getColor(activity, R.color.colorAccent)
         val colorDarkBlue = ContextCompat.getColor(activity, R.color.colorDarkBlue)

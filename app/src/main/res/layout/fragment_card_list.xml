@@ -2,7 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/card_List_rl"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/double_screen_padding"
+    android:paddingRight="@dimen/double_screen_padding">
 
     <RelativeLayout
         android:id="@+id/card_list_empty_rl"
@@ -18,12 +20,12 @@
             android:text="@string/card_list_is_empty" />
     </RelativeLayout>
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/card_list_refresh"
-        android:minHeight="120dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:minHeight="120dp">
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/card_list_recycler"
             android:layout_width="match_parent"
