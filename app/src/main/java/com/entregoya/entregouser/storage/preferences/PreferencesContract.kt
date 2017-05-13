@@ -2,6 +2,7 @@ package com.entregoya.entregouser.storage.preferences
 
 import com.entregoya.entregouser.entity.common.PaymentMethodEntity
 import com.entregoya.entregouser.storage.realm.models.CustomerProfileModel
+import com.entregoya.entregouser.web.model.response.card.EntregoCreditCardEntity
 
 
 interface PreferencesContract {
@@ -16,4 +17,6 @@ interface PreferencesContract {
     fun getProfile(): CustomerProfileModel?
     fun saveDefaultPaymentMethod(method: PaymentMethodEntity): Boolean
     fun getDefaultPaymentMethod(): PaymentMethodEntity
+    fun getCardList(): List<EntregoCreditCardEntity>
+    fun saveCardList(cardList: List<EntregoCreditCardEntity>)
 }

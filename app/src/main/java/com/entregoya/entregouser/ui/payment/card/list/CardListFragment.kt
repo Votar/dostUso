@@ -54,16 +54,12 @@ class CardListFragment : BaseMvpFragment<CardListContract.View, CardListContract
     override fun onStart() {
         super.onStart()
         if (card_list_recycler.adapter.itemCount == 0)
-            mPresenter.requestUpdate()
+            mPresenter.setupCards()
 
     }
 
     override fun setupCardList(resultList: List<EntregoCreditCardEntity>) {
         (card_list_recycler.adapter as CardListAdapter).swapDataset(resultList)
-        val count = card_list_recycler.adapter.itemCount
-        val heightItem = Math.round(resources.getDimension(R.dimen.payment_method_cell_height))
-        val heightLayout = heightItem * count
-        card_list_refresh.layoutParams.height = heightLayout
     }
 
     override fun showProgress() {

@@ -8,6 +8,8 @@ import com.entregoya.entregouser.web.model.response.card.EntregoCreditCardEntity
 
 class CardListPresenter : BaseMvpPresenter<CardListContract.View>(),
         CardListContract.Presenter {
+
+
     val token = EntregoStorage.getTokenOrEmpty()
     val mResponseListener = object : CardListRequest.CardListListener {
         override fun onSuccessCardList(resultList: Array<EntregoCreditCardEntity>) {
@@ -33,8 +35,17 @@ class CardListPresenter : BaseMvpPresenter<CardListContract.View>(),
         }
     }
 
+    override fun setupCards() {
+        val cardList = EntregoStorage.getCardList()
+        if (cardList.isEmpty()) {
+            requestUpdate()
+        } else
+            mView?.setupCardList(cardList)
+    }
+
     override fun requestUpdate() {
         mView?.showProgress()
         CardListRequest().executeAsync(token, mResponseListener)
+
     }
 }

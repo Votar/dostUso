@@ -13,6 +13,7 @@ interface CardListContract {
         fun hideProgress()
     }
     interface Presenter: IBaseMvpPresenter<View>{
+        fun setupCards()
         fun requestUpdate()
     }
 }

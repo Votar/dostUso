@@ -1,8 +1,9 @@
-package com.entregoya.entregouser.storage.realm
+package com.entregoya.entregouser.storage
 
 import com.entregoya.entregouser.entity.common.PaymentMethodEntity
 import com.entregoya.entregouser.storage.realm.models.CustomerProfileModel
 import com.entregoya.entregouser.storage.realm.models.RealmAddressModel
+import com.entregoya.entregouser.web.model.response.card.EntregoCreditCardEntity
 
 interface StorageContract {
     fun clear()
@@ -22,4 +23,6 @@ interface StorageContract {
     fun getProfile(): CustomerProfileModel?
     fun setDefaultPaymentMethod(method: PaymentMethodEntity): Boolean
     fun getDefaultPaymentMethod(): PaymentMethodEntity
+    fun getCardList(): List<EntregoCreditCardEntity>
+    fun saveCardList(cardList: List<EntregoCreditCardEntity>)
 }

@@ -8,9 +8,11 @@ import android.support.v4.app.NavUtils
 import android.support.v7.app.AppCompatActivity
 import com.entregoya.entregouser.R
 import com.entregoya.entregouser.storage.EntregoStorage
+import com.entregoya.entregouser.storage.realm.models.CustomerProfileModel
 import com.entregoya.entregouser.ui.payment.card.list.CardListFragment
 import com.entregoya.entregouser.ui.payment.card.list.model.CardListAdapter
 import com.entregoya.entregouser.ui.payment.wallet.model.AddMoneyWalletRequest
+import com.entregoya.entregouser.ui.splash.model.GetProfileRequest
 import com.entregoya.entregouser.util.loading
 import com.entregoya.entregouser.util.showSnack
 import com.entregoya.entregouser.util.showSnackError
@@ -78,9 +80,23 @@ class InputAmountActivity : AppCompatActivity() {
         override fun onSuccessAddMoneyWalletRequest() {
             hideProgress()
             activity_input_amount_wallet.showSnack(getString(R.string.success_added))
+            updateProfile()
         }
 
     }
+
+    private fun updateProfile() {
+        val token = EntregoStorage.getTokenOrEmpty()
+        GetProfileRequest().requestAsync(token, object : GetProfileRequest.ResponseListener {
+            override fun onSuccessResponse(profileJson: CustomerProfileModel) {
+                EntregoStorage.saveProfile(profileJson)
+            }
+
+            override fun onFailureResponse(code: Int?, message: String?) {
+            }
+        })
+    }
+
     var mProgress: ProgressDialog? = null
     fun showProgress() {
         mProgress = ProgressDialog(this)

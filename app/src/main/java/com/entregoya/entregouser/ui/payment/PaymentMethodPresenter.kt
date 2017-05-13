@@ -43,8 +43,13 @@ class PaymentMethodPresenter : PaymentMethodContract.Presenter,
     }
 
     override fun requestCardList() {
-        mView?.showCardProgress()
-        CardListRequest().executeAsync(mToken, mResponseListener)
+        if (EntregoStorage.getCardList().isEmpty()) {
+            mView?.showCardProgress()
+            CardListRequest().executeAsync(mToken, mResponseListener)
+        } else {
+            mView?.hideCardProgress()
+            mView?.showCardList(EntregoStorage.getCardList())
+        }
     }
 
     override fun savePaymentMethod(method: PaymentMethodEntity) {

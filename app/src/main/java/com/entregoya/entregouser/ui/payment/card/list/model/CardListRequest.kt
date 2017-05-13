@@ -1,5 +1,6 @@
 package com.entregoya.entregouser.ui.payment.card.list.model
 
+import com.entregoya.entregouser.storage.EntregoStorage
 import com.entregoya.entregouser.web.api.ApiContract
 import com.entregoya.entregouser.web.api.ApiCreator
 import com.entregoya.entregouser.web.api.EntregoApi
@@ -43,6 +44,7 @@ class CardListRequest {
                                 when (code) {
                                     ApiContract.RESPONSE_OK -> {
                                         listener?.onSuccessCardList(payload)
+                                        EntregoStorage.saveCardList(payload.toList())
                                     }
                                     else -> listener?.onFailureCardList(code, message)
                                 }

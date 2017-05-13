@@ -32,12 +32,10 @@ import kotlinx.android.synthetic.main.fragment_favorites.*
 class FavoritesFragment : BaseMvpFragment<FavoritesContract.View, FavoritesContract.Presenter>(),
         FavoritesContract.View {
 
-
     override var mPresenter: FavoritesContract.Presenter = FavoritesPresenter()
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater?.inflate(R.layout.fragment_favorites, container, false)
-
         return view
     }
 
@@ -132,11 +130,12 @@ class FavoritesFragment : BaseMvpFragment<FavoritesContract.View, FavoritesContr
 
 
     override fun showAutoCompleteForFavorite(requestCode: FavoritesContract.RequestCodes) {
-        val filter = AutocompleteFilter.Builder()
-                .setTypeFilter(AutocompleteFilter.TYPE_FILTER_ADDRESS)
+        val filterAddress = AutocompleteFilter.Builder()
+                .setTypeFilter(AutocompleteFilter.TYPE_FILTER_ESTABLISHMENT)
                 .build()
-        val intent = PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN)
-                .setFilter(filter)
+
+        val intent = PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_OVERLAY)
+                .setFilter(filterAddress)
                 .build(activity)
         startActivityForResult(intent, requestCode.value)
     }
@@ -169,7 +168,6 @@ class FavoritesFragment : BaseMvpFragment<FavoritesContract.View, FavoritesContr
     private fun setUpItemTouchHelper() {
 
         val simpleItemTouchCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
-
 
             var background: Drawable? = null
             var xMark: Drawable? = null

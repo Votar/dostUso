@@ -93,7 +93,7 @@ class AutoCompletePresenter : BaseMvpPresenter<AutocompleteContract.View>(),
 
     fun requestAddress(query: String) {
         val filter = AutocompleteFilter.Builder()
-                .setTypeFilter(AutocompleteFilter.TYPE_FILTER_ADDRESS)
+                .setTypeFilter(AutocompleteFilter.TYPE_FILTER_ESTABLISHMENT)
                 .build()
 
         val bounds = mCameraBounds

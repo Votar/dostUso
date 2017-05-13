@@ -4,11 +4,17 @@ import android.content.Context
 import com.entregoya.entregouser.entity.common.PaymentMethodEntity
 import com.entregoya.entregouser.storage.preferences.PreferencesManager
 import com.entregoya.entregouser.storage.realm.RealmController
-import com.entregoya.entregouser.storage.realm.StorageContract
 import com.entregoya.entregouser.storage.realm.models.CustomerProfileModel
 import com.entregoya.entregouser.storage.realm.models.RealmAddressModel
+import com.entregoya.entregouser.web.model.response.card.EntregoCreditCardEntity
 
 object EntregoStorage : StorageContract {
+    override fun saveCardList(cardList: List<EntregoCreditCardEntity>) {
+        PreferencesManager.saveCardList(cardList)
+    }
+
+    override fun getCardList(): List<EntregoCreditCardEntity> = PreferencesManager.getCardList()
+
     override fun getRecentSearch(): List<RealmAddressModel> = RealmController.getRecentSearch()
 
     override fun addRecentSearch(address: String) {

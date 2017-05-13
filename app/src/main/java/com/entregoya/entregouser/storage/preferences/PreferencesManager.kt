@@ -6,11 +6,9 @@ import com.entregoya.entregouser.entity.common.PaymentMethodEntity
 import com.entregoya.entregouser.entity.common.PaymentMethodType
 import com.entregoya.entregouser.storage.realm.models.CustomerProfileModel
 import com.entregoya.entregouser.util.GsonHolder
+import com.entregoya.entregouser.web.model.response.card.EntregoCreditCardEntity
 
 object PreferencesManager : PreferencesContract {
-    override fun clearForNewUser() {
-        mSharedPref.edit().clear().commit()
-    }
 
 
     override fun getWorkAddressOrEmpty(): String = mSharedPref.getString(KEY_WORK_ADDRESS, "")
@@ -83,6 +81,17 @@ object PreferencesManager : PreferencesContract {
         else
             return GsonHolder.instance
                     .fromJson(json, PaymentMethodEntity::class.java)
+    }
+
+    private var mCardList: List<EntregoCreditCardEntity> = ArrayList()
+    override fun saveCardList(cardList: List<EntregoCreditCardEntity>) {
+        mCardList = cardList
+    }
+
+    override fun getCardList(): List<EntregoCreditCardEntity> = mCardList
+
+    override fun clearForNewUser() {
+        mSharedPref.edit().clear().commit()
     }
 
 }

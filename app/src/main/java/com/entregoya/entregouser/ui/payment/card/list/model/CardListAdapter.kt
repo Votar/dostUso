@@ -5,8 +5,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckedTextView
 import android.widget.ImageView
-import android.widget.TextView
 import com.entregoya.entregouser.R
 import com.entregoya.entregouser.web.model.response.card.EntregoCreditCardEntity
 import java.util.*
@@ -15,13 +15,15 @@ import java.util.*
 class CardListAdapter(val mFieldClickListener: OnItemClicked) : RecyclerView.Adapter<CardListAdapter.ViewHolder>() {
 
     private val dataset = LinkedList<EntregoCreditCardEntity>()
+    private var lastCheckedPosition: Int = -1
 
     interface OnItemClicked {
         fun onClick(card: EntregoCreditCardEntity)
     }
 
+
     class ViewHolder(val rootView: View) : RecyclerView.ViewHolder(rootView) {
-        var cardMask: TextView? = null
+        var cardMask: CheckedTextView? = null
         var icon: ImageView? = null
     }
 
@@ -38,7 +40,7 @@ class CardListAdapter(val mFieldClickListener: OnItemClicked) : RecyclerView.Ada
         // set the view's size, margins, paddings and layout parameters
         val vh = ViewHolder(v)
 
-        vh.cardMask = v.findViewById(R.id.item_payment_title) as TextView
+        vh.cardMask = v.findViewById(R.id.item_payment_title) as CheckedTextView
         vh.icon = v.findViewById(R.id.item_card_icon) as ImageView
         return vh
     }
@@ -49,6 +51,11 @@ class CardListAdapter(val mFieldClickListener: OnItemClicked) : RecyclerView.Ada
         val nextValue = dataset[position]
 
         holder.icon?.visibility = View.VISIBLE
+
+        if (lastCheckedPosition == position)
+            holder.cardMask?.setCheckMarkDrawable(R.drawable.ic_check_blue_24dp)
+        else
+            holder.cardMask?.checkMarkDrawable = null
 
         holder.cardMask?.text = nextValue.mask
         val firstDigit = nextValue.mask.first()
@@ -63,8 +70,11 @@ class CardListAdapter(val mFieldClickListener: OnItemClicked) : RecyclerView.Ada
             }
         }
 
-
-        holder.rootView.setOnClickListener { mFieldClickListener.onClick(nextValue) }
+        holder.rootView.setOnClickListener {
+            lastCheckedPosition = position
+            mFieldClickListener.onClick(nextValue)
+            notifyDataSetChanged()
+        }
     }
 
 }
