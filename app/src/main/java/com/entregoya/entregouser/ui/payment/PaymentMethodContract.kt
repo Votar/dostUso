@@ -16,7 +16,8 @@ object PaymentMethodContract {
         fun showDefaultMenu()
         fun showProgress()
         fun hideProgress()
-
+        fun showCardProgress()
+        fun hideCardProgress()
     }
 
     interface Presenter : IBaseMvpPresenter<View> {

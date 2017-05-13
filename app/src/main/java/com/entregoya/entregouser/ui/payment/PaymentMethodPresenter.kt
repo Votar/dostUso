@@ -21,13 +21,14 @@ class PaymentMethodPresenter : PaymentMethodContract.Presenter,
 
     val mResponseListener = object : CardListRequest.CardListListener {
         override fun onSuccessCardList(resultList: Array<EntregoCreditCardEntity>) {
-
+            mView?.hideCardProgress()
             if (resultList.isNotEmpty()) {
                 mView?.showCardList(resultList.toList())
             }
         }
 
         override fun onFailureCardList(code: Int?, message: String?) {
+            mView?.hideCardProgress()
 
             when (code) {
                 ApiContract.RESPONSE_INVALID_TOKEN -> mView?.onLogout()
@@ -42,6 +43,7 @@ class PaymentMethodPresenter : PaymentMethodContract.Presenter,
     }
 
     override fun requestCardList() {
+        mView?.showCardProgress()
         CardListRequest().executeAsync(mToken, mResponseListener)
     }
 

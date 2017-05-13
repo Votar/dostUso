@@ -51,7 +51,7 @@ class CardListAdapter(val mFieldClickListener: OnItemClicked) : RecyclerView.Ada
         val firstDigit = nextValue.mask.first()
         when (firstDigit) {
             '4' -> {
-                val icon = ContextCompat.getDrawable(holder.cardMask?.context, R.drawable.ic_visa)
+                val icon = ContextCompat.getDrawable(holder.icon?.context, R.drawable.ic_visa)
                 holder.icon?.setImageDrawable(icon)
             }
             '5' -> {

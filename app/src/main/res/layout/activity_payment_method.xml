@@ -30,28 +30,21 @@
                 android:paddingRight="@dimen/double_screen_padding"
                 android:paddingTop="@dimen/default_screen_padding">
 
-                <FrameLayout
-                    android:id="@+id/payment_method_bank_list_container"
+                <android.support.v4.widget.SwipeRefreshLayout
+                    android:id="@+id/payment_method_swiperefresh"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-
-                <!--<FrameLayout-->
-                <!--android:id="@+id/payment_method_paypal"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="@dimen/payment_method_cell_height"-->
-                <!--android:background="?attr/selectableItemBackground">-->
-
-                <!--<ImageView-->
-                <!--android:layout_width="50dp"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--app:srcCompat="@drawable/ic_paypal_logo" />-->
-                <!--</FrameLayout>-->
+                    android:layout_height="match_parent"
+                    android:minHeight="80dp">
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </android.support.v4.widget.SwipeRefreshLayout>
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/payment_method_recycler"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent" />
+
 
                 <TextView
                     android:id="@+id/payment_method_add_card"
@@ -84,10 +77,10 @@
 
     <Button
         android:id="@+id/payment_method_save_btn"
-        android:text="@string/text_save_changes"
-        android:theme="@style/WhiteButton"
-        android:layout_margin="@dimen/default_screen_padding"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/default_screen_padding"
+        android:text="@string/text_save_changes"
+        android:theme="@style/WhiteButton" />
 </RelativeLayout>

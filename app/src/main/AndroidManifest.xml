@@ -168,21 +168,14 @@
                 android:value="com.entregoya.entregouser.ui.delivery.create.RootActivity" />
         </activity>
         <activity
-            android:name="com.entregoya.entregouser.ui.payment.wallet.card.AddCardActivity"
+            android:name=".ui.payment.card.add.AddCardActivity"
             android:parentActivityName="com.entregoya.entregouser.ui.payment.PaymentMethodActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.entregoya.entregouser.ui.payment.PaymentMethodActivity" />
         </activity>
-        <activity
-            android:name="com.entregoya.entregouser.ui.payment.wallet.AddMoneyToWalletActivity"
-            android:parentActivityName="com.entregoya.entregouser.ui.payment.PaymentMethodActivity"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.entregoya.entregouser.ui.payment.PaymentMethodActivity" />
-        </activity>
+
         <activity
             android:name="com.entregoya.entregouser.ui.history.HistoryDeliveriesActivity"
             android:launchMode="singleTask"
