@@ -257,11 +257,11 @@
 
         <activity
             android:name=".ui.payment.wallet.InputAmountActivity"
-            android:parentActivityName="com.entregoya.entregouser.ui.delivery.create.RootActivity"
+            android:parentActivityName=".ui.payment.PaymentMethodActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.entregoya.entregouser.ui.delivery.create.RootActivity" />
+                android:value=".ui.payment.PaymentMethodActivity" />
         </activity>
 
         <activity

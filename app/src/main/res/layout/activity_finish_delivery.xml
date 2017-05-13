@@ -32,8 +32,8 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/finish_messenger_pic"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/user_photo_holder_size"
+                    android:layout_height="@dimen/user_photo_holder_size"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/ic_user_pic_holder" />
 

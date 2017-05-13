@@ -61,7 +61,8 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/history_details_score_label"
                             android:layout_centerHorizontal="true"
-                            android:numStars="5" />
+                            android:numStars="5"
+                            android:rating="@{messenger.score}" />
                     </RelativeLayout>
 
 

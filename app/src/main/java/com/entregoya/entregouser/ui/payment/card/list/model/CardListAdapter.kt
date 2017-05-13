@@ -47,6 +47,9 @@ class CardListAdapter(val mFieldClickListener: OnItemClicked) : RecyclerView.Ada
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val nextValue = dataset[position]
+
+        holder.icon?.visibility = View.VISIBLE
+
         holder.cardMask?.text = nextValue.mask
         val firstDigit = nextValue.mask.first()
         when (firstDigit) {
